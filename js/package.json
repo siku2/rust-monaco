@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "monaco-editor": "^0.20"
+  },
+  "devDependencies": {
+    "css-loader": "^4.2",
+    "file-loader": "^6.0",
+    "monaco-editor-webpack-plugin": "^1.9",
+    "style-loader": "^1.2",
+    "webpack": "^4.44",
+    "webpack-cli": "^3.3"
+  }
+}
