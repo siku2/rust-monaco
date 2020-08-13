@@ -1,5 +1,9 @@
 import * as monaco from "monaco-editor";
 
+export function setEnvironment(env) {
+  self["MonacoEnvironment"] = env;
+}
+
 // Modules
 export const editor = monaco.editor;
 

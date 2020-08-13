@@ -1,3 +1,4 @@
+pub use environment::*;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
 
@@ -19,9 +20,13 @@ macro_rules! object_set {
 }
 
 pub mod editor;
+mod environment;
 
 #[wasm_bindgen(module = "/js/monaco.js")]
 extern "C" {
+    #[wasm_bindgen(js_name = "setEnvironment")]
+    pub fn set_environment(val: &Environment);
+
     pub static editor: editor::Editor;
 
     #[derive(Debug)]

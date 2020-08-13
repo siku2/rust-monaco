@@ -28,5 +28,6 @@ impl Component for App {
 
 #[wasm_bindgen(start)]
 pub fn start_app() {
+    monaco::init_environment();
     yew::start_app::<App>();
 }

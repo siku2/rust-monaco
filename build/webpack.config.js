@@ -3,7 +3,7 @@ const EsmWebpackPlugin = require("@purtuga/esm-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
-  mode: "production",
+  mode: "development",
   entry: "./monaco.js",
   output: {
     filename: "monaco.js",
@@ -27,6 +27,7 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
+    // TODO don't do this for the workers!
     new EsmWebpackPlugin(),
   ],
 };
