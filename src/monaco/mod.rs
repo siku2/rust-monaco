@@ -22,8 +22,7 @@ pub mod editor;
 
 #[wasm_bindgen(module = "/js/monaco.js")]
 extern "C" {
-    #[wasm_bindgen(getter)]
-    pub fn editor() -> editor::Editor;
+    pub static editor: editor::Editor;
 
     #[derive(Debug)]
     pub type CancellationTokenSource;
