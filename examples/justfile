@@ -1,5 +1,5 @@
 @build example:
-    wasm-pack build --no-typescript --out-dir "www" "{{example}}"
+    wasm-pack build --no-typescript --out-dir "www" --target web "{{example}}"
     cp {{example}}/static/* "{{example}}/www"
 
 @run example:

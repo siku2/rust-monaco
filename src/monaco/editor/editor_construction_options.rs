@@ -5,8 +5,8 @@ use wasm_bindgen::{prelude::*, JsCast, JsValue};
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen(extends = IEditorOptions)]
     #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = IEditorOptions)]
     pub type IEditorConstructionOptions;
 }
 impl IEditorConstructionOptions {
@@ -28,8 +28,8 @@ impl Default for IEditorConstructionOptions {
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen(extends = Object)]
     #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = Object)]
     pub type IDimension;
 }
 impl IDimension {
@@ -52,8 +52,8 @@ impl Default for IDimension {
 #[wasm_bindgen]
 extern "C" {
     /// The options to create an editor.
-    #[wasm_bindgen(extends = IEditorConstructionOptions, extends = IGlobalEditorOptions)]
     #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = IEditorConstructionOptions, extends = IGlobalEditorOptions)]
     pub type IStandaloneEditorConstructionOptions;
 }
 impl IStandaloneEditorConstructionOptions {
@@ -109,8 +109,8 @@ impl Default for IStandaloneEditorConstructionOptions {
 
 #[wasm_bindgen]
 extern "C" {
-    #[wasm_bindgen(extends = Object)]
     #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = Object)]
     pub type ITextModel;
 }
 impl ITextModel {

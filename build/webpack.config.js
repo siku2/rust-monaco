@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const EsmWebpackPlugin = require("@purtuga/esm-webpack-plugin");
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
 
 module.exports = {
@@ -6,6 +7,8 @@ module.exports = {
   entry: "./monaco.js",
   output: {
     filename: "monaco.js",
+    library: "MONACO_MOD",
+    libraryTarget: "var",
   },
   module: {
     rules: [
@@ -24,5 +27,6 @@ module.exports = {
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 1,
     }),
+    new EsmWebpackPlugin(),
   ],
 };

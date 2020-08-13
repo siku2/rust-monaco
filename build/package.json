@@ -6,6 +6,7 @@
     "monaco-editor": "^0.20"
   },
   "devDependencies": {
+    "@purtuga/esm-webpack-plugin": "^1.2",
     "css-loader": "^4.2",
     "file-loader": "^6.0",
     "monaco-editor-webpack-plugin": "^1.9",

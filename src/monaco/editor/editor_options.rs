@@ -4,8 +4,8 @@ use wasm_bindgen::{prelude::*, JsCast, JsValue};
 #[wasm_bindgen]
 extern "C" {
     /// Options which apply for all editors.
-    #[wasm_bindgen(extends = Object)]
     #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = Object)]
     pub type IGlobalEditorOptions;
 }
 impl IGlobalEditorOptions {
@@ -74,8 +74,8 @@ impl Default for IGlobalEditorOptions {
 #[wasm_bindgen]
 extern "C" {
     /// Configuration options for the editor.
-    #[wasm_bindgen(extends = Object)]
     #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = Object)]
     pub type IEditorOptions;
 }
 impl Default for IEditorOptions {

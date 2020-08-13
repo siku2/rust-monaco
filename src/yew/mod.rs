@@ -1,12 +1,25 @@
-use yew::{Component, ComponentLink, Html, ShouldRender};
+use web_sys::HtmlElement;
+use yew::{html, Component, ComponentLink, Html, NodeRef, Properties, ShouldRender};
 
-pub struct Editor {}
+#[derive(Clone, Debug, Eq, PartialEq, Properties)]
+pub struct EditorProps {}
+
+#[derive(Debug)]
+pub struct Editor {
+    props: EditorProps,
+    link: ComponentLink<Self>,
+    node_ref: NodeRef,
+}
 impl Component for Editor {
     type Message = ();
-    type Properties = ();
+    type Properties = EditorProps;
 
-    fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        todo!()
+    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        Self {
+            props,
+            link,
+            node_ref: NodeRef::default(),
+        }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
@@ -18,6 +31,16 @@ impl Component for Editor {
     }
 
     fn view(&self) -> Html {
-        todo!()
+        html! {
+            <div ref=self.node_ref.clone() />
+        }
+    }
+
+    fn rendered(&mut self, first_render: bool) {
+        if first_render {
+            if let Some(el) = self.node_ref.cast::<HtmlElement>() {
+                crate::editor().create(&el, None);
+            }
+        }
     }
 }
