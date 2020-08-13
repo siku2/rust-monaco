@@ -1,0 +1,7 @@
+@build example:
+    wasm-pack build --no-typescript --out-dir "www" "{{example}}"
+    cp {{example}}/static/* "{{example}}/www"
+
+@run example:
+    just build "{{example}}"
+    simple-http-server --index --nocache -- "{{example}}/www"

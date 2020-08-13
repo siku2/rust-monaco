@@ -1,3 +1,3 @@
 @build_js:
-    just js/build
-    cp js/dist/*.js src/sources/embedded
+    just build/build
+    cp build/dist/*.js js
