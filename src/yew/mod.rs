@@ -32,7 +32,7 @@ impl Component for Editor {
 
     fn view(&self) -> Html {
         html! {
-            <div ref=self.node_ref.clone() />
+            <div ref=self.node_ref.clone() style="width:800px; height:600px; border:1px solid #ccc;" />
         }
     }
 
