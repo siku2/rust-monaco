@@ -9,10 +9,13 @@ mod interfaces;
 
 #[wasm_bindgen]
 extern "C" {
+    /// Namespace `monaco.editor`
     #[derive(Debug)]
     #[wasm_bindgen(extends = Object)]
     pub type Editor;
 
+    /// Create a new editor under domElement. domElement should be empty (not
+    /// contain other dom nodes). The editor will read the size of domElement.
     #[wasm_bindgen(method)]
     pub fn create(
         this: &Editor,

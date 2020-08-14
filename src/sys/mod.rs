@@ -1,3 +1,4 @@
+/// Raw bindings for the monaco editor API.
 pub use environment::*;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
@@ -7,31 +8,41 @@ mod environment;
 
 #[wasm_bindgen(module = "/js/editor.js")]
 extern "C" {
+    /// The `editor` namespace.
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/modules/monaco.editor.html)
     pub static editor: editor::Editor;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.cancellationtokensource.html)
     #[derive(Debug)]
     pub type CancellationTokenSource;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.emitter.html)
     #[derive(Debug)]
     pub type Emitter;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.keymod.html)
     #[derive(Debug)]
     pub type KeyMod;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.position.html)
     #[derive(Debug)]
     pub type Position;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.range.html)
     #[derive(Debug)]
     pub type Range;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.selection.html)
     #[derive(Debug)]
     pub type Selection;
 
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.token.html)
     #[derive(Debug)]
     pub type Token;
 
     /// Uniform Resource Identifier (Uri) http://tools.ietf.org/html/rfc3986.
     /// This class is a simple parser which creates the basic component parts (http://tools.ietf.org/html/rfc3986#section-3) with minimal validation and encoding.
+    /// [API docs](https://microsoft.github.io/monaco-editor/api/classes/monaco.uri.html)
     #[derive(Debug)]
     pub type Uri;
 
@@ -86,8 +97,9 @@ extern "C" {
     pub fn fs_path(this: &Uri) -> String;
 
     // TODO: UriComponents
+    /// Convert to a raw object.
     #[wasm_bindgen(method, js_name = "toJSON")]
-    pub fn to_json(this: &Uri) -> String;
+    pub fn to_json(this: &Uri) -> JsValue;
 
     /// Creates a string representation for this Uri. It's guaranteed that
     /// calling Uri.parse with the result of this function creates an Uri which
@@ -100,6 +112,7 @@ extern "C" {
     #[wasm_bindgen(method, js_name = "toString")]
     pub fn to_string(this: &Uri, skip_encoding: bool) -> String;
 
+    /// Create from components
     #[wasm_bindgen(static_method_of = Uri)]
     pub fn from_(components: &Object) -> Uri;
 

@@ -315,20 +315,25 @@ define_interface_builder! {
 // TODO: IDiffEditorOptions
 
 define_interface_builder! {
+    /// Options to create an editor
     type IEditorConstructionOptions extends IEditorOptions {
         /// The initial editor dimension (to avoid measuring the container).
         dimension: &IDimension => dimension;
     }
 }
 impl IEditorConstructionOptions {
+    /// Add the given `IEditorOptions`.
     pub fn with_editor_options(self, val: &IEditorOptions) -> Self {
         JsCast::unchecked_into(Object::assign(&self, val))
     }
 }
 
 define_interface_builder! {
+    /// Dimension with width and height
     type IDimension extends Object {
+        /// Height in pixels
         height: u32 => height;
+        /// Width in pixels
         width: u32 => width;
     }
 }
@@ -348,6 +353,7 @@ define_interface_builder! {
         /// available themes are: 'vs' (default), 'vs-dark', 'hc-black'. You can
         /// create custom themes via monaco.editor.defineTheme. To switch a theme,
         /// use monaco.editor.setTheme
+        // TODO allow setting custom theme
         theme: BuiltinTheme => theme;
         /// The initial value of the auto created model in the editor. To not create
         /// automatically a model, use model: null.
@@ -355,10 +361,12 @@ define_interface_builder! {
     }
 }
 impl IStandaloneEditorConstructionOptions {
+    /// Add the given `IEditorConstructionOptions`.
     pub fn with_editor_construction_options(self, val: &IEditorConstructionOptions) -> Self {
         JsCast::unchecked_into(Object::assign(&self, val))
     }
 
+    /// Add the options from `IGlobalEditorOptions`.
     pub fn with_global_editor_options(self, val: &IGlobalEditorOptions) -> Self {
         JsCast::unchecked_into(Object::assign(&self, val))
     }
@@ -366,6 +374,7 @@ impl IStandaloneEditorConstructionOptions {
 
 define_interface_builder! {
     type ITextModel extends Object {
+        /// Model id.
         id: &str => id;
         /// Gets the resource associated with this editor model.
         uri: &Uri => uri;
@@ -383,6 +392,7 @@ define_interface_builder! {
 define_interface_builder! {
     /// Configuration options for editor find widget
     type IEditorFindOptions extends Object {
+        /// Add extra space on top.
         add_extra_space_on_top: bool => addExtraSpaceOnTop;
         /// Controls if Find in Selection flag is turned on in the editor.
         auto_find_in_selection: AutoFindInSelection => autoFindInSelection;
@@ -472,16 +482,27 @@ define_interface_builder! {
 define_interface_builder! {
     /// Configuration options for go to location
     type IGotoLocationOptions extends Object {
+        /// Alternative declaration command
         alternative_declaration_command: &str => alternativeDeclarationCommand;
+        /// Alternative definition command
         alternative_definition_command: &str => alternativeDefinitionCommand;
+        /// Alternative implementation command
         alternative_implementation_command: &str => alternativeImplementationCommand;
+        /// Alternative reference command
         alternative_reference_command: &str => alternativeReferenceCommand;
+        /// Alternative type definition command
         alternative_type_definition_command: &str => alternativeTypeDefinitionCommand;
+        /// Multiple
         multiple: GoToLocationValues => multiple;
+        /// Multiple declarations
         multiple_declarations: GoToLocationValues => multipleDeclarations;
+        /// Multiple definitions
         multiple_definitions: GoToLocationValues => multipleDefinitions;
+        /// Multiple implementations
         multiple_implementations: GoToLocationValues => multipleImplementations;
+        /// Multiple references
         multiple_references: GoToLocationValues => multipleReferences;
+        /// Multiple type definitions
         multiple_type_definitions: GoToLocationValues => multipleTypeDefinitions;
     }
 }

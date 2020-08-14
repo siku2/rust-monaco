@@ -39,6 +39,7 @@ impl Component for Editor {
     fn rendered(&mut self, first_render: bool) {
         if first_render {
             if let Some(el) = self.node_ref.cast::<HtmlElement>() {
+                let options = crate::sys::editor::IStandaloneEditorConstructionOptions::default()
                 crate::sys::editor.create(&el, None);
             }
         }
