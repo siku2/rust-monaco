@@ -1,9 +1,6 @@
 macro_rules! object_get {
     ($obj:ident.$key:ident) => {
-        ::js_sys::Reflect::get(
-            $obj.as_ref(),
-            &Into::<::wasm_bindgen::JsValue>::into(stringify!($key)),
-        )
+        ::js_sys::Reflect::get($obj.as_ref(), &stringify!($key).into())
     };
 }
 
@@ -11,7 +8,7 @@ macro_rules! object_set {
     ($obj:ident.$key:ident = $value:expr) => {{
         ::js_sys::Reflect::set(
             $obj.as_ref(),
-            &Into::<::wasm_bindgen::JsValue>::into(stringify!($key)),
+            &stringify!($key).into(),
             &Into::<::wasm_bindgen::JsValue>::into($value),
         )
         .expect("setting key on object must not fail");
@@ -67,7 +64,7 @@ macro_rules! define_obj_accessor {
             object_set!(self.$js_name = val);
             self
         }
-    }
+    };
 }
 
 macro_rules! define_interface_builder {

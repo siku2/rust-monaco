@@ -1,4 +1,4 @@
-use monaco::yew::Editor;
+use monaco::yew::CodeEditor;
 use wasm_bindgen::prelude::*;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 
@@ -21,13 +21,12 @@ impl Component for App {
 
     fn view(&self) -> Html {
         html! {
-            <Editor />
+            <CodeEditor />
         }
     }
 }
 
 #[wasm_bindgen(start)]
 pub fn start_app() {
-    monaco::init_environment();
     yew::start_app::<App>();
 }

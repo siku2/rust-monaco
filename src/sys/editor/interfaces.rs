@@ -346,7 +346,7 @@ define_interface_builder! {
         accessibility_help_url: &str => accessibilityHelpUrl;
         /// The initial language of the auto created model in the editor. To not
         /// create automatically a model, use model: null.
-        language: bool => language;
+        language: &str => language;
         /// The initial model associated with this code editor.
         model: ITextModel => model;
         /// Initial theme to be used for rendering. The current out-of-the-box
@@ -373,6 +373,7 @@ impl IStandaloneEditorConstructionOptions {
 }
 
 define_interface_builder! {
+    /// A model.
     type ITextModel extends Object {
         /// Model id.
         id: &str => id;

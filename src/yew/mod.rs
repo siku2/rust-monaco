@@ -1,20 +1,24 @@
+use crate::sys::editor::BuiltinTheme;
 use web_sys::HtmlElement;
 use yew::{html, Component, ComponentLink, Html, NodeRef, Properties, ShouldRender};
 
 #[derive(Clone, Debug, Eq, PartialEq, Properties)]
-pub struct EditorProps {}
+pub struct CodeEditorProps {}
 
 #[derive(Debug)]
-pub struct Editor {
-    props: EditorProps,
+pub struct CodeEditor {
+    props: CodeEditorProps,
     link: ComponentLink<Self>,
     node_ref: NodeRef,
 }
-impl Component for Editor {
+impl Component for CodeEditor {
     type Message = ();
-    type Properties = EditorProps;
+    type Properties = CodeEditorProps;
 
     fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
+        #[cfg(feature = "embed_workers")]
+        crate::embedded::ensure_environment_set();
+
         Self {
             props,
             link,
@@ -40,7 +44,9 @@ impl Component for Editor {
         if first_render {
             if let Some(el) = self.node_ref.cast::<HtmlElement>() {
                 let options = crate::sys::editor::IStandaloneEditorConstructionOptions::default()
-                crate::sys::editor.create(&el, None);
+                    .language("rust")
+                    .theme(BuiltinTheme::VsDark);
+                crate::sys::editor.create(&el, Some(&options));
             }
         }
     }

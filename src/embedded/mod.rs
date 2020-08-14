@@ -1,5 +1,7 @@
+/// Embedded javascript.
 use crate::sys::{Environment, GetWorkerFn};
 use js_sys::Array;
+use std::iter;
 use wasm_bindgen::{closure::Closure, JsValue};
 use web_sys::{Blob, Url, Worker};
 
@@ -15,7 +17,7 @@ const CSS_WORKER: &str = include_worker!("css.worker.js");
 const HTML_WORKER: &str = include_worker!("html.worker.js");
 
 fn create_worker(source: &str) -> Result<Worker, JsValue> {
-    let array: Array = std::iter::once(JsValue::from_str(source)).collect();
+    let array: Array = iter::once(JsValue::from_str(source)).collect();
     let blob = Blob::new_with_str_sequence(&array)?;
     let url = Url::create_object_url_with_blob(&blob)?;
     Worker::new(&url)
@@ -27,8 +29,7 @@ fn get_worker(_id: String, label: String) -> Worker {
         "html" => HTML_WORKER,
         _ => EDITOR_WORKER,
     };
-    // TODO handle error
-    create_worker(worker).unwrap()
+    create_worker(worker).expect("failed to create worker")
 }
 
 fn build_environment() -> Environment {
@@ -38,7 +39,26 @@ fn build_environment() -> Environment {
     env
 }
 
-pub fn init_environment() {
+/// Initialize the Monaco environment.
+pub fn set_environment() {
     let window = web_sys::window().expect("no global window exists");
     object_set!(window.MonacoEnvironment = build_environment());
+}
+
+/// Check if the Monaco environment is set.
+pub fn is_environment_set() -> bool {
+    if let Some(window) = web_sys::window() {
+        if let Ok(value) = object_get!(window.MonacoEnvironment) {
+            return value.is_truthy();
+        }
+    }
+    false
+}
+
+/// Set up the environment if it's not already set up.
+#[cfg(feature = "yew")]
+pub(crate) fn ensure_environment_set() {
+    if !is_environment_set() {
+        set_environment();
+    }
 }

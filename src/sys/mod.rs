@@ -1,10 +1,10 @@
 /// Raw bindings for the monaco editor API.
-pub use environment::*;
+pub use interfaces::*;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
 
 pub mod editor;
-mod environment;
+mod interfaces;
 
 #[wasm_bindgen(module = "/js/editor.js")]
 extern "C" {

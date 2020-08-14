@@ -38,3 +38,15 @@ impl Default for Environment {
         JsCast::unchecked_into(Object::new())
     }
 }
+
+#[wasm_bindgen]
+extern "C" {
+    /// Something that can be disposed
+    #[derive(Clone, Debug, Eq, PartialEq)]
+    #[wasm_bindgen(extends = Object)]
+    pub type IDisposable;
+
+    /// Dispose of the object.
+    #[wasm_bindgen(method)]
+    pub fn dispose(this: &IDisposable);
+}
