@@ -17,6 +17,10 @@ str_enum! {
 }
 
 str_enum! {
+    pub enum AutoFindInSelection = Never: "never" | Always: "always" | Multiline: "multiline";
+}
+
+str_enum! {
     pub enum AutoIdent = None: "none" | Keep: "keep" | Brackets: "brackets" | Advanced: "advanced" | Full: "full";
 }
 
@@ -46,6 +50,10 @@ str_enum! {
     pub enum FoldingStrategy = Auto: "auto" | Indentation: "indentation";
 }
 
+str_enum! {
+    pub enum GoToLocationValues = Peek: "peek" | GotoAndPeek: "gotoAndPeek" | Goto: "goto";
+}
+
 // TODO: this could also accept a function apparently.
 str_enum! {
     pub enum LineNumbersType = On: "on" | Off: "off" | Relative: "relative" | Interval: "interval";
@@ -53,6 +61,14 @@ str_enum! {
 
 str_enum! {
     pub enum MatchBrackets = Never: "never" | Near: "near" | Always: "always";
+}
+
+str_enum! {
+    pub enum MinimapShowSlider = Always: "always" | Mouseover: "mouseover";
+}
+
+str_enum! {
+    pub enum MinimapSide = Right: "right" | Left: "left";
 }
 
 str_enum! {
@@ -84,11 +100,19 @@ str_enum! {
 }
 
 str_enum! {
+    pub enum ScrollbarVisible = Auto: "auto" | Visible: "visible" | Hidden: "hidden";
+}
+
+str_enum! {
     pub enum ShowFoldingControls = Always: "always" | Mouseover: "mouseover";
 }
 
 str_enum! {
     pub enum SnippetSuggestions = Top: "top" | Bottom: "bottom" | Inline: "inline" | None: "none";
+}
+
+str_enum! {
+    pub enum SuggestInsertMode = Insert: "insert" | Replace: "replace";
 }
 
 str_enum! {

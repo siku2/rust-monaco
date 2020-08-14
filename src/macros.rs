@@ -56,3 +56,49 @@ macro_rules! str_enum {
             }
         };
 }
+
+macro_rules! define_obj_accessor {
+    (
+        $(#[$meta:meta])*
+        build $name:ident: $ty:ty => $js_name:ident
+    ) => {
+        $(#[$meta])*
+        pub fn $name(self, val: $ty) -> Self {
+            object_set!(self.$js_name = val);
+            self
+        }
+    }
+}
+
+macro_rules! define_interface_builder {
+    (
+        $(#[$meta:meta])*
+        type $name:ident extends $($extend:ident),+ {
+            $(
+                $(#[$m_meta:meta])*
+                $m_name:ident: $m_type:ty => $m_js_name:ident;
+            )*
+        }
+    ) => {
+        #[wasm_bindgen]
+        extern "C" {
+            $(#[$meta])*
+            #[derive(Clone, Debug, Eq, PartialEq)]
+            $(#[wasm_bindgen(extends = $extend)])*
+            pub type $name;
+        }
+        impl $name {
+            $(
+                define_obj_accessor! {
+                    $(#[$m_meta])*
+                    build $m_name: $m_type => $m_js_name
+                }
+            )*
+        }
+        impl Default for $name {
+            fn default() -> Self {
+                JsCast::unchecked_into(Object::new())
+            }
+        }
+    };
+}

@@ -1,835 +1,358 @@
 use super::enums::*;
 use crate::sys::Uri;
 use js_sys::{Object, Uint32Array};
-use wasm_bindgen::{prelude::*, JsCast, JsValue};
+use wasm_bindgen::{prelude::*, JsCast};
 
-#[wasm_bindgen]
-extern "C" {
+define_interface_builder! {
     /// Options which apply for all editors.
-    #[derive(Clone, Debug, Eq, PartialEq)]
-    #[wasm_bindgen(extends = Object)]
-    pub type IGlobalEditorOptions;
-}
-impl IGlobalEditorOptions {
-    /// Controls whether tabSize and insertSpaces will be automatically detected
-    /// when a file is opened based on the file contents. Defaults to true.
-    pub fn detect_indentation(self, val: bool) -> Self {
-        object_set!(self.detectIndentation = val);
-        self
-    }
-
-    /// Insert spaces when pressing Tab. This setting is overridden based on the
-    /// file contents when detectIndentation is on. Defaults to true.
-    pub fn insert_spaces(self, val: bool) -> Self {
-        object_set!(self.insertSpaces = val);
-        self
-    }
-
-    /// Special handling for large files to disable certain memory intensive
-    /// features. Defaults to true.
-    pub fn large_file_optimizations(self, val: bool) -> Self {
-        object_set!(self.largeFileOptimizations = val);
-        self
-    }
-
-    /// Lines above this length will not be tokenized for performance reasons.
-    /// Defaults to 20000.
-    pub fn max_tokenization_line_length(self, val: u32) -> Self {
-        object_set!(self.maxTokenizationLineLength = val);
-        self
-    }
-
-    /// Keep peek editors open even when double clicking their content or when
-    /// hitting Escape. Defaults to false.
-    pub fn stable_peek(self, val: bool) -> Self {
-        object_set!(self.stablePeek = val);
-        self
-    }
-
-    /// The number of spaces a tab is equal to. This setting is overridden based
-    /// on the file contents when detectIndentation is on. Defaults to 4.
-    pub fn tab_size(self, val: u32) -> Self {
-        object_set!(self.tabSize = val);
-        self
-    }
-
-    /// Remove trailing auto inserted whitespace. Defaults to true.
-    pub fn trim_auto_whitespace(self, val: bool) -> Self {
-        object_set!(self.trimAutoWhitespace = val);
-        self
-    }
-
-    /// Controls whether completions should be computed based on words in the
-    /// document. Defaults to true.
-    pub fn word_based_suggestions(self, val: bool) -> Self {
-        object_set!(self.wordBasedSuggestions = val);
-        self
-    }
-}
-impl Default for IGlobalEditorOptions {
-    fn default() -> Self {
-        JsCast::unchecked_into(Object::new())
+    type IGlobalEditorOptions extends Object {
+        /// Controls whether tabSize and insertSpaces will be automatically detected
+        /// when a file is opened based on the file contents. Defaults to true.
+        detect_indentation: bool => detectIndentation;
+        /// Insert spaces when pressing Tab. This setting is overridden based on the
+        /// file contents when detectIndentation is on. Defaults to true.
+        insert_spaces: bool => insertSpaces;
+        /// Special handling for large files to disable certain memory intensive
+        /// features. Defaults to true.
+        large_file_optimizations: bool => largeFileOptimizations;
+        /// Lines above this length will not be tokenized for performance reasons.
+        /// Defaults to 20000.
+        max_tokenization_line_length: u32 => maxTokenizationLineLength;
+        /// Keep peek editors open even when double clicking their content or when
+        /// hitting Escape. Defaults to false.
+        stable_peek: bool => stablePeek;
+        /// The number of spaces a tab is equal to. This setting is overridden based
+        /// on the file contents when detectIndentation is on. Defaults to 4.
+        tab_size: u32 => tabSize;
+        /// Remove trailing auto inserted whitespace. Defaults to true.
+        trim_auto_whitespace: bool => trimAutoWhitespace;
+        /// Controls whether completions should be computed based on words in the
+        /// document. Defaults to true.
+        word_based_suggestions: bool => wordBasedSuggestions;
     }
 }
 
-#[wasm_bindgen]
-extern "C" {
+define_interface_builder! {
     /// Configuration options for the editor.
-    #[derive(Clone, Debug, Eq, PartialEq)]
-    #[wasm_bindgen(extends = Object)]
-    pub type IEditorOptions;
-}
-impl IEditorOptions {
-    /// Accept suggestions on provider defined characters. Defaults to true.
-    pub fn accept_suggestion_on_commit_character(self, val: bool) -> Self {
-        object_set!(self.acceptSuggestionOnCommitCharacter = val);
-        self
-    }
-
-    /// Accept suggestions on ENTER. Defaults to 'on'.
-    pub fn accept_suggestion_on_enter(self, val: AcceptSuggestionOnEnter) -> Self {
-        object_set!(self.acceptSuggestionOnEnter = val);
-        self
-    }
-
-    /// Controls the number of lines in the editor that can be read out by a
-    /// screen reader
-    pub fn accessibility_page_size(self, val: u32) -> Self {
-        object_set!(self.accessibilityPageSize = val);
-        self
-    }
-
-    /// Configure the editor's accessibility support. Defaults to 'auto'. It is
-    /// best to leave this to 'auto'.
-    pub fn accessibility_support(self, val: AccessibilitySupport) -> Self {
-        object_set!(self.accessibilitySupport = val);
-        self
-    }
-
-    /// The aria label for the editor's textarea (when it is focused).
-    pub fn aria_label(self, val: &str) -> Self {
-        object_set!(self.ariaLabel = val);
-        self
-    }
-
-    /// Options for auto closing brackets. Defaults to language defined
-    /// behavior.
-    pub fn auto_closing_brackets(self, val: AutoClosingStrategy) -> Self {
-        object_set!(self.autoClosingBrackets = val);
-        self
-    }
-
-    /// Options for typing over closing quotes or brackets.
-    pub fn auto_closing_overtype(self, val: AutoClosingOvertype) -> Self {
-        object_set!(self.autoClosingOvertype = val);
-        self
-    }
-
-    /// Options for auto closing quotes. Defaults to language defined behavior.
-    pub fn auto_closing_quotes(self, val: AutoClosingStrategy) -> Self {
-        object_set!(self.autoClosingQuotes = val);
-        self
-    }
-
-    /// Controls whether the editor should automatically adjust the indentation
-    /// when users type, paste, move or indent lines. Defaults to advanced.
-    pub fn auto_indent(self, val: AutoIdent) -> Self {
-        object_set!(self.autoIndent = val);
-        self
-    }
-
-    /// Options for auto surrounding. Defaults to always allowing auto
-    /// surrounding.
-    pub fn auto_surround(self, val: AutoSurroundStrategy) -> Self {
-        object_set!(self.autoSurround = val);
-        self
-    }
-
-    /// Enable that the editor will install an interval to check if its
-    /// container dom node size has changed. Enabling this might have a severe
-    /// performance impact. Defaults to false.
-    pub fn automatic_layout(self, val: bool) -> Self {
-        object_set!(self.automaticLayout = val);
-        self
-    }
-
-    /// Timeout for running code actions on save.
-    pub fn code_actions_on_save_timeout(self, val: u32) -> Self {
-        object_set!(self.codeActionsOnSaveTimeout = val);
-        self
-    }
-
-    /// Show code lens Defaults to true.
-    pub fn code_lens(self, val: bool) -> Self {
-        object_set!(self.codeLens = val);
-        self
-    }
-
-    /// Enable inline color decorators and color picker rendering.
-    pub fn color_decorators(self, val: bool) -> Self {
-        object_set!(self.colorDecorators = val);
-        self
-    }
-
-    /// Control the behaviour of comments in the editor.
-    pub fn comments(self, val: &IEditorCommentsOptions) -> Self {
-        object_set!(self.comments = val);
-        self
-    }
-
-    /// Enable custom contextmenu. Defaults to true.
-    pub fn contextmenu(self, val: bool) -> Self {
-        object_set!(self.contextmenu = val);
-        self
-    }
-
-    /// Syntax highlighting is copied.
-    pub fn copy_with_syntax_highlighting(self, val: bool) -> Self {
-        object_set!(self.copyWithSyntaxHighlighting = val);
-        self
-    }
-
-    /// Control the cursor animation style, possible values are 'blink',
-    /// 'smooth', 'phase', 'expand' and 'solid'. Defaults to 'blink'.
-    pub fn cursor_blinking(self, val: CursorBlinkingStyle) -> Self {
-        object_set!(self.cursorBlinking = val);
-        self
-    }
-
-    /// Enable smooth caret animation. Defaults to false.
-    pub fn cursor_smooth_caret_animation(self, val: bool) -> Self {
-        object_set!(self.cursorSmoothCaretAnimation = val);
-        self
-    }
-
-    /// Control the cursor style, either 'block' or 'line'. Defaults to 'line'.
-    pub fn cursor_style(self, val: CursorStyle) -> Self {
-        object_set!(self.cursorStyle = val);
-        self
-    }
-
-    /// Controls the minimal number of visible leading and trailing lines
-    /// surrounding the cursor. Defaults to 0.
-    pub fn cursor_surrounding_lines(self, val: u32) -> Self {
-        object_set!(self.cursorSurroundingLines = val);
-        self
-    }
-
-    /// Controls when cursorSurroundingLines should be enforced Defaults to
-    /// default, cursorSurroundingLines is not enforced when cursor position is
-    /// changed by mouse.
-    pub fn cursor_surrounding_lines_style(self, val: CursorSurroundingLinesStyle) -> Self {
-        object_set!(self.cursorSurroundingLinesStyle = val);
-        self
-    }
-
-    /// Control the width of the cursor when cursorStyle is set to 'line'
-    pub fn cursor_width(self, val: u32) -> Self {
-        object_set!(self.cursorWidth = val);
-        self
-    }
-
-    /// Disable the use of transform: translate3d(0px, 0px, 0px) for the editor
-    /// margin and lines layers. The usage of transform: translate3d(0px, 0px,
-    /// 0px) acts as a hint for browsers to create an extra layer. Defaults to
-    /// false.
-    pub fn disable_layer_hinting(self, val: bool) -> Self {
-        object_set!(self.disableLayerHinting = val);
-        self
-    }
-
-    /// Disable the optimizations for monospace fonts. Defaults to false.
-    pub fn disable_monospace_optimizations(self, val: bool) -> Self {
-        object_set!(self.disableMonospaceOptimizations = val);
-        self
-    }
-
-    /// Controls if the editor should allow to move selections via drag and
-    /// drop. Defaults to false.
-    pub fn drag_and_drop(self, val: bool) -> Self {
-        object_set!(self.dragAndDrop = val);
-        self
-    }
-
-    /// Copying without a selection copies the current line.
-    pub fn empty_selection_clipboard(self, val: bool) -> Self {
-        object_set!(self.emptySelectionClipboard = val);
-        self
-    }
-
-    /// Class name to be added to the editor.
-    pub fn extra_editor_class_name(self, val: &str) -> Self {
-        object_set!(self.extraEditorClassName = val);
-        self
-    }
-
-    /// FastScrolling mulitplier speed when pressing Alt Defaults to 5.
-    pub fn fast_scroll_sensitivity(self, val: u32) -> Self {
-        object_set!(self.fastScrollSensitivity = val);
-        self
-    }
-
-    /// Control the behavior of the find widget.
-    pub fn find(self, val: &IEditorFindOptions) -> Self {
-        object_set!(self.find = val);
-        self
-    }
-
-    /// Display overflow widgets as fixed. Defaults to false.
-    pub fn fixed_overflow_widgets(self, val: bool) -> Self {
-        object_set!(self.fixedOverflowWidgets = val);
-        self
-    }
-
-    /// Enable code folding. Defaults to true.
-    pub fn folding(self, val: bool) -> Self {
-        object_set!(self.folding = val);
-        self
-    }
-
-    /// Enable highlight for folded regions. Defaults to true.
-    pub fn folding_highlight(self, val: bool) -> Self {
-        object_set!(self.foldingHighlight = val);
-        self
-    }
-
-    /// Selects the folding strategy. 'auto' uses the strategies contributed for
-    /// the current document, 'indentation' uses the indentation based folding
-    /// strategy. Defaults to 'auto'.
-    pub fn folding_strategy(self, val: FoldingStrategy) -> Self {
-        object_set!(self.foldingStrategy = val);
-        self
-    }
-
-    /// The font family
-    pub fn font_family(self, val: &str) -> Self {
-        object_set!(self.fontFamily = val);
-        self
-    }
-
-    /// Enable font ligatures. Defaults to false.
-    // TODO this one is special: bool | string
-    pub fn font_ligatures(self, val: &str) -> Self {
-        object_set!(self.fontLigatures = val);
-        self
-    }
-
-    /// The font size
-    pub fn font_size(self, val: u32) -> Self {
-        object_set!(self.fontSize = val);
-        self
-    }
-
-    /// The font weight
-    pub fn font_weight(self, val: &str) -> Self {
-        object_set!(self.fontWeight = val);
-        self
-    }
-
-    /// Enable format on paste. Defaults to false.
-    pub fn format_on_paste(self, val: bool) -> Self {
-        object_set!(self.formatOnPaste = val);
-        self
-    }
-
-    /// Enable format on type. Defaults to false.
-    pub fn format_on_type(self, val: bool) -> Self {
-        object_set!(self.formatOnType = val);
-        self
-    }
-
-    /// Enable the rendering of the glyph margin. Defaults to true in vscode and
-    /// to false in monaco-editor.
-    pub fn glyph_margin(self, val: bool) -> Self {
-        object_set!(self.glyphMargin = val);
-        self
-    }
-
-    /// Optional hideCursorInOverviewRuler
-    pub fn goto_location(self, val: &IGotoLocationOptions) -> Self {
-        object_set!(self.gotoLocation = val);
-        self
-    }
-
-    /// Should the cursor be hidden in the overview ruler. Defaults to false.
-    pub fn hide_cursor_in_overview_ruler(self, val: bool) -> Self {
-        object_set!(self.hideCursorInOverviewRuler = val);
-        self
-    }
-
-    /// Enable highlighting of the active indent guide. Defaults to true.
-    pub fn highlightActiveIndentGuide(self, val: bool) -> Self {
-        object_set!(self.highlightActiveIndentGuide = val);
-        self
-    }
-
-    /// Configure the editor's hover.
-    pub fn hover(self, val: &IEditorHoverOptions) -> Self {
-        object_set!(self.hover = val);
-        self
-    }
-
-    /// This editor is used inside a diff editor.
-    pub fn in_diff_editor(self, val: bool) -> Self {
-        object_set!(self.inDiffEditor = val);
-        self
-    }
-
-    /// The letter spacing
-    pub fn letter_spacing(self, val: u32) -> Self {
-        object_set!(self.letterSpacing = val);
-        self
-    }
-
-    /// Control the behavior and rendering of the code action lightbulb.
-    pub fn lightbulb(self, val: &IEditorLightbulbOptions) -> Self {
-        object_set!(self.lightbulb = val);
-        self
-    }
-
-    /// The width reserved for line decorations (in px). Line decorations are
-    /// placed between line numbers and the editor content. You can pass in a
-    /// string in the format floating point followed by "ch". e.g. 1.3ch.
-    /// Defaults to 10.
-    // TODO special value: u32 | string
-    pub fn line_decorations_width(self, val: u32) -> Self {
-        object_set!(self.lineDecorationsWidth = val);
-        self
-    }
-
-    /// The line height
-    pub fn line_height(self, val: u32) -> Self {
-        object_set!(self.lineHeight = val);
-        self
-    }
-
-    /// Control the rendering of line numbers. If it is a function, it will be
-    /// invoked when rendering a line number and the return value will be
-    /// rendered. Otherwise, if it is a truey, line numbers will be rendered
-    /// normally (equivalent of using an identity function). Otherwise, line
-    /// numbers will not be rendered. Defaults to on.
-    pub fn line_numbers(self, val: LineNumbersType) -> Self {
-        object_set!(self.lineNumbers = val);
-        self
-    }
-
-    /// Control the width of line numbers, by reserving horizontal space for
-    /// rendering at least an amount of digits. Defaults to 5.
-    pub fn line_numbers_min_chars(self, val: u32) -> Self {
-        object_set!(self.lineNumbersMinChars = val);
-        self
-    }
-
-    /// Enable detecting links and making them clickable. Defaults to true.
-    pub fn links(self, val: bool) -> Self {
-        object_set!(self.links = val);
-        self
-    }
-
-    /// Enable highlighting of matching brackets. Defaults to 'always'.
-    pub fn match_brackets(self, val: MatchBrackets) -> Self {
-        object_set!(self.matchBrackets = val);
-        self
-    }
-
-    /// Control the behavior and rendering of the minimap.
-    pub fn minimap(self, val: &IEditorMinimapOptions) -> Self {
-        object_set!(self.minimap = val);
-        self
-    }
-
-    /// Control the mouse pointer style, either 'text' or 'default' or 'copy'
-    /// Defaults to 'text'.
-    pub fn mouse_style(self, val: MouseStyle) -> Self {
-        object_set!(self.mouseStyle = val);
-        self
-    }
-
-    /// A multiplier to be used on the deltaX and deltaY of mouse wheel scroll
-    /// events. Defaults to 1.
-    pub fn mouse_wheel_scroll_sensitivity(self, val: u32) -> Self {
-        object_set!(self.mouseWheelScrollSensitivity = val);
-        self
-    }
-
-    /// Zoom the font in the editor when using the mouse wheel in combination
-    /// with holding Ctrl. Defaults to false.
-    pub fn mouse_wheel_zoom(self, val: bool) -> Self {
-        object_set!(self.mouseWheelZoom = val);
-        self
-    }
-
-    /// Merge overlapping selections. Defaults to true
-    pub fn multi_cursor_merge_overlapping(self, val: bool) -> Self {
-        object_set!(self.multiCursorMergeOverlapping = val);
-        self
-    }
-
-    /// The modifier to be used to add multiple cursors with the mouse. Defaults
-    /// to 'alt'.
-    pub fn multi_cursor_modifier(self, val: MultiCursorModifier) -> Self {
-        object_set!(self.multiCursorModifier = val);
-        self
-    }
-
-    /// Configure the behaviour when pasting a text with the line count equal to
-    /// the cursor count. Defaults to 'spread'.
-    pub fn multi_cursor_paste(self, val: MultiCursorPaste) -> Self {
-        object_set!(self.multiCursorPaste = val);
-        self
-    }
-
-    /// Enable semantic occurrences highlight. Defaults to true.
-    pub fn occurrences_highlight(self, val: bool) -> Self {
-        object_set!(self.occurrencesHighlight = val);
-        self
-    }
-
-    /// Controls if a border should be drawn around the overview ruler. Defaults
-    /// to true.
-    pub fn overview_ruler_border(self, val: bool) -> Self {
-        object_set!(self.overviewRulerBorder = val);
-        self
-    }
-
-    /// The number of vertical lanes the overview ruler should render. Defaults
-    /// to 3.
-    pub fn overview_ruler_lanes(self, val: u32) -> Self {
-        object_set!(self.overviewRulerLanes = val);
-        self
-    }
-
-    /// Parameter hint options.
-    pub fn parameter_hints(self, val: &IEditorParameterHintOptions) -> Self {
-        object_set!(self.parameterHints = val);
-        self
-    }
-
-    /// Controls whether to focus the inline editor in the peek widget by
-    /// default. Defaults to false.
-    pub fn peek_widget_default_focus(self, val: PeekWidgetDefaultFocus) -> Self {
-        object_set!(self.peekWidgetDefaultFocus = val);
-        self
-    }
-
-    /// Enable quick suggestions (shadow suggestions) Defaults to true.
-    // TODO: special value: bool | IQuickSuggestionsOptions
-    pub fn quick_suggestions(self, val: bool) -> Self {
-        object_set!(self.quickSuggestions = val);
-        self
-    }
-
-    /// Quick suggestions show delay (in ms) Defaults to 10 (ms)
-    pub fn quick_suggestions_delay(self, val: u32) -> Self {
-        object_set!(self.quickSuggestionsDelay = val);
-        self
-    }
-
-    /// Should the editor be read only. Defaults to false.
-    pub fn read_only(self, val: bool) -> Self {
-        object_set!(self.readOnly = val);
-        self
-    }
-
-    /// Enable rendering of control characters. Defaults to false.
-    pub fn render_control_characters(self, val: bool) -> Self {
-        object_set!(self.renderControlCharacters = val);
-        self
-    }
-
-    /// Render last line number when the file ends with a newline. Defaults to
-    /// true.
-    pub fn render_final_newline(self, val: bool) -> Self {
-        object_set!(self.renderFinalNewline = val);
-        self
-    }
-
-    /// Enable rendering of indent guides. Defaults to true.
-    pub fn render_indent_guides(self, val: bool) -> Self {
-        object_set!(self.renderIndentGuides = val);
-        self
-    }
-
-    /// Enable rendering of current line highlight. Defaults to all.
-    pub fn render_line_highlight(self, val: RenderLineHighlight) -> Self {
-        object_set!(self.renderLineHighlight = val);
-        self
-    }
-
-    /// Should the editor render validation decorations. Defaults to editable.
-    pub fn render_validation_decorations(self, val: RenderValidationDecorations) -> Self {
-        object_set!(self.renderValidationDecorations = val);
-        self
-    }
-
-    /// Enable rendering of whitespace. Defaults to none.
-    pub fn render_whitespace(self, val: RenderWhitespace) -> Self {
-        object_set!(self.renderWhitespace = val);
-        self
-    }
-
-    /// When revealing the cursor, a virtual padding (px) is added to the
-    /// cursor, turning it into a rectangle. This virtual padding ensures that
-    /// the cursor gets revealed before hitting the edge of the viewport.
-    /// Defaults to 30 (px).
-    pub fn reveal_horizontal_right_padding(self, val: u32) -> Self {
-        object_set!(self.revealHorizontalRightPadding = val);
-        self
-    }
-
-    /// Render the editor selection with rounded borders. Defaults to true.
-    pub fn rounded_selection(self, val: bool) -> Self {
-        object_set!(self.roundedSelection = val);
-        self
-    }
-
-    /// Render vertical lines at the specified columns. Defaults to empty array.
-    pub fn rulers(self, val: &[u32]) -> Self {
-        object_set!(self.rulers = Uint32Array::from(val));
-        self
-    }
-
-    /// Enable that scrolling can go beyond the last column by a number of
-    /// columns. Defaults to 5.
-    pub fn scroll_beyond_last_column(self, val: u32) -> Self {
-        object_set!(self.scrollBeyondLastColumn = val);
-        self
-    }
-
-    /// Enable that scrolling can go one screen size after the last line.
-    /// Defaults to true.
-    pub fn scroll_beyond_last_line(self, val: bool) -> Self {
-        object_set!(self.scrollBeyondLastLine = val);
-        self
-    }
-
-    /// Control the behavior and rendering of the scrollbars.
-    pub fn scrollbar(self, val: &IEditorScrollbarOptions) -> Self {
-        object_set!(self.scrollbar = val);
-        self
-    }
-
-    /// Should the corresponding line be selected when clicking on the line
-    /// number? Defaults to true.
-    pub fn select_on_line_numbers(self, val: bool) -> Self {
-        object_set!(self.selectOnLineNumbers = val);
-        self
-    }
-
-    /// Enable Linux primary clipboard. Defaults to true.
-    pub fn selection_clipboard(self, val: bool) -> Self {
-        object_set!(self.selectionClipboard = val);
-        self
-    }
-
-    /// Enable selection highlight. Defaults to true.
-    pub fn selection_highlight(self, val: bool) -> Self {
-        object_set!(self.selectionHighlight = val);
-        self
-    }
-
-    /// Controls whether the fold actions in the gutter stay always visible or
-    /// hide unless the mouse is over the gutter. Defaults to 'mouseover'.
-    pub fn show_folding_controls(self, val: ShowFoldingControls) -> Self {
-        object_set!(self.showFoldingControls = val);
-        self
-    }
-
-    /// Controls fading out of unused variables.
-    pub fn show_unused(self, val: bool) -> Self {
-        object_set!(self.showUnused = val);
-        self
-    }
-
-    /// Enable that the editor animates scrolling to a position. Defaults to
-    /// false.
-    pub fn smooth_scrolling(self, val: bool) -> Self {
-        object_set!(self.smoothScrolling = val);
-        self
-    }
-
-    /// Enable snippet suggestions. Default to 'true'.
-    pub fn snippet_suggestions(self, val: SnippetSuggestions) -> Self {
-        object_set!(self.snippetSuggestions = val);
-        self
-    }
-
-    /// Performance guard: Stop rendering a line after x characters. Defaults to
-    /// 10000. Use -1 to never stop rendering
-    pub fn stop_rendering_line_after(self, val: u32) -> Self {
-        object_set!(self.stopRenderingLineAfter = val);
-        self
-    }
-
-    /// Suggest options.
-    pub fn suggest(self, val: &ISuggestOptions) -> Self {
-        object_set!(self.suggest = val);
-        self
-    }
-
-    /// The font size for the suggest widget. Defaults to the editor font size.
-    pub fn suggest_font_size(self, val: u32) -> Self {
-        object_set!(self.suggestFontSize = val);
-        self
-    }
-
-    /// The line height for the suggest widget. Defaults to the editor line
-    /// height.
-    pub fn suggest_line_height(self, val: u32) -> Self {
-        object_set!(self.suggestLineHeight = val);
-        self
-    }
-
-    /// Enable the suggestion box to pop-up on trigger characters. Defaults to
-    /// true.
-    pub fn suggest_on_trigger_characters(self, val: bool) -> Self {
-        object_set!(self.suggestOnTriggerCharacters = val);
-        self
-    }
-
-    /// The history mode for suggestions.
-    pub fn suggest_selection(self, val: SuggestSelection) -> Self {
-        object_set!(self.suggestSelection = val);
-        self
-    }
-
-    /// Enable tab completion.
-    pub fn tab_completion(self, val: TabCompletion) -> Self {
-        object_set!(self.tabCompletion = val);
-        self
-    }
-
-    /// Inserting and deleting whitespace follows tab stops.
-    pub fn use_tab_stops(self, val: bool) -> Self {
-        object_set!(self.useTabStops = val);
-        self
-    }
-
-    /// A string containing the word separators used when doing word navigation.
-    /// Defaults to `~!@#$%^&*()-=+[{]}\|;:'",.<>/?
-    pub fn word_separators(self, val: &str) -> Self {
-        object_set!(self.wordSeparators = val);
-        self
-    }
-
-    /// Control the wrapping of the editor. When wordWrap = "off", the lines
-    /// will never wrap. When wordWrap = "on", the lines will wrap at the
-    /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
-    /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
-    /// min(viewport width, wordWrapColumn). Defaults to "off".
-    pub fn word_wrap(self, val: WordWrap) -> Self {
-        object_set!(self.wordWrap = val);
-        self
-    }
-
-    /// Configure word wrapping characters. A break will be introduced after
-    /// these characters. Defaults to '
-    /// \t})]?|/&.,;¢°′″‰℃、。｡､￠，．：；？！％・･
-    /// ゝゞヽヾーァィゥェォッャュョヮヵヶぁぃぅぇぉっゃゅょゎゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ々〻ｧｨｩｪｫｬｭｮｯｰ”〉》」』】〕）］｝｣'
-    /// .
-    pub fn word_wrap_break_after_characters(self, val: &str) -> Self {
-        object_set!(self.wordWrapBreakAfterCharacters = val);
-        self
-    }
-
-    /// Configure word wrapping characters. A break will be introduced before
-    /// these characters. Defaults to '([{‘“〈《「『【〔（［｛｢£¥＄￡￥+＋'.
-    pub fn word_wrap_break_before_characters(self, val: &str) -> Self {
-        object_set!(self.wordWrapBreakBeforeCharacters = val);
-        self
-    }
-
-    /// Control the wrapping of the editor. When wordWrap = "off", the lines
-    /// will never wrap. When wordWrap = "on", the lines will wrap at the
-    /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
-    /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
-    /// min(viewport width, wordWrapColumn). Defaults to 80.
-    pub fn word_wrap_column(self, val: u32) -> Self {
-        object_set!(self.wordWrapColumn = val);
-        self
-    }
-
-    /// Force word wrapping when the text appears to be of a minified/generated
-    /// file. Defaults to true.
-    pub fn word_wrap_minified(self, val: bool) -> Self {
-        object_set!(self.wordWrapMinified = val);
-        self
-    }
-
-    /// Control indentation of wrapped lines. Can be: 'none', 'same', 'indent'
-    /// or 'deepIndent'. Defaults to 'same' in vscode and to 'none' in
-    /// monaco-editor.
-    pub fn wrapping_indent(self, val: WrappingIndent) -> Self {
-        object_set!(self.wrappingIndent = val);
-        self
-    }
-
-    /// Controls the wrapping strategy to use. Defaults to 'simple'.
-    pub fn wrapping_strategy(self, val: WrappingStrategy) -> Self {
-        object_set!(self.wrappingStrategy = val);
-        self
-    }
-}
-impl Default for IEditorOptions {
-    fn default() -> Self {
-        JsCast::unchecked_into(Object::new())
+    type IEditorOptions extends Object {
+        /// Accept suggestions on provider defined characters. Defaults to true.
+        accept_suggestion_on_commit_character: bool => acceptSuggestionOnCommitCharacter;
+        /// Accept suggestions on ENTER. Defaults to 'on'.
+        accept_suggestion_on_enter: AcceptSuggestionOnEnter => acceptSuggestionOnEnter;
+        /// Controls the number of lines in the editor that can be read out by a
+        /// screen reader
+        accessibility_page_size: u32 => accessibilityPageSize;
+        /// Configure the editor's accessibility support. Defaults to 'auto'. It is
+        /// best to leave this to 'auto'.
+        accessibility_support: AccessibilitySupport => accessibilitySupport;
+        /// The aria label for the editor's textarea (when it is focused).
+        aria_label: &str => ariaLabel;
+        /// Options for auto closing brackets. Defaults to language defined
+        /// behavior.
+        auto_closing_brackets: AutoClosingStrategy => autoClosingBrackets;
+        /// Options for typing over closing quotes or brackets.
+        auto_closing_overtype: AutoClosingOvertype => autoClosingOvertype;
+        /// Options for auto closing quotes. Defaults to language defined behavior.
+        auto_closing_quotes: AutoClosingStrategy => autoClosingQuotes;
+        /// Controls whether the editor should automatically adjust the indentation
+        /// when users type, paste, move or indent lines. Defaults to advanced.
+        auto_indent: AutoIdent => autoIndent;
+        /// Options for auto surrounding. Defaults to always allowing auto
+        /// surrounding.
+        auto_surround: AutoSurroundStrategy => autoSurround;
+        /// Enable that the editor will install an interval to check if its
+        /// container dom node size has changed. Enabling this might have a severe
+        /// performance impact. Defaults to false.
+        automatic_layout: bool => automaticLayout;
+        /// Timeout for running code actions on save.
+        code_actions_on_save_timeout: u32 => codeActionsOnSaveTimeout;
+        /// Show code lens Defaults to true.
+        code_lens: bool => codeLens;
+        /// Enable inline color decorators and color picker rendering.
+        color_decorators: bool => colorDecorators;
+        /// Control the behaviour of comments in the editor.
+        comments: &IEditorCommentsOptions => comments;
+        /// Enable custom contextmenu. Defaults to true.
+        contextmenu: bool => contextmenu;
+        /// Syntax highlighting is copied.
+        copy_with_syntax_highlighting: bool => copyWithSyntaxHighlighting;
+        /// Control the cursor animation style, possible values are 'blink',
+        /// 'smooth', 'phase', 'expand' and 'solid'. Defaults to 'blink'.
+        cursor_blinking: CursorBlinkingStyle => cursorBlinking;
+        /// Enable smooth caret animation. Defaults to false.
+        cursor_smooth_caret_animation: bool => cursorSmoothCaretAnimation;
+        /// Control the cursor style, either 'block' or 'line'. Defaults to 'line'.
+        cursor_style: CursorStyle => cursorStyle;
+        /// Controls the minimal number of visible leading and trailing lines
+        /// surrounding the cursor. Defaults to 0.
+        cursor_surrounding_lines: u32 => cursorSurroundingLines;
+        /// Controls when cursorSurroundingLines should be enforced Defaults to
+        /// default, cursorSurroundingLines is not enforced when cursor position is
+        /// changed by mouse.
+        cursor_surrounding_lines_style: CursorSurroundingLinesStyle => cursorSurroundingLinesStyle;
+        /// Control the width of the cursor when cursorStyle is set to 'line'
+        cursor_width: u32 => cursorWidth;
+        /// Disable the use of transform: translate3d(0px, 0px, 0px) for the editor
+        /// margin and lines layers. The usage of transform: translate3d(0px, 0px,
+        /// 0px) acts as a hint for browsers to create an extra layer. Defaults to
+        /// false.
+        disable_layer_hinting: bool => disableLayerHinting;
+        /// Disable the optimizations for monospace fonts. Defaults to false.
+        disable_monospace_optimizations: bool => disableMonospaceOptimizations;
+        /// Controls if the editor should allow to move selections via drag and
+        /// drop. Defaults to false.
+        drag_and_drop: bool => dragAndDrop;
+        /// Copying without a selection copies the current line.
+        empty_selection_clipboard: bool => emptySelectionClipboard;
+        /// Class name to be added to the editor.
+        extra_editor_class_name: &str => extraEditorClassName;
+        /// FastScrolling mulitplier speed when pressing Alt Defaults to 5.
+        fast_scroll_sensitivity: u32 => fastScrollSensitivity;
+        /// Control the behavior of the find widget.
+        find: &IEditorFindOptions => find;
+        /// Display overflow widgets as fixed. Defaults to false.
+        fixed_overflow_widgets: bool => fixedOverflowWidgets;
+        /// Enable code folding. Defaults to true.
+        folding: bool => folding;
+        /// Enable highlight for folded regions. Defaults to true.
+        folding_highlight: bool => foldingHighlight;
+        /// Selects the folding strategy. 'auto' uses the strategies contributed for
+        /// the current document, 'indentation' uses the indentation based folding
+        /// strategy. Defaults to 'auto'.
+        folding_strategy: FoldingStrategy => foldingStrategy;
+        /// The font family
+        font_family: &str => fontFamily;
+        /// Enable font ligatures. Defaults to false.
+        // TODO this one is special: bool | string
+        font_ligatures: bool => fontLigatures;
+        /// The font size
+        font_size: u32 => fontSize;
+        /// The font weight
+        font_weight: &str => fontWeight;
+        /// Enable format on paste. Defaults to false.
+        format_on_paste: bool => formatOnPaste;
+        /// Enable format on type. Defaults to false.
+        format_on_type: bool => formatOnType;
+        /// Enable the rendering of the glyph margin. Defaults to true in vscode and
+        /// to false in monaco-editor.
+        glyph_margin: bool => glyphMargin;
+        /// Optional hideCursorInOverviewRuler
+        goto_location: &IGotoLocationOptions => gotoLocation;
+        /// Should the cursor be hidden in the overview ruler. Defaults to false.
+        hide_cursor_in_overview_ruler: bool => hideCursorInOverviewRuler;
+        /// Enable highlighting of the active indent guide. Defaults to true.
+        highlight_active_indent_guide: bool => highlightActiveIndentGuide;
+        /// Configure the editor's hover.
+        hover: &IEditorHoverOptions => hover;
+        /// This editor is used inside a diff editor.
+        in_diff_editor: bool => inDiffEditor;
+        /// The letter spacing
+        letter_spacing: u32 => letterSpacing;
+        /// Control the behavior and rendering of the code action lightbulb.
+        lightbulb: &IEditorLightbulbOptions => lightbulb;
+        /// The width reserved for line decorations (in px). Line decorations are
+        /// placed between line numbers and the editor content. You can pass in a
+        /// string in the format floating point followed by "ch". e.g. 1.3ch.
+        /// Defaults to 10.
+        // TODO special value: u32 | string
+        line_decorations_width: u32 => lineDecorationsWidth;
+        /// The line height
+        line_height: u32 => lineHeight;
+        /// Control the rendering of line numbers. If it is a function, it will be
+        /// invoked when rendering a line number and the return value will be
+        /// rendered. Otherwise, if it is a truey, line numbers will be rendered
+        /// normally (equivalent of using an identity function). Otherwise, line
+        /// numbers will not be rendered. Defaults to on.
+        line_numbers: LineNumbersType => lineNumbers;
+        /// Control the width of line numbers, by reserving horizontal space for
+        /// rendering at least an amount of digits. Defaults to 5.
+        line_numbers_min_chars: u32 => lineNumbersMinChars;
+        /// Enable detecting links and making them clickable. Defaults to true.
+        links: bool => links;
+        /// Enable highlighting of matching brackets. Defaults to 'always'.
+        match_brackets: MatchBrackets => matchBrackets;
+        /// Control the behavior and rendering of the minimap.
+        minimap: &IEditorMinimapOptions => minimap;
+        /// Control the mouse pointer style, either 'text' or 'default' or 'copy'
+        /// Defaults to 'text'.
+        mouse_style: MouseStyle => mouseStyle;
+        /// A multiplier to be used on the deltaX and deltaY of mouse wheel scroll
+        /// events. Defaults to 1.
+        mouse_wheel_scroll_sensitivity: u32 => mouseWheelScrollSensitivity;
+        /// Zoom the font in the editor when using the mouse wheel in combination
+        /// with holding Ctrl. Defaults to false.
+        mouse_wheel_zoom: bool => mouseWheelZoom;
+        /// Merge overlapping selections. Defaults to true
+        multi_cursor_merge_overlapping: bool => multiCursorMergeOverlapping;
+        /// The modifier to be used to add multiple cursors with the mouse. Defaults
+        /// to 'alt'.
+        multi_cursor_modifier: MultiCursorModifier => multiCursorModifier;
+        /// Configure the behaviour when pasting a text with the line count equal to
+        /// the cursor count. Defaults to 'spread'.
+        multi_cursor_paste: MultiCursorPaste => multiCursorPaste;
+        /// Enable semantic occurrences highlight. Defaults to true.
+        occurrences_highlight: bool => occurrencesHighlight;
+        /// Controls if a border should be drawn around the overview ruler. Defaults
+        /// to true.
+        overview_ruler_border: bool => overviewRulerBorder;
+        /// The number of vertical lanes the overview ruler should render. Defaults
+        /// to 3.
+        overview_ruler_lanes: u32 => overviewRulerLanes;
+        /// Parameter hint options.
+        parameter_hints: &IEditorParameterHintOptions => parameterHints;
+        /// Controls whether to focus the inline editor in the peek widget by
+        /// default. Defaults to false.
+        peek_widget_default_focus: PeekWidgetDefaultFocus => peekWidgetDefaultFocus;
+        /// Enable quick suggestions (shadow suggestions) Defaults to true.
+        // TODO: special value: bool | IQuickSuggestionsOptions
+        quick_suggestions: bool => quickSuggestions;
+        /// Quick suggestions show delay (in ms) Defaults to 10 (ms)
+        quick_suggestions_delay: u32 => quickSuggestionsDelay;
+        /// Should the editor be read only. Defaults to false.
+        read_only: bool => readOnly;
+        /// Enable rendering of control characters. Defaults to false.
+        render_control_characters: bool => renderControlCharacters;
+        /// Render last line number when the file ends with a newline. Defaults to
+        /// true.
+        render_final_newline: bool => renderFinalNewline;
+        /// Enable rendering of indent guides. Defaults to true.
+        render_indent_guides: bool => renderIndentGuides;
+        /// Enable rendering of current line highlight. Defaults to all.
+        render_line_highlight: RenderLineHighlight => renderLineHighlight;
+        /// Should the editor render validation decorations. Defaults to editable.
+        render_validation_decorations: RenderValidationDecorations => renderValidationDecorations;
+        /// Enable rendering of whitespace. Defaults to none.
+        render_whitespace: RenderWhitespace => renderWhitespace;
+        /// When revealing the cursor, a virtual padding (px) is added to the
+        /// cursor, turning it into a rectangle. This virtual padding ensures that
+        /// the cursor gets revealed before hitting the edge of the viewport.
+        /// Defaults to 30 (px).
+        reveal_horizontal_right_padding: u32 => revealHorizontalRightPadding;
+        /// Render the editor selection with rounded borders. Defaults to true.
+        rounded_selection: bool => roundedSelection;
+        /// Render vertical lines at the specified columns. Defaults to empty array.
+        rulers: &Uint32Array => rulers;
+        /// Enable that scrolling can go beyond the last column by a number of
+        /// columns. Defaults to 5.
+        scroll_beyond_last_column: u32 => scrollBeyondLastColumn;
+        /// Enable that scrolling can go one screen size after the last line.
+        /// Defaults to true.
+        scroll_beyond_last_line: bool => scrollBeyondLastLine;
+        /// Control the behavior and rendering of the scrollbars.
+        scrollbar: &IEditorScrollbarOptions => scrollbar;
+        /// Should the corresponding line be selected when clicking on the line
+        /// number? Defaults to true.
+        select_on_line_numbers: bool => selectOnLineNumbers;
+        /// Enable Linux primary clipboard. Defaults to true.
+        selection_clipboard: bool => selectionClipboard;
+        /// Enable selection highlight. Defaults to true.
+        selection_highlight: bool => selectionHighlight;
+        /// Controls whether the fold actions in the gutter stay always visible or
+        /// hide unless the mouse is over the gutter. Defaults to 'mouseover'.
+        show_folding_controls: ShowFoldingControls => showFoldingControls;
+        /// Controls fading out of unused variables.
+        show_unused: bool => showUnused;
+        /// Enable that the editor animates scrolling to a position. Defaults to
+        /// false.
+        smooth_scrolling: bool => smoothScrolling;
+        /// Enable snippet suggestions. Default to 'true'.
+        snippet_suggestions: SnippetSuggestions => snippetSuggestions;
+        /// Performance guard: Stop rendering a line after x characters. Defaults to
+        /// 10000. Use -1 to never stop rendering
+        stop_rendering_line_after: u32 => stopRenderingLineAfter;
+        /// Suggest options.
+        suggest: &ISuggestOptions => suggest;
+        /// The font size for the suggest widget. Defaults to the editor font size.
+        suggest_font_size: u32 => suggestFontSize;
+        /// The line height for the suggest widget. Defaults to the editor line
+        /// height.
+        suggest_line_height: u32 => suggestLineHeight;
+        /// Enable the suggestion box to pop-up on trigger characters. Defaults to
+        /// true.
+        suggest_on_trigger_characters: bool => suggestOnTriggerCharacters;
+        /// The history mode for suggestions.
+        suggest_selection: SuggestSelection => suggestSelection;
+        /// Enable tab completion.
+        tab_completion: TabCompletion => tabCompletion;
+        /// Inserting and deleting whitespace follows tab stops.
+        use_tab_stops: bool => useTabStops;
+        /// A string containing the word separators used when doing word navigation.
+        /// Defaults to `~!@#$%^&*()-=+[{]}\|;:'",.<>/?
+        word_separators: &str => wordSeparators;
+        /// Control the wrapping of the editor. When wordWrap = "off", the lines
+        /// will never wrap. When wordWrap = "on", the lines will wrap at the
+        /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
+        /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
+        /// min(viewport width, wordWrapColumn). Defaults to "off".
+        word_wrap: WordWrap => wordWrap;
+        /// Configure word wrapping characters. A break will be introduced after
+        /// these characters. Defaults to '
+        /// \t})]?|/&.,;¢°′″‰℃、。｡､￠，．：；？！％・･
+        /// ゝゞヽヾーァィゥェォッャュョヮヵヶぁぃぅぇぉっゃゅょゎゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ々〻ｧｨｩｪｫｬｭｮｯｰ”〉》」』】〕）］｝｣'
+        /// .
+        word_wrap_break_after_characters: &str => wordWrapBreakAfterCharacters;
+        /// Configure word wrapping characters. A break will be introduced before
+        /// these characters. Defaults to '([{‘“〈《「『【〔（［｛｢£¥＄￡￥+＋'.
+        word_wrap_break_before_characters: &str => wordWrapBreakBeforeCharacters;
+        /// Control the wrapping of the editor. When wordWrap = "off", the lines
+        /// will never wrap. When wordWrap = "on", the lines will wrap at the
+        /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
+        /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
+        /// min(viewport width, wordWrapColumn). Defaults to 80.
+        word_wrap_column: u32 => wordWrapColumn;
+        /// Force word wrapping when the text appears to be of a minified/generated
+        /// file. Defaults to true.
+        word_wrap_minified: bool => wordWrapMinified;
+        /// Control indentation of wrapped lines. Can be: 'none', 'same', 'indent'
+        /// or 'deepIndent'. Defaults to 'same' in vscode and to 'none' in
+        /// monaco-editor.
+        wrapping_indent: WrappingIndent => wrappingIndent;
+        /// Controls the wrapping strategy to use. Defaults to 'simple'.
+        wrapping_strategy: WrappingStrategy => wrappingStrategy;
     }
 }
 
 // TODO: IDiffEditorOptions
 
-#[wasm_bindgen]
-extern "C" {
-    #[derive(Clone, Debug, Eq, PartialEq)]
-    #[wasm_bindgen(extends = IEditorOptions)]
-    pub type IEditorConstructionOptions;
+define_interface_builder! {
+    type IEditorConstructionOptions extends IEditorOptions {
+        /// The initial editor dimension (to avoid measuring the container).
+        dimension: &IDimension => dimension;
+    }
 }
 impl IEditorConstructionOptions {
     pub fn with_editor_options(self, val: &IEditorOptions) -> Self {
         JsCast::unchecked_into(Object::assign(&self, val))
     }
-
-    /// The initial editor dimension (to avoid measuring the container).
-    pub fn dimension(self, dimension: IDimension) -> Self {
-        object_set!(self.dimension = dimension);
-        self
-    }
 }
-impl Default for IEditorConstructionOptions {
-    fn default() -> Self {
-        JsCast::unchecked_into(Object::new())
+
+define_interface_builder! {
+    type IDimension extends Object {
+        height: u32 => height;
+        width: u32 => width;
     }
 }
 
-#[wasm_bindgen]
-extern "C" {
-    #[derive(Clone, Debug, Eq, PartialEq)]
-    #[wasm_bindgen(extends = Object)]
-    pub type IDimension;
-}
-impl IDimension {
-    pub fn height(self, val: u32) -> Self {
-        object_set!(self.height = val);
-        self
+define_interface_builder! {
+    /// The options to create an editor
+    type IStandaloneEditorConstructionOptions extends IEditorConstructionOptions, IGlobalEditorOptions {
+        /// An URL to open when Ctrl+H (Windows and Linux) or Cmd+H (OSX) is pressed
+        /// in the accessibility help dialog in the editor. Defaults to "https://go.microsoft.com/fwlink/?linkid=852450"
+        accessibility_help_url: &str => accessibilityHelpUrl;
+        /// The initial language of the auto created model in the editor. To not
+        /// create automatically a model, use model: null.
+        language: bool => language;
+        /// The initial model associated with this code editor.
+        model: ITextModel => model;
+        /// Initial theme to be used for rendering. The current out-of-the-box
+        /// available themes are: 'vs' (default), 'vs-dark', 'hc-black'. You can
+        /// create custom themes via monaco.editor.defineTheme. To switch a theme,
+        /// use monaco.editor.setTheme
+        theme: BuiltinTheme => theme;
+        /// The initial value of the auto created model in the editor. To not create
+        /// automatically a model, use model: null.
+        value: &str => value;
     }
-
-    pub fn width(self, val: u32) -> Self {
-        object_set!(self.width = val);
-        self
-    }
-}
-impl Default for IDimension {
-    fn default() -> Self {
-        JsCast::unchecked_into(Object::new())
-    }
-}
-
-#[wasm_bindgen]
-extern "C" {
-    /// The options to create an editor.
-    #[derive(Clone, Debug, Eq, PartialEq)]
-    #[wasm_bindgen(extends = IEditorConstructionOptions, extends = IGlobalEditorOptions)]
-    pub type IStandaloneEditorConstructionOptions;
 }
 impl IStandaloneEditorConstructionOptions {
     pub fn with_editor_construction_options(self, val: &IEditorConstructionOptions) -> Self {
@@ -839,75 +362,200 @@ impl IStandaloneEditorConstructionOptions {
     pub fn with_global_editor_options(self, val: &IGlobalEditorOptions) -> Self {
         JsCast::unchecked_into(Object::assign(&self, val))
     }
-
-    /// An URL to open when Ctrl+H (Windows and Linux) or Cmd+H (OSX) is pressed
-    /// in the accessibility help dialog in the editor. Defaults to "https://go.microsoft.com/fwlink/?linkid=852450"
-    pub fn accessibility_help_url(self, val: &str) -> Self {
-        object_set!(self.accessibilityHelpUrl = val);
-        self
-    }
-
-    /// The initial language of the auto created model in the editor. To not
-    /// create automatically a model, use model: null.
-    pub fn language(self, val: bool) -> Self {
-        object_set!(self.language = val);
-        self
-    }
-
-    /// The initial model associated with this code editor.
-    pub fn model(self, val: ITextModel) -> Self {
-        object_set!(self.model = val);
-        self
-    }
-
-    /// Initial theme to be used for rendering. The current out-of-the-box
-    /// available themes are: 'vs' (default), 'vs-dark', 'hc-black'. You can
-    /// create custom themes via monaco.editor.defineTheme. To switch a theme,
-    /// use monaco.editor.setTheme
-    pub fn theme(self, val: &str) -> Self {
-        object_set!(self.theme = val);
-        self
-    }
-
-    /// The initial value of the auto created model in the editor. To not create
-    /// automatically a model, use model: null.
-    pub fn value(self, val: &str) -> Self {
-        object_set!(self.value = val);
-        self
-    }
 }
-impl Default for IStandaloneEditorConstructionOptions {
-    fn default() -> Self {
-        JsCast::unchecked_into(Object::new())
+
+define_interface_builder! {
+    type ITextModel extends Object {
+        id: &str => id;
+        /// Gets the resource associated with this editor model.
+        uri: &Uri => uri;
     }
 }
 
-#[wasm_bindgen]
-extern "C" {
-    #[derive(Clone, Debug, Eq, PartialEq)]
-    #[wasm_bindgen(extends = Object)]
-    pub type ITextModel;
-}
-impl ITextModel {
-    /// A unique identifier associated with this model.
-    pub fn id(&self) -> Option<String> {
-        object_get!(self.id)
-            .ok()
-            .as_ref()
-            .and_then(JsValue::as_string)
-    }
-
-    pub fn set_id(&self, val: &str) {
-        object_set!(self.id = val);
-    }
-
-    /// Gets the resource associated with this editor model.
-    pub fn set_uri(&self, val: Uri) {
-        object_set!(self.uri = val);
+define_interface_builder! {
+    /// Configuration options for editor comments
+    type IEditorCommentsOptions extends Object {
+        /// Insert a space after the line comment token and inside the block comments tokens. Defaults to true.
+        insert_space: bool => insertSpace;
     }
 }
-impl Default for ITextModel {
-    fn default() -> Self {
-        JsCast::unchecked_into(Object::new())
+
+define_interface_builder! {
+    /// Configuration options for editor find widget
+    type IEditorFindOptions extends Object {
+        add_extra_space_on_top: bool => addExtraSpaceOnTop;
+        /// Controls if Find in Selection flag is turned on in the editor.
+        auto_find_in_selection: AutoFindInSelection => autoFindInSelection;
+        /// Controls if we seed search string in the Find Widget with editor selection.
+        seed_search_string_from_selection: bool => seedSearchStringFromSelection;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for editor hover
+    type IEditorHoverOptions extends Object {
+        /// Delay for showing the hover. Defaults to 300.
+        delay: u32 => delay;
+        /// Enable the hover. Defaults to true.
+        enabled: bool => enabled;
+        /// Is the hover sticky such that it can be clicked and its contents selected? Defaults to true.
+        sticky: bool => sticky;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for editor lightbulb
+    type IEditorLightbulbOptions extends Object {
+        /// Enable the lightbulb code action. Defaults to true.
+        enabled: bool => enabled;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for editor minimap
+    type IEditorMinimapOptions extends Object {
+        /// Enable the rendering of the minimap. Defaults to true.
+        enabled: bool => enabled;
+        /// Limit the width of the minimap to render at most a certain number of columns. Defaults to 120.
+        max_column: u32 => maxColumn;
+        /// Render the actual text on a line (as opposed to color blocks). Defaults to true.
+        render_characters: bool => renderCharacters;
+        /// Relative size of the font in the minimap. Defaults to 1.
+        scale: f32 => scale;
+        /// Control the rendering of the minimap slider. Defaults to 'mouseover'.
+        show_slider: MinimapShowSlider => showSlider;
+        /// Control the side of the minimap in editor. Defaults to 'right'.
+        side: MinimapSide => side;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for parameter hints
+    type IEditorParameterHintOptions extends Object {
+        /// Enable cycling of parameter hints. Defaults to false.
+        cycle: bool => cycle;
+        /// Enable parameter hints. Defaults to true.
+        enabled: bool => enabled;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for editor scrollbars
+    type IEditorScrollbarOptions extends Object {
+        /// Always consume mouse wheel events (always call preventDefault() and stopPropagation() on the browser events). Defaults to true.
+        always_consume_mouse_wheel: bool => alwaysConsumeMouseWheel;
+        /// The size of arrows (if displayed). Defaults to 11.
+        arrow_size: u32 => arrowSize;
+        /// Listen to mouse wheel events and react to them by scrolling. Defaults to true.
+        handle_mouse_wheel: bool => handleMouseWheel;
+        /// Render horizontal scrollbar. Defaults to 'auto'.
+        horizontal: ScrollbarVisible => horizontal;
+        /// Render arrows at the left and right of the horizontal scrollbar. Defaults to false.
+        horizontal_has_arrows: bool => horizontalHasArrows;
+        /// Height in pixels for the horizontal scrollbar. Defaults to 10 (px).
+        horizontal_scrollbar_size: u32 => horizontalScrollbarSize;
+        /// Height in pixels for the horizontal slider. Defaults to horizontalScrollbarSize.
+        horizontal_slider_size: u32 => horizontalSliderSize;
+        /// Cast horizontal and vertical shadows when the content is scrolled. Defaults to true.
+        use_shadows: bool => useShadows;
+        /// Render vertical scrollbar. Defaults to 'auto'.
+        vertical: ScrollbarVisible => vertical;
+        /// Render arrows at the top and bottom of the vertical scrollbar. Defaults to false.
+        vertical_has_arrows: bool => verticalHasArrows;
+        /// Width in pixels for the vertical scrollbar. Defaults to 10 (px).
+        vertical_scrollbar_size: u32 => verticalScrollbarSize;
+        /// Width in pixels for the vertical slider. Defaults to verticalScrollbarSize.
+        vertical_slider_size: u32 => verticalSliderSize;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for go to location
+    type IGotoLocationOptions extends Object {
+        alternative_declaration_command: &str => alternativeDeclarationCommand;
+        alternative_definition_command: &str => alternativeDefinitionCommand;
+        alternative_implementation_command: &str => alternativeImplementationCommand;
+        alternative_reference_command: &str => alternativeReferenceCommand;
+        alternative_type_definition_command: &str => alternativeTypeDefinitionCommand;
+        multiple: GoToLocationValues => multiple;
+        multiple_declarations: GoToLocationValues => multipleDeclarations;
+        multiple_definitions: GoToLocationValues => multipleDefinitions;
+        multiple_implementations: GoToLocationValues => multipleImplementations;
+        multiple_references: GoToLocationValues => multipleReferences;
+        multiple_type_definitions: GoToLocationValues => multipleTypeDefinitions;
+    }
+}
+
+define_interface_builder! {
+    /// Configuration options for editor suggest widget
+    type ISuggestOptions extends Object {
+        /// Enable graceful matching. Defaults to true.
+        filter_graceful: bool => filterGraceful;
+        /// Controls the visibility of the status bar at the bottom of the suggest widget.
+        hide_status_bar: bool => hideStatusBar;
+        /// Show a highlight when suggestion replaces or keep text after the cursor. Defaults to false.
+        insert_highlight: bool => insertHighlight;
+        /// Overwrite word ends on accept. Default to false.
+        insert_mode: SuggestInsertMode => insertMode;
+        /// Favours words that appear close to the cursor.
+        locality_bonus: bool => localityBonus;
+        /// Max suggestions to show in suggestions. Defaults to 12.
+        max_visible_suggestions: u32 => maxVisibleSuggestions;
+        /// Enable using global storage for remembering suggestions.
+        share_suggest_selections: bool => shareSuggestSelections;
+        /// Show class-suggestions.
+        show_classes: bool => showClasses;
+        /// Show color-suggestions.
+        show_colors: bool => showColors;
+        /// Show constant-suggestions.
+        show_constants: bool => showConstants;
+        /// Show constructor-suggestions.
+        show_constructors: bool => showConstructors;
+        /// Show enumMember-suggestions.
+        show_enum_members: bool => showEnumMembers;
+        /// Show enum-suggestions.
+        show_enums: bool => showEnums;
+        /// Show event-suggestions.
+        show_events: bool => showEvents;
+        /// Show field-suggestions.
+        show_fields: bool => showFields;
+        /// Show file-suggestions.
+        show_files: bool => showFiles;
+        /// Show folder-suggestions.
+        show_folders: bool => showFolders;
+        /// Show function-suggestions.
+        show_functions: bool => showFunctions;
+        /// Enable or disable icons in suggestions. Defaults to true.
+        show_icons: bool => showIcons;
+        /// Show interface-suggestions.
+        show_interfaces: bool => showInterfaces;
+        /// Show keyword-suggestions.
+        show_keywords: bool => showKeywords;
+        /// Show method-suggestions.
+        show_methods: bool => showMethods;
+        /// Show module-suggestions.
+        show_modules: bool => showModules;
+        /// Show operator-suggestions.
+        show_operators: bool => showOperators;
+        /// Show property-suggestions.
+        show_properties: bool => showProperties;
+        /// Show reference-suggestions.
+        show_references: bool => showReferences;
+        /// Show snippet-suggestions.
+        show_snippets: bool => showSnippets;
+        /// Show struct-suggestions.
+        show_structs: bool => showStructs;
+        /// Show typeParameter-suggestions.
+        show_type_parameters: bool => showTypeParameters;
+        /// Show unit-suggestions.
+        show_units: bool => showUnits;
+        /// Show value-suggestions.
+        show_values: bool => showValues;
+        /// Show variable-suggestions.
+        show_variables: bool => showVariables;
+        /// Show text-suggestions.
+        show_words: bool => showWords;
+        /// Prevent quick suggestions when a snippet is active. Defaults to true.
+        snippets_prevent_quick_suggestions: bool => snippetsPreventQuickSuggestions;
     }
 }
