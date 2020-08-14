@@ -1,3 +1,4 @@
+use super::enums::*;
 use crate::sys::Uri;
 use js_sys::{Object, Uint32Array};
 use wasm_bindgen::{prelude::*, JsCast, JsValue};
@@ -86,8 +87,7 @@ impl IEditorOptions {
     }
 
     /// Accept suggestions on ENTER. Defaults to 'on'.
-    /// "on" | "smart" | "off"
-    pub fn accept_suggestion_on_enter(self, val: &str) -> Self {
+    pub fn accept_suggestion_on_enter(self, val: AcceptSuggestionOnEnter) -> Self {
         object_set!(self.acceptSuggestionOnEnter = val);
         self
     }
@@ -100,8 +100,8 @@ impl IEditorOptions {
     }
 
     /// Configure the editor's accessibility support. Defaults to 'auto'. It is
-    /// best to leave this to 'auto'. "auto" | "off" | "on"
-    pub fn accessibility_support(self, val: &str) -> Self {
+    /// best to leave this to 'auto'.
+    pub fn accessibility_support(self, val: AccessibilitySupport) -> Self {
         object_set!(self.accessibilitySupport = val);
         self
     }
@@ -114,34 +114,33 @@ impl IEditorOptions {
 
     /// Options for auto closing brackets. Defaults to language defined
     /// behavior.
-    pub fn auto_closing_brackets(self, val: &EditorAutoClosingStrategy) -> Self {
+    pub fn auto_closing_brackets(self, val: AutoClosingStrategy) -> Self {
         object_set!(self.autoClosingBrackets = val);
         self
     }
 
     /// Options for typing over closing quotes or brackets.
-    pub fn auto_closing_overtype(self, val: &EditorAutoClosingOvertypeStrategy) -> Self {
+    pub fn auto_closing_overtype(self, val: AutoClosingOvertype) -> Self {
         object_set!(self.autoClosingOvertype = val);
         self
     }
 
     /// Options for auto closing quotes. Defaults to language defined behavior.
-    pub fn auto_closing_quotes(self, val: &EditorAutoClosingStrategy) -> Self {
+    pub fn auto_closing_quotes(self, val: AutoClosingStrategy) -> Self {
         object_set!(self.autoClosingQuotes = val);
         self
     }
 
     /// Controls whether the editor should automatically adjust the indentation
     /// when users type, paste, move or indent lines. Defaults to advanced.
-    /// "none" | "keep" | "brackets" | "advanced" | "full"
-    pub fn auto_indent(self, val: &str) -> Self {
+    pub fn auto_indent(self, val: AutoIdent) -> Self {
         object_set!(self.autoIndent = val);
         self
     }
 
     /// Options for auto surrounding. Defaults to always allowing auto
     /// surrounding.
-    pub fn auto_surround(self, val: &EditorAutoSurroundStrategy) -> Self {
+    pub fn auto_surround(self, val: AutoSurroundStrategy) -> Self {
         object_set!(self.autoSurround = val);
         self
     }
@@ -192,8 +191,7 @@ impl IEditorOptions {
 
     /// Control the cursor animation style, possible values are 'blink',
     /// 'smooth', 'phase', 'expand' and 'solid'. Defaults to 'blink'.
-    /// "blink" | "smooth" | "phase" | "expand" | "solid"
-    pub fn cursor_blinking(self, val: &str) -> Self {
+    pub fn cursor_blinking(self, val: CursorBlinkingStyle) -> Self {
         object_set!(self.cursorBlinking = val);
         self
     }
@@ -205,9 +203,7 @@ impl IEditorOptions {
     }
 
     /// Control the cursor style, either 'block' or 'line'. Defaults to 'line'.
-    /// "line" | "block" | "underline" | "line-thin" | "block-outline" |
-    /// "underline-thin"
-    pub fn cursor_style(self, val: &str) -> Self {
+    pub fn cursor_style(self, val: CursorStyle) -> Self {
         object_set!(self.cursorStyle = val);
         self
     }
@@ -221,8 +217,8 @@ impl IEditorOptions {
 
     /// Controls when cursorSurroundingLines should be enforced Defaults to
     /// default, cursorSurroundingLines is not enforced when cursor position is
-    /// changed by mouse. "default" | "all"
-    pub fn cursor_surrounding_lines_style(self, val: &str) -> Self {
+    /// changed by mouse.
+    pub fn cursor_surrounding_lines_style(self, val: CursorSurroundingLinesStyle) -> Self {
         object_set!(self.cursorSurroundingLinesStyle = val);
         self
     }
@@ -299,8 +295,8 @@ impl IEditorOptions {
 
     /// Selects the folding strategy. 'auto' uses the strategies contributed for
     /// the current document, 'indentation' uses the indentation based folding
-    /// strategy. Defaults to 'auto'. "auto" | "indentation"
-    pub fn folding_strategy(self, val: &str) -> Self {
+    /// strategy. Defaults to 'auto'.
+    pub fn folding_strategy(self, val: FoldingStrategy) -> Self {
         object_set!(self.foldingStrategy = val);
         self
     }
@@ -412,7 +408,7 @@ impl IEditorOptions {
     /// rendered. Otherwise, if it is a truey, line numbers will be rendered
     /// normally (equivalent of using an identity function). Otherwise, line
     /// numbers will not be rendered. Defaults to on.
-    pub fn line_numbers(self, val: &LineNumbersType) -> Self {
+    pub fn line_numbers(self, val: LineNumbersType) -> Self {
         object_set!(self.lineNumbers = val);
         self
     }
@@ -431,8 +427,7 @@ impl IEditorOptions {
     }
 
     /// Enable highlighting of matching brackets. Defaults to 'always'.
-    /// "never" | "near" | "always"
-    pub fn match_brackets(self, val: &str) -> Self {
+    pub fn match_brackets(self, val: MatchBrackets) -> Self {
         object_set!(self.matchBrackets = val);
         self
     }
@@ -444,8 +439,8 @@ impl IEditorOptions {
     }
 
     /// Control the mouse pointer style, either 'text' or 'default' or 'copy'
-    /// Defaults to 'text' "text" | "default" | "copy"
-    pub fn mouse_style(self, val: &str) -> Self {
+    /// Defaults to 'text'.
+    pub fn mouse_style(self, val: MouseStyle) -> Self {
         object_set!(self.mouseStyle = val);
         self
     }
@@ -471,15 +466,15 @@ impl IEditorOptions {
     }
 
     /// The modifier to be used to add multiple cursors with the mouse. Defaults
-    /// to 'alt' "ctrlCmd" | "alt"
-    pub fn multi_cursor_modifier(self, val: &str) -> Self {
+    /// to 'alt'.
+    pub fn multi_cursor_modifier(self, val: MultiCursorModifier) -> Self {
         object_set!(self.multiCursorModifier = val);
         self
     }
 
     /// Configure the behaviour when pasting a text with the line count equal to
-    /// the cursor count. Defaults to 'spread'. "spread" | "full"
-    pub fn multi_cursor_paste(self, val: &str) -> Self {
+    /// the cursor count. Defaults to 'spread'.
+    pub fn multi_cursor_paste(self, val: MultiCursorPaste) -> Self {
         object_set!(self.multiCursorPaste = val);
         self
     }
@@ -511,8 +506,8 @@ impl IEditorOptions {
     }
 
     /// Controls whether to focus the inline editor in the peek widget by
-    /// default. Defaults to false. "tree" | "editor"
-    pub fn peek_widget_default_focus(self, val: &str) -> Self {
+    /// default. Defaults to false.
+    pub fn peek_widget_default_focus(self, val: PeekWidgetDefaultFocus) -> Self {
         object_set!(self.peekWidgetDefaultFocus = val);
         self
     }
@@ -556,22 +551,19 @@ impl IEditorOptions {
     }
 
     /// Enable rendering of current line highlight. Defaults to all.
-    /// "none" | "gutter" | "line" | "all"
-    pub fn render_line_highlight(self, val: &str) -> Self {
+    pub fn render_line_highlight(self, val: RenderLineHighlight) -> Self {
         object_set!(self.renderLineHighlight = val);
         self
     }
 
     /// Should the editor render validation decorations. Defaults to editable.
-    /// "editable" | "on" | "off"
-    pub fn render_validation_decorations(self, val: &str) -> Self {
+    pub fn render_validation_decorations(self, val: RenderValidationDecorations) -> Self {
         object_set!(self.renderValidationDecorations = val);
         self
     }
 
     /// Enable rendering of whitespace. Defaults to none.
-    /// "none" | "boundary" | "selection" | "all"
-    pub fn render_whitespace(self, val: &str) -> Self {
+    pub fn render_whitespace(self, val: RenderWhitespace) -> Self {
         object_set!(self.renderWhitespace = val);
         self
     }
@@ -638,8 +630,7 @@ impl IEditorOptions {
 
     /// Controls whether the fold actions in the gutter stay always visible or
     /// hide unless the mouse is over the gutter. Defaults to 'mouseover'.
-    /// "always" | "mouseover"
-    pub fn show_folding_controls(self, val: &str) -> Self {
+    pub fn show_folding_controls(self, val: ShowFoldingControls) -> Self {
         object_set!(self.showFoldingControls = val);
         self
     }
@@ -658,8 +649,7 @@ impl IEditorOptions {
     }
 
     /// Enable snippet suggestions. Default to 'true'.
-    /// "top" | "bottom" | "inline" | "none"
-    pub fn snippet_suggestions(self, val: &str) -> Self {
+    pub fn snippet_suggestions(self, val: SnippetSuggestions) -> Self {
         object_set!(self.snippetSuggestions = val);
         self
     }
@@ -698,15 +688,13 @@ impl IEditorOptions {
     }
 
     /// The history mode for suggestions.
-    /// "first" | "recentlyUsed" | "recentlyUsedByPrefix"
-    pub fn suggest_selection(self, val: &str) -> Self {
+    pub fn suggest_selection(self, val: SuggestSelection) -> Self {
         object_set!(self.suggestSelection = val);
         self
     }
 
     /// Enable tab completion.
-    /// "on" | "off" | "onlySnippets"
-    pub fn tab_completion(self, val: &str) -> Self {
+    pub fn tab_completion(self, val: TabCompletion) -> Self {
         object_set!(self.tabCompletion = val);
         self
     }
@@ -728,9 +716,8 @@ impl IEditorOptions {
     /// will never wrap. When wordWrap = "on", the lines will wrap at the
     /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
     /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
-    /// min(viewport width, wordWrapColumn). Defaults to "off". "off" | "on"
-    /// | "wordWrapColumn" | "bounded"
-    pub fn word_wrap(self, val: &str) -> Self {
+    /// min(viewport width, wordWrapColumn). Defaults to "off".
+    pub fn word_wrap(self, val: WordWrap) -> Self {
         object_set!(self.wordWrap = val);
         self
     }
@@ -771,15 +758,14 @@ impl IEditorOptions {
 
     /// Control indentation of wrapped lines. Can be: 'none', 'same', 'indent'
     /// or 'deepIndent'. Defaults to 'same' in vscode and to 'none' in
-    /// monaco-editor. "none" | "same" | "indent" | "deepIndent"
-    pub fn wrapping_indent(self, val: &str) -> Self {
+    /// monaco-editor.
+    pub fn wrapping_indent(self, val: WrappingIndent) -> Self {
         object_set!(self.wrappingIndent = val);
         self
     }
 
     /// Controls the wrapping strategy to use. Defaults to 'simple'.
-    /// "simple" | "advanced"
-    pub fn wrapping_strategy(self, val: &str) -> Self {
+    pub fn wrapping_strategy(self, val: WrappingStrategy) -> Self {
         object_set!(self.wrappingStrategy = val);
         self
     }
@@ -925,5 +911,3 @@ impl Default for ITextModel {
         JsCast::unchecked_into(Object::new())
     }
 }
-
-// TODO: Uri

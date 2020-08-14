@@ -1,8 +1,10 @@
+pub use enums::*;
 pub use interfaces::*;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlElement;
 
+mod enums;
 mod interfaces;
 
 #[wasm_bindgen]
