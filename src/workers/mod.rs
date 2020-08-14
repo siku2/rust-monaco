@@ -9,7 +9,7 @@ macro_rules! include_worker {
     };
 }
 
-const EDITOR_WORKER: &str = include_worker!("monaco.js");
+const EDITOR_WORKER: &str = include_worker!("editor.worker.js");
 
 fn create_worker(source: &str) -> Result<Worker, JsValue> {
     let array: Array = std::iter::once(JsValue::from_str(source)).collect();
@@ -22,9 +22,14 @@ fn get_worker(_id: String, _label: String) -> Worker {
     create_worker(EDITOR_WORKER).unwrap()
 }
 
-pub fn build_environment() -> Environment {
+fn build_environment() -> Environment {
     let cb = Closure::wrap(Box::new(get_worker) as Box<dyn FnMut(String, String) -> Worker>);
     let env = Environment::default().get_worker(&cb);
     cb.forget();
     env
+}
+
+pub fn init_environment() {
+    let window = web_sys::window().unwrap();
+    object_set!(window.MonacoEnvironment = build_environment());
 }

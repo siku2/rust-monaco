@@ -1,5 +1,5 @@
 use js_sys::Object;
-use wasm_bindgen::{prelude::*, JsCast, JsValue};
+use wasm_bindgen::{prelude::*, JsCast};
 
 #[wasm_bindgen]
 extern "C" {

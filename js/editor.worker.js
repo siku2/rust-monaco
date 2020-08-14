@@ -1,547 +1,7005 @@
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./node_modules/monaco-editor/esm/vs/editor/editor.worker.js");
-/******/ })
-/************************************************************************/
-/******/ ({
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/arrays.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/arrays.js ***!
-  \*****************************************************************/
-/*! exports provided: tail, tail2, equals, binarySearch, findFirstInSorted, mergeSort, groupBy, coalesce, isFalsyOrEmpty, isNonEmptyArray, distinct, distinctES6, fromSet, firstIndex, first, firstOrDefault, flatten, range, arrayInsert, pushToStart, pushToEnd, find, asArray */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"tail\", function() { return tail; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"tail2\", function() { return tail2; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"equals\", function() { return equals; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"binarySearch\", function() { return binarySearch; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"findFirstInSorted\", function() { return findFirstInSorted; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"mergeSort\", function() { return mergeSort; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"groupBy\", function() { return groupBy; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"coalesce\", function() { return coalesce; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isFalsyOrEmpty\", function() { return isFalsyOrEmpty; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isNonEmptyArray\", function() { return isNonEmptyArray; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"distinct\", function() { return distinct; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"distinctES6\", function() { return distinctES6; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"fromSet\", function() { return fromSet; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"firstIndex\", function() { return firstIndex; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"first\", function() { return first; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"firstOrDefault\", function() { return firstOrDefault; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"flatten\", function() { return flatten; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"range\", function() { return range; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"arrayInsert\", function() { return arrayInsert; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pushToStart\", function() { return pushToStart; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pushToEnd\", function() { return pushToEnd; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"find\", function() { return find; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"asArray\", function() { return asArray; });\n/**\r\n * Returns the last element of an array.\r\n * @param array The array.\r\n * @param n Which element from the end (default is zero).\r\n */\r\nfunction tail(array, n) {\r\n    if (n === void 0) { n = 0; }\r\n    return array[array.length - (1 + n)];\r\n}\r\nfunction tail2(arr) {\r\n    if (arr.length === 0) {\r\n        throw new Error('Invalid tail call');\r\n    }\r\n    return [arr.slice(0, arr.length - 1), arr[arr.length - 1]];\r\n}\r\nfunction equals(one, other, itemEquals) {\r\n    if (itemEquals === void 0) { itemEquals = function (a, b) { return a === b; }; }\r\n    if (one === other) {\r\n        return true;\r\n    }\r\n    if (!one || !other) {\r\n        return false;\r\n    }\r\n    if (one.length !== other.length) {\r\n        return false;\r\n    }\r\n    for (var i = 0, len = one.length; i < len; i++) {\r\n        if (!itemEquals(one[i], other[i])) {\r\n            return false;\r\n        }\r\n    }\r\n    return true;\r\n}\r\nfunction binarySearch(array, key, comparator) {\r\n    var low = 0, high = array.length - 1;\r\n    while (low <= high) {\r\n        var mid = ((low + high) / 2) | 0;\r\n        var comp = comparator(array[mid], key);\r\n        if (comp < 0) {\r\n            low = mid + 1;\r\n        }\r\n        else if (comp > 0) {\r\n            high = mid - 1;\r\n        }\r\n        else {\r\n            return mid;\r\n        }\r\n    }\r\n    return -(low + 1);\r\n}\r\n/**\r\n * Takes a sorted array and a function p. The array is sorted in such a way that all elements where p(x) is false\r\n * are located before all elements where p(x) is true.\r\n * @returns the least x for which p(x) is true or array.length if no element fullfills the given function.\r\n */\r\nfunction findFirstInSorted(array, p) {\r\n    var low = 0, high = array.length;\r\n    if (high === 0) {\r\n        return 0; // no children\r\n    }\r\n    while (low < high) {\r\n        var mid = Math.floor((low + high) / 2);\r\n        if (p(array[mid])) {\r\n            high = mid;\r\n        }\r\n        else {\r\n            low = mid + 1;\r\n        }\r\n    }\r\n    return low;\r\n}\r\n/**\r\n * Like `Array#sort` but always stable. Usually runs a little slower `than Array#sort`\r\n * so only use this when actually needing stable sort.\r\n */\r\nfunction mergeSort(data, compare) {\r\n    _sort(data, compare, 0, data.length - 1, []);\r\n    return data;\r\n}\r\nfunction _merge(a, compare, lo, mid, hi, aux) {\r\n    var leftIdx = lo, rightIdx = mid + 1;\r\n    for (var i = lo; i <= hi; i++) {\r\n        aux[i] = a[i];\r\n    }\r\n    for (var i = lo; i <= hi; i++) {\r\n        if (leftIdx > mid) {\r\n            // left side consumed\r\n            a[i] = aux[rightIdx++];\r\n        }\r\n        else if (rightIdx > hi) {\r\n            // right side consumed\r\n            a[i] = aux[leftIdx++];\r\n        }\r\n        else if (compare(aux[rightIdx], aux[leftIdx]) < 0) {\r\n            // right element is less -> comes first\r\n            a[i] = aux[rightIdx++];\r\n        }\r\n        else {\r\n            // left element comes first (less or equal)\r\n            a[i] = aux[leftIdx++];\r\n        }\r\n    }\r\n}\r\nfunction _sort(a, compare, lo, hi, aux) {\r\n    if (hi <= lo) {\r\n        return;\r\n    }\r\n    var mid = lo + ((hi - lo) / 2) | 0;\r\n    _sort(a, compare, lo, mid, aux);\r\n    _sort(a, compare, mid + 1, hi, aux);\r\n    if (compare(a[mid], a[mid + 1]) <= 0) {\r\n        // left and right are sorted and if the last-left element is less\r\n        // or equals than the first-right element there is nothing else\r\n        // to do\r\n        return;\r\n    }\r\n    _merge(a, compare, lo, mid, hi, aux);\r\n}\r\nfunction groupBy(data, compare) {\r\n    var result = [];\r\n    var currentGroup = undefined;\r\n    for (var _i = 0, _a = mergeSort(data.slice(0), compare); _i < _a.length; _i++) {\r\n        var element = _a[_i];\r\n        if (!currentGroup || compare(currentGroup[0], element) !== 0) {\r\n            currentGroup = [element];\r\n            result.push(currentGroup);\r\n        }\r\n        else {\r\n            currentGroup.push(element);\r\n        }\r\n    }\r\n    return result;\r\n}\r\n/**\r\n * @returns New array with all falsy values removed. The original array IS NOT modified.\r\n */\r\nfunction coalesce(array) {\r\n    return array.filter(function (e) { return !!e; });\r\n}\r\n/**\r\n * @returns false if the provided object is an array and not empty.\r\n */\r\nfunction isFalsyOrEmpty(obj) {\r\n    return !Array.isArray(obj) || obj.length === 0;\r\n}\r\nfunction isNonEmptyArray(obj) {\r\n    return Array.isArray(obj) && obj.length > 0;\r\n}\r\n/**\r\n * Removes duplicates from the given array. The optional keyFn allows to specify\r\n * how elements are checked for equalness by returning a unique string for each.\r\n */\r\nfunction distinct(array, keyFn) {\r\n    if (!keyFn) {\r\n        return array.filter(function (element, position) {\r\n            return array.indexOf(element) === position;\r\n        });\r\n    }\r\n    var seen = Object.create(null);\r\n    return array.filter(function (elem) {\r\n        var key = keyFn(elem);\r\n        if (seen[key]) {\r\n            return false;\r\n        }\r\n        seen[key] = true;\r\n        return true;\r\n    });\r\n}\r\nfunction distinctES6(array) {\r\n    var seen = new Set();\r\n    return array.filter(function (element) {\r\n        if (seen.has(element)) {\r\n            return false;\r\n        }\r\n        seen.add(element);\r\n        return true;\r\n    });\r\n}\r\nfunction fromSet(set) {\r\n    var result = [];\r\n    set.forEach(function (o) { return result.push(o); });\r\n    return result;\r\n}\r\nfunction firstIndex(array, fn) {\r\n    for (var i = 0; i < array.length; i++) {\r\n        var element = array[i];\r\n        if (fn(element)) {\r\n            return i;\r\n        }\r\n    }\r\n    return -1;\r\n}\r\nfunction first(array, fn, notFoundValue) {\r\n    if (notFoundValue === void 0) { notFoundValue = undefined; }\r\n    var index = firstIndex(array, fn);\r\n    return index < 0 ? notFoundValue : array[index];\r\n}\r\nfunction firstOrDefault(array, notFoundValue) {\r\n    return array.length > 0 ? array[0] : notFoundValue;\r\n}\r\nfunction flatten(arr) {\r\n    var _a;\r\n    return (_a = []).concat.apply(_a, arr);\r\n}\r\nfunction range(arg, to) {\r\n    var from = typeof to === 'number' ? arg : 0;\r\n    if (typeof to === 'number') {\r\n        from = arg;\r\n    }\r\n    else {\r\n        from = 0;\r\n        to = arg;\r\n    }\r\n    var result = [];\r\n    if (from <= to) {\r\n        for (var i = from; i < to; i++) {\r\n            result.push(i);\r\n        }\r\n    }\r\n    else {\r\n        for (var i = from; i > to; i--) {\r\n            result.push(i);\r\n        }\r\n    }\r\n    return result;\r\n}\r\n/**\r\n * Insert `insertArr` inside `target` at `insertIndex`.\r\n * Please don't touch unless you understand https://jsperf.com/inserting-an-array-within-an-array\r\n */\r\nfunction arrayInsert(target, insertIndex, insertArr) {\r\n    var before = target.slice(0, insertIndex);\r\n    var after = target.slice(insertIndex);\r\n    return before.concat(insertArr, after);\r\n}\r\n/**\r\n * Pushes an element to the start of the array, if found.\r\n */\r\nfunction pushToStart(arr, value) {\r\n    var index = arr.indexOf(value);\r\n    if (index > -1) {\r\n        arr.splice(index, 1);\r\n        arr.unshift(value);\r\n    }\r\n}\r\n/**\r\n * Pushes an element to the end of the array, if found.\r\n */\r\nfunction pushToEnd(arr, value) {\r\n    var index = arr.indexOf(value);\r\n    if (index > -1) {\r\n        arr.splice(index, 1);\r\n        arr.push(value);\r\n    }\r\n}\r\nfunction find(arr, predicate) {\r\n    for (var i = 0; i < arr.length; i++) {\r\n        var element = arr[i];\r\n        if (predicate(element, i, arr)) {\r\n            return element;\r\n        }\r\n    }\r\n    return undefined;\r\n}\r\nfunction asArray(x) {\r\n    return Array.isArray(x) ? x : [x];\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/arrays.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/cancellation.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/cancellation.js ***!
-  \***********************************************************************/
-/*! exports provided: CancellationToken, CancellationTokenSource */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CancellationToken\", function() { return CancellationToken; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CancellationTokenSource\", function() { return CancellationTokenSource; });\n/* harmony import */ var _event_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./event.js */ \"./node_modules/monaco-editor/esm/vs/base/common/event.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\nvar shortcutEvent = Object.freeze(function (callback, context) {\r\n    var handle = setTimeout(callback.bind(context), 0);\r\n    return { dispose: function () { clearTimeout(handle); } };\r\n});\r\nvar CancellationToken;\r\n(function (CancellationToken) {\r\n    function isCancellationToken(thing) {\r\n        if (thing === CancellationToken.None || thing === CancellationToken.Cancelled) {\r\n            return true;\r\n        }\r\n        if (thing instanceof MutableToken) {\r\n            return true;\r\n        }\r\n        if (!thing || typeof thing !== 'object') {\r\n            return false;\r\n        }\r\n        return typeof thing.isCancellationRequested === 'boolean'\r\n            && typeof thing.onCancellationRequested === 'function';\r\n    }\r\n    CancellationToken.isCancellationToken = isCancellationToken;\r\n    CancellationToken.None = Object.freeze({\r\n        isCancellationRequested: false,\r\n        onCancellationRequested: _event_js__WEBPACK_IMPORTED_MODULE_0__[\"Event\"].None\r\n    });\r\n    CancellationToken.Cancelled = Object.freeze({\r\n        isCancellationRequested: true,\r\n        onCancellationRequested: shortcutEvent\r\n    });\r\n})(CancellationToken || (CancellationToken = {}));\r\nvar MutableToken = /** @class */ (function () {\r\n    function MutableToken() {\r\n        this._isCancelled = false;\r\n        this._emitter = null;\r\n    }\r\n    MutableToken.prototype.cancel = function () {\r\n        if (!this._isCancelled) {\r\n            this._isCancelled = true;\r\n            if (this._emitter) {\r\n                this._emitter.fire(undefined);\r\n                this.dispose();\r\n            }\r\n        }\r\n    };\r\n    Object.defineProperty(MutableToken.prototype, \"isCancellationRequested\", {\r\n        get: function () {\r\n            return this._isCancelled;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(MutableToken.prototype, \"onCancellationRequested\", {\r\n        get: function () {\r\n            if (this._isCancelled) {\r\n                return shortcutEvent;\r\n            }\r\n            if (!this._emitter) {\r\n                this._emitter = new _event_js__WEBPACK_IMPORTED_MODULE_0__[\"Emitter\"]();\r\n            }\r\n            return this._emitter.event;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    MutableToken.prototype.dispose = function () {\r\n        if (this._emitter) {\r\n            this._emitter.dispose();\r\n            this._emitter = null;\r\n        }\r\n    };\r\n    return MutableToken;\r\n}());\r\nvar CancellationTokenSource = /** @class */ (function () {\r\n    function CancellationTokenSource(parent) {\r\n        this._token = undefined;\r\n        this._parentListener = undefined;\r\n        this._parentListener = parent && parent.onCancellationRequested(this.cancel, this);\r\n    }\r\n    Object.defineProperty(CancellationTokenSource.prototype, \"token\", {\r\n        get: function () {\r\n            if (!this._token) {\r\n                // be lazy and create the token only when\r\n                // actually needed\r\n                this._token = new MutableToken();\r\n            }\r\n            return this._token;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    CancellationTokenSource.prototype.cancel = function () {\r\n        if (!this._token) {\r\n            // save an object by returning the default\r\n            // cancelled token when cancellation happens\r\n            // before someone asks for the token\r\n            this._token = CancellationToken.Cancelled;\r\n        }\r\n        else if (this._token instanceof MutableToken) {\r\n            // actually cancel\r\n            this._token.cancel();\r\n        }\r\n    };\r\n    CancellationTokenSource.prototype.dispose = function (cancel) {\r\n        if (cancel === void 0) { cancel = false; }\r\n        if (cancel) {\r\n            this.cancel();\r\n        }\r\n        if (this._parentListener) {\r\n            this._parentListener.dispose();\r\n        }\r\n        if (!this._token) {\r\n            // ensure to initialize with an empty token if we had none\r\n            this._token = CancellationToken.None;\r\n        }\r\n        else if (this._token instanceof MutableToken) {\r\n            // actually dispose\r\n            this._token.dispose();\r\n        }\r\n    };\r\n    return CancellationTokenSource;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/cancellation.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/diff/diff.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/diff/diff.js ***!
-  \********************************************************************/
-/*! exports provided: StringDiffSequence, stringDiff, Debug, MyArray, LcsDiff */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"StringDiffSequence\", function() { return StringDiffSequence; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"stringDiff\", function() { return stringDiff; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Debug\", function() { return Debug; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MyArray\", function() { return MyArray; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"LcsDiff\", function() { return LcsDiff; });\n/* harmony import */ var _diffChange_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./diffChange.js */ \"./node_modules/monaco-editor/esm/vs/base/common/diff/diffChange.js\");\n/* harmony import */ var _hash_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../hash.js */ \"./node_modules/monaco-editor/esm/vs/base/common/hash.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n\r\nvar StringDiffSequence = /** @class */ (function () {\r\n    function StringDiffSequence(source) {\r\n        this.source = source;\r\n    }\r\n    StringDiffSequence.prototype.getElements = function () {\r\n        var source = this.source;\r\n        var characters = new Int32Array(source.length);\r\n        for (var i = 0, len = source.length; i < len; i++) {\r\n            characters[i] = source.charCodeAt(i);\r\n        }\r\n        return characters;\r\n    };\r\n    return StringDiffSequence;\r\n}());\r\n\r\nfunction stringDiff(original, modified, pretty) {\r\n    return new LcsDiff(new StringDiffSequence(original), new StringDiffSequence(modified)).ComputeDiff(pretty).changes;\r\n}\r\n//\r\n// The code below has been ported from a C# implementation in VS\r\n//\r\nvar Debug = /** @class */ (function () {\r\n    function Debug() {\r\n    }\r\n    Debug.Assert = function (condition, message) {\r\n        if (!condition) {\r\n            throw new Error(message);\r\n        }\r\n    };\r\n    return Debug;\r\n}());\r\n\r\nvar MyArray = /** @class */ (function () {\r\n    function MyArray() {\r\n    }\r\n    /**\r\n     * Copies a range of elements from an Array starting at the specified source index and pastes\r\n     * them to another Array starting at the specified destination index. The length and the indexes\r\n     * are specified as 64-bit integers.\r\n     * sourceArray:\r\n     *\t\tThe Array that contains the data to copy.\r\n     * sourceIndex:\r\n     *\t\tA 64-bit integer that represents the index in the sourceArray at which copying begins.\r\n     * destinationArray:\r\n     *\t\tThe Array that receives the data.\r\n     * destinationIndex:\r\n     *\t\tA 64-bit integer that represents the index in the destinationArray at which storing begins.\r\n     * length:\r\n     *\t\tA 64-bit integer that represents the number of elements to copy.\r\n     */\r\n    MyArray.Copy = function (sourceArray, sourceIndex, destinationArray, destinationIndex, length) {\r\n        for (var i = 0; i < length; i++) {\r\n            destinationArray[destinationIndex + i] = sourceArray[sourceIndex + i];\r\n        }\r\n    };\r\n    MyArray.Copy2 = function (sourceArray, sourceIndex, destinationArray, destinationIndex, length) {\r\n        for (var i = 0; i < length; i++) {\r\n            destinationArray[destinationIndex + i] = sourceArray[sourceIndex + i];\r\n        }\r\n    };\r\n    return MyArray;\r\n}());\r\n\r\n/**\r\n * A utility class which helps to create the set of DiffChanges from\r\n * a difference operation. This class accepts original DiffElements and\r\n * modified DiffElements that are involved in a particular change. The\r\n * MarktNextChange() method can be called to mark the separation between\r\n * distinct changes. At the end, the Changes property can be called to retrieve\r\n * the constructed changes.\r\n */\r\nvar DiffChangeHelper = /** @class */ (function () {\r\n    /**\r\n     * Constructs a new DiffChangeHelper for the given DiffSequences.\r\n     */\r\n    function DiffChangeHelper() {\r\n        this.m_changes = [];\r\n        this.m_originalStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;\r\n        this.m_modifiedStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;\r\n        this.m_originalCount = 0;\r\n        this.m_modifiedCount = 0;\r\n    }\r\n    /**\r\n     * Marks the beginning of the next change in the set of differences.\r\n     */\r\n    DiffChangeHelper.prototype.MarkNextChange = function () {\r\n        // Only add to the list if there is something to add\r\n        if (this.m_originalCount > 0 || this.m_modifiedCount > 0) {\r\n            // Add the new change to our list\r\n            this.m_changes.push(new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](this.m_originalStart, this.m_originalCount, this.m_modifiedStart, this.m_modifiedCount));\r\n        }\r\n        // Reset for the next change\r\n        this.m_originalCount = 0;\r\n        this.m_modifiedCount = 0;\r\n        this.m_originalStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;\r\n        this.m_modifiedStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;\r\n    };\r\n    /**\r\n     * Adds the original element at the given position to the elements\r\n     * affected by the current change. The modified index gives context\r\n     * to the change position with respect to the original sequence.\r\n     * @param originalIndex The index of the original element to add.\r\n     * @param modifiedIndex The index of the modified element that provides corresponding position in the modified sequence.\r\n     */\r\n    DiffChangeHelper.prototype.AddOriginalElement = function (originalIndex, modifiedIndex) {\r\n        // The 'true' start index is the smallest of the ones we've seen\r\n        this.m_originalStart = Math.min(this.m_originalStart, originalIndex);\r\n        this.m_modifiedStart = Math.min(this.m_modifiedStart, modifiedIndex);\r\n        this.m_originalCount++;\r\n    };\r\n    /**\r\n     * Adds the modified element at the given position to the elements\r\n     * affected by the current change. The original index gives context\r\n     * to the change position with respect to the modified sequence.\r\n     * @param originalIndex The index of the original element that provides corresponding position in the original sequence.\r\n     * @param modifiedIndex The index of the modified element to add.\r\n     */\r\n    DiffChangeHelper.prototype.AddModifiedElement = function (originalIndex, modifiedIndex) {\r\n        // The 'true' start index is the smallest of the ones we've seen\r\n        this.m_originalStart = Math.min(this.m_originalStart, originalIndex);\r\n        this.m_modifiedStart = Math.min(this.m_modifiedStart, modifiedIndex);\r\n        this.m_modifiedCount++;\r\n    };\r\n    /**\r\n     * Retrieves all of the changes marked by the class.\r\n     */\r\n    DiffChangeHelper.prototype.getChanges = function () {\r\n        if (this.m_originalCount > 0 || this.m_modifiedCount > 0) {\r\n            // Finish up on whatever is left\r\n            this.MarkNextChange();\r\n        }\r\n        return this.m_changes;\r\n    };\r\n    /**\r\n     * Retrieves all of the changes marked by the class in the reverse order\r\n     */\r\n    DiffChangeHelper.prototype.getReverseChanges = function () {\r\n        if (this.m_originalCount > 0 || this.m_modifiedCount > 0) {\r\n            // Finish up on whatever is left\r\n            this.MarkNextChange();\r\n        }\r\n        this.m_changes.reverse();\r\n        return this.m_changes;\r\n    };\r\n    return DiffChangeHelper;\r\n}());\r\n/**\r\n * An implementation of the difference algorithm described in\r\n * \"An O(ND) Difference Algorithm and its variations\" by Eugene W. Myers\r\n */\r\nvar LcsDiff = /** @class */ (function () {\r\n    /**\r\n     * Constructs the DiffFinder\r\n     */\r\n    function LcsDiff(originalSequence, modifiedSequence, continueProcessingPredicate) {\r\n        if (continueProcessingPredicate === void 0) { continueProcessingPredicate = null; }\r\n        this.ContinueProcessingPredicate = continueProcessingPredicate;\r\n        var _a = LcsDiff._getElements(originalSequence), originalStringElements = _a[0], originalElementsOrHash = _a[1], originalHasStrings = _a[2];\r\n        var _b = LcsDiff._getElements(modifiedSequence), modifiedStringElements = _b[0], modifiedElementsOrHash = _b[1], modifiedHasStrings = _b[2];\r\n        this._hasStrings = (originalHasStrings && modifiedHasStrings);\r\n        this._originalStringElements = originalStringElements;\r\n        this._originalElementsOrHash = originalElementsOrHash;\r\n        this._modifiedStringElements = modifiedStringElements;\r\n        this._modifiedElementsOrHash = modifiedElementsOrHash;\r\n        this.m_forwardHistory = [];\r\n        this.m_reverseHistory = [];\r\n    }\r\n    LcsDiff._isStringArray = function (arr) {\r\n        return (arr.length > 0 && typeof arr[0] === 'string');\r\n    };\r\n    LcsDiff._getElements = function (sequence) {\r\n        var elements = sequence.getElements();\r\n        if (LcsDiff._isStringArray(elements)) {\r\n            var hashes = new Int32Array(elements.length);\r\n            for (var i = 0, len = elements.length; i < len; i++) {\r\n                hashes[i] = Object(_hash_js__WEBPACK_IMPORTED_MODULE_1__[\"stringHash\"])(elements[i], 0);\r\n            }\r\n            return [elements, hashes, true];\r\n        }\r\n        if (elements instanceof Int32Array) {\r\n            return [[], elements, false];\r\n        }\r\n        return [[], new Int32Array(elements), false];\r\n    };\r\n    LcsDiff.prototype.ElementsAreEqual = function (originalIndex, newIndex) {\r\n        if (this._originalElementsOrHash[originalIndex] !== this._modifiedElementsOrHash[newIndex]) {\r\n            return false;\r\n        }\r\n        return (this._hasStrings ? this._originalStringElements[originalIndex] === this._modifiedStringElements[newIndex] : true);\r\n    };\r\n    LcsDiff.prototype.OriginalElementsAreEqual = function (index1, index2) {\r\n        if (this._originalElementsOrHash[index1] !== this._originalElementsOrHash[index2]) {\r\n            return false;\r\n        }\r\n        return (this._hasStrings ? this._originalStringElements[index1] === this._originalStringElements[index2] : true);\r\n    };\r\n    LcsDiff.prototype.ModifiedElementsAreEqual = function (index1, index2) {\r\n        if (this._modifiedElementsOrHash[index1] !== this._modifiedElementsOrHash[index2]) {\r\n            return false;\r\n        }\r\n        return (this._hasStrings ? this._modifiedStringElements[index1] === this._modifiedStringElements[index2] : true);\r\n    };\r\n    LcsDiff.prototype.ComputeDiff = function (pretty) {\r\n        return this._ComputeDiff(0, this._originalElementsOrHash.length - 1, 0, this._modifiedElementsOrHash.length - 1, pretty);\r\n    };\r\n    /**\r\n     * Computes the differences between the original and modified input\r\n     * sequences on the bounded range.\r\n     * @returns An array of the differences between the two input sequences.\r\n     */\r\n    LcsDiff.prototype._ComputeDiff = function (originalStart, originalEnd, modifiedStart, modifiedEnd, pretty) {\r\n        var quitEarlyArr = [false];\r\n        var changes = this.ComputeDiffRecursive(originalStart, originalEnd, modifiedStart, modifiedEnd, quitEarlyArr);\r\n        if (pretty) {\r\n            // We have to clean up the computed diff to be more intuitive\r\n            // but it turns out this cannot be done correctly until the entire set\r\n            // of diffs have been computed\r\n            changes = this.PrettifyChanges(changes);\r\n        }\r\n        return {\r\n            quitEarly: quitEarlyArr[0],\r\n            changes: changes\r\n        };\r\n    };\r\n    /**\r\n     * Private helper method which computes the differences on the bounded range\r\n     * recursively.\r\n     * @returns An array of the differences between the two input sequences.\r\n     */\r\n    LcsDiff.prototype.ComputeDiffRecursive = function (originalStart, originalEnd, modifiedStart, modifiedEnd, quitEarlyArr) {\r\n        quitEarlyArr[0] = false;\r\n        // Find the start of the differences\r\n        while (originalStart <= originalEnd && modifiedStart <= modifiedEnd && this.ElementsAreEqual(originalStart, modifiedStart)) {\r\n            originalStart++;\r\n            modifiedStart++;\r\n        }\r\n        // Find the end of the differences\r\n        while (originalEnd >= originalStart && modifiedEnd >= modifiedStart && this.ElementsAreEqual(originalEnd, modifiedEnd)) {\r\n            originalEnd--;\r\n            modifiedEnd--;\r\n        }\r\n        // In the special case where we either have all insertions or all deletions or the sequences are identical\r\n        if (originalStart > originalEnd || modifiedStart > modifiedEnd) {\r\n            var changes = void 0;\r\n            if (modifiedStart <= modifiedEnd) {\r\n                Debug.Assert(originalStart === originalEnd + 1, 'originalStart should only be one more than originalEnd');\r\n                // All insertions\r\n                changes = [\r\n                    new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](originalStart, 0, modifiedStart, modifiedEnd - modifiedStart + 1)\r\n                ];\r\n            }\r\n            else if (originalStart <= originalEnd) {\r\n                Debug.Assert(modifiedStart === modifiedEnd + 1, 'modifiedStart should only be one more than modifiedEnd');\r\n                // All deletions\r\n                changes = [\r\n                    new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](originalStart, originalEnd - originalStart + 1, modifiedStart, 0)\r\n                ];\r\n            }\r\n            else {\r\n                Debug.Assert(originalStart === originalEnd + 1, 'originalStart should only be one more than originalEnd');\r\n                Debug.Assert(modifiedStart === modifiedEnd + 1, 'modifiedStart should only be one more than modifiedEnd');\r\n                // Identical sequences - No differences\r\n                changes = [];\r\n            }\r\n            return changes;\r\n        }\r\n        // This problem can be solved using the Divide-And-Conquer technique.\r\n        var midOriginalArr = [0];\r\n        var midModifiedArr = [0];\r\n        var result = this.ComputeRecursionPoint(originalStart, originalEnd, modifiedStart, modifiedEnd, midOriginalArr, midModifiedArr, quitEarlyArr);\r\n        var midOriginal = midOriginalArr[0];\r\n        var midModified = midModifiedArr[0];\r\n        if (result !== null) {\r\n            // Result is not-null when there was enough memory to compute the changes while\r\n            // searching for the recursion point\r\n            return result;\r\n        }\r\n        else if (!quitEarlyArr[0]) {\r\n            // We can break the problem down recursively by finding the changes in the\r\n            // First Half:   (originalStart, modifiedStart) to (midOriginal, midModified)\r\n            // Second Half:  (midOriginal + 1, minModified + 1) to (originalEnd, modifiedEnd)\r\n            // NOTE: ComputeDiff() is inclusive, therefore the second range starts on the next point\r\n            var leftChanges = this.ComputeDiffRecursive(originalStart, midOriginal, modifiedStart, midModified, quitEarlyArr);\r\n            var rightChanges = [];\r\n            if (!quitEarlyArr[0]) {\r\n                rightChanges = this.ComputeDiffRecursive(midOriginal + 1, originalEnd, midModified + 1, modifiedEnd, quitEarlyArr);\r\n            }\r\n            else {\r\n                // We did't have time to finish the first half, so we don't have time to compute this half.\r\n                // Consider the entire rest of the sequence different.\r\n                rightChanges = [\r\n                    new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](midOriginal + 1, originalEnd - (midOriginal + 1) + 1, midModified + 1, modifiedEnd - (midModified + 1) + 1)\r\n                ];\r\n            }\r\n            return this.ConcatenateChanges(leftChanges, rightChanges);\r\n        }\r\n        // If we hit here, we quit early, and so can't return anything meaningful\r\n        return [\r\n            new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](originalStart, originalEnd - originalStart + 1, modifiedStart, modifiedEnd - modifiedStart + 1)\r\n        ];\r\n    };\r\n    LcsDiff.prototype.WALKTRACE = function (diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr) {\r\n        var forwardChanges = null;\r\n        var reverseChanges = null;\r\n        // First, walk backward through the forward diagonals history\r\n        var changeHelper = new DiffChangeHelper();\r\n        var diagonalMin = diagonalForwardStart;\r\n        var diagonalMax = diagonalForwardEnd;\r\n        var diagonalRelative = (midOriginalArr[0] - midModifiedArr[0]) - diagonalForwardOffset;\r\n        var lastOriginalIndex = -1073741824 /* MIN_SAFE_SMALL_INTEGER */;\r\n        var historyIndex = this.m_forwardHistory.length - 1;\r\n        do {\r\n            // Get the diagonal index from the relative diagonal number\r\n            var diagonal = diagonalRelative + diagonalForwardBase;\r\n            // Figure out where we came from\r\n            if (diagonal === diagonalMin || (diagonal < diagonalMax && forwardPoints[diagonal - 1] < forwardPoints[diagonal + 1])) {\r\n                // Vertical line (the element is an insert)\r\n                originalIndex = forwardPoints[diagonal + 1];\r\n                modifiedIndex = originalIndex - diagonalRelative - diagonalForwardOffset;\r\n                if (originalIndex < lastOriginalIndex) {\r\n                    changeHelper.MarkNextChange();\r\n                }\r\n                lastOriginalIndex = originalIndex;\r\n                changeHelper.AddModifiedElement(originalIndex + 1, modifiedIndex);\r\n                diagonalRelative = (diagonal + 1) - diagonalForwardBase; //Setup for the next iteration\r\n            }\r\n            else {\r\n                // Horizontal line (the element is a deletion)\r\n                originalIndex = forwardPoints[diagonal - 1] + 1;\r\n                modifiedIndex = originalIndex - diagonalRelative - diagonalForwardOffset;\r\n                if (originalIndex < lastOriginalIndex) {\r\n                    changeHelper.MarkNextChange();\r\n                }\r\n                lastOriginalIndex = originalIndex - 1;\r\n                changeHelper.AddOriginalElement(originalIndex, modifiedIndex + 1);\r\n                diagonalRelative = (diagonal - 1) - diagonalForwardBase; //Setup for the next iteration\r\n            }\r\n            if (historyIndex >= 0) {\r\n                forwardPoints = this.m_forwardHistory[historyIndex];\r\n                diagonalForwardBase = forwardPoints[0]; //We stored this in the first spot\r\n                diagonalMin = 1;\r\n                diagonalMax = forwardPoints.length - 1;\r\n            }\r\n        } while (--historyIndex >= -1);\r\n        // Ironically, we get the forward changes as the reverse of the\r\n        // order we added them since we technically added them backwards\r\n        forwardChanges = changeHelper.getReverseChanges();\r\n        if (quitEarlyArr[0]) {\r\n            // TODO: Calculate a partial from the reverse diagonals.\r\n            //       For now, just assume everything after the midOriginal/midModified point is a diff\r\n            var originalStartPoint = midOriginalArr[0] + 1;\r\n            var modifiedStartPoint = midModifiedArr[0] + 1;\r\n            if (forwardChanges !== null && forwardChanges.length > 0) {\r\n                var lastForwardChange = forwardChanges[forwardChanges.length - 1];\r\n                originalStartPoint = Math.max(originalStartPoint, lastForwardChange.getOriginalEnd());\r\n                modifiedStartPoint = Math.max(modifiedStartPoint, lastForwardChange.getModifiedEnd());\r\n            }\r\n            reverseChanges = [\r\n                new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](originalStartPoint, originalEnd - originalStartPoint + 1, modifiedStartPoint, modifiedEnd - modifiedStartPoint + 1)\r\n            ];\r\n        }\r\n        else {\r\n            // Now walk backward through the reverse diagonals history\r\n            changeHelper = new DiffChangeHelper();\r\n            diagonalMin = diagonalReverseStart;\r\n            diagonalMax = diagonalReverseEnd;\r\n            diagonalRelative = (midOriginalArr[0] - midModifiedArr[0]) - diagonalReverseOffset;\r\n            lastOriginalIndex = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;\r\n            historyIndex = (deltaIsEven) ? this.m_reverseHistory.length - 1 : this.m_reverseHistory.length - 2;\r\n            do {\r\n                // Get the diagonal index from the relative diagonal number\r\n                var diagonal = diagonalRelative + diagonalReverseBase;\r\n                // Figure out where we came from\r\n                if (diagonal === diagonalMin || (diagonal < diagonalMax && reversePoints[diagonal - 1] >= reversePoints[diagonal + 1])) {\r\n                    // Horizontal line (the element is a deletion))\r\n                    originalIndex = reversePoints[diagonal + 1] - 1;\r\n                    modifiedIndex = originalIndex - diagonalRelative - diagonalReverseOffset;\r\n                    if (originalIndex > lastOriginalIndex) {\r\n                        changeHelper.MarkNextChange();\r\n                    }\r\n                    lastOriginalIndex = originalIndex + 1;\r\n                    changeHelper.AddOriginalElement(originalIndex + 1, modifiedIndex + 1);\r\n                    diagonalRelative = (diagonal + 1) - diagonalReverseBase; //Setup for the next iteration\r\n                }\r\n                else {\r\n                    // Vertical line (the element is an insertion)\r\n                    originalIndex = reversePoints[diagonal - 1];\r\n                    modifiedIndex = originalIndex - diagonalRelative - diagonalReverseOffset;\r\n                    if (originalIndex > lastOriginalIndex) {\r\n                        changeHelper.MarkNextChange();\r\n                    }\r\n                    lastOriginalIndex = originalIndex;\r\n                    changeHelper.AddModifiedElement(originalIndex + 1, modifiedIndex + 1);\r\n                    diagonalRelative = (diagonal - 1) - diagonalReverseBase; //Setup for the next iteration\r\n                }\r\n                if (historyIndex >= 0) {\r\n                    reversePoints = this.m_reverseHistory[historyIndex];\r\n                    diagonalReverseBase = reversePoints[0]; //We stored this in the first spot\r\n                    diagonalMin = 1;\r\n                    diagonalMax = reversePoints.length - 1;\r\n                }\r\n            } while (--historyIndex >= -1);\r\n            // There are cases where the reverse history will find diffs that\r\n            // are correct, but not intuitive, so we need shift them.\r\n            reverseChanges = changeHelper.getChanges();\r\n        }\r\n        return this.ConcatenateChanges(forwardChanges, reverseChanges);\r\n    };\r\n    /**\r\n     * Given the range to compute the diff on, this method finds the point:\r\n     * (midOriginal, midModified)\r\n     * that exists in the middle of the LCS of the two sequences and\r\n     * is the point at which the LCS problem may be broken down recursively.\r\n     * This method will try to keep the LCS trace in memory. If the LCS recursion\r\n     * point is calculated and the full trace is available in memory, then this method\r\n     * will return the change list.\r\n     * @param originalStart The start bound of the original sequence range\r\n     * @param originalEnd The end bound of the original sequence range\r\n     * @param modifiedStart The start bound of the modified sequence range\r\n     * @param modifiedEnd The end bound of the modified sequence range\r\n     * @param midOriginal The middle point of the original sequence range\r\n     * @param midModified The middle point of the modified sequence range\r\n     * @returns The diff changes, if available, otherwise null\r\n     */\r\n    LcsDiff.prototype.ComputeRecursionPoint = function (originalStart, originalEnd, modifiedStart, modifiedEnd, midOriginalArr, midModifiedArr, quitEarlyArr) {\r\n        var originalIndex = 0, modifiedIndex = 0;\r\n        var diagonalForwardStart = 0, diagonalForwardEnd = 0;\r\n        var diagonalReverseStart = 0, diagonalReverseEnd = 0;\r\n        // To traverse the edit graph and produce the proper LCS, our actual\r\n        // start position is just outside the given boundary\r\n        originalStart--;\r\n        modifiedStart--;\r\n        // We set these up to make the compiler happy, but they will\r\n        // be replaced before we return with the actual recursion point\r\n        midOriginalArr[0] = 0;\r\n        midModifiedArr[0] = 0;\r\n        // Clear out the history\r\n        this.m_forwardHistory = [];\r\n        this.m_reverseHistory = [];\r\n        // Each cell in the two arrays corresponds to a diagonal in the edit graph.\r\n        // The integer value in the cell represents the originalIndex of the furthest\r\n        // reaching point found so far that ends in that diagonal.\r\n        // The modifiedIndex can be computed mathematically from the originalIndex and the diagonal number.\r\n        var maxDifferences = (originalEnd - originalStart) + (modifiedEnd - modifiedStart);\r\n        var numDiagonals = maxDifferences + 1;\r\n        var forwardPoints = new Int32Array(numDiagonals);\r\n        var reversePoints = new Int32Array(numDiagonals);\r\n        // diagonalForwardBase: Index into forwardPoints of the diagonal which passes through (originalStart, modifiedStart)\r\n        // diagonalReverseBase: Index into reversePoints of the diagonal which passes through (originalEnd, modifiedEnd)\r\n        var diagonalForwardBase = (modifiedEnd - modifiedStart);\r\n        var diagonalReverseBase = (originalEnd - originalStart);\r\n        // diagonalForwardOffset: Geometric offset which allows modifiedIndex to be computed from originalIndex and the\r\n        //    diagonal number (relative to diagonalForwardBase)\r\n        // diagonalReverseOffset: Geometric offset which allows modifiedIndex to be computed from originalIndex and the\r\n        //    diagonal number (relative to diagonalReverseBase)\r\n        var diagonalForwardOffset = (originalStart - modifiedStart);\r\n        var diagonalReverseOffset = (originalEnd - modifiedEnd);\r\n        // delta: The difference between the end diagonal and the start diagonal. This is used to relate diagonal numbers\r\n        //   relative to the start diagonal with diagonal numbers relative to the end diagonal.\r\n        // The Even/Oddn-ness of this delta is important for determining when we should check for overlap\r\n        var delta = diagonalReverseBase - diagonalForwardBase;\r\n        var deltaIsEven = (delta % 2 === 0);\r\n        // Here we set up the start and end points as the furthest points found so far\r\n        // in both the forward and reverse directions, respectively\r\n        forwardPoints[diagonalForwardBase] = originalStart;\r\n        reversePoints[diagonalReverseBase] = originalEnd;\r\n        // Remember if we quit early, and thus need to do a best-effort result instead of a real result.\r\n        quitEarlyArr[0] = false;\r\n        // A couple of points:\r\n        // --With this method, we iterate on the number of differences between the two sequences.\r\n        //   The more differences there actually are, the longer this will take.\r\n        // --Also, as the number of differences increases, we have to search on diagonals further\r\n        //   away from the reference diagonal (which is diagonalForwardBase for forward, diagonalReverseBase for reverse).\r\n        // --We extend on even diagonals (relative to the reference diagonal) only when numDifferences\r\n        //   is even and odd diagonals only when numDifferences is odd.\r\n        for (var numDifferences = 1; numDifferences <= (maxDifferences / 2) + 1; numDifferences++) {\r\n            var furthestOriginalIndex = 0;\r\n            var furthestModifiedIndex = 0;\r\n            // Run the algorithm in the forward direction\r\n            diagonalForwardStart = this.ClipDiagonalBound(diagonalForwardBase - numDifferences, numDifferences, diagonalForwardBase, numDiagonals);\r\n            diagonalForwardEnd = this.ClipDiagonalBound(diagonalForwardBase + numDifferences, numDifferences, diagonalForwardBase, numDiagonals);\r\n            for (var diagonal = diagonalForwardStart; diagonal <= diagonalForwardEnd; diagonal += 2) {\r\n                // STEP 1: We extend the furthest reaching point in the present diagonal\r\n                // by looking at the diagonals above and below and picking the one whose point\r\n                // is further away from the start point (originalStart, modifiedStart)\r\n                if (diagonal === diagonalForwardStart || (diagonal < diagonalForwardEnd && forwardPoints[diagonal - 1] < forwardPoints[diagonal + 1])) {\r\n                    originalIndex = forwardPoints[diagonal + 1];\r\n                }\r\n                else {\r\n                    originalIndex = forwardPoints[diagonal - 1] + 1;\r\n                }\r\n                modifiedIndex = originalIndex - (diagonal - diagonalForwardBase) - diagonalForwardOffset;\r\n                // Save the current originalIndex so we can test for false overlap in step 3\r\n                var tempOriginalIndex = originalIndex;\r\n                // STEP 2: We can continue to extend the furthest reaching point in the present diagonal\r\n                // so long as the elements are equal.\r\n                while (originalIndex < originalEnd && modifiedIndex < modifiedEnd && this.ElementsAreEqual(originalIndex + 1, modifiedIndex + 1)) {\r\n                    originalIndex++;\r\n                    modifiedIndex++;\r\n                }\r\n                forwardPoints[diagonal] = originalIndex;\r\n                if (originalIndex + modifiedIndex > furthestOriginalIndex + furthestModifiedIndex) {\r\n                    furthestOriginalIndex = originalIndex;\r\n                    furthestModifiedIndex = modifiedIndex;\r\n                }\r\n                // STEP 3: If delta is odd (overlap first happens on forward when delta is odd)\r\n                // and diagonal is in the range of reverse diagonals computed for numDifferences-1\r\n                // (the previous iteration; we haven't computed reverse diagonals for numDifferences yet)\r\n                // then check for overlap.\r\n                if (!deltaIsEven && Math.abs(diagonal - diagonalReverseBase) <= (numDifferences - 1)) {\r\n                    if (originalIndex >= reversePoints[diagonal]) {\r\n                        midOriginalArr[0] = originalIndex;\r\n                        midModifiedArr[0] = modifiedIndex;\r\n                        if (tempOriginalIndex <= reversePoints[diagonal] && 1447 /* MaxDifferencesHistory */ > 0 && numDifferences <= (1447 /* MaxDifferencesHistory */ + 1)) {\r\n                            // BINGO! We overlapped, and we have the full trace in memory!\r\n                            return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);\r\n                        }\r\n                        else {\r\n                            // Either false overlap, or we didn't have enough memory for the full trace\r\n                            // Just return the recursion point\r\n                            return null;\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            // Check to see if we should be quitting early, before moving on to the next iteration.\r\n            var matchLengthOfLongest = ((furthestOriginalIndex - originalStart) + (furthestModifiedIndex - modifiedStart) - numDifferences) / 2;\r\n            if (this.ContinueProcessingPredicate !== null && !this.ContinueProcessingPredicate(furthestOriginalIndex, matchLengthOfLongest)) {\r\n                // We can't finish, so skip ahead to generating a result from what we have.\r\n                quitEarlyArr[0] = true;\r\n                // Use the furthest distance we got in the forward direction.\r\n                midOriginalArr[0] = furthestOriginalIndex;\r\n                midModifiedArr[0] = furthestModifiedIndex;\r\n                if (matchLengthOfLongest > 0 && 1447 /* MaxDifferencesHistory */ > 0 && numDifferences <= (1447 /* MaxDifferencesHistory */ + 1)) {\r\n                    // Enough of the history is in memory to walk it backwards\r\n                    return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);\r\n                }\r\n                else {\r\n                    // We didn't actually remember enough of the history.\r\n                    //Since we are quiting the diff early, we need to shift back the originalStart and modified start\r\n                    //back into the boundary limits since we decremented their value above beyond the boundary limit.\r\n                    originalStart++;\r\n                    modifiedStart++;\r\n                    return [\r\n                        new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](originalStart, originalEnd - originalStart + 1, modifiedStart, modifiedEnd - modifiedStart + 1)\r\n                    ];\r\n                }\r\n            }\r\n            // Run the algorithm in the reverse direction\r\n            diagonalReverseStart = this.ClipDiagonalBound(diagonalReverseBase - numDifferences, numDifferences, diagonalReverseBase, numDiagonals);\r\n            diagonalReverseEnd = this.ClipDiagonalBound(diagonalReverseBase + numDifferences, numDifferences, diagonalReverseBase, numDiagonals);\r\n            for (var diagonal = diagonalReverseStart; diagonal <= diagonalReverseEnd; diagonal += 2) {\r\n                // STEP 1: We extend the furthest reaching point in the present diagonal\r\n                // by looking at the diagonals above and below and picking the one whose point\r\n                // is further away from the start point (originalEnd, modifiedEnd)\r\n                if (diagonal === diagonalReverseStart || (diagonal < diagonalReverseEnd && reversePoints[diagonal - 1] >= reversePoints[diagonal + 1])) {\r\n                    originalIndex = reversePoints[diagonal + 1] - 1;\r\n                }\r\n                else {\r\n                    originalIndex = reversePoints[diagonal - 1];\r\n                }\r\n                modifiedIndex = originalIndex - (diagonal - diagonalReverseBase) - diagonalReverseOffset;\r\n                // Save the current originalIndex so we can test for false overlap\r\n                var tempOriginalIndex = originalIndex;\r\n                // STEP 2: We can continue to extend the furthest reaching point in the present diagonal\r\n                // as long as the elements are equal.\r\n                while (originalIndex > originalStart && modifiedIndex > modifiedStart && this.ElementsAreEqual(originalIndex, modifiedIndex)) {\r\n                    originalIndex--;\r\n                    modifiedIndex--;\r\n                }\r\n                reversePoints[diagonal] = originalIndex;\r\n                // STEP 4: If delta is even (overlap first happens on reverse when delta is even)\r\n                // and diagonal is in the range of forward diagonals computed for numDifferences\r\n                // then check for overlap.\r\n                if (deltaIsEven && Math.abs(diagonal - diagonalForwardBase) <= numDifferences) {\r\n                    if (originalIndex <= forwardPoints[diagonal]) {\r\n                        midOriginalArr[0] = originalIndex;\r\n                        midModifiedArr[0] = modifiedIndex;\r\n                        if (tempOriginalIndex >= forwardPoints[diagonal] && 1447 /* MaxDifferencesHistory */ > 0 && numDifferences <= (1447 /* MaxDifferencesHistory */ + 1)) {\r\n                            // BINGO! We overlapped, and we have the full trace in memory!\r\n                            return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);\r\n                        }\r\n                        else {\r\n                            // Either false overlap, or we didn't have enough memory for the full trace\r\n                            // Just return the recursion point\r\n                            return null;\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            // Save current vectors to history before the next iteration\r\n            if (numDifferences <= 1447 /* MaxDifferencesHistory */) {\r\n                // We are allocating space for one extra int, which we fill with\r\n                // the index of the diagonal base index\r\n                var temp = new Int32Array(diagonalForwardEnd - diagonalForwardStart + 2);\r\n                temp[0] = diagonalForwardBase - diagonalForwardStart + 1;\r\n                MyArray.Copy2(forwardPoints, diagonalForwardStart, temp, 1, diagonalForwardEnd - diagonalForwardStart + 1);\r\n                this.m_forwardHistory.push(temp);\r\n                temp = new Int32Array(diagonalReverseEnd - diagonalReverseStart + 2);\r\n                temp[0] = diagonalReverseBase - diagonalReverseStart + 1;\r\n                MyArray.Copy2(reversePoints, diagonalReverseStart, temp, 1, diagonalReverseEnd - diagonalReverseStart + 1);\r\n                this.m_reverseHistory.push(temp);\r\n            }\r\n        }\r\n        // If we got here, then we have the full trace in history. We just have to convert it to a change list\r\n        // NOTE: This part is a bit messy\r\n        return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);\r\n    };\r\n    /**\r\n     * Shifts the given changes to provide a more intuitive diff.\r\n     * While the first element in a diff matches the first element after the diff,\r\n     * we shift the diff down.\r\n     *\r\n     * @param changes The list of changes to shift\r\n     * @returns The shifted changes\r\n     */\r\n    LcsDiff.prototype.PrettifyChanges = function (changes) {\r\n        // Shift all the changes down first\r\n        for (var i = 0; i < changes.length; i++) {\r\n            var change = changes[i];\r\n            var originalStop = (i < changes.length - 1) ? changes[i + 1].originalStart : this._originalElementsOrHash.length;\r\n            var modifiedStop = (i < changes.length - 1) ? changes[i + 1].modifiedStart : this._modifiedElementsOrHash.length;\r\n            var checkOriginal = change.originalLength > 0;\r\n            var checkModified = change.modifiedLength > 0;\r\n            while (change.originalStart + change.originalLength < originalStop &&\r\n                change.modifiedStart + change.modifiedLength < modifiedStop &&\r\n                (!checkOriginal || this.OriginalElementsAreEqual(change.originalStart, change.originalStart + change.originalLength)) &&\r\n                (!checkModified || this.ModifiedElementsAreEqual(change.modifiedStart, change.modifiedStart + change.modifiedLength))) {\r\n                change.originalStart++;\r\n                change.modifiedStart++;\r\n            }\r\n            var mergedChangeArr = [null];\r\n            if (i < changes.length - 1 && this.ChangesOverlap(changes[i], changes[i + 1], mergedChangeArr)) {\r\n                changes[i] = mergedChangeArr[0];\r\n                changes.splice(i + 1, 1);\r\n                i--;\r\n                continue;\r\n            }\r\n        }\r\n        // Shift changes back up until we hit empty or whitespace-only lines\r\n        for (var i = changes.length - 1; i >= 0; i--) {\r\n            var change = changes[i];\r\n            var originalStop = 0;\r\n            var modifiedStop = 0;\r\n            if (i > 0) {\r\n                var prevChange = changes[i - 1];\r\n                if (prevChange.originalLength > 0) {\r\n                    originalStop = prevChange.originalStart + prevChange.originalLength;\r\n                }\r\n                if (prevChange.modifiedLength > 0) {\r\n                    modifiedStop = prevChange.modifiedStart + prevChange.modifiedLength;\r\n                }\r\n            }\r\n            var checkOriginal = change.originalLength > 0;\r\n            var checkModified = change.modifiedLength > 0;\r\n            var bestDelta = 0;\r\n            var bestScore = this._boundaryScore(change.originalStart, change.originalLength, change.modifiedStart, change.modifiedLength);\r\n            for (var delta = 1;; delta++) {\r\n                var originalStart = change.originalStart - delta;\r\n                var modifiedStart = change.modifiedStart - delta;\r\n                if (originalStart < originalStop || modifiedStart < modifiedStop) {\r\n                    break;\r\n                }\r\n                if (checkOriginal && !this.OriginalElementsAreEqual(originalStart, originalStart + change.originalLength)) {\r\n                    break;\r\n                }\r\n                if (checkModified && !this.ModifiedElementsAreEqual(modifiedStart, modifiedStart + change.modifiedLength)) {\r\n                    break;\r\n                }\r\n                var score = this._boundaryScore(originalStart, change.originalLength, modifiedStart, change.modifiedLength);\r\n                if (score > bestScore) {\r\n                    bestScore = score;\r\n                    bestDelta = delta;\r\n                }\r\n            }\r\n            change.originalStart -= bestDelta;\r\n            change.modifiedStart -= bestDelta;\r\n        }\r\n        return changes;\r\n    };\r\n    LcsDiff.prototype._OriginalIsBoundary = function (index) {\r\n        if (index <= 0 || index >= this._originalElementsOrHash.length - 1) {\r\n            return true;\r\n        }\r\n        return (this._hasStrings && /^\\s*$/.test(this._originalStringElements[index]));\r\n    };\r\n    LcsDiff.prototype._OriginalRegionIsBoundary = function (originalStart, originalLength) {\r\n        if (this._OriginalIsBoundary(originalStart) || this._OriginalIsBoundary(originalStart - 1)) {\r\n            return true;\r\n        }\r\n        if (originalLength > 0) {\r\n            var originalEnd = originalStart + originalLength;\r\n            if (this._OriginalIsBoundary(originalEnd - 1) || this._OriginalIsBoundary(originalEnd)) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    };\r\n    LcsDiff.prototype._ModifiedIsBoundary = function (index) {\r\n        if (index <= 0 || index >= this._modifiedElementsOrHash.length - 1) {\r\n            return true;\r\n        }\r\n        return (this._hasStrings && /^\\s*$/.test(this._modifiedStringElements[index]));\r\n    };\r\n    LcsDiff.prototype._ModifiedRegionIsBoundary = function (modifiedStart, modifiedLength) {\r\n        if (this._ModifiedIsBoundary(modifiedStart) || this._ModifiedIsBoundary(modifiedStart - 1)) {\r\n            return true;\r\n        }\r\n        if (modifiedLength > 0) {\r\n            var modifiedEnd = modifiedStart + modifiedLength;\r\n            if (this._ModifiedIsBoundary(modifiedEnd - 1) || this._ModifiedIsBoundary(modifiedEnd)) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    };\r\n    LcsDiff.prototype._boundaryScore = function (originalStart, originalLength, modifiedStart, modifiedLength) {\r\n        var originalScore = (this._OriginalRegionIsBoundary(originalStart, originalLength) ? 1 : 0);\r\n        var modifiedScore = (this._ModifiedRegionIsBoundary(modifiedStart, modifiedLength) ? 1 : 0);\r\n        return (originalScore + modifiedScore);\r\n    };\r\n    /**\r\n     * Concatenates the two input DiffChange lists and returns the resulting\r\n     * list.\r\n     * @param The left changes\r\n     * @param The right changes\r\n     * @returns The concatenated list\r\n     */\r\n    LcsDiff.prototype.ConcatenateChanges = function (left, right) {\r\n        var mergedChangeArr = [];\r\n        if (left.length === 0 || right.length === 0) {\r\n            return (right.length > 0) ? right : left;\r\n        }\r\n        else if (this.ChangesOverlap(left[left.length - 1], right[0], mergedChangeArr)) {\r\n            // Since we break the problem down recursively, it is possible that we\r\n            // might recurse in the middle of a change thereby splitting it into\r\n            // two changes. Here in the combining stage, we detect and fuse those\r\n            // changes back together\r\n            var result = new Array(left.length + right.length - 1);\r\n            MyArray.Copy(left, 0, result, 0, left.length - 1);\r\n            result[left.length - 1] = mergedChangeArr[0];\r\n            MyArray.Copy(right, 1, result, left.length, right.length - 1);\r\n            return result;\r\n        }\r\n        else {\r\n            var result = new Array(left.length + right.length);\r\n            MyArray.Copy(left, 0, result, 0, left.length);\r\n            MyArray.Copy(right, 0, result, left.length, right.length);\r\n            return result;\r\n        }\r\n    };\r\n    /**\r\n     * Returns true if the two changes overlap and can be merged into a single\r\n     * change\r\n     * @param left The left change\r\n     * @param right The right change\r\n     * @param mergedChange The merged change if the two overlap, null otherwise\r\n     * @returns True if the two changes overlap\r\n     */\r\n    LcsDiff.prototype.ChangesOverlap = function (left, right, mergedChangeArr) {\r\n        Debug.Assert(left.originalStart <= right.originalStart, 'Left change is not less than or equal to right change');\r\n        Debug.Assert(left.modifiedStart <= right.modifiedStart, 'Left change is not less than or equal to right change');\r\n        if (left.originalStart + left.originalLength >= right.originalStart || left.modifiedStart + left.modifiedLength >= right.modifiedStart) {\r\n            var originalStart = left.originalStart;\r\n            var originalLength = left.originalLength;\r\n            var modifiedStart = left.modifiedStart;\r\n            var modifiedLength = left.modifiedLength;\r\n            if (left.originalStart + left.originalLength >= right.originalStart) {\r\n                originalLength = right.originalStart + right.originalLength - left.originalStart;\r\n            }\r\n            if (left.modifiedStart + left.modifiedLength >= right.modifiedStart) {\r\n                modifiedLength = right.modifiedStart + right.modifiedLength - left.modifiedStart;\r\n            }\r\n            mergedChangeArr[0] = new _diffChange_js__WEBPACK_IMPORTED_MODULE_0__[\"DiffChange\"](originalStart, originalLength, modifiedStart, modifiedLength);\r\n            return true;\r\n        }\r\n        else {\r\n            mergedChangeArr[0] = null;\r\n            return false;\r\n        }\r\n    };\r\n    /**\r\n     * Helper method used to clip a diagonal index to the range of valid\r\n     * diagonals. This also decides whether or not the diagonal index,\r\n     * if it exceeds the boundary, should be clipped to the boundary or clipped\r\n     * one inside the boundary depending on the Even/Odd status of the boundary\r\n     * and numDifferences.\r\n     * @param diagonal The index of the diagonal to clip.\r\n     * @param numDifferences The current number of differences being iterated upon.\r\n     * @param diagonalBaseIndex The base reference diagonal.\r\n     * @param numDiagonals The total number of diagonals.\r\n     * @returns The clipped diagonal index.\r\n     */\r\n    LcsDiff.prototype.ClipDiagonalBound = function (diagonal, numDifferences, diagonalBaseIndex, numDiagonals) {\r\n        if (diagonal >= 0 && diagonal < numDiagonals) {\r\n            // Nothing to clip, its in range\r\n            return diagonal;\r\n        }\r\n        // diagonalsBelow: The number of diagonals below the reference diagonal\r\n        // diagonalsAbove: The number of diagonals above the reference diagonal\r\n        var diagonalsBelow = diagonalBaseIndex;\r\n        var diagonalsAbove = numDiagonals - diagonalBaseIndex - 1;\r\n        var diffEven = (numDifferences % 2 === 0);\r\n        if (diagonal < 0) {\r\n            var lowerBoundEven = (diagonalsBelow % 2 === 0);\r\n            return (diffEven === lowerBoundEven) ? 0 : 1;\r\n        }\r\n        else {\r\n            var upperBoundEven = (diagonalsAbove % 2 === 0);\r\n            return (diffEven === upperBoundEven) ? numDiagonals - 1 : numDiagonals - 2;\r\n        }\r\n    };\r\n    return LcsDiff;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/diff/diff.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/diff/diffChange.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/diff/diffChange.js ***!
-  \**************************************************************************/
-/*! exports provided: DiffChange */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DiffChange\", function() { return DiffChange; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n/**\r\n * Represents information about a specific difference between two sequences.\r\n */\r\nvar DiffChange = /** @class */ (function () {\r\n    /**\r\n     * Constructs a new DiffChange with the given sequence information\r\n     * and content.\r\n     */\r\n    function DiffChange(originalStart, originalLength, modifiedStart, modifiedLength) {\r\n        //Debug.Assert(originalLength > 0 || modifiedLength > 0, \"originalLength and modifiedLength cannot both be <= 0\");\r\n        this.originalStart = originalStart;\r\n        this.originalLength = originalLength;\r\n        this.modifiedStart = modifiedStart;\r\n        this.modifiedLength = modifiedLength;\r\n    }\r\n    /**\r\n     * The end point (exclusive) of the change in the original sequence.\r\n     */\r\n    DiffChange.prototype.getOriginalEnd = function () {\r\n        return this.originalStart + this.originalLength;\r\n    };\r\n    /**\r\n     * The end point (exclusive) of the change in the modified sequence.\r\n     */\r\n    DiffChange.prototype.getModifiedEnd = function () {\r\n        return this.modifiedStart + this.modifiedLength;\r\n    };\r\n    return DiffChange;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/diff/diffChange.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/errors.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/errors.js ***!
-  \*****************************************************************/
-/*! exports provided: ErrorHandler, errorHandler, onUnexpectedError, onUnexpectedExternalError, transformErrorForSerialization, isPromiseCanceledError, canceled, illegalArgument, illegalState */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ErrorHandler\", function() { return ErrorHandler; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"errorHandler\", function() { return errorHandler; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onUnexpectedError\", function() { return onUnexpectedError; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"onUnexpectedExternalError\", function() { return onUnexpectedExternalError; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"transformErrorForSerialization\", function() { return transformErrorForSerialization; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isPromiseCanceledError\", function() { return isPromiseCanceledError; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"canceled\", function() { return canceled; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"illegalArgument\", function() { return illegalArgument; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"illegalState\", function() { return illegalState; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n// Avoid circular dependency on EventEmitter by implementing a subset of the interface.\r\nvar ErrorHandler = /** @class */ (function () {\r\n    function ErrorHandler() {\r\n        this.listeners = [];\r\n        this.unexpectedErrorHandler = function (e) {\r\n            setTimeout(function () {\r\n                if (e.stack) {\r\n                    throw new Error(e.message + '\\n\\n' + e.stack);\r\n                }\r\n                throw e;\r\n            }, 0);\r\n        };\r\n    }\r\n    ErrorHandler.prototype.emit = function (e) {\r\n        this.listeners.forEach(function (listener) {\r\n            listener(e);\r\n        });\r\n    };\r\n    ErrorHandler.prototype.onUnexpectedError = function (e) {\r\n        this.unexpectedErrorHandler(e);\r\n        this.emit(e);\r\n    };\r\n    // For external errors, we don't want the listeners to be called\r\n    ErrorHandler.prototype.onUnexpectedExternalError = function (e) {\r\n        this.unexpectedErrorHandler(e);\r\n    };\r\n    return ErrorHandler;\r\n}());\r\n\r\nvar errorHandler = new ErrorHandler();\r\nfunction onUnexpectedError(e) {\r\n    // ignore errors from cancelled promises\r\n    if (!isPromiseCanceledError(e)) {\r\n        errorHandler.onUnexpectedError(e);\r\n    }\r\n    return undefined;\r\n}\r\nfunction onUnexpectedExternalError(e) {\r\n    // ignore errors from cancelled promises\r\n    if (!isPromiseCanceledError(e)) {\r\n        errorHandler.onUnexpectedExternalError(e);\r\n    }\r\n    return undefined;\r\n}\r\nfunction transformErrorForSerialization(error) {\r\n    if (error instanceof Error) {\r\n        var name_1 = error.name, message = error.message;\r\n        var stack = error.stacktrace || error.stack;\r\n        return {\r\n            $isError: true,\r\n            name: name_1,\r\n            message: message,\r\n            stack: stack\r\n        };\r\n    }\r\n    // return as is\r\n    return error;\r\n}\r\nvar canceledName = 'Canceled';\r\n/**\r\n * Checks if the given error is a promise in canceled state\r\n */\r\nfunction isPromiseCanceledError(error) {\r\n    return error instanceof Error && error.name === canceledName && error.message === canceledName;\r\n}\r\n/**\r\n * Returns an error that signals cancellation.\r\n */\r\nfunction canceled() {\r\n    var error = new Error(canceledName);\r\n    error.name = error.message;\r\n    return error;\r\n}\r\nfunction illegalArgument(name) {\r\n    if (name) {\r\n        return new Error(\"Illegal argument: \" + name);\r\n    }\r\n    else {\r\n        return new Error('Illegal argument');\r\n    }\r\n}\r\nfunction illegalState(name) {\r\n    if (name) {\r\n        return new Error(\"Illegal state: \" + name);\r\n    }\r\n    else {\r\n        return new Error('Illegal state');\r\n    }\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/errors.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/event.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/event.js ***!
-  \****************************************************************/
-/*! exports provided: Event, Emitter, PauseableEmitter, EventMultiplexer, EventBufferer, Relay */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Event\", function() { return Event; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Emitter\", function() { return Emitter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"PauseableEmitter\", function() { return PauseableEmitter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EventMultiplexer\", function() { return EventMultiplexer; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EventBufferer\", function() { return EventBufferer; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Relay\", function() { return Relay; });\n/* harmony import */ var _errors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./errors.js */ \"./node_modules/monaco-editor/esm/vs/base/common/errors.js\");\n/* harmony import */ var _functional_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./functional.js */ \"./node_modules/monaco-editor/esm/vs/base/common/functional.js\");\n/* harmony import */ var _lifecycle_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./lifecycle.js */ \"./node_modules/monaco-editor/esm/vs/base/common/lifecycle.js\");\n/* harmony import */ var _linkedList_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./linkedList.js */ \"./node_modules/monaco-editor/esm/vs/base/common/linkedList.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\n\r\n\r\n\r\nvar Event;\r\n(function (Event) {\r\n    Event.None = function () { return _lifecycle_js__WEBPACK_IMPORTED_MODULE_2__[\"Disposable\"].None; };\r\n    /**\r\n     * Given an event, returns another event which only fires once.\r\n     */\r\n    function once(event) {\r\n        return function (listener, thisArgs, disposables) {\r\n            if (thisArgs === void 0) { thisArgs = null; }\r\n            // we need this, in case the event fires during the listener call\r\n            var didFire = false;\r\n            var result;\r\n            result = event(function (e) {\r\n                if (didFire) {\r\n                    return;\r\n                }\r\n                else if (result) {\r\n                    result.dispose();\r\n                }\r\n                else {\r\n                    didFire = true;\r\n                }\r\n                return listener.call(thisArgs, e);\r\n            }, null, disposables);\r\n            if (didFire) {\r\n                result.dispose();\r\n            }\r\n            return result;\r\n        };\r\n    }\r\n    Event.once = once;\r\n    /**\r\n     * Given an event and a `map` function, returns another event which maps each element\r\n     * through the mapping function.\r\n     */\r\n    function map(event, map) {\r\n        return snapshot(function (listener, thisArgs, disposables) {\r\n            if (thisArgs === void 0) { thisArgs = null; }\r\n            return event(function (i) { return listener.call(thisArgs, map(i)); }, null, disposables);\r\n        });\r\n    }\r\n    Event.map = map;\r\n    /**\r\n     * Given an event and an `each` function, returns another identical event and calls\r\n     * the `each` function per each element.\r\n     */\r\n    function forEach(event, each) {\r\n        return snapshot(function (listener, thisArgs, disposables) {\r\n            if (thisArgs === void 0) { thisArgs = null; }\r\n            return event(function (i) { each(i); listener.call(thisArgs, i); }, null, disposables);\r\n        });\r\n    }\r\n    Event.forEach = forEach;\r\n    function filter(event, filter) {\r\n        return snapshot(function (listener, thisArgs, disposables) {\r\n            if (thisArgs === void 0) { thisArgs = null; }\r\n            return event(function (e) { return filter(e) && listener.call(thisArgs, e); }, null, disposables);\r\n        });\r\n    }\r\n    Event.filter = filter;\r\n    /**\r\n     * Given an event, returns the same event but typed as `Event<void>`.\r\n     */\r\n    function signal(event) {\r\n        return event;\r\n    }\r\n    Event.signal = signal;\r\n    /**\r\n     * Given a collection of events, returns a single event which emits\r\n     * whenever any of the provided events emit.\r\n     */\r\n    function any() {\r\n        var events = [];\r\n        for (var _i = 0; _i < arguments.length; _i++) {\r\n            events[_i] = arguments[_i];\r\n        }\r\n        return function (listener, thisArgs, disposables) {\r\n            if (thisArgs === void 0) { thisArgs = null; }\r\n            return _lifecycle_js__WEBPACK_IMPORTED_MODULE_2__[\"combinedDisposable\"].apply(void 0, events.map(function (event) { return event(function (e) { return listener.call(thisArgs, e); }, null, disposables); }));\r\n        };\r\n    }\r\n    Event.any = any;\r\n    /**\r\n     * Given an event and a `merge` function, returns another event which maps each element\r\n     * and the cumulative result through the `merge` function. Similar to `map`, but with memory.\r\n     */\r\n    function reduce(event, merge, initial) {\r\n        var output = initial;\r\n        return map(event, function (e) {\r\n            output = merge(output, e);\r\n            return output;\r\n        });\r\n    }\r\n    Event.reduce = reduce;\r\n    /**\r\n     * Given a chain of event processing functions (filter, map, etc), each\r\n     * function will be invoked per event & per listener. Snapshotting an event\r\n     * chain allows each function to be invoked just once per event.\r\n     */\r\n    function snapshot(event) {\r\n        var listener;\r\n        var emitter = new Emitter({\r\n            onFirstListenerAdd: function () {\r\n                listener = event(emitter.fire, emitter);\r\n            },\r\n            onLastListenerRemove: function () {\r\n                listener.dispose();\r\n            }\r\n        });\r\n        return emitter.event;\r\n    }\r\n    Event.snapshot = snapshot;\r\n    function debounce(event, merge, delay, leading, leakWarningThreshold) {\r\n        if (delay === void 0) { delay = 100; }\r\n        if (leading === void 0) { leading = false; }\r\n        var subscription;\r\n        var output = undefined;\r\n        var handle = undefined;\r\n        var numDebouncedCalls = 0;\r\n        var emitter = new Emitter({\r\n            leakWarningThreshold: leakWarningThreshold,\r\n            onFirstListenerAdd: function () {\r\n                subscription = event(function (cur) {\r\n                    numDebouncedCalls++;\r\n                    output = merge(output, cur);\r\n                    if (leading && !handle) {\r\n                        emitter.fire(output);\r\n                        output = undefined;\r\n                    }\r\n                    clearTimeout(handle);\r\n                    handle = setTimeout(function () {\r\n                        var _output = output;\r\n                        output = undefined;\r\n                        handle = undefined;\r\n                        if (!leading || numDebouncedCalls > 1) {\r\n                            emitter.fire(_output);\r\n                        }\r\n                        numDebouncedCalls = 0;\r\n                    }, delay);\r\n                });\r\n            },\r\n            onLastListenerRemove: function () {\r\n                subscription.dispose();\r\n            }\r\n        });\r\n        return emitter.event;\r\n    }\r\n    Event.debounce = debounce;\r\n    /**\r\n     * Given an event, it returns another event which fires only once and as soon as\r\n     * the input event emits. The event data is the number of millis it took for the\r\n     * event to fire.\r\n     */\r\n    function stopwatch(event) {\r\n        var start = new Date().getTime();\r\n        return map(once(event), function (_) { return new Date().getTime() - start; });\r\n    }\r\n    Event.stopwatch = stopwatch;\r\n    /**\r\n     * Given an event, it returns another event which fires only when the event\r\n     * element changes.\r\n     */\r\n    function latch(event) {\r\n        var firstCall = true;\r\n        var cache;\r\n        return filter(event, function (value) {\r\n            var shouldEmit = firstCall || value !== cache;\r\n            firstCall = false;\r\n            cache = value;\r\n            return shouldEmit;\r\n        });\r\n    }\r\n    Event.latch = latch;\r\n    /**\r\n     * Buffers the provided event until a first listener comes\r\n     * along, at which point fire all the events at once and\r\n     * pipe the event from then on.\r\n     *\r\n     * ```typescript\r\n     * const emitter = new Emitter<number>();\r\n     * const event = emitter.event;\r\n     * const bufferedEvent = buffer(event);\r\n     *\r\n     * emitter.fire(1);\r\n     * emitter.fire(2);\r\n     * emitter.fire(3);\r\n     * // nothing...\r\n     *\r\n     * const listener = bufferedEvent(num => console.log(num));\r\n     * // 1, 2, 3\r\n     *\r\n     * emitter.fire(4);\r\n     * // 4\r\n     * ```\r\n     */\r\n    function buffer(event, nextTick, _buffer) {\r\n        if (nextTick === void 0) { nextTick = false; }\r\n        if (_buffer === void 0) { _buffer = []; }\r\n        var buffer = _buffer.slice();\r\n        var listener = event(function (e) {\r\n            if (buffer) {\r\n                buffer.push(e);\r\n            }\r\n            else {\r\n                emitter.fire(e);\r\n            }\r\n        });\r\n        var flush = function () {\r\n            if (buffer) {\r\n                buffer.forEach(function (e) { return emitter.fire(e); });\r\n            }\r\n            buffer = null;\r\n        };\r\n        var emitter = new Emitter({\r\n            onFirstListenerAdd: function () {\r\n                if (!listener) {\r\n                    listener = event(function (e) { return emitter.fire(e); });\r\n                }\r\n            },\r\n            onFirstListenerDidAdd: function () {\r\n                if (buffer) {\r\n                    if (nextTick) {\r\n                        setTimeout(flush);\r\n                    }\r\n                    else {\r\n                        flush();\r\n                    }\r\n                }\r\n            },\r\n            onLastListenerRemove: function () {\r\n                if (listener) {\r\n                    listener.dispose();\r\n                }\r\n                listener = null;\r\n            }\r\n        });\r\n        return emitter.event;\r\n    }\r\n    Event.buffer = buffer;\r\n    var ChainableEvent = /** @class */ (function () {\r\n        function ChainableEvent(event) {\r\n            this.event = event;\r\n        }\r\n        ChainableEvent.prototype.map = function (fn) {\r\n            return new ChainableEvent(map(this.event, fn));\r\n        };\r\n        ChainableEvent.prototype.forEach = function (fn) {\r\n            return new ChainableEvent(forEach(this.event, fn));\r\n        };\r\n        ChainableEvent.prototype.filter = function (fn) {\r\n            return new ChainableEvent(filter(this.event, fn));\r\n        };\r\n        ChainableEvent.prototype.reduce = function (merge, initial) {\r\n            return new ChainableEvent(reduce(this.event, merge, initial));\r\n        };\r\n        ChainableEvent.prototype.latch = function () {\r\n            return new ChainableEvent(latch(this.event));\r\n        };\r\n        ChainableEvent.prototype.debounce = function (merge, delay, leading, leakWarningThreshold) {\r\n            if (delay === void 0) { delay = 100; }\r\n            if (leading === void 0) { leading = false; }\r\n            return new ChainableEvent(debounce(this.event, merge, delay, leading, leakWarningThreshold));\r\n        };\r\n        ChainableEvent.prototype.on = function (listener, thisArgs, disposables) {\r\n            return this.event(listener, thisArgs, disposables);\r\n        };\r\n        ChainableEvent.prototype.once = function (listener, thisArgs, disposables) {\r\n            return once(this.event)(listener, thisArgs, disposables);\r\n        };\r\n        return ChainableEvent;\r\n    }());\r\n    function chain(event) {\r\n        return new ChainableEvent(event);\r\n    }\r\n    Event.chain = chain;\r\n    function fromNodeEventEmitter(emitter, eventName, map) {\r\n        if (map === void 0) { map = function (id) { return id; }; }\r\n        var fn = function () {\r\n            var args = [];\r\n            for (var _i = 0; _i < arguments.length; _i++) {\r\n                args[_i] = arguments[_i];\r\n            }\r\n            return result.fire(map.apply(void 0, args));\r\n        };\r\n        var onFirstListenerAdd = function () { return emitter.on(eventName, fn); };\r\n        var onLastListenerRemove = function () { return emitter.removeListener(eventName, fn); };\r\n        var result = new Emitter({ onFirstListenerAdd: onFirstListenerAdd, onLastListenerRemove: onLastListenerRemove });\r\n        return result.event;\r\n    }\r\n    Event.fromNodeEventEmitter = fromNodeEventEmitter;\r\n    function fromDOMEventEmitter(emitter, eventName, map) {\r\n        if (map === void 0) { map = function (id) { return id; }; }\r\n        var fn = function () {\r\n            var args = [];\r\n            for (var _i = 0; _i < arguments.length; _i++) {\r\n                args[_i] = arguments[_i];\r\n            }\r\n            return result.fire(map.apply(void 0, args));\r\n        };\r\n        var onFirstListenerAdd = function () { return emitter.addEventListener(eventName, fn); };\r\n        var onLastListenerRemove = function () { return emitter.removeEventListener(eventName, fn); };\r\n        var result = new Emitter({ onFirstListenerAdd: onFirstListenerAdd, onLastListenerRemove: onLastListenerRemove });\r\n        return result.event;\r\n    }\r\n    Event.fromDOMEventEmitter = fromDOMEventEmitter;\r\n    function fromPromise(promise) {\r\n        var emitter = new Emitter();\r\n        var shouldEmit = false;\r\n        promise\r\n            .then(undefined, function () { return null; })\r\n            .then(function () {\r\n            if (!shouldEmit) {\r\n                setTimeout(function () { return emitter.fire(undefined); }, 0);\r\n            }\r\n            else {\r\n                emitter.fire(undefined);\r\n            }\r\n        });\r\n        shouldEmit = true;\r\n        return emitter.event;\r\n    }\r\n    Event.fromPromise = fromPromise;\r\n    function toPromise(event) {\r\n        return new Promise(function (c) { return once(event)(c); });\r\n    }\r\n    Event.toPromise = toPromise;\r\n})(Event || (Event = {}));\r\nvar _globalLeakWarningThreshold = -1;\r\nvar LeakageMonitor = /** @class */ (function () {\r\n    function LeakageMonitor(customThreshold, name) {\r\n        if (name === void 0) { name = Math.random().toString(18).slice(2, 5); }\r\n        this.customThreshold = customThreshold;\r\n        this.name = name;\r\n        this._warnCountdown = 0;\r\n    }\r\n    LeakageMonitor.prototype.dispose = function () {\r\n        if (this._stacks) {\r\n            this._stacks.clear();\r\n        }\r\n    };\r\n    LeakageMonitor.prototype.check = function (listenerCount) {\r\n        var _this = this;\r\n        var threshold = _globalLeakWarningThreshold;\r\n        if (typeof this.customThreshold === 'number') {\r\n            threshold = this.customThreshold;\r\n        }\r\n        if (threshold <= 0 || listenerCount < threshold) {\r\n            return undefined;\r\n        }\r\n        if (!this._stacks) {\r\n            this._stacks = new Map();\r\n        }\r\n        var stack = new Error().stack.split('\\n').slice(3).join('\\n');\r\n        var count = (this._stacks.get(stack) || 0);\r\n        this._stacks.set(stack, count + 1);\r\n        this._warnCountdown -= 1;\r\n        if (this._warnCountdown <= 0) {\r\n            // only warn on first exceed and then every time the limit\r\n            // is exceeded by 50% again\r\n            this._warnCountdown = threshold * 0.5;\r\n            // find most frequent listener and print warning\r\n            var topStack_1;\r\n            var topCount_1 = 0;\r\n            this._stacks.forEach(function (count, stack) {\r\n                if (!topStack_1 || topCount_1 < count) {\r\n                    topStack_1 = stack;\r\n                    topCount_1 = count;\r\n                }\r\n            });\r\n            console.warn(\"[\" + this.name + \"] potential listener LEAK detected, having \" + listenerCount + \" listeners already. MOST frequent listener (\" + topCount_1 + \"):\");\r\n            console.warn(topStack_1);\r\n        }\r\n        return function () {\r\n            var count = (_this._stacks.get(stack) || 0);\r\n            _this._stacks.set(stack, count - 1);\r\n        };\r\n    };\r\n    return LeakageMonitor;\r\n}());\r\n/**\r\n * The Emitter can be used to expose an Event to the public\r\n * to fire it from the insides.\r\n * Sample:\r\n    class Document {\r\n\r\n        private readonly _onDidChange = new Emitter<(value:string)=>any>();\r\n\r\n        public onDidChange = this._onDidChange.event;\r\n\r\n        // getter-style\r\n        // get onDidChange(): Event<(value:string)=>any> {\r\n        // \treturn this._onDidChange.event;\r\n        // }\r\n\r\n        private _doIt() {\r\n            //...\r\n            this._onDidChange.fire(value);\r\n        }\r\n    }\r\n */\r\nvar Emitter = /** @class */ (function () {\r\n    function Emitter(options) {\r\n        this._disposed = false;\r\n        this._options = options;\r\n        this._leakageMon = _globalLeakWarningThreshold > 0\r\n            ? new LeakageMonitor(this._options && this._options.leakWarningThreshold)\r\n            : undefined;\r\n    }\r\n    Object.defineProperty(Emitter.prototype, \"event\", {\r\n        /**\r\n         * For the public to allow to subscribe\r\n         * to events from this Emitter\r\n         */\r\n        get: function () {\r\n            var _this = this;\r\n            if (!this._event) {\r\n                this._event = function (listener, thisArgs, disposables) {\r\n                    if (!_this._listeners) {\r\n                        _this._listeners = new _linkedList_js__WEBPACK_IMPORTED_MODULE_3__[\"LinkedList\"]();\r\n                    }\r\n                    var firstListener = _this._listeners.isEmpty();\r\n                    if (firstListener && _this._options && _this._options.onFirstListenerAdd) {\r\n                        _this._options.onFirstListenerAdd(_this);\r\n                    }\r\n                    var remove = _this._listeners.push(!thisArgs ? listener : [listener, thisArgs]);\r\n                    if (firstListener && _this._options && _this._options.onFirstListenerDidAdd) {\r\n                        _this._options.onFirstListenerDidAdd(_this);\r\n                    }\r\n                    if (_this._options && _this._options.onListenerDidAdd) {\r\n                        _this._options.onListenerDidAdd(_this, listener, thisArgs);\r\n                    }\r\n                    // check and record this emitter for potential leakage\r\n                    var removeMonitor;\r\n                    if (_this._leakageMon) {\r\n                        removeMonitor = _this._leakageMon.check(_this._listeners.size);\r\n                    }\r\n                    var result;\r\n                    result = {\r\n                        dispose: function () {\r\n                            if (removeMonitor) {\r\n                                removeMonitor();\r\n                            }\r\n                            result.dispose = Emitter._noop;\r\n                            if (!_this._disposed) {\r\n                                remove();\r\n                                if (_this._options && _this._options.onLastListenerRemove) {\r\n                                    var hasListeners = (_this._listeners && !_this._listeners.isEmpty());\r\n                                    if (!hasListeners) {\r\n                                        _this._options.onLastListenerRemove(_this);\r\n                                    }\r\n                                }\r\n                            }\r\n                        }\r\n                    };\r\n                    if (disposables instanceof _lifecycle_js__WEBPACK_IMPORTED_MODULE_2__[\"DisposableStore\"]) {\r\n                        disposables.add(result);\r\n                    }\r\n                    else if (Array.isArray(disposables)) {\r\n                        disposables.push(result);\r\n                    }\r\n                    return result;\r\n                };\r\n            }\r\n            return this._event;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    /**\r\n     * To be kept private to fire an event to\r\n     * subscribers\r\n     */\r\n    Emitter.prototype.fire = function (event) {\r\n        if (this._listeners) {\r\n            // put all [listener,event]-pairs into delivery queue\r\n            // then emit all event. an inner/nested event might be\r\n            // the driver of this\r\n            if (!this._deliveryQueue) {\r\n                this._deliveryQueue = new _linkedList_js__WEBPACK_IMPORTED_MODULE_3__[\"LinkedList\"]();\r\n            }\r\n            for (var iter = this._listeners.iterator(), e = iter.next(); !e.done; e = iter.next()) {\r\n                this._deliveryQueue.push([e.value, event]);\r\n            }\r\n            while (this._deliveryQueue.size > 0) {\r\n                var _a = this._deliveryQueue.shift(), listener = _a[0], event_1 = _a[1];\r\n                try {\r\n                    if (typeof listener === 'function') {\r\n                        listener.call(undefined, event_1);\r\n                    }\r\n                    else {\r\n                        listener[0].call(listener[1], event_1);\r\n                    }\r\n                }\r\n                catch (e) {\r\n                    Object(_errors_js__WEBPACK_IMPORTED_MODULE_0__[\"onUnexpectedError\"])(e);\r\n                }\r\n            }\r\n        }\r\n    };\r\n    Emitter.prototype.dispose = function () {\r\n        if (this._listeners) {\r\n            this._listeners.clear();\r\n        }\r\n        if (this._deliveryQueue) {\r\n            this._deliveryQueue.clear();\r\n        }\r\n        if (this._leakageMon) {\r\n            this._leakageMon.dispose();\r\n        }\r\n        this._disposed = true;\r\n    };\r\n    Emitter._noop = function () { };\r\n    return Emitter;\r\n}());\r\n\r\nvar PauseableEmitter = /** @class */ (function (_super) {\r\n    __extends(PauseableEmitter, _super);\r\n    function PauseableEmitter(options) {\r\n        var _this = _super.call(this, options) || this;\r\n        _this._isPaused = 0;\r\n        _this._eventQueue = new _linkedList_js__WEBPACK_IMPORTED_MODULE_3__[\"LinkedList\"]();\r\n        _this._mergeFn = options && options.merge;\r\n        return _this;\r\n    }\r\n    PauseableEmitter.prototype.pause = function () {\r\n        this._isPaused++;\r\n    };\r\n    PauseableEmitter.prototype.resume = function () {\r\n        if (this._isPaused !== 0 && --this._isPaused === 0) {\r\n            if (this._mergeFn) {\r\n                // use the merge function to create a single composite\r\n                // event. make a copy in case firing pauses this emitter\r\n                var events = this._eventQueue.toArray();\r\n                this._eventQueue.clear();\r\n                _super.prototype.fire.call(this, this._mergeFn(events));\r\n            }\r\n            else {\r\n                // no merging, fire each event individually and test\r\n                // that this emitter isn't paused halfway through\r\n                while (!this._isPaused && this._eventQueue.size !== 0) {\r\n                    _super.prototype.fire.call(this, this._eventQueue.shift());\r\n                }\r\n            }\r\n        }\r\n    };\r\n    PauseableEmitter.prototype.fire = function (event) {\r\n        if (this._listeners) {\r\n            if (this._isPaused !== 0) {\r\n                this._eventQueue.push(event);\r\n            }\r\n            else {\r\n                _super.prototype.fire.call(this, event);\r\n            }\r\n        }\r\n    };\r\n    return PauseableEmitter;\r\n}(Emitter));\r\n\r\nvar EventMultiplexer = /** @class */ (function () {\r\n    function EventMultiplexer() {\r\n        var _this = this;\r\n        this.hasListeners = false;\r\n        this.events = [];\r\n        this.emitter = new Emitter({\r\n            onFirstListenerAdd: function () { return _this.onFirstListenerAdd(); },\r\n            onLastListenerRemove: function () { return _this.onLastListenerRemove(); }\r\n        });\r\n    }\r\n    Object.defineProperty(EventMultiplexer.prototype, \"event\", {\r\n        get: function () {\r\n            return this.emitter.event;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    EventMultiplexer.prototype.add = function (event) {\r\n        var _this = this;\r\n        var e = { event: event, listener: null };\r\n        this.events.push(e);\r\n        if (this.hasListeners) {\r\n            this.hook(e);\r\n        }\r\n        var dispose = function () {\r\n            if (_this.hasListeners) {\r\n                _this.unhook(e);\r\n            }\r\n            var idx = _this.events.indexOf(e);\r\n            _this.events.splice(idx, 1);\r\n        };\r\n        return Object(_lifecycle_js__WEBPACK_IMPORTED_MODULE_2__[\"toDisposable\"])(Object(_functional_js__WEBPACK_IMPORTED_MODULE_1__[\"once\"])(dispose));\r\n    };\r\n    EventMultiplexer.prototype.onFirstListenerAdd = function () {\r\n        var _this = this;\r\n        this.hasListeners = true;\r\n        this.events.forEach(function (e) { return _this.hook(e); });\r\n    };\r\n    EventMultiplexer.prototype.onLastListenerRemove = function () {\r\n        var _this = this;\r\n        this.hasListeners = false;\r\n        this.events.forEach(function (e) { return _this.unhook(e); });\r\n    };\r\n    EventMultiplexer.prototype.hook = function (e) {\r\n        var _this = this;\r\n        e.listener = e.event(function (r) { return _this.emitter.fire(r); });\r\n    };\r\n    EventMultiplexer.prototype.unhook = function (e) {\r\n        if (e.listener) {\r\n            e.listener.dispose();\r\n        }\r\n        e.listener = null;\r\n    };\r\n    EventMultiplexer.prototype.dispose = function () {\r\n        this.emitter.dispose();\r\n    };\r\n    return EventMultiplexer;\r\n}());\r\n\r\n/**\r\n * The EventBufferer is useful in situations in which you want\r\n * to delay firing your events during some code.\r\n * You can wrap that code and be sure that the event will not\r\n * be fired during that wrap.\r\n *\r\n * ```\r\n * const emitter: Emitter;\r\n * const delayer = new EventDelayer();\r\n * const delayedEvent = delayer.wrapEvent(emitter.event);\r\n *\r\n * delayedEvent(console.log);\r\n *\r\n * delayer.bufferEvents(() => {\r\n *   emitter.fire(); // event will not be fired yet\r\n * });\r\n *\r\n * // event will only be fired at this point\r\n * ```\r\n */\r\nvar EventBufferer = /** @class */ (function () {\r\n    function EventBufferer() {\r\n        this.buffers = [];\r\n    }\r\n    EventBufferer.prototype.wrapEvent = function (event) {\r\n        var _this = this;\r\n        return function (listener, thisArgs, disposables) {\r\n            return event(function (i) {\r\n                var buffer = _this.buffers[_this.buffers.length - 1];\r\n                if (buffer) {\r\n                    buffer.push(function () { return listener.call(thisArgs, i); });\r\n                }\r\n                else {\r\n                    listener.call(thisArgs, i);\r\n                }\r\n            }, undefined, disposables);\r\n        };\r\n    };\r\n    EventBufferer.prototype.bufferEvents = function (fn) {\r\n        var buffer = [];\r\n        this.buffers.push(buffer);\r\n        var r = fn();\r\n        this.buffers.pop();\r\n        buffer.forEach(function (flush) { return flush(); });\r\n        return r;\r\n    };\r\n    return EventBufferer;\r\n}());\r\n\r\n/**\r\n * A Relay is an event forwarder which functions as a replugabble event pipe.\r\n * Once created, you can connect an input event to it and it will simply forward\r\n * events from that input event through its own `event` property. The `input`\r\n * can be changed at any point in time.\r\n */\r\nvar Relay = /** @class */ (function () {\r\n    function Relay() {\r\n        var _this = this;\r\n        this.listening = false;\r\n        this.inputEvent = Event.None;\r\n        this.inputEventListener = _lifecycle_js__WEBPACK_IMPORTED_MODULE_2__[\"Disposable\"].None;\r\n        this.emitter = new Emitter({\r\n            onFirstListenerDidAdd: function () {\r\n                _this.listening = true;\r\n                _this.inputEventListener = _this.inputEvent(_this.emitter.fire, _this.emitter);\r\n            },\r\n            onLastListenerRemove: function () {\r\n                _this.listening = false;\r\n                _this.inputEventListener.dispose();\r\n            }\r\n        });\r\n        this.event = this.emitter.event;\r\n    }\r\n    Object.defineProperty(Relay.prototype, \"input\", {\r\n        set: function (event) {\r\n            this.inputEvent = event;\r\n            if (this.listening) {\r\n                this.inputEventListener.dispose();\r\n                this.inputEventListener = event(this.emitter.fire, this.emitter);\r\n            }\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Relay.prototype.dispose = function () {\r\n        this.inputEventListener.dispose();\r\n        this.emitter.dispose();\r\n    };\r\n    return Relay;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/event.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/functional.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/functional.js ***!
-  \*********************************************************************/
-/*! exports provided: once */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"once\", function() { return once; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nfunction once(fn) {\r\n    var _this = this;\r\n    var didCall = false;\r\n    var result;\r\n    return function () {\r\n        if (didCall) {\r\n            return result;\r\n        }\r\n        didCall = true;\r\n        result = fn.apply(_this, arguments);\r\n        return result;\r\n    };\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/functional.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/hash.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/hash.js ***!
-  \***************************************************************/
-/*! exports provided: hash, stringHash */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"hash\", function() { return hash; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"stringHash\", function() { return stringHash; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n/**\r\n * Return a hash value for an object.\r\n */\r\nfunction hash(obj, hashVal) {\r\n    if (hashVal === void 0) { hashVal = 0; }\r\n    switch (typeof obj) {\r\n        case 'object':\r\n            if (obj === null) {\r\n                return numberHash(349, hashVal);\r\n            }\r\n            else if (Array.isArray(obj)) {\r\n                return arrayHash(obj, hashVal);\r\n            }\r\n            return objectHash(obj, hashVal);\r\n        case 'string':\r\n            return stringHash(obj, hashVal);\r\n        case 'boolean':\r\n            return booleanHash(obj, hashVal);\r\n        case 'number':\r\n            return numberHash(obj, hashVal);\r\n        case 'undefined':\r\n            return numberHash(0, 937);\r\n        default:\r\n            return numberHash(0, 617);\r\n    }\r\n}\r\nfunction numberHash(val, initialHashVal) {\r\n    return (((initialHashVal << 5) - initialHashVal) + val) | 0; // hashVal * 31 + ch, keep as int32\r\n}\r\nfunction booleanHash(b, initialHashVal) {\r\n    return numberHash(b ? 433 : 863, initialHashVal);\r\n}\r\nfunction stringHash(s, hashVal) {\r\n    hashVal = numberHash(149417, hashVal);\r\n    for (var i = 0, length_1 = s.length; i < length_1; i++) {\r\n        hashVal = numberHash(s.charCodeAt(i), hashVal);\r\n    }\r\n    return hashVal;\r\n}\r\nfunction arrayHash(arr, initialHashVal) {\r\n    initialHashVal = numberHash(104579, initialHashVal);\r\n    return arr.reduce(function (hashVal, item) { return hash(item, hashVal); }, initialHashVal);\r\n}\r\nfunction objectHash(obj, initialHashVal) {\r\n    initialHashVal = numberHash(181387, initialHashVal);\r\n    return Object.keys(obj).sort().reduce(function (hashVal, key) {\r\n        hashVal = stringHash(key, hashVal);\r\n        return hash(obj[key], hashVal);\r\n    }, initialHashVal);\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/hash.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/iterator.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/iterator.js ***!
-  \*******************************************************************/
-/*! exports provided: FIN, Iterator, ChainableIterator, getSequenceIterator, ArrayIterator, ArrayNavigator, MappedIterator */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"FIN\", function() { return FIN; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Iterator\", function() { return Iterator; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ChainableIterator\", function() { return ChainableIterator; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getSequenceIterator\", function() { return getSequenceIterator; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ArrayIterator\", function() { return ArrayIterator; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ArrayNavigator\", function() { return ArrayNavigator; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MappedIterator\", function() { return MappedIterator; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nvar FIN = { done: true, value: undefined };\r\nvar Iterator;\r\n(function (Iterator) {\r\n    var _empty = {\r\n        next: function () {\r\n            return FIN;\r\n        }\r\n    };\r\n    function empty() {\r\n        return _empty;\r\n    }\r\n    Iterator.empty = empty;\r\n    function single(value) {\r\n        var done = false;\r\n        return {\r\n            next: function () {\r\n                if (done) {\r\n                    return FIN;\r\n                }\r\n                done = true;\r\n                return { done: false, value: value };\r\n            }\r\n        };\r\n    }\r\n    Iterator.single = single;\r\n    function fromArray(array, index, length) {\r\n        if (index === void 0) { index = 0; }\r\n        if (length === void 0) { length = array.length; }\r\n        return {\r\n            next: function () {\r\n                if (index >= length) {\r\n                    return FIN;\r\n                }\r\n                return { done: false, value: array[index++] };\r\n            }\r\n        };\r\n    }\r\n    Iterator.fromArray = fromArray;\r\n    function fromNativeIterator(it) {\r\n        return {\r\n            next: function () {\r\n                var result = it.next();\r\n                if (result.done) {\r\n                    return FIN;\r\n                }\r\n                return { done: false, value: result.value };\r\n            }\r\n        };\r\n    }\r\n    Iterator.fromNativeIterator = fromNativeIterator;\r\n    function from(elements) {\r\n        if (!elements) {\r\n            return Iterator.empty();\r\n        }\r\n        else if (Array.isArray(elements)) {\r\n            return Iterator.fromArray(elements);\r\n        }\r\n        else {\r\n            return elements;\r\n        }\r\n    }\r\n    Iterator.from = from;\r\n    function map(iterator, fn) {\r\n        return {\r\n            next: function () {\r\n                var element = iterator.next();\r\n                if (element.done) {\r\n                    return FIN;\r\n                }\r\n                else {\r\n                    return { done: false, value: fn(element.value) };\r\n                }\r\n            }\r\n        };\r\n    }\r\n    Iterator.map = map;\r\n    function filter(iterator, fn) {\r\n        return {\r\n            next: function () {\r\n                while (true) {\r\n                    var element = iterator.next();\r\n                    if (element.done) {\r\n                        return FIN;\r\n                    }\r\n                    if (fn(element.value)) {\r\n                        return { done: false, value: element.value };\r\n                    }\r\n                }\r\n            }\r\n        };\r\n    }\r\n    Iterator.filter = filter;\r\n    function forEach(iterator, fn) {\r\n        for (var next = iterator.next(); !next.done; next = iterator.next()) {\r\n            fn(next.value);\r\n        }\r\n    }\r\n    Iterator.forEach = forEach;\r\n    function collect(iterator, atMost) {\r\n        if (atMost === void 0) { atMost = Number.POSITIVE_INFINITY; }\r\n        var result = [];\r\n        if (atMost === 0) {\r\n            return result;\r\n        }\r\n        var i = 0;\r\n        for (var next = iterator.next(); !next.done; next = iterator.next()) {\r\n            result.push(next.value);\r\n            if (++i >= atMost) {\r\n                break;\r\n            }\r\n        }\r\n        return result;\r\n    }\r\n    Iterator.collect = collect;\r\n    function concat() {\r\n        var iterators = [];\r\n        for (var _i = 0; _i < arguments.length; _i++) {\r\n            iterators[_i] = arguments[_i];\r\n        }\r\n        var i = 0;\r\n        return {\r\n            next: function () {\r\n                if (i >= iterators.length) {\r\n                    return FIN;\r\n                }\r\n                var iterator = iterators[i];\r\n                var result = iterator.next();\r\n                if (result.done) {\r\n                    i++;\r\n                    return this.next();\r\n                }\r\n                return result;\r\n            }\r\n        };\r\n    }\r\n    Iterator.concat = concat;\r\n    function chain(iterator) {\r\n        return new ChainableIterator(iterator);\r\n    }\r\n    Iterator.chain = chain;\r\n})(Iterator || (Iterator = {}));\r\nvar ChainableIterator = /** @class */ (function () {\r\n    function ChainableIterator(it) {\r\n        this.it = it;\r\n    }\r\n    ChainableIterator.prototype.next = function () { return this.it.next(); };\r\n    return ChainableIterator;\r\n}());\r\n\r\nfunction getSequenceIterator(arg) {\r\n    if (Array.isArray(arg)) {\r\n        return Iterator.fromArray(arg);\r\n    }\r\n    else if (!arg) {\r\n        return Iterator.empty();\r\n    }\r\n    else {\r\n        return arg;\r\n    }\r\n}\r\nvar ArrayIterator = /** @class */ (function () {\r\n    function ArrayIterator(items, start, end, index) {\r\n        if (start === void 0) { start = 0; }\r\n        if (end === void 0) { end = items.length; }\r\n        if (index === void 0) { index = start - 1; }\r\n        this.items = items;\r\n        this.start = start;\r\n        this.end = end;\r\n        this.index = index;\r\n    }\r\n    ArrayIterator.prototype.first = function () {\r\n        this.index = this.start;\r\n        return this.current();\r\n    };\r\n    ArrayIterator.prototype.next = function () {\r\n        this.index = Math.min(this.index + 1, this.end);\r\n        return this.current();\r\n    };\r\n    ArrayIterator.prototype.current = function () {\r\n        if (this.index === this.start - 1 || this.index === this.end) {\r\n            return null;\r\n        }\r\n        return this.items[this.index];\r\n    };\r\n    return ArrayIterator;\r\n}());\r\n\r\nvar ArrayNavigator = /** @class */ (function (_super) {\r\n    __extends(ArrayNavigator, _super);\r\n    function ArrayNavigator(items, start, end, index) {\r\n        if (start === void 0) { start = 0; }\r\n        if (end === void 0) { end = items.length; }\r\n        if (index === void 0) { index = start - 1; }\r\n        return _super.call(this, items, start, end, index) || this;\r\n    }\r\n    ArrayNavigator.prototype.current = function () {\r\n        return _super.prototype.current.call(this);\r\n    };\r\n    ArrayNavigator.prototype.previous = function () {\r\n        this.index = Math.max(this.index - 1, this.start - 1);\r\n        return this.current();\r\n    };\r\n    ArrayNavigator.prototype.first = function () {\r\n        this.index = this.start;\r\n        return this.current();\r\n    };\r\n    ArrayNavigator.prototype.last = function () {\r\n        this.index = this.end - 1;\r\n        return this.current();\r\n    };\r\n    ArrayNavigator.prototype.parent = function () {\r\n        return null;\r\n    };\r\n    return ArrayNavigator;\r\n}(ArrayIterator));\r\n\r\nvar MappedIterator = /** @class */ (function () {\r\n    function MappedIterator(iterator, fn) {\r\n        this.iterator = iterator;\r\n        this.fn = fn;\r\n        // noop\r\n    }\r\n    MappedIterator.prototype.next = function () { return this.fn(this.iterator.next()); };\r\n    return MappedIterator;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/iterator.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/keyCodes.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/keyCodes.js ***!
-  \*******************************************************************/
-/*! exports provided: KeyCodeUtils, KeyChord, createKeybinding, createSimpleKeybinding, SimpleKeybinding, ChordKeybinding, ResolvedKeybindingPart, ResolvedKeybinding */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"KeyCodeUtils\", function() { return KeyCodeUtils; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"KeyChord\", function() { return KeyChord; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createKeybinding\", function() { return createKeybinding; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createSimpleKeybinding\", function() { return createSimpleKeybinding; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SimpleKeybinding\", function() { return SimpleKeybinding; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ChordKeybinding\", function() { return ChordKeybinding; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ResolvedKeybindingPart\", function() { return ResolvedKeybindingPart; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ResolvedKeybinding\", function() { return ResolvedKeybinding; });\n/* harmony import */ var _errors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./errors.js */ \"./node_modules/monaco-editor/esm/vs/base/common/errors.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\nvar KeyCodeStrMap = /** @class */ (function () {\r\n    function KeyCodeStrMap() {\r\n        this._keyCodeToStr = [];\r\n        this._strToKeyCode = Object.create(null);\r\n    }\r\n    KeyCodeStrMap.prototype.define = function (keyCode, str) {\r\n        this._keyCodeToStr[keyCode] = str;\r\n        this._strToKeyCode[str.toLowerCase()] = keyCode;\r\n    };\r\n    KeyCodeStrMap.prototype.keyCodeToStr = function (keyCode) {\r\n        return this._keyCodeToStr[keyCode];\r\n    };\r\n    KeyCodeStrMap.prototype.strToKeyCode = function (str) {\r\n        return this._strToKeyCode[str.toLowerCase()] || 0 /* Unknown */;\r\n    };\r\n    return KeyCodeStrMap;\r\n}());\r\nvar uiMap = new KeyCodeStrMap();\r\nvar userSettingsUSMap = new KeyCodeStrMap();\r\nvar userSettingsGeneralMap = new KeyCodeStrMap();\r\n(function () {\r\n    function define(keyCode, uiLabel, usUserSettingsLabel, generalUserSettingsLabel) {\r\n        if (usUserSettingsLabel === void 0) { usUserSettingsLabel = uiLabel; }\r\n        if (generalUserSettingsLabel === void 0) { generalUserSettingsLabel = usUserSettingsLabel; }\r\n        uiMap.define(keyCode, uiLabel);\r\n        userSettingsUSMap.define(keyCode, usUserSettingsLabel);\r\n        userSettingsGeneralMap.define(keyCode, generalUserSettingsLabel);\r\n    }\r\n    define(0 /* Unknown */, 'unknown');\r\n    define(1 /* Backspace */, 'Backspace');\r\n    define(2 /* Tab */, 'Tab');\r\n    define(3 /* Enter */, 'Enter');\r\n    define(4 /* Shift */, 'Shift');\r\n    define(5 /* Ctrl */, 'Ctrl');\r\n    define(6 /* Alt */, 'Alt');\r\n    define(7 /* PauseBreak */, 'PauseBreak');\r\n    define(8 /* CapsLock */, 'CapsLock');\r\n    define(9 /* Escape */, 'Escape');\r\n    define(10 /* Space */, 'Space');\r\n    define(11 /* PageUp */, 'PageUp');\r\n    define(12 /* PageDown */, 'PageDown');\r\n    define(13 /* End */, 'End');\r\n    define(14 /* Home */, 'Home');\r\n    define(15 /* LeftArrow */, 'LeftArrow', 'Left');\r\n    define(16 /* UpArrow */, 'UpArrow', 'Up');\r\n    define(17 /* RightArrow */, 'RightArrow', 'Right');\r\n    define(18 /* DownArrow */, 'DownArrow', 'Down');\r\n    define(19 /* Insert */, 'Insert');\r\n    define(20 /* Delete */, 'Delete');\r\n    define(21 /* KEY_0 */, '0');\r\n    define(22 /* KEY_1 */, '1');\r\n    define(23 /* KEY_2 */, '2');\r\n    define(24 /* KEY_3 */, '3');\r\n    define(25 /* KEY_4 */, '4');\r\n    define(26 /* KEY_5 */, '5');\r\n    define(27 /* KEY_6 */, '6');\r\n    define(28 /* KEY_7 */, '7');\r\n    define(29 /* KEY_8 */, '8');\r\n    define(30 /* KEY_9 */, '9');\r\n    define(31 /* KEY_A */, 'A');\r\n    define(32 /* KEY_B */, 'B');\r\n    define(33 /* KEY_C */, 'C');\r\n    define(34 /* KEY_D */, 'D');\r\n    define(35 /* KEY_E */, 'E');\r\n    define(36 /* KEY_F */, 'F');\r\n    define(37 /* KEY_G */, 'G');\r\n    define(38 /* KEY_H */, 'H');\r\n    define(39 /* KEY_I */, 'I');\r\n    define(40 /* KEY_J */, 'J');\r\n    define(41 /* KEY_K */, 'K');\r\n    define(42 /* KEY_L */, 'L');\r\n    define(43 /* KEY_M */, 'M');\r\n    define(44 /* KEY_N */, 'N');\r\n    define(45 /* KEY_O */, 'O');\r\n    define(46 /* KEY_P */, 'P');\r\n    define(47 /* KEY_Q */, 'Q');\r\n    define(48 /* KEY_R */, 'R');\r\n    define(49 /* KEY_S */, 'S');\r\n    define(50 /* KEY_T */, 'T');\r\n    define(51 /* KEY_U */, 'U');\r\n    define(52 /* KEY_V */, 'V');\r\n    define(53 /* KEY_W */, 'W');\r\n    define(54 /* KEY_X */, 'X');\r\n    define(55 /* KEY_Y */, 'Y');\r\n    define(56 /* KEY_Z */, 'Z');\r\n    define(57 /* Meta */, 'Meta');\r\n    define(58 /* ContextMenu */, 'ContextMenu');\r\n    define(59 /* F1 */, 'F1');\r\n    define(60 /* F2 */, 'F2');\r\n    define(61 /* F3 */, 'F3');\r\n    define(62 /* F4 */, 'F4');\r\n    define(63 /* F5 */, 'F5');\r\n    define(64 /* F6 */, 'F6');\r\n    define(65 /* F7 */, 'F7');\r\n    define(66 /* F8 */, 'F8');\r\n    define(67 /* F9 */, 'F9');\r\n    define(68 /* F10 */, 'F10');\r\n    define(69 /* F11 */, 'F11');\r\n    define(70 /* F12 */, 'F12');\r\n    define(71 /* F13 */, 'F13');\r\n    define(72 /* F14 */, 'F14');\r\n    define(73 /* F15 */, 'F15');\r\n    define(74 /* F16 */, 'F16');\r\n    define(75 /* F17 */, 'F17');\r\n    define(76 /* F18 */, 'F18');\r\n    define(77 /* F19 */, 'F19');\r\n    define(78 /* NumLock */, 'NumLock');\r\n    define(79 /* ScrollLock */, 'ScrollLock');\r\n    define(80 /* US_SEMICOLON */, ';', ';', 'OEM_1');\r\n    define(81 /* US_EQUAL */, '=', '=', 'OEM_PLUS');\r\n    define(82 /* US_COMMA */, ',', ',', 'OEM_COMMA');\r\n    define(83 /* US_MINUS */, '-', '-', 'OEM_MINUS');\r\n    define(84 /* US_DOT */, '.', '.', 'OEM_PERIOD');\r\n    define(85 /* US_SLASH */, '/', '/', 'OEM_2');\r\n    define(86 /* US_BACKTICK */, '`', '`', 'OEM_3');\r\n    define(110 /* ABNT_C1 */, 'ABNT_C1');\r\n    define(111 /* ABNT_C2 */, 'ABNT_C2');\r\n    define(87 /* US_OPEN_SQUARE_BRACKET */, '[', '[', 'OEM_4');\r\n    define(88 /* US_BACKSLASH */, '\\\\', '\\\\', 'OEM_5');\r\n    define(89 /* US_CLOSE_SQUARE_BRACKET */, ']', ']', 'OEM_6');\r\n    define(90 /* US_QUOTE */, '\\'', '\\'', 'OEM_7');\r\n    define(91 /* OEM_8 */, 'OEM_8');\r\n    define(92 /* OEM_102 */, 'OEM_102');\r\n    define(93 /* NUMPAD_0 */, 'NumPad0');\r\n    define(94 /* NUMPAD_1 */, 'NumPad1');\r\n    define(95 /* NUMPAD_2 */, 'NumPad2');\r\n    define(96 /* NUMPAD_3 */, 'NumPad3');\r\n    define(97 /* NUMPAD_4 */, 'NumPad4');\r\n    define(98 /* NUMPAD_5 */, 'NumPad5');\r\n    define(99 /* NUMPAD_6 */, 'NumPad6');\r\n    define(100 /* NUMPAD_7 */, 'NumPad7');\r\n    define(101 /* NUMPAD_8 */, 'NumPad8');\r\n    define(102 /* NUMPAD_9 */, 'NumPad9');\r\n    define(103 /* NUMPAD_MULTIPLY */, 'NumPad_Multiply');\r\n    define(104 /* NUMPAD_ADD */, 'NumPad_Add');\r\n    define(105 /* NUMPAD_SEPARATOR */, 'NumPad_Separator');\r\n    define(106 /* NUMPAD_SUBTRACT */, 'NumPad_Subtract');\r\n    define(107 /* NUMPAD_DECIMAL */, 'NumPad_Decimal');\r\n    define(108 /* NUMPAD_DIVIDE */, 'NumPad_Divide');\r\n})();\r\nvar KeyCodeUtils;\r\n(function (KeyCodeUtils) {\r\n    function toString(keyCode) {\r\n        return uiMap.keyCodeToStr(keyCode);\r\n    }\r\n    KeyCodeUtils.toString = toString;\r\n    function fromString(key) {\r\n        return uiMap.strToKeyCode(key);\r\n    }\r\n    KeyCodeUtils.fromString = fromString;\r\n    function toUserSettingsUS(keyCode) {\r\n        return userSettingsUSMap.keyCodeToStr(keyCode);\r\n    }\r\n    KeyCodeUtils.toUserSettingsUS = toUserSettingsUS;\r\n    function toUserSettingsGeneral(keyCode) {\r\n        return userSettingsGeneralMap.keyCodeToStr(keyCode);\r\n    }\r\n    KeyCodeUtils.toUserSettingsGeneral = toUserSettingsGeneral;\r\n    function fromUserSettings(key) {\r\n        return userSettingsUSMap.strToKeyCode(key) || userSettingsGeneralMap.strToKeyCode(key);\r\n    }\r\n    KeyCodeUtils.fromUserSettings = fromUserSettings;\r\n})(KeyCodeUtils || (KeyCodeUtils = {}));\r\nfunction KeyChord(firstPart, secondPart) {\r\n    var chordPart = ((secondPart & 0x0000FFFF) << 16) >>> 0;\r\n    return (firstPart | chordPart) >>> 0;\r\n}\r\nfunction createKeybinding(keybinding, OS) {\r\n    if (keybinding === 0) {\r\n        return null;\r\n    }\r\n    var firstPart = (keybinding & 0x0000FFFF) >>> 0;\r\n    var chordPart = (keybinding & 0xFFFF0000) >>> 16;\r\n    if (chordPart !== 0) {\r\n        return new ChordKeybinding([\r\n            createSimpleKeybinding(firstPart, OS),\r\n            createSimpleKeybinding(chordPart, OS)\r\n        ]);\r\n    }\r\n    return new ChordKeybinding([createSimpleKeybinding(firstPart, OS)]);\r\n}\r\nfunction createSimpleKeybinding(keybinding, OS) {\r\n    var ctrlCmd = (keybinding & 2048 /* CtrlCmd */ ? true : false);\r\n    var winCtrl = (keybinding & 256 /* WinCtrl */ ? true : false);\r\n    var ctrlKey = (OS === 2 /* Macintosh */ ? winCtrl : ctrlCmd);\r\n    var shiftKey = (keybinding & 1024 /* Shift */ ? true : false);\r\n    var altKey = (keybinding & 512 /* Alt */ ? true : false);\r\n    var metaKey = (OS === 2 /* Macintosh */ ? ctrlCmd : winCtrl);\r\n    var keyCode = (keybinding & 255 /* KeyCode */);\r\n    return new SimpleKeybinding(ctrlKey, shiftKey, altKey, metaKey, keyCode);\r\n}\r\nvar SimpleKeybinding = /** @class */ (function () {\r\n    function SimpleKeybinding(ctrlKey, shiftKey, altKey, metaKey, keyCode) {\r\n        this.ctrlKey = ctrlKey;\r\n        this.shiftKey = shiftKey;\r\n        this.altKey = altKey;\r\n        this.metaKey = metaKey;\r\n        this.keyCode = keyCode;\r\n    }\r\n    SimpleKeybinding.prototype.equals = function (other) {\r\n        return (this.ctrlKey === other.ctrlKey\r\n            && this.shiftKey === other.shiftKey\r\n            && this.altKey === other.altKey\r\n            && this.metaKey === other.metaKey\r\n            && this.keyCode === other.keyCode);\r\n    };\r\n    SimpleKeybinding.prototype.isModifierKey = function () {\r\n        return (this.keyCode === 0 /* Unknown */\r\n            || this.keyCode === 5 /* Ctrl */\r\n            || this.keyCode === 57 /* Meta */\r\n            || this.keyCode === 6 /* Alt */\r\n            || this.keyCode === 4 /* Shift */);\r\n    };\r\n    SimpleKeybinding.prototype.toChord = function () {\r\n        return new ChordKeybinding([this]);\r\n    };\r\n    /**\r\n     * Does this keybinding refer to the key code of a modifier and it also has the modifier flag?\r\n     */\r\n    SimpleKeybinding.prototype.isDuplicateModifierCase = function () {\r\n        return ((this.ctrlKey && this.keyCode === 5 /* Ctrl */)\r\n            || (this.shiftKey && this.keyCode === 4 /* Shift */)\r\n            || (this.altKey && this.keyCode === 6 /* Alt */)\r\n            || (this.metaKey && this.keyCode === 57 /* Meta */));\r\n    };\r\n    return SimpleKeybinding;\r\n}());\r\n\r\nvar ChordKeybinding = /** @class */ (function () {\r\n    function ChordKeybinding(parts) {\r\n        if (parts.length === 0) {\r\n            throw Object(_errors_js__WEBPACK_IMPORTED_MODULE_0__[\"illegalArgument\"])(\"parts\");\r\n        }\r\n        this.parts = parts;\r\n    }\r\n    ChordKeybinding.prototype.equals = function (other) {\r\n        if (other === null) {\r\n            return false;\r\n        }\r\n        if (this.parts.length !== other.parts.length) {\r\n            return false;\r\n        }\r\n        for (var i = 0; i < this.parts.length; i++) {\r\n            if (!this.parts[i].equals(other.parts[i])) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    };\r\n    return ChordKeybinding;\r\n}());\r\n\r\nvar ResolvedKeybindingPart = /** @class */ (function () {\r\n    function ResolvedKeybindingPart(ctrlKey, shiftKey, altKey, metaKey, kbLabel, kbAriaLabel) {\r\n        this.ctrlKey = ctrlKey;\r\n        this.shiftKey = shiftKey;\r\n        this.altKey = altKey;\r\n        this.metaKey = metaKey;\r\n        this.keyLabel = kbLabel;\r\n        this.keyAriaLabel = kbAriaLabel;\r\n    }\r\n    return ResolvedKeybindingPart;\r\n}());\r\n\r\n/**\r\n * A resolved keybinding. Can be a simple keybinding or a chord keybinding.\r\n */\r\nvar ResolvedKeybinding = /** @class */ (function () {\r\n    function ResolvedKeybinding() {\r\n    }\r\n    return ResolvedKeybinding;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/keyCodes.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/lifecycle.js":
-/*!********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/lifecycle.js ***!
-  \********************************************************************/
-/*! exports provided: isDisposable, dispose, combinedDisposable, toDisposable, DisposableStore, Disposable, MutableDisposable, ImmortalReference */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isDisposable\", function() { return isDisposable; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"dispose\", function() { return dispose; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"combinedDisposable\", function() { return combinedDisposable; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"toDisposable\", function() { return toDisposable; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DisposableStore\", function() { return DisposableStore; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Disposable\", function() { return Disposable; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MutableDisposable\", function() { return MutableDisposable; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ImmortalReference\", function() { return ImmortalReference; });\n/**\r\n * Enables logging of potentially leaked disposables.\r\n *\r\n * A disposable is considered leaked if it is not disposed or not registered as the child of\r\n * another disposable. This tracking is very simple an only works for classes that either\r\n * extend Disposable or use a DisposableStore. This means there are a lot of false positives.\r\n */\r\nvar TRACK_DISPOSABLES = false;\r\nvar __is_disposable_tracked__ = '__is_disposable_tracked__';\r\nfunction markTracked(x) {\r\n    if (!TRACK_DISPOSABLES) {\r\n        return;\r\n    }\r\n    if (x && x !== Disposable.None) {\r\n        try {\r\n            x[__is_disposable_tracked__] = true;\r\n        }\r\n        catch (_a) {\r\n            // noop\r\n        }\r\n    }\r\n}\r\nfunction trackDisposable(x) {\r\n    if (!TRACK_DISPOSABLES) {\r\n        return x;\r\n    }\r\n    var stack = new Error('Potentially leaked disposable').stack;\r\n    setTimeout(function () {\r\n        if (!x[__is_disposable_tracked__]) {\r\n            console.log(stack);\r\n        }\r\n    }, 3000);\r\n    return x;\r\n}\r\nfunction isDisposable(thing) {\r\n    return typeof thing.dispose === 'function'\r\n        && thing.dispose.length === 0;\r\n}\r\nfunction dispose(disposables) {\r\n    if (Array.isArray(disposables)) {\r\n        disposables.forEach(function (d) {\r\n            if (d) {\r\n                markTracked(d);\r\n                d.dispose();\r\n            }\r\n        });\r\n        return [];\r\n    }\r\n    else if (disposables) {\r\n        markTracked(disposables);\r\n        disposables.dispose();\r\n        return disposables;\r\n    }\r\n    else {\r\n        return undefined;\r\n    }\r\n}\r\nfunction combinedDisposable() {\r\n    var disposables = [];\r\n    for (var _i = 0; _i < arguments.length; _i++) {\r\n        disposables[_i] = arguments[_i];\r\n    }\r\n    disposables.forEach(markTracked);\r\n    return trackDisposable({ dispose: function () { return dispose(disposables); } });\r\n}\r\nfunction toDisposable(fn) {\r\n    var self = trackDisposable({\r\n        dispose: function () {\r\n            markTracked(self);\r\n            fn();\r\n        }\r\n    });\r\n    return self;\r\n}\r\nvar DisposableStore = /** @class */ (function () {\r\n    function DisposableStore() {\r\n        this._toDispose = new Set();\r\n        this._isDisposed = false;\r\n    }\r\n    /**\r\n     * Dispose of all registered disposables and mark this object as disposed.\r\n     *\r\n     * Any future disposables added to this object will be disposed of on `add`.\r\n     */\r\n    DisposableStore.prototype.dispose = function () {\r\n        if (this._isDisposed) {\r\n            return;\r\n        }\r\n        markTracked(this);\r\n        this._isDisposed = true;\r\n        this.clear();\r\n    };\r\n    /**\r\n     * Dispose of all registered disposables but do not mark this object as disposed.\r\n     */\r\n    DisposableStore.prototype.clear = function () {\r\n        this._toDispose.forEach(function (item) { return item.dispose(); });\r\n        this._toDispose.clear();\r\n    };\r\n    DisposableStore.prototype.add = function (t) {\r\n        if (!t) {\r\n            return t;\r\n        }\r\n        if (t === this) {\r\n            throw new Error('Cannot register a disposable on itself!');\r\n        }\r\n        markTracked(t);\r\n        if (this._isDisposed) {\r\n            console.warn(new Error('Trying to add a disposable to a DisposableStore that has already been disposed of. The added object will be leaked!').stack);\r\n        }\r\n        else {\r\n            this._toDispose.add(t);\r\n        }\r\n        return t;\r\n    };\r\n    return DisposableStore;\r\n}());\r\n\r\nvar Disposable = /** @class */ (function () {\r\n    function Disposable() {\r\n        this._store = new DisposableStore();\r\n        trackDisposable(this);\r\n    }\r\n    Disposable.prototype.dispose = function () {\r\n        markTracked(this);\r\n        this._store.dispose();\r\n    };\r\n    Disposable.prototype._register = function (t) {\r\n        if (t === this) {\r\n            throw new Error('Cannot register a disposable on itself!');\r\n        }\r\n        return this._store.add(t);\r\n    };\r\n    Disposable.None = Object.freeze({ dispose: function () { } });\r\n    return Disposable;\r\n}());\r\n\r\n/**\r\n * Manages the lifecycle of a disposable value that may be changed.\r\n *\r\n * This ensures that when the disposable value is changed, the previously held disposable is disposed of. You can\r\n * also register a `MutableDisposable` on a `Disposable` to ensure it is automatically cleaned up.\r\n */\r\nvar MutableDisposable = /** @class */ (function () {\r\n    function MutableDisposable() {\r\n        this._isDisposed = false;\r\n        trackDisposable(this);\r\n    }\r\n    Object.defineProperty(MutableDisposable.prototype, \"value\", {\r\n        get: function () {\r\n            return this._isDisposed ? undefined : this._value;\r\n        },\r\n        set: function (value) {\r\n            if (this._isDisposed || value === this._value) {\r\n                return;\r\n            }\r\n            if (this._value) {\r\n                this._value.dispose();\r\n            }\r\n            if (value) {\r\n                markTracked(value);\r\n            }\r\n            this._value = value;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    MutableDisposable.prototype.clear = function () {\r\n        this.value = undefined;\r\n    };\r\n    MutableDisposable.prototype.dispose = function () {\r\n        this._isDisposed = true;\r\n        markTracked(this);\r\n        if (this._value) {\r\n            this._value.dispose();\r\n        }\r\n        this._value = undefined;\r\n    };\r\n    return MutableDisposable;\r\n}());\r\n\r\nvar ImmortalReference = /** @class */ (function () {\r\n    function ImmortalReference(object) {\r\n        this.object = object;\r\n    }\r\n    ImmortalReference.prototype.dispose = function () { };\r\n    return ImmortalReference;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/lifecycle.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/linkedList.js":
-/*!*********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/linkedList.js ***!
-  \*********************************************************************/
-/*! exports provided: LinkedList */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"LinkedList\", function() { return LinkedList; });\n/* harmony import */ var _iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./iterator.js */ \"./node_modules/monaco-editor/esm/vs/base/common/iterator.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\nvar Node = /** @class */ (function () {\r\n    function Node(element) {\r\n        this.element = element;\r\n        this.next = Node.Undefined;\r\n        this.prev = Node.Undefined;\r\n    }\r\n    Node.Undefined = new Node(undefined);\r\n    return Node;\r\n}());\r\nvar LinkedList = /** @class */ (function () {\r\n    function LinkedList() {\r\n        this._first = Node.Undefined;\r\n        this._last = Node.Undefined;\r\n        this._size = 0;\r\n    }\r\n    Object.defineProperty(LinkedList.prototype, \"size\", {\r\n        get: function () {\r\n            return this._size;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    LinkedList.prototype.isEmpty = function () {\r\n        return this._first === Node.Undefined;\r\n    };\r\n    LinkedList.prototype.clear = function () {\r\n        this._first = Node.Undefined;\r\n        this._last = Node.Undefined;\r\n        this._size = 0;\r\n    };\r\n    LinkedList.prototype.unshift = function (element) {\r\n        return this._insert(element, false);\r\n    };\r\n    LinkedList.prototype.push = function (element) {\r\n        return this._insert(element, true);\r\n    };\r\n    LinkedList.prototype._insert = function (element, atTheEnd) {\r\n        var _this = this;\r\n        var newNode = new Node(element);\r\n        if (this._first === Node.Undefined) {\r\n            this._first = newNode;\r\n            this._last = newNode;\r\n        }\r\n        else if (atTheEnd) {\r\n            // push\r\n            var oldLast = this._last;\r\n            this._last = newNode;\r\n            newNode.prev = oldLast;\r\n            oldLast.next = newNode;\r\n        }\r\n        else {\r\n            // unshift\r\n            var oldFirst = this._first;\r\n            this._first = newNode;\r\n            newNode.next = oldFirst;\r\n            oldFirst.prev = newNode;\r\n        }\r\n        this._size += 1;\r\n        var didRemove = false;\r\n        return function () {\r\n            if (!didRemove) {\r\n                didRemove = true;\r\n                _this._remove(newNode);\r\n            }\r\n        };\r\n    };\r\n    LinkedList.prototype.shift = function () {\r\n        if (this._first === Node.Undefined) {\r\n            return undefined;\r\n        }\r\n        else {\r\n            var res = this._first.element;\r\n            this._remove(this._first);\r\n            return res;\r\n        }\r\n    };\r\n    LinkedList.prototype.pop = function () {\r\n        if (this._last === Node.Undefined) {\r\n            return undefined;\r\n        }\r\n        else {\r\n            var res = this._last.element;\r\n            this._remove(this._last);\r\n            return res;\r\n        }\r\n    };\r\n    LinkedList.prototype._remove = function (node) {\r\n        if (node.prev !== Node.Undefined && node.next !== Node.Undefined) {\r\n            // middle\r\n            var anchor = node.prev;\r\n            anchor.next = node.next;\r\n            node.next.prev = anchor;\r\n        }\r\n        else if (node.prev === Node.Undefined && node.next === Node.Undefined) {\r\n            // only node\r\n            this._first = Node.Undefined;\r\n            this._last = Node.Undefined;\r\n        }\r\n        else if (node.next === Node.Undefined) {\r\n            // last\r\n            this._last = this._last.prev;\r\n            this._last.next = Node.Undefined;\r\n        }\r\n        else if (node.prev === Node.Undefined) {\r\n            // first\r\n            this._first = this._first.next;\r\n            this._first.prev = Node.Undefined;\r\n        }\r\n        // done\r\n        this._size -= 1;\r\n    };\r\n    LinkedList.prototype.iterator = function () {\r\n        var element;\r\n        var node = this._first;\r\n        return {\r\n            next: function () {\r\n                if (node === Node.Undefined) {\r\n                    return _iterator_js__WEBPACK_IMPORTED_MODULE_0__[\"FIN\"];\r\n                }\r\n                if (!element) {\r\n                    element = { done: false, value: node.element };\r\n                }\r\n                else {\r\n                    element.value = node.element;\r\n                }\r\n                node = node.next;\r\n                return element;\r\n            }\r\n        };\r\n    };\r\n    LinkedList.prototype.toArray = function () {\r\n        var result = [];\r\n        for (var node = this._first; node !== Node.Undefined; node = node.next) {\r\n            result.push(node.element);\r\n        }\r\n        return result;\r\n    };\r\n    return LinkedList;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/linkedList.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/platform.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/platform.js ***!
-  \*******************************************************************/
-/*! exports provided: isWindows, isMacintosh, isLinux, isNative, isWeb, isIOS, globals, setImmediate, OS */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(process, global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isWindows\", function() { return isWindows; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isMacintosh\", function() { return isMacintosh; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isLinux\", function() { return isLinux; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isNative\", function() { return isNative; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isWeb\", function() { return isWeb; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isIOS\", function() { return isIOS; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"globals\", function() { return globals; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"setImmediate\", function() { return setImmediate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"OS\", function() { return OS; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar LANGUAGE_DEFAULT = 'en';\r\nvar _isWindows = false;\r\nvar _isMacintosh = false;\r\nvar _isLinux = false;\r\nvar _isNative = false;\r\nvar _isWeb = false;\r\nvar _isIOS = false;\r\nvar _locale = undefined;\r\nvar _language = LANGUAGE_DEFAULT;\r\nvar _translationsConfigFile = undefined;\r\nvar _userAgent = undefined;\r\nvar isElectronRenderer = (typeof process !== 'undefined' && typeof process.versions !== 'undefined' && typeof process.versions.electron !== 'undefined' && process.type === 'renderer');\r\n// OS detection\r\nif (typeof navigator === 'object' && !isElectronRenderer) {\r\n    _userAgent = navigator.userAgent;\r\n    _isWindows = _userAgent.indexOf('Windows') >= 0;\r\n    _isMacintosh = _userAgent.indexOf('Macintosh') >= 0;\r\n    _isIOS = _userAgent.indexOf('Macintosh') >= 0 && !!navigator.maxTouchPoints && navigator.maxTouchPoints > 0;\r\n    _isLinux = _userAgent.indexOf('Linux') >= 0;\r\n    _isWeb = true;\r\n    _locale = navigator.language;\r\n    _language = _locale;\r\n}\r\nelse if (typeof process === 'object') {\r\n    _isWindows = (process.platform === 'win32');\r\n    _isMacintosh = (process.platform === 'darwin');\r\n    _isLinux = (process.platform === 'linux');\r\n    _locale = LANGUAGE_DEFAULT;\r\n    _language = LANGUAGE_DEFAULT;\r\n    var rawNlsConfig = process.env['VSCODE_NLS_CONFIG'];\r\n    if (rawNlsConfig) {\r\n        try {\r\n            var nlsConfig = JSON.parse(rawNlsConfig);\r\n            var resolved = nlsConfig.availableLanguages['*'];\r\n            _locale = nlsConfig.locale;\r\n            // VSCode's default language is 'en'\r\n            _language = resolved ? resolved : LANGUAGE_DEFAULT;\r\n            _translationsConfigFile = nlsConfig._translationsConfigFile;\r\n        }\r\n        catch (e) {\r\n        }\r\n    }\r\n    _isNative = true;\r\n}\r\nvar _platform = 0 /* Web */;\r\nif (_isMacintosh) {\r\n    _platform = 1 /* Mac */;\r\n}\r\nelse if (_isWindows) {\r\n    _platform = 3 /* Windows */;\r\n}\r\nelse if (_isLinux) {\r\n    _platform = 2 /* Linux */;\r\n}\r\nvar isWindows = _isWindows;\r\nvar isMacintosh = _isMacintosh;\r\nvar isLinux = _isLinux;\r\nvar isNative = _isNative;\r\nvar isWeb = _isWeb;\r\nvar isIOS = _isIOS;\r\nvar _globals = (typeof self === 'object' ? self : typeof global === 'object' ? global : {});\r\nvar globals = _globals;\r\nvar setImmediate = (function defineSetImmediate() {\r\n    if (globals.setImmediate) {\r\n        return globals.setImmediate.bind(globals);\r\n    }\r\n    if (typeof globals.postMessage === 'function' && !globals.importScripts) {\r\n        var pending_1 = [];\r\n        globals.addEventListener('message', function (e) {\r\n            if (e.data && e.data.vscodeSetImmediateId) {\r\n                for (var i = 0, len = pending_1.length; i < len; i++) {\r\n                    var candidate = pending_1[i];\r\n                    if (candidate.id === e.data.vscodeSetImmediateId) {\r\n                        pending_1.splice(i, 1);\r\n                        candidate.callback();\r\n                        return;\r\n                    }\r\n                }\r\n            }\r\n        });\r\n        var lastId_1 = 0;\r\n        return function (callback) {\r\n            var myId = ++lastId_1;\r\n            pending_1.push({\r\n                id: myId,\r\n                callback: callback\r\n            });\r\n            globals.postMessage({ vscodeSetImmediateId: myId }, '*');\r\n        };\r\n    }\r\n    if (typeof process !== 'undefined' && typeof process.nextTick === 'function') {\r\n        return process.nextTick.bind(process);\r\n    }\r\n    var _promise = Promise.resolve();\r\n    return function (callback) { return _promise.then(callback); };\r\n})();\r\nvar OS = (_isMacintosh ? 2 /* Macintosh */ : (_isWindows ? 1 /* Windows */ : 3 /* Linux */));\r\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../process/browser.js */ \"./node_modules/process/browser.js\"), __webpack_require__(/*! ./../../../../../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/platform.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/strings.js":
-/*!******************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/strings.js ***!
-  \******************************************************************/
-/*! exports provided: isFalsyOrWhitespace, pad, format, escape, escapeRegExpCharacters, trim, ltrim, rtrim, convertSimple2RegExpPattern, startsWith, endsWith, createRegExp, regExpLeadsToEndlessLoop, regExpFlags, firstNonWhitespaceIndex, getLeadingWhitespace, lastNonWhitespaceIndex, compare, compareIgnoreCase, isLowerAsciiLetter, isUpperAsciiLetter, equalsIgnoreCase, startsWithIgnoreCase, commonPrefixLength, commonSuffixLength, isHighSurrogate, isLowSurrogate, getNextCodePoint, nextCharLength, prevCharLength, containsRTL, containsEmoji, isBasicASCII, containsFullWidthCharacter, isFullWidthCharacter, isEmojiImprecise, UTF8_BOM_CHARACTER, startsWithUTF8BOM, safeBtoa, repeat, containsUppercaseCharacter, singleLetterHash, getGraphemeBreakType, breakBetweenGraphemeBreakType */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isFalsyOrWhitespace\", function() { return isFalsyOrWhitespace; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"pad\", function() { return pad; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"format\", function() { return format; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"escape\", function() { return escape; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"escapeRegExpCharacters\", function() { return escapeRegExpCharacters; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"trim\", function() { return trim; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ltrim\", function() { return ltrim; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"rtrim\", function() { return rtrim; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"convertSimple2RegExpPattern\", function() { return convertSimple2RegExpPattern; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"startsWith\", function() { return startsWith; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"endsWith\", function() { return endsWith; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createRegExp\", function() { return createRegExp; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"regExpLeadsToEndlessLoop\", function() { return regExpLeadsToEndlessLoop; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"regExpFlags\", function() { return regExpFlags; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"firstNonWhitespaceIndex\", function() { return firstNonWhitespaceIndex; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getLeadingWhitespace\", function() { return getLeadingWhitespace; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"lastNonWhitespaceIndex\", function() { return lastNonWhitespaceIndex; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"compare\", function() { return compare; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"compareIgnoreCase\", function() { return compareIgnoreCase; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isLowerAsciiLetter\", function() { return isLowerAsciiLetter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isUpperAsciiLetter\", function() { return isUpperAsciiLetter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"equalsIgnoreCase\", function() { return equalsIgnoreCase; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"startsWithIgnoreCase\", function() { return startsWithIgnoreCase; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"commonPrefixLength\", function() { return commonPrefixLength; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"commonSuffixLength\", function() { return commonSuffixLength; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isHighSurrogate\", function() { return isHighSurrogate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isLowSurrogate\", function() { return isLowSurrogate; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getNextCodePoint\", function() { return getNextCodePoint; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"nextCharLength\", function() { return nextCharLength; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"prevCharLength\", function() { return prevCharLength; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"containsRTL\", function() { return containsRTL; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"containsEmoji\", function() { return containsEmoji; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isBasicASCII\", function() { return isBasicASCII; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"containsFullWidthCharacter\", function() { return containsFullWidthCharacter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isFullWidthCharacter\", function() { return isFullWidthCharacter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isEmojiImprecise\", function() { return isEmojiImprecise; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"UTF8_BOM_CHARACTER\", function() { return UTF8_BOM_CHARACTER; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"startsWithUTF8BOM\", function() { return startsWithUTF8BOM; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"safeBtoa\", function() { return safeBtoa; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"repeat\", function() { return repeat; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"containsUppercaseCharacter\", function() { return containsUppercaseCharacter; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"singleLetterHash\", function() { return singleLetterHash; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getGraphemeBreakType\", function() { return getGraphemeBreakType; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"breakBetweenGraphemeBreakType\", function() { return breakBetweenGraphemeBreakType; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nfunction isFalsyOrWhitespace(str) {\r\n    if (!str || typeof str !== 'string') {\r\n        return true;\r\n    }\r\n    return str.trim().length === 0;\r\n}\r\n/**\r\n * @returns the provided number with the given number of preceding zeros.\r\n */\r\nfunction pad(n, l, char) {\r\n    if (char === void 0) { char = '0'; }\r\n    var str = '' + n;\r\n    var r = [str];\r\n    for (var i = str.length; i < l; i++) {\r\n        r.push(char);\r\n    }\r\n    return r.reverse().join('');\r\n}\r\nvar _formatRegexp = /{(\\d+)}/g;\r\n/**\r\n * Helper to produce a string with a variable number of arguments. Insert variable segments\r\n * into the string using the {n} notation where N is the index of the argument following the string.\r\n * @param value string to which formatting is applied\r\n * @param args replacements for {n}-entries\r\n */\r\nfunction format(value) {\r\n    var args = [];\r\n    for (var _i = 1; _i < arguments.length; _i++) {\r\n        args[_i - 1] = arguments[_i];\r\n    }\r\n    if (args.length === 0) {\r\n        return value;\r\n    }\r\n    return value.replace(_formatRegexp, function (match, group) {\r\n        var idx = parseInt(group, 10);\r\n        return isNaN(idx) || idx < 0 || idx >= args.length ?\r\n            match :\r\n            args[idx];\r\n    });\r\n}\r\n/**\r\n * Converts HTML characters inside the string to use entities instead. Makes the string safe from\r\n * being used e.g. in HTMLElement.innerHTML.\r\n */\r\nfunction escape(html) {\r\n    return html.replace(/[<>&]/g, function (match) {\r\n        switch (match) {\r\n            case '<': return '&lt;';\r\n            case '>': return '&gt;';\r\n            case '&': return '&amp;';\r\n            default: return match;\r\n        }\r\n    });\r\n}\r\n/**\r\n * Escapes regular expression characters in a given string\r\n */\r\nfunction escapeRegExpCharacters(value) {\r\n    return value.replace(/[\\\\\\{\\}\\*\\+\\?\\|\\^\\$\\.\\[\\]\\(\\)]/g, '\\\\$&');\r\n}\r\n/**\r\n * Removes all occurrences of needle from the beginning and end of haystack.\r\n * @param haystack string to trim\r\n * @param needle the thing to trim (default is a blank)\r\n */\r\nfunction trim(haystack, needle) {\r\n    if (needle === void 0) { needle = ' '; }\r\n    var trimmed = ltrim(haystack, needle);\r\n    return rtrim(trimmed, needle);\r\n}\r\n/**\r\n * Removes all occurrences of needle from the beginning of haystack.\r\n * @param haystack string to trim\r\n * @param needle the thing to trim\r\n */\r\nfunction ltrim(haystack, needle) {\r\n    if (!haystack || !needle) {\r\n        return haystack;\r\n    }\r\n    var needleLen = needle.length;\r\n    if (needleLen === 0 || haystack.length === 0) {\r\n        return haystack;\r\n    }\r\n    var offset = 0;\r\n    while (haystack.indexOf(needle, offset) === offset) {\r\n        offset = offset + needleLen;\r\n    }\r\n    return haystack.substring(offset);\r\n}\r\n/**\r\n * Removes all occurrences of needle from the end of haystack.\r\n * @param haystack string to trim\r\n * @param needle the thing to trim\r\n */\r\nfunction rtrim(haystack, needle) {\r\n    if (!haystack || !needle) {\r\n        return haystack;\r\n    }\r\n    var needleLen = needle.length, haystackLen = haystack.length;\r\n    if (needleLen === 0 || haystackLen === 0) {\r\n        return haystack;\r\n    }\r\n    var offset = haystackLen, idx = -1;\r\n    while (true) {\r\n        idx = haystack.lastIndexOf(needle, offset - 1);\r\n        if (idx === -1 || idx + needleLen !== offset) {\r\n            break;\r\n        }\r\n        if (idx === 0) {\r\n            return '';\r\n        }\r\n        offset = idx;\r\n    }\r\n    return haystack.substring(0, offset);\r\n}\r\nfunction convertSimple2RegExpPattern(pattern) {\r\n    return pattern.replace(/[\\-\\\\\\{\\}\\+\\?\\|\\^\\$\\.\\,\\[\\]\\(\\)\\#\\s]/g, '\\\\$&').replace(/[\\*]/g, '.*');\r\n}\r\n/**\r\n * Determines if haystack starts with needle.\r\n */\r\nfunction startsWith(haystack, needle) {\r\n    if (haystack.length < needle.length) {\r\n        return false;\r\n    }\r\n    if (haystack === needle) {\r\n        return true;\r\n    }\r\n    for (var i = 0; i < needle.length; i++) {\r\n        if (haystack[i] !== needle[i]) {\r\n            return false;\r\n        }\r\n    }\r\n    return true;\r\n}\r\n/**\r\n * Determines if haystack ends with needle.\r\n */\r\nfunction endsWith(haystack, needle) {\r\n    var diff = haystack.length - needle.length;\r\n    if (diff > 0) {\r\n        return haystack.indexOf(needle, diff) === diff;\r\n    }\r\n    else if (diff === 0) {\r\n        return haystack === needle;\r\n    }\r\n    else {\r\n        return false;\r\n    }\r\n}\r\nfunction createRegExp(searchString, isRegex, options) {\r\n    if (options === void 0) { options = {}; }\r\n    if (!searchString) {\r\n        throw new Error('Cannot create regex from empty string');\r\n    }\r\n    if (!isRegex) {\r\n        searchString = escapeRegExpCharacters(searchString);\r\n    }\r\n    if (options.wholeWord) {\r\n        if (!/\\B/.test(searchString.charAt(0))) {\r\n            searchString = '\\\\b' + searchString;\r\n        }\r\n        if (!/\\B/.test(searchString.charAt(searchString.length - 1))) {\r\n            searchString = searchString + '\\\\b';\r\n        }\r\n    }\r\n    var modifiers = '';\r\n    if (options.global) {\r\n        modifiers += 'g';\r\n    }\r\n    if (!options.matchCase) {\r\n        modifiers += 'i';\r\n    }\r\n    if (options.multiline) {\r\n        modifiers += 'm';\r\n    }\r\n    if (options.unicode) {\r\n        modifiers += 'u';\r\n    }\r\n    return new RegExp(searchString, modifiers);\r\n}\r\nfunction regExpLeadsToEndlessLoop(regexp) {\r\n    // Exit early if it's one of these special cases which are meant to match\r\n    // against an empty string\r\n    if (regexp.source === '^' || regexp.source === '^$' || regexp.source === '$' || regexp.source === '^\\\\s*$') {\r\n        return false;\r\n    }\r\n    // We check against an empty string. If the regular expression doesn't advance\r\n    // (e.g. ends in an endless loop) it will match an empty string.\r\n    var match = regexp.exec('');\r\n    return !!(match && regexp.lastIndex === 0);\r\n}\r\nfunction regExpFlags(regexp) {\r\n    return (regexp.global ? 'g' : '')\r\n        + (regexp.ignoreCase ? 'i' : '')\r\n        + (regexp.multiline ? 'm' : '')\r\n        + (regexp.unicode ? 'u' : '');\r\n}\r\n/**\r\n * Returns first index of the string that is not whitespace.\r\n * If string is empty or contains only whitespaces, returns -1\r\n */\r\nfunction firstNonWhitespaceIndex(str) {\r\n    for (var i = 0, len = str.length; i < len; i++) {\r\n        var chCode = str.charCodeAt(i);\r\n        if (chCode !== 32 /* Space */ && chCode !== 9 /* Tab */) {\r\n            return i;\r\n        }\r\n    }\r\n    return -1;\r\n}\r\n/**\r\n * Returns the leading whitespace of the string.\r\n * If the string contains only whitespaces, returns entire string\r\n */\r\nfunction getLeadingWhitespace(str, start, end) {\r\n    if (start === void 0) { start = 0; }\r\n    if (end === void 0) { end = str.length; }\r\n    for (var i = start; i < end; i++) {\r\n        var chCode = str.charCodeAt(i);\r\n        if (chCode !== 32 /* Space */ && chCode !== 9 /* Tab */) {\r\n            return str.substring(start, i);\r\n        }\r\n    }\r\n    return str.substring(start, end);\r\n}\r\n/**\r\n * Returns last index of the string that is not whitespace.\r\n * If string is empty or contains only whitespaces, returns -1\r\n */\r\nfunction lastNonWhitespaceIndex(str, startIndex) {\r\n    if (startIndex === void 0) { startIndex = str.length - 1; }\r\n    for (var i = startIndex; i >= 0; i--) {\r\n        var chCode = str.charCodeAt(i);\r\n        if (chCode !== 32 /* Space */ && chCode !== 9 /* Tab */) {\r\n            return i;\r\n        }\r\n    }\r\n    return -1;\r\n}\r\nfunction compare(a, b) {\r\n    if (a < b) {\r\n        return -1;\r\n    }\r\n    else if (a > b) {\r\n        return 1;\r\n    }\r\n    else {\r\n        return 0;\r\n    }\r\n}\r\nfunction compareIgnoreCase(a, b) {\r\n    var len = Math.min(a.length, b.length);\r\n    for (var i = 0; i < len; i++) {\r\n        var codeA = a.charCodeAt(i);\r\n        var codeB = b.charCodeAt(i);\r\n        if (codeA === codeB) {\r\n            // equal\r\n            continue;\r\n        }\r\n        if (isUpperAsciiLetter(codeA)) {\r\n            codeA += 32;\r\n        }\r\n        if (isUpperAsciiLetter(codeB)) {\r\n            codeB += 32;\r\n        }\r\n        var diff = codeA - codeB;\r\n        if (diff === 0) {\r\n            // equal -> ignoreCase\r\n            continue;\r\n        }\r\n        else if (isLowerAsciiLetter(codeA) && isLowerAsciiLetter(codeB)) {\r\n            //\r\n            return diff;\r\n        }\r\n        else {\r\n            return compare(a.toLowerCase(), b.toLowerCase());\r\n        }\r\n    }\r\n    if (a.length < b.length) {\r\n        return -1;\r\n    }\r\n    else if (a.length > b.length) {\r\n        return 1;\r\n    }\r\n    else {\r\n        return 0;\r\n    }\r\n}\r\nfunction isLowerAsciiLetter(code) {\r\n    return code >= 97 /* a */ && code <= 122 /* z */;\r\n}\r\nfunction isUpperAsciiLetter(code) {\r\n    return code >= 65 /* A */ && code <= 90 /* Z */;\r\n}\r\nfunction isAsciiLetter(code) {\r\n    return isLowerAsciiLetter(code) || isUpperAsciiLetter(code);\r\n}\r\nfunction equalsIgnoreCase(a, b) {\r\n    return a.length === b.length && doEqualsIgnoreCase(a, b);\r\n}\r\nfunction doEqualsIgnoreCase(a, b, stopAt) {\r\n    if (stopAt === void 0) { stopAt = a.length; }\r\n    for (var i = 0; i < stopAt; i++) {\r\n        var codeA = a.charCodeAt(i);\r\n        var codeB = b.charCodeAt(i);\r\n        if (codeA === codeB) {\r\n            continue;\r\n        }\r\n        // a-z A-Z\r\n        if (isAsciiLetter(codeA) && isAsciiLetter(codeB)) {\r\n            var diff = Math.abs(codeA - codeB);\r\n            if (diff !== 0 && diff !== 32) {\r\n                return false;\r\n            }\r\n        }\r\n        // Any other charcode\r\n        else {\r\n            if (String.fromCharCode(codeA).toLowerCase() !== String.fromCharCode(codeB).toLowerCase()) {\r\n                return false;\r\n            }\r\n        }\r\n    }\r\n    return true;\r\n}\r\nfunction startsWithIgnoreCase(str, candidate) {\r\n    var candidateLength = candidate.length;\r\n    if (candidate.length > str.length) {\r\n        return false;\r\n    }\r\n    return doEqualsIgnoreCase(str, candidate, candidateLength);\r\n}\r\n/**\r\n * @returns the length of the common prefix of the two strings.\r\n */\r\nfunction commonPrefixLength(a, b) {\r\n    var i, len = Math.min(a.length, b.length);\r\n    for (i = 0; i < len; i++) {\r\n        if (a.charCodeAt(i) !== b.charCodeAt(i)) {\r\n            return i;\r\n        }\r\n    }\r\n    return len;\r\n}\r\n/**\r\n * @returns the length of the common suffix of the two strings.\r\n */\r\nfunction commonSuffixLength(a, b) {\r\n    var i, len = Math.min(a.length, b.length);\r\n    var aLastIndex = a.length - 1;\r\n    var bLastIndex = b.length - 1;\r\n    for (i = 0; i < len; i++) {\r\n        if (a.charCodeAt(aLastIndex - i) !== b.charCodeAt(bLastIndex - i)) {\r\n            return i;\r\n        }\r\n    }\r\n    return len;\r\n}\r\n// --- unicode\r\n// http://en.wikipedia.org/wiki/Surrogate_pair\r\n// Returns the code point starting at a specified index in a string\r\n// Code points U+0000 to U+D7FF and U+E000 to U+FFFF are represented on a single character\r\n// Code points U+10000 to U+10FFFF are represented on two consecutive characters\r\n//export function getUnicodePoint(str:string, index:number, len:number):number {\r\n//\tconst chrCode = str.charCodeAt(index);\r\n//\tif (0xD800 <= chrCode && chrCode <= 0xDBFF && index + 1 < len) {\r\n//\t\tconst nextChrCode = str.charCodeAt(index + 1);\r\n//\t\tif (0xDC00 <= nextChrCode && nextChrCode <= 0xDFFF) {\r\n//\t\t\treturn (chrCode - 0xD800) << 10 + (nextChrCode - 0xDC00) + 0x10000;\r\n//\t\t}\r\n//\t}\r\n//\treturn chrCode;\r\n//}\r\nfunction isHighSurrogate(charCode) {\r\n    return (0xD800 <= charCode && charCode <= 0xDBFF);\r\n}\r\nfunction isLowSurrogate(charCode) {\r\n    return (0xDC00 <= charCode && charCode <= 0xDFFF);\r\n}\r\n/**\r\n * get the code point that begins at offset `offset`\r\n */\r\nfunction getNextCodePoint(str, len, offset) {\r\n    var charCode = str.charCodeAt(offset);\r\n    if (isHighSurrogate(charCode) && offset + 1 < len) {\r\n        var nextCharCode = str.charCodeAt(offset + 1);\r\n        if (isLowSurrogate(nextCharCode)) {\r\n            return ((charCode - 0xD800) << 10) + (nextCharCode - 0xDC00) + 0x10000;\r\n        }\r\n    }\r\n    return charCode;\r\n}\r\n/**\r\n * get the code point that ends right before offset `offset`\r\n */\r\nfunction getPrevCodePoint(str, offset) {\r\n    var charCode = str.charCodeAt(offset - 1);\r\n    if (isLowSurrogate(charCode) && offset > 1) {\r\n        var prevCharCode = str.charCodeAt(offset - 2);\r\n        if (isHighSurrogate(prevCharCode)) {\r\n            return ((prevCharCode - 0xD800) << 10) + (charCode - 0xDC00) + 0x10000;\r\n        }\r\n    }\r\n    return charCode;\r\n}\r\nfunction nextCharLength(str, offset) {\r\n    var graphemeBreakTree = GraphemeBreakTree.getInstance();\r\n    var initialOffset = offset;\r\n    var len = str.length;\r\n    var initialCodePoint = getNextCodePoint(str, len, offset);\r\n    offset += (initialCodePoint >= 65536 /* UNICODE_SUPPLEMENTARY_PLANE_BEGIN */ ? 2 : 1);\r\n    var graphemeBreakType = graphemeBreakTree.getGraphemeBreakType(initialCodePoint);\r\n    while (offset < len) {\r\n        var nextCodePoint = getNextCodePoint(str, len, offset);\r\n        var nextGraphemeBreakType = graphemeBreakTree.getGraphemeBreakType(nextCodePoint);\r\n        if (breakBetweenGraphemeBreakType(graphemeBreakType, nextGraphemeBreakType)) {\r\n            break;\r\n        }\r\n        offset += (nextCodePoint >= 65536 /* UNICODE_SUPPLEMENTARY_PLANE_BEGIN */ ? 2 : 1);\r\n        graphemeBreakType = nextGraphemeBreakType;\r\n    }\r\n    return (offset - initialOffset);\r\n}\r\nfunction prevCharLength(str, offset) {\r\n    var graphemeBreakTree = GraphemeBreakTree.getInstance();\r\n    var initialOffset = offset;\r\n    var initialCodePoint = getPrevCodePoint(str, offset);\r\n    offset -= (initialCodePoint >= 65536 /* UNICODE_SUPPLEMENTARY_PLANE_BEGIN */ ? 2 : 1);\r\n    var graphemeBreakType = graphemeBreakTree.getGraphemeBreakType(initialCodePoint);\r\n    while (offset > 0) {\r\n        var prevCodePoint = getPrevCodePoint(str, offset);\r\n        var prevGraphemeBreakType = graphemeBreakTree.getGraphemeBreakType(prevCodePoint);\r\n        if (breakBetweenGraphemeBreakType(prevGraphemeBreakType, graphemeBreakType)) {\r\n            break;\r\n        }\r\n        offset -= (prevCodePoint >= 65536 /* UNICODE_SUPPLEMENTARY_PLANE_BEGIN */ ? 2 : 1);\r\n        graphemeBreakType = prevGraphemeBreakType;\r\n    }\r\n    return (initialOffset - offset);\r\n}\r\n/**\r\n * Generated using https://github.com/alexandrudima/unicode-utils/blob/master/generate-rtl-test.js\r\n */\r\nvar CONTAINS_RTL = /(?:[\\u05BE\\u05C0\\u05C3\\u05C6\\u05D0-\\u05F4\\u0608\\u060B\\u060D\\u061B-\\u064A\\u066D-\\u066F\\u0671-\\u06D5\\u06E5\\u06E6\\u06EE\\u06EF\\u06FA-\\u0710\\u0712-\\u072F\\u074D-\\u07A5\\u07B1-\\u07EA\\u07F4\\u07F5\\u07FA-\\u0815\\u081A\\u0824\\u0828\\u0830-\\u0858\\u085E-\\u08BD\\u200F\\uFB1D\\uFB1F-\\uFB28\\uFB2A-\\uFD3D\\uFD50-\\uFDFC\\uFE70-\\uFEFC]|\\uD802[\\uDC00-\\uDD1B\\uDD20-\\uDE00\\uDE10-\\uDE33\\uDE40-\\uDEE4\\uDEEB-\\uDF35\\uDF40-\\uDFFF]|\\uD803[\\uDC00-\\uDCFF]|\\uD83A[\\uDC00-\\uDCCF\\uDD00-\\uDD43\\uDD50-\\uDFFF]|\\uD83B[\\uDC00-\\uDEBB])/;\r\n/**\r\n * Returns true if `str` contains any Unicode character that is classified as \"R\" or \"AL\".\r\n */\r\nfunction containsRTL(str) {\r\n    return CONTAINS_RTL.test(str);\r\n}\r\n/**\r\n * Generated using https://github.com/alexandrudima/unicode-utils/blob/master/generate-emoji-test.js\r\n */\r\nvar CONTAINS_EMOJI = /(?:[\\u231A\\u231B\\u23F0\\u23F3\\u2600-\\u27BF\\u2B50\\u2B55]|\\uD83C[\\uDDE6-\\uDDFF\\uDF00-\\uDFFF]|\\uD83D[\\uDC00-\\uDE4F\\uDE80-\\uDEFC\\uDFE0-\\uDFEB]|\\uD83E[\\uDD00-\\uDDFF\\uDE70-\\uDE73\\uDE78-\\uDE82\\uDE90-\\uDE95])/;\r\nfunction containsEmoji(str) {\r\n    return CONTAINS_EMOJI.test(str);\r\n}\r\nvar IS_BASIC_ASCII = /^[\\t\\n\\r\\x20-\\x7E]*$/;\r\n/**\r\n * Returns true if `str` contains only basic ASCII characters in the range 32 - 126 (including 32 and 126) or \\n, \\r, \\t\r\n */\r\nfunction isBasicASCII(str) {\r\n    return IS_BASIC_ASCII.test(str);\r\n}\r\nfunction containsFullWidthCharacter(str) {\r\n    for (var i = 0, len = str.length; i < len; i++) {\r\n        if (isFullWidthCharacter(str.charCodeAt(i))) {\r\n            return true;\r\n        }\r\n    }\r\n    return false;\r\n}\r\nfunction isFullWidthCharacter(charCode) {\r\n    // Do a cheap trick to better support wrapping of wide characters, treat them as 2 columns\r\n    // http://jrgraphix.net/research/unicode_blocks.php\r\n    //          2E80 — 2EFF   CJK Radicals Supplement\r\n    //          2F00 — 2FDF   Kangxi Radicals\r\n    //          2FF0 — 2FFF   Ideographic Description Characters\r\n    //          3000 — 303F   CJK Symbols and Punctuation\r\n    //          3040 — 309F   Hiragana\r\n    //          30A0 — 30FF   Katakana\r\n    //          3100 — 312F   Bopomofo\r\n    //          3130 — 318F   Hangul Compatibility Jamo\r\n    //          3190 — 319F   Kanbun\r\n    //          31A0 — 31BF   Bopomofo Extended\r\n    //          31F0 — 31FF   Katakana Phonetic Extensions\r\n    //          3200 — 32FF   Enclosed CJK Letters and Months\r\n    //          3300 — 33FF   CJK Compatibility\r\n    //          3400 — 4DBF   CJK Unified Ideographs Extension A\r\n    //          4DC0 — 4DFF   Yijing Hexagram Symbols\r\n    //          4E00 — 9FFF   CJK Unified Ideographs\r\n    //          A000 — A48F   Yi Syllables\r\n    //          A490 — A4CF   Yi Radicals\r\n    //          AC00 — D7AF   Hangul Syllables\r\n    // [IGNORE] D800 — DB7F   High Surrogates\r\n    // [IGNORE] DB80 — DBFF   High Private Use Surrogates\r\n    // [IGNORE] DC00 — DFFF   Low Surrogates\r\n    // [IGNORE] E000 — F8FF   Private Use Area\r\n    //          F900 — FAFF   CJK Compatibility Ideographs\r\n    // [IGNORE] FB00 — FB4F   Alphabetic Presentation Forms\r\n    // [IGNORE] FB50 — FDFF   Arabic Presentation Forms-A\r\n    // [IGNORE] FE00 — FE0F   Variation Selectors\r\n    // [IGNORE] FE20 — FE2F   Combining Half Marks\r\n    // [IGNORE] FE30 — FE4F   CJK Compatibility Forms\r\n    // [IGNORE] FE50 — FE6F   Small Form Variants\r\n    // [IGNORE] FE70 — FEFF   Arabic Presentation Forms-B\r\n    //          FF00 — FFEF   Halfwidth and Fullwidth Forms\r\n    //               [https://en.wikipedia.org/wiki/Halfwidth_and_fullwidth_forms]\r\n    //               of which FF01 - FF5E fullwidth ASCII of 21 to 7E\r\n    // [IGNORE]    and FF65 - FFDC halfwidth of Katakana and Hangul\r\n    // [IGNORE] FFF0 — FFFF   Specials\r\n    charCode = +charCode; // @perf\r\n    return ((charCode >= 0x2E80 && charCode <= 0xD7AF)\r\n        || (charCode >= 0xF900 && charCode <= 0xFAFF)\r\n        || (charCode >= 0xFF01 && charCode <= 0xFF5E));\r\n}\r\n/**\r\n * A fast function (therefore imprecise) to check if code points are emojis.\r\n * Generated using https://github.com/alexandrudima/unicode-utils/blob/master/generate-emoji-test.js\r\n */\r\nfunction isEmojiImprecise(x) {\r\n    return ((x >= 0x1F1E6 && x <= 0x1F1FF) || (x >= 9728 && x <= 10175) || (x >= 127744 && x <= 128591)\r\n        || (x >= 128640 && x <= 128764) || (x >= 128992 && x <= 129003) || (x >= 129280 && x <= 129535)\r\n        || (x >= 129648 && x <= 129651) || (x >= 129656 && x <= 129666) || (x >= 129680 && x <= 129685));\r\n}\r\n// -- UTF-8 BOM\r\nvar UTF8_BOM_CHARACTER = String.fromCharCode(65279 /* UTF8_BOM */);\r\nfunction startsWithUTF8BOM(str) {\r\n    return !!(str && str.length > 0 && str.charCodeAt(0) === 65279 /* UTF8_BOM */);\r\n}\r\nfunction safeBtoa(str) {\r\n    return btoa(encodeURIComponent(str)); // we use encodeURIComponent because btoa fails for non Latin 1 values\r\n}\r\nfunction repeat(s, count) {\r\n    var result = '';\r\n    for (var i = 0; i < count; i++) {\r\n        result += s;\r\n    }\r\n    return result;\r\n}\r\nfunction containsUppercaseCharacter(target, ignoreEscapedChars) {\r\n    if (ignoreEscapedChars === void 0) { ignoreEscapedChars = false; }\r\n    if (!target) {\r\n        return false;\r\n    }\r\n    if (ignoreEscapedChars) {\r\n        target = target.replace(/\\\\./g, '');\r\n    }\r\n    return target.toLowerCase() !== target;\r\n}\r\n/**\r\n * Produces 'a'-'z', followed by 'A'-'Z'... followed by 'a'-'z', etc.\r\n */\r\nfunction singleLetterHash(n) {\r\n    var LETTERS_CNT = (90 /* Z */ - 65 /* A */ + 1);\r\n    n = n % (2 * LETTERS_CNT);\r\n    if (n < LETTERS_CNT) {\r\n        return String.fromCharCode(97 /* a */ + n);\r\n    }\r\n    return String.fromCharCode(65 /* A */ + n - LETTERS_CNT);\r\n}\r\n//#region Unicode Grapheme Break\r\nfunction getGraphemeBreakType(codePoint) {\r\n    var graphemeBreakTree = GraphemeBreakTree.getInstance();\r\n    return graphemeBreakTree.getGraphemeBreakType(codePoint);\r\n}\r\nfunction breakBetweenGraphemeBreakType(breakTypeA, breakTypeB) {\r\n    // http://www.unicode.org/reports/tr29/#Grapheme_Cluster_Boundary_Rules\r\n    // !!! Let's make the common case a bit faster\r\n    if (breakTypeA === 0 /* Other */) {\r\n        // see https://www.unicode.org/Public/13.0.0/ucd/auxiliary/GraphemeBreakTest-13.0.0d10.html#table\r\n        return (breakTypeB !== 5 /* Extend */ && breakTypeB !== 7 /* SpacingMark */);\r\n    }\r\n    // Do not break between a CR and LF. Otherwise, break before and after controls.\r\n    // GB3                                        CR × LF\r\n    // GB4                       (Control | CR | LF) ÷\r\n    // GB5                                           ÷ (Control | CR | LF)\r\n    if (breakTypeA === 2 /* CR */) {\r\n        if (breakTypeB === 3 /* LF */) {\r\n            return false; // GB3\r\n        }\r\n    }\r\n    if (breakTypeA === 4 /* Control */ || breakTypeA === 2 /* CR */ || breakTypeA === 3 /* LF */) {\r\n        return true; // GB4\r\n    }\r\n    if (breakTypeB === 4 /* Control */ || breakTypeB === 2 /* CR */ || breakTypeB === 3 /* LF */) {\r\n        return true; // GB5\r\n    }\r\n    // Do not break Hangul syllable sequences.\r\n    // GB6                                         L × (L | V | LV | LVT)\r\n    // GB7                                  (LV | V) × (V | T)\r\n    // GB8                                 (LVT | T) × T\r\n    if (breakTypeA === 8 /* L */) {\r\n        if (breakTypeB === 8 /* L */ || breakTypeB === 9 /* V */ || breakTypeB === 11 /* LV */ || breakTypeB === 12 /* LVT */) {\r\n            return false; // GB6\r\n        }\r\n    }\r\n    if (breakTypeA === 11 /* LV */ || breakTypeA === 9 /* V */) {\r\n        if (breakTypeB === 9 /* V */ || breakTypeB === 10 /* T */) {\r\n            return false; // GB7\r\n        }\r\n    }\r\n    if (breakTypeA === 12 /* LVT */ || breakTypeA === 10 /* T */) {\r\n        if (breakTypeB === 10 /* T */) {\r\n            return false; // GB8\r\n        }\r\n    }\r\n    // Do not break before extending characters or ZWJ.\r\n    // GB9                                           × (Extend | ZWJ)\r\n    if (breakTypeB === 5 /* Extend */ || breakTypeB === 13 /* ZWJ */) {\r\n        return false; // GB9\r\n    }\r\n    // The GB9a and GB9b rules only apply to extended grapheme clusters:\r\n    // Do not break before SpacingMarks, or after Prepend characters.\r\n    // GB9a                                          × SpacingMark\r\n    // GB9b                                  Prepend ×\r\n    if (breakTypeB === 7 /* SpacingMark */) {\r\n        return false; // GB9a\r\n    }\r\n    if (breakTypeA === 1 /* Prepend */) {\r\n        return false; // GB9b\r\n    }\r\n    // Do not break within emoji modifier sequences or emoji zwj sequences.\r\n    // GB11    \\p{Extended_Pictographic} Extend* ZWJ × \\p{Extended_Pictographic}\r\n    if (breakTypeA === 13 /* ZWJ */ && breakTypeB === 14 /* Extended_Pictographic */) {\r\n        // Note: we are not implementing the rule entirely here to avoid introducing states\r\n        return false; // GB11\r\n    }\r\n    // GB12                          sot (RI RI)* RI × RI\r\n    // GB13                        [^RI] (RI RI)* RI × RI\r\n    if (breakTypeA === 6 /* Regional_Indicator */ && breakTypeB === 6 /* Regional_Indicator */) {\r\n        // Note: we are not implementing the rule entirely here to avoid introducing states\r\n        return false; // GB12 & GB13\r\n    }\r\n    // GB999                                     Any ÷ Any\r\n    return true;\r\n}\r\nvar GraphemeBreakTree = /** @class */ (function () {\r\n    function GraphemeBreakTree() {\r\n        this._data = getGraphemeBreakRawData();\r\n    }\r\n    GraphemeBreakTree.getInstance = function () {\r\n        if (!GraphemeBreakTree._INSTANCE) {\r\n            GraphemeBreakTree._INSTANCE = new GraphemeBreakTree();\r\n        }\r\n        return GraphemeBreakTree._INSTANCE;\r\n    };\r\n    GraphemeBreakTree.prototype.getGraphemeBreakType = function (codePoint) {\r\n        // !!! Let's make 7bit ASCII a bit faster: 0..31\r\n        if (codePoint < 32) {\r\n            if (codePoint === 10 /* LineFeed */) {\r\n                return 3 /* LF */;\r\n            }\r\n            if (codePoint === 13 /* CarriageReturn */) {\r\n                return 2 /* CR */;\r\n            }\r\n            return 4 /* Control */;\r\n        }\r\n        // !!! Let's make 7bit ASCII a bit faster: 32..126\r\n        if (codePoint < 127) {\r\n            return 0 /* Other */;\r\n        }\r\n        var data = this._data;\r\n        var nodeCount = data.length / 3;\r\n        var nodeIndex = 1;\r\n        while (nodeIndex <= nodeCount) {\r\n            if (codePoint < data[3 * nodeIndex]) {\r\n                // go left\r\n                nodeIndex = 2 * nodeIndex;\r\n            }\r\n            else if (codePoint > data[3 * nodeIndex + 1]) {\r\n                // go right\r\n                nodeIndex = 2 * nodeIndex + 1;\r\n            }\r\n            else {\r\n                // hit\r\n                return data[3 * nodeIndex + 2];\r\n            }\r\n        }\r\n        return 0 /* Other */;\r\n    };\r\n    GraphemeBreakTree._INSTANCE = null;\r\n    return GraphemeBreakTree;\r\n}());\r\nfunction getGraphemeBreakRawData() {\r\n    // generated using https://github.com/alexandrudima/unicode-utils/blob/master/generate-grapheme-break.js\r\n    return JSON.parse('[0,0,0,51592,51592,11,44424,44424,11,72251,72254,5,7150,7150,7,48008,48008,11,55176,55176,11,128420,128420,14,3276,3277,5,9979,9980,14,46216,46216,11,49800,49800,11,53384,53384,11,70726,70726,5,122915,122916,5,129320,129327,14,2558,2558,5,5906,5908,5,9762,9763,14,43360,43388,8,45320,45320,11,47112,47112,11,48904,48904,11,50696,50696,11,52488,52488,11,54280,54280,11,70082,70083,1,71350,71350,7,73111,73111,5,127892,127893,14,128726,128727,14,129473,129474,14,2027,2035,5,2901,2902,5,3784,3789,5,6754,6754,5,8418,8420,5,9877,9877,14,11088,11088,14,44008,44008,5,44872,44872,11,45768,45768,11,46664,46664,11,47560,47560,11,48456,48456,11,49352,49352,11,50248,50248,11,51144,51144,11,52040,52040,11,52936,52936,11,53832,53832,11,54728,54728,11,69811,69814,5,70459,70460,5,71096,71099,7,71998,71998,5,72874,72880,5,119149,119149,7,127374,127374,14,128335,128335,14,128482,128482,14,128765,128767,14,129399,129400,14,129680,129685,14,1476,1477,5,2377,2380,7,2759,2760,5,3137,3140,7,3458,3459,7,4153,4154,5,6432,6434,5,6978,6978,5,7675,7679,5,9723,9726,14,9823,9823,14,9919,9923,14,10035,10036,14,42736,42737,5,43596,43596,5,44200,44200,11,44648,44648,11,45096,45096,11,45544,45544,11,45992,45992,11,46440,46440,11,46888,46888,11,47336,47336,11,47784,47784,11,48232,48232,11,48680,48680,11,49128,49128,11,49576,49576,11,50024,50024,11,50472,50472,11,50920,50920,11,51368,51368,11,51816,51816,11,52264,52264,11,52712,52712,11,53160,53160,11,53608,53608,11,54056,54056,11,54504,54504,11,54952,54952,11,68108,68111,5,69933,69940,5,70197,70197,7,70498,70499,7,70845,70845,5,71229,71229,5,71727,71735,5,72154,72155,5,72344,72345,5,73023,73029,5,94095,94098,5,121403,121452,5,126981,127182,14,127538,127546,14,127990,127990,14,128391,128391,14,128445,128449,14,128500,128505,14,128752,128752,14,129160,129167,14,129356,129356,14,129432,129442,14,129648,129651,14,129751,131069,14,173,173,4,1757,1757,1,2274,2274,1,2494,2494,5,2641,2641,5,2876,2876,5,3014,3016,7,3262,3262,7,3393,3396,5,3570,3571,7,3968,3972,5,4228,4228,7,6086,6086,5,6679,6680,5,6912,6915,5,7080,7081,5,7380,7392,5,8252,8252,14,9096,9096,14,9748,9749,14,9784,9786,14,9833,9850,14,9890,9894,14,9938,9938,14,9999,9999,14,10085,10087,14,12349,12349,14,43136,43137,7,43454,43456,7,43755,43755,7,44088,44088,11,44312,44312,11,44536,44536,11,44760,44760,11,44984,44984,11,45208,45208,11,45432,45432,11,45656,45656,11,45880,45880,11,46104,46104,11,46328,46328,11,46552,46552,11,46776,46776,11,47000,47000,11,47224,47224,11,47448,47448,11,47672,47672,11,47896,47896,11,48120,48120,11,48344,48344,11,48568,48568,11,48792,48792,11,49016,49016,11,49240,49240,11,49464,49464,11,49688,49688,11,49912,49912,11,50136,50136,11,50360,50360,11,50584,50584,11,50808,50808,11,51032,51032,11,51256,51256,11,51480,51480,11,51704,51704,11,51928,51928,11,52152,52152,11,52376,52376,11,52600,52600,11,52824,52824,11,53048,53048,11,53272,53272,11,53496,53496,11,53720,53720,11,53944,53944,11,54168,54168,11,54392,54392,11,54616,54616,11,54840,54840,11,55064,55064,11,65438,65439,5,69633,69633,5,69837,69837,1,70018,70018,7,70188,70190,7,70368,70370,7,70465,70468,7,70712,70719,5,70835,70840,5,70850,70851,5,71132,71133,5,71340,71340,7,71458,71461,5,71985,71989,7,72002,72002,7,72193,72202,5,72281,72283,5,72766,72766,7,72885,72886,5,73104,73105,5,92912,92916,5,113824,113827,4,119173,119179,5,121505,121519,5,125136,125142,5,127279,127279,14,127489,127490,14,127570,127743,14,127900,127901,14,128254,128254,14,128369,128370,14,128400,128400,14,128425,128432,14,128468,128475,14,128489,128494,14,128715,128720,14,128745,128745,14,128759,128760,14,129004,129023,14,129296,129304,14,129340,129342,14,129388,129392,14,129404,129407,14,129454,129455,14,129485,129487,14,129659,129663,14,129719,129727,14,917536,917631,5,13,13,2,1160,1161,5,1564,1564,4,1807,1807,1,2085,2087,5,2363,2363,7,2402,2403,5,2507,2508,7,2622,2624,7,2691,2691,7,2786,2787,5,2881,2884,5,3006,3006,5,3072,3072,5,3170,3171,5,3267,3268,7,3330,3331,7,3406,3406,1,3538,3540,5,3655,3662,5,3897,3897,5,4038,4038,5,4184,4185,5,4352,4447,8,6068,6069,5,6155,6157,5,6448,6449,7,6742,6742,5,6783,6783,5,6966,6970,5,7042,7042,7,7143,7143,7,7212,7219,5,7412,7412,5,8206,8207,4,8294,8303,4,8596,8601,14,9410,9410,14,9742,9742,14,9757,9757,14,9770,9770,14,9794,9794,14,9828,9828,14,9855,9855,14,9882,9882,14,9900,9903,14,9929,9933,14,9963,9967,14,9987,9988,14,10006,10006,14,10062,10062,14,10175,10175,14,11744,11775,5,42607,42607,5,43043,43044,7,43263,43263,5,43444,43445,7,43569,43570,5,43698,43700,5,43766,43766,5,44032,44032,11,44144,44144,11,44256,44256,11,44368,44368,11,44480,44480,11,44592,44592,11,44704,44704,11,44816,44816,11,44928,44928,11,45040,45040,11,45152,45152,11,45264,45264,11,45376,45376,11,45488,45488,11,45600,45600,11,45712,45712,11,45824,45824,11,45936,45936,11,46048,46048,11,46160,46160,11,46272,46272,11,46384,46384,11,46496,46496,11,46608,46608,11,46720,46720,11,46832,46832,11,46944,46944,11,47056,47056,11,47168,47168,11,47280,47280,11,47392,47392,11,47504,47504,11,47616,47616,11,47728,47728,11,47840,47840,11,47952,47952,11,48064,48064,11,48176,48176,11,48288,48288,11,48400,48400,11,48512,48512,11,48624,48624,11,48736,48736,11,48848,48848,11,48960,48960,11,49072,49072,11,49184,49184,11,49296,49296,11,49408,49408,11,49520,49520,11,49632,49632,11,49744,49744,11,49856,49856,11,49968,49968,11,50080,50080,11,50192,50192,11,50304,50304,11,50416,50416,11,50528,50528,11,50640,50640,11,50752,50752,11,50864,50864,11,50976,50976,11,51088,51088,11,51200,51200,11,51312,51312,11,51424,51424,11,51536,51536,11,51648,51648,11,51760,51760,11,51872,51872,11,51984,51984,11,52096,52096,11,52208,52208,11,52320,52320,11,52432,52432,11,52544,52544,11,52656,52656,11,52768,52768,11,52880,52880,11,52992,52992,11,53104,53104,11,53216,53216,11,53328,53328,11,53440,53440,11,53552,53552,11,53664,53664,11,53776,53776,11,53888,53888,11,54000,54000,11,54112,54112,11,54224,54224,11,54336,54336,11,54448,54448,11,54560,54560,11,54672,54672,11,54784,54784,11,54896,54896,11,55008,55008,11,55120,55120,11,64286,64286,5,66272,66272,5,68900,68903,5,69762,69762,7,69817,69818,5,69927,69931,5,70003,70003,5,70070,70078,5,70094,70094,7,70194,70195,7,70206,70206,5,70400,70401,5,70463,70463,7,70475,70477,7,70512,70516,5,70722,70724,5,70832,70832,5,70842,70842,5,70847,70848,5,71088,71089,7,71102,71102,7,71219,71226,5,71231,71232,5,71342,71343,7,71453,71455,5,71463,71467,5,71737,71738,5,71995,71996,5,72000,72000,7,72145,72147,7,72160,72160,5,72249,72249,7,72273,72278,5,72330,72342,5,72752,72758,5,72850,72871,5,72882,72883,5,73018,73018,5,73031,73031,5,73109,73109,5,73461,73462,7,94031,94031,5,94192,94193,7,119142,119142,7,119155,119162,4,119362,119364,5,121476,121476,5,122888,122904,5,123184,123190,5,126976,126979,14,127184,127231,14,127344,127345,14,127405,127461,14,127514,127514,14,127561,127567,14,127778,127779,14,127896,127896,14,127985,127986,14,127995,127999,5,128326,128328,14,128360,128366,14,128378,128378,14,128394,128397,14,128405,128406,14,128422,128423,14,128435,128443,14,128453,128464,14,128479,128480,14,128484,128487,14,128496,128498,14,128640,128709,14,128723,128724,14,128736,128741,14,128747,128748,14,128755,128755,14,128762,128762,14,128981,128991,14,129096,129103,14,129292,129292,14,129311,129311,14,129329,129330,14,129344,129349,14,129360,129374,14,129394,129394,14,129402,129402,14,129413,129425,14,129445,129450,14,129466,129471,14,129483,129483,14,129511,129535,14,129653,129655,14,129667,129670,14,129705,129711,14,129731,129743,14,917505,917505,4,917760,917999,5,10,10,3,127,159,4,768,879,5,1471,1471,5,1536,1541,1,1648,1648,5,1767,1768,5,1840,1866,5,2070,2073,5,2137,2139,5,2307,2307,7,2366,2368,7,2382,2383,7,2434,2435,7,2497,2500,5,2519,2519,5,2563,2563,7,2631,2632,5,2677,2677,5,2750,2752,7,2763,2764,7,2817,2817,5,2879,2879,5,2891,2892,7,2914,2915,5,3008,3008,5,3021,3021,5,3076,3076,5,3146,3149,5,3202,3203,7,3264,3265,7,3271,3272,7,3298,3299,5,3390,3390,5,3402,3404,7,3426,3427,5,3535,3535,5,3544,3550,7,3635,3635,7,3763,3763,7,3893,3893,5,3953,3966,5,3981,3991,5,4145,4145,7,4157,4158,5,4209,4212,5,4237,4237,5,4520,4607,10,5970,5971,5,6071,6077,5,6089,6099,5,6277,6278,5,6439,6440,5,6451,6456,7,6683,6683,5,6744,6750,5,6765,6770,7,6846,6846,5,6964,6964,5,6972,6972,5,7019,7027,5,7074,7077,5,7083,7085,5,7146,7148,7,7154,7155,7,7222,7223,5,7394,7400,5,7416,7417,5,8204,8204,5,8233,8233,4,8288,8292,4,8413,8416,5,8482,8482,14,8986,8987,14,9193,9203,14,9654,9654,14,9733,9733,14,9745,9745,14,9752,9752,14,9760,9760,14,9766,9766,14,9774,9775,14,9792,9792,14,9800,9811,14,9825,9826,14,9831,9831,14,9852,9853,14,9872,9873,14,9880,9880,14,9885,9887,14,9896,9897,14,9906,9916,14,9926,9927,14,9936,9936,14,9941,9960,14,9974,9974,14,9982,9985,14,9992,9997,14,10002,10002,14,10017,10017,14,10055,10055,14,10071,10071,14,10145,10145,14,11013,11015,14,11503,11505,5,12334,12335,5,12951,12951,14,42612,42621,5,43014,43014,5,43047,43047,7,43204,43205,5,43335,43345,5,43395,43395,7,43450,43451,7,43561,43566,5,43573,43574,5,43644,43644,5,43710,43711,5,43758,43759,7,44005,44005,5,44012,44012,7,44060,44060,11,44116,44116,11,44172,44172,11,44228,44228,11,44284,44284,11,44340,44340,11,44396,44396,11,44452,44452,11,44508,44508,11,44564,44564,11,44620,44620,11,44676,44676,11,44732,44732,11,44788,44788,11,44844,44844,11,44900,44900,11,44956,44956,11,45012,45012,11,45068,45068,11,45124,45124,11,45180,45180,11,45236,45236,11,45292,45292,11,45348,45348,11,45404,45404,11,45460,45460,11,45516,45516,11,45572,45572,11,45628,45628,11,45684,45684,11,45740,45740,11,45796,45796,11,45852,45852,11,45908,45908,11,45964,45964,11,46020,46020,11,46076,46076,11,46132,46132,11,46188,46188,11,46244,46244,11,46300,46300,11,46356,46356,11,46412,46412,11,46468,46468,11,46524,46524,11,46580,46580,11,46636,46636,11,46692,46692,11,46748,46748,11,46804,46804,11,46860,46860,11,46916,46916,11,46972,46972,11,47028,47028,11,47084,47084,11,47140,47140,11,47196,47196,11,47252,47252,11,47308,47308,11,47364,47364,11,47420,47420,11,47476,47476,11,47532,47532,11,47588,47588,11,47644,47644,11,47700,47700,11,47756,47756,11,47812,47812,11,47868,47868,11,47924,47924,11,47980,47980,11,48036,48036,11,48092,48092,11,48148,48148,11,48204,48204,11,48260,48260,11,48316,48316,11,48372,48372,11,48428,48428,11,48484,48484,11,48540,48540,11,48596,48596,11,48652,48652,11,48708,48708,11,48764,48764,11,48820,48820,11,48876,48876,11,48932,48932,11,48988,48988,11,49044,49044,11,49100,49100,11,49156,49156,11,49212,49212,11,49268,49268,11,49324,49324,11,49380,49380,11,49436,49436,11,49492,49492,11,49548,49548,11,49604,49604,11,49660,49660,11,49716,49716,11,49772,49772,11,49828,49828,11,49884,49884,11,49940,49940,11,49996,49996,11,50052,50052,11,50108,50108,11,50164,50164,11,50220,50220,11,50276,50276,11,50332,50332,11,50388,50388,11,50444,50444,11,50500,50500,11,50556,50556,11,50612,50612,11,50668,50668,11,50724,50724,11,50780,50780,11,50836,50836,11,50892,50892,11,50948,50948,11,51004,51004,11,51060,51060,11,51116,51116,11,51172,51172,11,51228,51228,11,51284,51284,11,51340,51340,11,51396,51396,11,51452,51452,11,51508,51508,11,51564,51564,11,51620,51620,11,51676,51676,11,51732,51732,11,51788,51788,11,51844,51844,11,51900,51900,11,51956,51956,11,52012,52012,11,52068,52068,11,52124,52124,11,52180,52180,11,52236,52236,11,52292,52292,11,52348,52348,11,52404,52404,11,52460,52460,11,52516,52516,11,52572,52572,11,52628,52628,11,52684,52684,11,52740,52740,11,52796,52796,11,52852,52852,11,52908,52908,11,52964,52964,11,53020,53020,11,53076,53076,11,53132,53132,11,53188,53188,11,53244,53244,11,53300,53300,11,53356,53356,11,53412,53412,11,53468,53468,11,53524,53524,11,53580,53580,11,53636,53636,11,53692,53692,11,53748,53748,11,53804,53804,11,53860,53860,11,53916,53916,11,53972,53972,11,54028,54028,11,54084,54084,11,54140,54140,11,54196,54196,11,54252,54252,11,54308,54308,11,54364,54364,11,54420,54420,11,54476,54476,11,54532,54532,11,54588,54588,11,54644,54644,11,54700,54700,11,54756,54756,11,54812,54812,11,54868,54868,11,54924,54924,11,54980,54980,11,55036,55036,11,55092,55092,11,55148,55148,11,55216,55238,9,65056,65071,5,65529,65531,4,68097,68099,5,68159,68159,5,69446,69456,5,69688,69702,5,69808,69810,7,69815,69816,7,69821,69821,1,69888,69890,5,69932,69932,7,69957,69958,7,70016,70017,5,70067,70069,7,70079,70080,7,70089,70092,5,70095,70095,5,70191,70193,5,70196,70196,5,70198,70199,5,70367,70367,5,70371,70378,5,70402,70403,7,70462,70462,5,70464,70464,5,70471,70472,7,70487,70487,5,70502,70508,5,70709,70711,7,70720,70721,7,70725,70725,7,70750,70750,5,70833,70834,7,70841,70841,7,70843,70844,7,70846,70846,7,70849,70849,7,71087,71087,5,71090,71093,5,71100,71101,5,71103,71104,5,71216,71218,7,71227,71228,7,71230,71230,7,71339,71339,5,71341,71341,5,71344,71349,5,71351,71351,5,71456,71457,7,71462,71462,7,71724,71726,7,71736,71736,7,71984,71984,5,71991,71992,7,71997,71997,7,71999,71999,1,72001,72001,1,72003,72003,5,72148,72151,5,72156,72159,7,72164,72164,7,72243,72248,5,72250,72250,1,72263,72263,5,72279,72280,7,72324,72329,1,72343,72343,7,72751,72751,7,72760,72765,5,72767,72767,5,72873,72873,7,72881,72881,7,72884,72884,7,73009,73014,5,73020,73021,5,73030,73030,1,73098,73102,7,73107,73108,7,73110,73110,7,73459,73460,5,78896,78904,4,92976,92982,5,94033,94087,7,94180,94180,5,113821,113822,5,119141,119141,5,119143,119145,5,119150,119154,5,119163,119170,5,119210,119213,5,121344,121398,5,121461,121461,5,121499,121503,5,122880,122886,5,122907,122913,5,122918,122922,5,123628,123631,5,125252,125258,5,126980,126980,14,127183,127183,14,127245,127247,14,127340,127343,14,127358,127359,14,127377,127386,14,127462,127487,6,127491,127503,14,127535,127535,14,127548,127551,14,127568,127569,14,127744,127777,14,127780,127891,14,127894,127895,14,127897,127899,14,127902,127984,14,127987,127989,14,127991,127994,14,128000,128253,14,128255,128317,14,128329,128334,14,128336,128359,14,128367,128368,14,128371,128377,14,128379,128390,14,128392,128393,14,128398,128399,14,128401,128404,14,128407,128419,14,128421,128421,14,128424,128424,14,128433,128434,14,128444,128444,14,128450,128452,14,128465,128467,14,128476,128478,14,128481,128481,14,128483,128483,14,128488,128488,14,128495,128495,14,128499,128499,14,128506,128591,14,128710,128714,14,128721,128722,14,128725,128725,14,128728,128735,14,128742,128744,14,128746,128746,14,128749,128751,14,128753,128754,14,128756,128758,14,128761,128761,14,128763,128764,14,128884,128895,14,128992,129003,14,129036,129039,14,129114,129119,14,129198,129279,14,129293,129295,14,129305,129310,14,129312,129319,14,129328,129328,14,129331,129338,14,129343,129343,14,129351,129355,14,129357,129359,14,129375,129387,14,129393,129393,14,129395,129398,14,129401,129401,14,129403,129403,14,129408,129412,14,129426,129431,14,129443,129444,14,129451,129453,14,129456,129465,14,129472,129472,14,129475,129482,14,129484,129484,14,129488,129510,14,129536,129647,14,129652,129652,14,129656,129658,14,129664,129666,14,129671,129679,14,129686,129704,14,129712,129718,14,129728,129730,14,129744,129750,14,917504,917504,4,917506,917535,4,917632,917759,4,918000,921599,4,0,9,4,11,12,4,14,31,4,169,169,14,174,174,14,1155,1159,5,1425,1469,5,1473,1474,5,1479,1479,5,1552,1562,5,1611,1631,5,1750,1756,5,1759,1764,5,1770,1773,5,1809,1809,5,1958,1968,5,2045,2045,5,2075,2083,5,2089,2093,5,2259,2273,5,2275,2306,5,2362,2362,5,2364,2364,5,2369,2376,5,2381,2381,5,2385,2391,5,2433,2433,5,2492,2492,5,2495,2496,7,2503,2504,7,2509,2509,5,2530,2531,5,2561,2562,5,2620,2620,5,2625,2626,5,2635,2637,5,2672,2673,5,2689,2690,5,2748,2748,5,2753,2757,5,2761,2761,7,2765,2765,5,2810,2815,5,2818,2819,7,2878,2878,5,2880,2880,7,2887,2888,7,2893,2893,5,2903,2903,5,2946,2946,5,3007,3007,7,3009,3010,7,3018,3020,7,3031,3031,5,3073,3075,7,3134,3136,5,3142,3144,5,3157,3158,5,3201,3201,5,3260,3260,5,3263,3263,5,3266,3266,5,3270,3270,5,3274,3275,7,3285,3286,5,3328,3329,5,3387,3388,5,3391,3392,7,3398,3400,7,3405,3405,5,3415,3415,5,3457,3457,5,3530,3530,5,3536,3537,7,3542,3542,5,3551,3551,5,3633,3633,5,3636,3642,5,3761,3761,5,3764,3772,5,3864,3865,5,3895,3895,5,3902,3903,7,3967,3967,7,3974,3975,5,3993,4028,5,4141,4144,5,4146,4151,5,4155,4156,7,4182,4183,7,4190,4192,5,4226,4226,5,4229,4230,5,4253,4253,5,4448,4519,9,4957,4959,5,5938,5940,5,6002,6003,5,6070,6070,7,6078,6085,7,6087,6088,7,6109,6109,5,6158,6158,4,6313,6313,5,6435,6438,7,6441,6443,7,6450,6450,5,6457,6459,5,6681,6682,7,6741,6741,7,6743,6743,7,6752,6752,5,6757,6764,5,6771,6780,5,6832,6845,5,6847,6848,5,6916,6916,7,6965,6965,5,6971,6971,7,6973,6977,7,6979,6980,7,7040,7041,5,7073,7073,7,7078,7079,7,7082,7082,7,7142,7142,5,7144,7145,5,7149,7149,5,7151,7153,5,7204,7211,7,7220,7221,7,7376,7378,5,7393,7393,7,7405,7405,5,7415,7415,7,7616,7673,5,8203,8203,4,8205,8205,13,8232,8232,4,8234,8238,4,8265,8265,14,8293,8293,4,8400,8412,5,8417,8417,5,8421,8432,5,8505,8505,14,8617,8618,14,9000,9000,14,9167,9167,14,9208,9210,14,9642,9643,14,9664,9664,14,9728,9732,14,9735,9741,14,9743,9744,14,9746,9746,14,9750,9751,14,9753,9756,14,9758,9759,14,9761,9761,14,9764,9765,14,9767,9769,14,9771,9773,14,9776,9783,14,9787,9791,14,9793,9793,14,9795,9799,14,9812,9822,14,9824,9824,14,9827,9827,14,9829,9830,14,9832,9832,14,9851,9851,14,9854,9854,14,9856,9861,14,9874,9876,14,9878,9879,14,9881,9881,14,9883,9884,14,9888,9889,14,9895,9895,14,9898,9899,14,9904,9905,14,9917,9918,14,9924,9925,14,9928,9928,14,9934,9935,14,9937,9937,14,9939,9940,14,9961,9962,14,9968,9973,14,9975,9978,14,9981,9981,14,9986,9986,14,9989,9989,14,9998,9998,14,10000,10001,14,10004,10004,14,10013,10013,14,10024,10024,14,10052,10052,14,10060,10060,14,10067,10069,14,10083,10084,14,10133,10135,14,10160,10160,14,10548,10549,14,11035,11036,14,11093,11093,14,11647,11647,5,12330,12333,5,12336,12336,14,12441,12442,5,12953,12953,14,42608,42610,5,42654,42655,5,43010,43010,5,43019,43019,5,43045,43046,5,43052,43052,5,43188,43203,7,43232,43249,5,43302,43309,5,43346,43347,7,43392,43394,5,43443,43443,5,43446,43449,5,43452,43453,5,43493,43493,5,43567,43568,7,43571,43572,7,43587,43587,5,43597,43597,7,43696,43696,5,43703,43704,5,43713,43713,5,43756,43757,5,43765,43765,7,44003,44004,7,44006,44007,7,44009,44010,7,44013,44013,5,44033,44059,12,44061,44087,12,44089,44115,12,44117,44143,12,44145,44171,12,44173,44199,12,44201,44227,12,44229,44255,12,44257,44283,12,44285,44311,12,44313,44339,12,44341,44367,12,44369,44395,12,44397,44423,12,44425,44451,12,44453,44479,12,44481,44507,12,44509,44535,12,44537,44563,12,44565,44591,12,44593,44619,12,44621,44647,12,44649,44675,12,44677,44703,12,44705,44731,12,44733,44759,12,44761,44787,12,44789,44815,12,44817,44843,12,44845,44871,12,44873,44899,12,44901,44927,12,44929,44955,12,44957,44983,12,44985,45011,12,45013,45039,12,45041,45067,12,45069,45095,12,45097,45123,12,45125,45151,12,45153,45179,12,45181,45207,12,45209,45235,12,45237,45263,12,45265,45291,12,45293,45319,12,45321,45347,12,45349,45375,12,45377,45403,12,45405,45431,12,45433,45459,12,45461,45487,12,45489,45515,12,45517,45543,12,45545,45571,12,45573,45599,12,45601,45627,12,45629,45655,12,45657,45683,12,45685,45711,12,45713,45739,12,45741,45767,12,45769,45795,12,45797,45823,12,45825,45851,12,45853,45879,12,45881,45907,12,45909,45935,12,45937,45963,12,45965,45991,12,45993,46019,12,46021,46047,12,46049,46075,12,46077,46103,12,46105,46131,12,46133,46159,12,46161,46187,12,46189,46215,12,46217,46243,12,46245,46271,12,46273,46299,12,46301,46327,12,46329,46355,12,46357,46383,12,46385,46411,12,46413,46439,12,46441,46467,12,46469,46495,12,46497,46523,12,46525,46551,12,46553,46579,12,46581,46607,12,46609,46635,12,46637,46663,12,46665,46691,12,46693,46719,12,46721,46747,12,46749,46775,12,46777,46803,12,46805,46831,12,46833,46859,12,46861,46887,12,46889,46915,12,46917,46943,12,46945,46971,12,46973,46999,12,47001,47027,12,47029,47055,12,47057,47083,12,47085,47111,12,47113,47139,12,47141,47167,12,47169,47195,12,47197,47223,12,47225,47251,12,47253,47279,12,47281,47307,12,47309,47335,12,47337,47363,12,47365,47391,12,47393,47419,12,47421,47447,12,47449,47475,12,47477,47503,12,47505,47531,12,47533,47559,12,47561,47587,12,47589,47615,12,47617,47643,12,47645,47671,12,47673,47699,12,47701,47727,12,47729,47755,12,47757,47783,12,47785,47811,12,47813,47839,12,47841,47867,12,47869,47895,12,47897,47923,12,47925,47951,12,47953,47979,12,47981,48007,12,48009,48035,12,48037,48063,12,48065,48091,12,48093,48119,12,48121,48147,12,48149,48175,12,48177,48203,12,48205,48231,12,48233,48259,12,48261,48287,12,48289,48315,12,48317,48343,12,48345,48371,12,48373,48399,12,48401,48427,12,48429,48455,12,48457,48483,12,48485,48511,12,48513,48539,12,48541,48567,12,48569,48595,12,48597,48623,12,48625,48651,12,48653,48679,12,48681,48707,12,48709,48735,12,48737,48763,12,48765,48791,12,48793,48819,12,48821,48847,12,48849,48875,12,48877,48903,12,48905,48931,12,48933,48959,12,48961,48987,12,48989,49015,12,49017,49043,12,49045,49071,12,49073,49099,12,49101,49127,12,49129,49155,12,49157,49183,12,49185,49211,12,49213,49239,12,49241,49267,12,49269,49295,12,49297,49323,12,49325,49351,12,49353,49379,12,49381,49407,12,49409,49435,12,49437,49463,12,49465,49491,12,49493,49519,12,49521,49547,12,49549,49575,12,49577,49603,12,49605,49631,12,49633,49659,12,49661,49687,12,49689,49715,12,49717,49743,12,49745,49771,12,49773,49799,12,49801,49827,12,49829,49855,12,49857,49883,12,49885,49911,12,49913,49939,12,49941,49967,12,49969,49995,12,49997,50023,12,50025,50051,12,50053,50079,12,50081,50107,12,50109,50135,12,50137,50163,12,50165,50191,12,50193,50219,12,50221,50247,12,50249,50275,12,50277,50303,12,50305,50331,12,50333,50359,12,50361,50387,12,50389,50415,12,50417,50443,12,50445,50471,12,50473,50499,12,50501,50527,12,50529,50555,12,50557,50583,12,50585,50611,12,50613,50639,12,50641,50667,12,50669,50695,12,50697,50723,12,50725,50751,12,50753,50779,12,50781,50807,12,50809,50835,12,50837,50863,12,50865,50891,12,50893,50919,12,50921,50947,12,50949,50975,12,50977,51003,12,51005,51031,12,51033,51059,12,51061,51087,12,51089,51115,12,51117,51143,12,51145,51171,12,51173,51199,12,51201,51227,12,51229,51255,12,51257,51283,12,51285,51311,12,51313,51339,12,51341,51367,12,51369,51395,12,51397,51423,12,51425,51451,12,51453,51479,12,51481,51507,12,51509,51535,12,51537,51563,12,51565,51591,12,51593,51619,12,51621,51647,12,51649,51675,12,51677,51703,12,51705,51731,12,51733,51759,12,51761,51787,12,51789,51815,12,51817,51843,12,51845,51871,12,51873,51899,12,51901,51927,12,51929,51955,12,51957,51983,12,51985,52011,12,52013,52039,12,52041,52067,12,52069,52095,12,52097,52123,12,52125,52151,12,52153,52179,12,52181,52207,12,52209,52235,12,52237,52263,12,52265,52291,12,52293,52319,12,52321,52347,12,52349,52375,12,52377,52403,12,52405,52431,12,52433,52459,12,52461,52487,12,52489,52515,12,52517,52543,12,52545,52571,12,52573,52599,12,52601,52627,12,52629,52655,12,52657,52683,12,52685,52711,12,52713,52739,12,52741,52767,12,52769,52795,12,52797,52823,12,52825,52851,12,52853,52879,12,52881,52907,12,52909,52935,12,52937,52963,12,52965,52991,12,52993,53019,12,53021,53047,12,53049,53075,12,53077,53103,12,53105,53131,12,53133,53159,12,53161,53187,12,53189,53215,12,53217,53243,12,53245,53271,12,53273,53299,12,53301,53327,12,53329,53355,12,53357,53383,12,53385,53411,12,53413,53439,12,53441,53467,12,53469,53495,12,53497,53523,12,53525,53551,12,53553,53579,12,53581,53607,12,53609,53635,12,53637,53663,12,53665,53691,12,53693,53719,12,53721,53747,12,53749,53775,12,53777,53803,12,53805,53831,12,53833,53859,12,53861,53887,12,53889,53915,12,53917,53943,12,53945,53971,12,53973,53999,12,54001,54027,12,54029,54055,12,54057,54083,12,54085,54111,12,54113,54139,12,54141,54167,12,54169,54195,12,54197,54223,12,54225,54251,12,54253,54279,12,54281,54307,12,54309,54335,12,54337,54363,12,54365,54391,12,54393,54419,12,54421,54447,12,54449,54475,12,54477,54503,12,54505,54531,12,54533,54559,12,54561,54587,12,54589,54615,12,54617,54643,12,54645,54671,12,54673,54699,12,54701,54727,12,54729,54755,12,54757,54783,12,54785,54811,12,54813,54839,12,54841,54867,12,54869,54895,12,54897,54923,12,54925,54951,12,54953,54979,12,54981,55007,12,55009,55035,12,55037,55063,12,55065,55091,12,55093,55119,12,55121,55147,12,55149,55175,12,55177,55203,12,55243,55291,10,65024,65039,5,65279,65279,4,65520,65528,4,66045,66045,5,66422,66426,5,68101,68102,5,68152,68154,5,68325,68326,5,69291,69292,5,69632,69632,7,69634,69634,7,69759,69761,5]');\r\n}\r\n//#endregion\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/strings.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/types.js":
-/*!****************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/types.js ***!
-  \****************************************************************/
-/*! exports provided: isArray, isString, isObject, isNumber, isBoolean, isUndefined, isUndefinedOrNull, assertType, isEmptyObject, isFunction, validateConstraints, validateConstraint, getAllPropertyNames, getAllMethodNames, createProxyObject, withNullAsUndefined, withUndefinedAsNull */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isArray\", function() { return isArray; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isString\", function() { return isString; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isObject\", function() { return isObject; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isNumber\", function() { return isNumber; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isBoolean\", function() { return isBoolean; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isUndefined\", function() { return isUndefined; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isUndefinedOrNull\", function() { return isUndefinedOrNull; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"assertType\", function() { return assertType; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isEmptyObject\", function() { return isEmptyObject; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"isFunction\", function() { return isFunction; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"validateConstraints\", function() { return validateConstraints; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"validateConstraint\", function() { return validateConstraint; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAllPropertyNames\", function() { return getAllPropertyNames; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getAllMethodNames\", function() { return getAllMethodNames; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createProxyObject\", function() { return createProxyObject; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"withNullAsUndefined\", function() { return withNullAsUndefined; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"withUndefinedAsNull\", function() { return withUndefinedAsNull; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar _typeof = {\r\n    number: 'number',\r\n    string: 'string',\r\n    undefined: 'undefined',\r\n    object: 'object',\r\n    function: 'function'\r\n};\r\n/**\r\n * @returns whether the provided parameter is a JavaScript Array or not.\r\n */\r\nfunction isArray(array) {\r\n    if (Array.isArray) {\r\n        return Array.isArray(array);\r\n    }\r\n    if (array && typeof (array.length) === _typeof.number && array.constructor === Array) {\r\n        return true;\r\n    }\r\n    return false;\r\n}\r\n/**\r\n * @returns whether the provided parameter is a JavaScript String or not.\r\n */\r\nfunction isString(str) {\r\n    if (typeof (str) === _typeof.string || str instanceof String) {\r\n        return true;\r\n    }\r\n    return false;\r\n}\r\n/**\r\n *\r\n * @returns whether the provided parameter is of type `object` but **not**\r\n *\t`null`, an `array`, a `regexp`, nor a `date`.\r\n */\r\nfunction isObject(obj) {\r\n    // The method can't do a type cast since there are type (like strings) which\r\n    // are subclasses of any put not positvely matched by the function. Hence type\r\n    // narrowing results in wrong results.\r\n    return typeof obj === _typeof.object\r\n        && obj !== null\r\n        && !Array.isArray(obj)\r\n        && !(obj instanceof RegExp)\r\n        && !(obj instanceof Date);\r\n}\r\n/**\r\n * In **contrast** to just checking `typeof` this will return `false` for `NaN`.\r\n * @returns whether the provided parameter is a JavaScript Number or not.\r\n */\r\nfunction isNumber(obj) {\r\n    if ((typeof (obj) === _typeof.number || obj instanceof Number) && !isNaN(obj)) {\r\n        return true;\r\n    }\r\n    return false;\r\n}\r\n/**\r\n * @returns whether the provided parameter is a JavaScript Boolean or not.\r\n */\r\nfunction isBoolean(obj) {\r\n    return obj === true || obj === false;\r\n}\r\n/**\r\n * @returns whether the provided parameter is undefined.\r\n */\r\nfunction isUndefined(obj) {\r\n    return typeof (obj) === _typeof.undefined;\r\n}\r\n/**\r\n * @returns whether the provided parameter is undefined or null.\r\n */\r\nfunction isUndefinedOrNull(obj) {\r\n    return isUndefined(obj) || obj === null;\r\n}\r\nfunction assertType(condition, type) {\r\n    if (!condition) {\r\n        throw new Error(type ? \"Unexpected type, expected '\" + type + \"'\" : 'Unexpected type');\r\n    }\r\n}\r\nvar hasOwnProperty = Object.prototype.hasOwnProperty;\r\n/**\r\n * @returns whether the provided parameter is an empty JavaScript Object or not.\r\n */\r\nfunction isEmptyObject(obj) {\r\n    if (!isObject(obj)) {\r\n        return false;\r\n    }\r\n    for (var key in obj) {\r\n        if (hasOwnProperty.call(obj, key)) {\r\n            return false;\r\n        }\r\n    }\r\n    return true;\r\n}\r\n/**\r\n * @returns whether the provided parameter is a JavaScript Function or not.\r\n */\r\nfunction isFunction(obj) {\r\n    return typeof obj === _typeof.function;\r\n}\r\nfunction validateConstraints(args, constraints) {\r\n    var len = Math.min(args.length, constraints.length);\r\n    for (var i = 0; i < len; i++) {\r\n        validateConstraint(args[i], constraints[i]);\r\n    }\r\n}\r\nfunction validateConstraint(arg, constraint) {\r\n    if (isString(constraint)) {\r\n        if (typeof arg !== constraint) {\r\n            throw new Error(\"argument does not match constraint: typeof \" + constraint);\r\n        }\r\n    }\r\n    else if (isFunction(constraint)) {\r\n        try {\r\n            if (arg instanceof constraint) {\r\n                return;\r\n            }\r\n        }\r\n        catch (_a) {\r\n            // ignore\r\n        }\r\n        if (!isUndefinedOrNull(arg) && arg.constructor === constraint) {\r\n            return;\r\n        }\r\n        if (constraint.length === 1 && constraint.call(undefined, arg) === true) {\r\n            return;\r\n        }\r\n        throw new Error(\"argument does not match one of these constraints: arg instanceof constraint, arg.constructor === constraint, nor constraint(arg) === true\");\r\n    }\r\n}\r\nfunction getAllPropertyNames(obj) {\r\n    var res = [];\r\n    var proto = Object.getPrototypeOf(obj);\r\n    while (Object.prototype !== proto) {\r\n        res = res.concat(Object.getOwnPropertyNames(proto));\r\n        proto = Object.getPrototypeOf(proto);\r\n    }\r\n    return res;\r\n}\r\nfunction getAllMethodNames(obj) {\r\n    var methods = [];\r\n    for (var _i = 0, _a = getAllPropertyNames(obj); _i < _a.length; _i++) {\r\n        var prop = _a[_i];\r\n        if (typeof obj[prop] === 'function') {\r\n            methods.push(prop);\r\n        }\r\n    }\r\n    return methods;\r\n}\r\nfunction createProxyObject(methodNames, invoke) {\r\n    var createProxyMethod = function (method) {\r\n        return function () {\r\n            var args = Array.prototype.slice.call(arguments, 0);\r\n            return invoke(method, args);\r\n        };\r\n    };\r\n    var result = {};\r\n    for (var _i = 0, methodNames_1 = methodNames; _i < methodNames_1.length; _i++) {\r\n        var methodName = methodNames_1[_i];\r\n        result[methodName] = createProxyMethod(methodName);\r\n    }\r\n    return result;\r\n}\r\n/**\r\n * Converts null to undefined, passes all other values through.\r\n */\r\nfunction withNullAsUndefined(x) {\r\n    return x === null ? undefined : x;\r\n}\r\n/**\r\n * Converts undefined to null, passes all other values through.\r\n */\r\nfunction withUndefinedAsNull(x) {\r\n    return typeof x === 'undefined' ? null : x;\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/types.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/uint.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/uint.js ***!
-  \***************************************************************/
-/*! exports provided: toUint8, toUint32 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"toUint8\", function() { return toUint8; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"toUint32\", function() { return toUint32; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nfunction toUint8(v) {\r\n    if (v < 0) {\r\n        return 0;\r\n    }\r\n    if (v > 255 /* MAX_UINT_8 */) {\r\n        return 255 /* MAX_UINT_8 */;\r\n    }\r\n    return v | 0;\r\n}\r\nfunction toUint32(v) {\r\n    if (v < 0) {\r\n        return 0;\r\n    }\r\n    if (v > 4294967295 /* MAX_UINT_32 */) {\r\n        return 4294967295 /* MAX_UINT_32 */;\r\n    }\r\n    return v | 0;\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/uint.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/uri.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/uri.js ***!
-  \**************************************************************/
-/*! exports provided: URI */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"URI\", function() { return URI; });\n/* harmony import */ var _platform_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./platform.js */ \"./node_modules/monaco-editor/esm/vs/base/common/platform.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nvar _a;\r\n\r\nvar _schemePattern = /^\\w[\\w\\d+.-]*$/;\r\nvar _singleSlashStart = /^\\//;\r\nvar _doubleSlashStart = /^\\/\\//;\r\nfunction _validateUri(ret, _strict) {\r\n    // scheme, must be set\r\n    if (!ret.scheme && _strict) {\r\n        throw new Error(\"[UriError]: Scheme is missing: {scheme: \\\"\\\", authority: \\\"\" + ret.authority + \"\\\", path: \\\"\" + ret.path + \"\\\", query: \\\"\" + ret.query + \"\\\", fragment: \\\"\" + ret.fragment + \"\\\"}\");\r\n    }\r\n    // scheme, https://tools.ietf.org/html/rfc3986#section-3.1\r\n    // ALPHA *( ALPHA / DIGIT / \"+\" / \"-\" / \".\" )\r\n    if (ret.scheme && !_schemePattern.test(ret.scheme)) {\r\n        throw new Error('[UriError]: Scheme contains illegal characters.');\r\n    }\r\n    // path, http://tools.ietf.org/html/rfc3986#section-3.3\r\n    // If a URI contains an authority component, then the path component\r\n    // must either be empty or begin with a slash (\"/\") character.  If a URI\r\n    // does not contain an authority component, then the path cannot begin\r\n    // with two slash characters (\"//\").\r\n    if (ret.path) {\r\n        if (ret.authority) {\r\n            if (!_singleSlashStart.test(ret.path)) {\r\n                throw new Error('[UriError]: If a URI contains an authority component, then the path component must either be empty or begin with a slash (\"/\") character');\r\n            }\r\n        }\r\n        else {\r\n            if (_doubleSlashStart.test(ret.path)) {\r\n                throw new Error('[UriError]: If a URI does not contain an authority component, then the path cannot begin with two slash characters (\"//\")');\r\n            }\r\n        }\r\n    }\r\n}\r\n// for a while we allowed uris *without* schemes and this is the migration\r\n// for them, e.g. an uri without scheme and without strict-mode warns and falls\r\n// back to the file-scheme. that should cause the least carnage and still be a\r\n// clear warning\r\nfunction _schemeFix(scheme, _strict) {\r\n    if (!scheme && !_strict) {\r\n        return 'file';\r\n    }\r\n    return scheme;\r\n}\r\n// implements a bit of https://tools.ietf.org/html/rfc3986#section-5\r\nfunction _referenceResolution(scheme, path) {\r\n    // the slash-character is our 'default base' as we don't\r\n    // support constructing URIs relative to other URIs. This\r\n    // also means that we alter and potentially break paths.\r\n    // see https://tools.ietf.org/html/rfc3986#section-5.1.4\r\n    switch (scheme) {\r\n        case 'https':\r\n        case 'http':\r\n        case 'file':\r\n            if (!path) {\r\n                path = _slash;\r\n            }\r\n            else if (path[0] !== _slash) {\r\n                path = _slash + path;\r\n            }\r\n            break;\r\n    }\r\n    return path;\r\n}\r\nvar _empty = '';\r\nvar _slash = '/';\r\nvar _regexp = /^(([^:/?#]+?):)?(\\/\\/([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?/;\r\n/**\r\n * Uniform Resource Identifier (URI) http://tools.ietf.org/html/rfc3986.\r\n * This class is a simple parser which creates the basic component parts\r\n * (http://tools.ietf.org/html/rfc3986#section-3) with minimal validation\r\n * and encoding.\r\n *\r\n *       foo://example.com:8042/over/there?name=ferret#nose\r\n *       \\_/   \\______________/\\_________/ \\_________/ \\__/\r\n *        |           |            |            |        |\r\n *     scheme     authority       path        query   fragment\r\n *        |   _____________________|__\r\n *       / \\ /                        \\\r\n *       urn:example:animal:ferret:nose\r\n */\r\nvar URI = /** @class */ (function () {\r\n    /**\r\n     * @internal\r\n     */\r\n    function URI(schemeOrData, authority, path, query, fragment, _strict) {\r\n        if (_strict === void 0) { _strict = false; }\r\n        if (typeof schemeOrData === 'object') {\r\n            this.scheme = schemeOrData.scheme || _empty;\r\n            this.authority = schemeOrData.authority || _empty;\r\n            this.path = schemeOrData.path || _empty;\r\n            this.query = schemeOrData.query || _empty;\r\n            this.fragment = schemeOrData.fragment || _empty;\r\n            // no validation because it's this URI\r\n            // that creates uri components.\r\n            // _validateUri(this);\r\n        }\r\n        else {\r\n            this.scheme = _schemeFix(schemeOrData, _strict);\r\n            this.authority = authority || _empty;\r\n            this.path = _referenceResolution(this.scheme, path || _empty);\r\n            this.query = query || _empty;\r\n            this.fragment = fragment || _empty;\r\n            _validateUri(this, _strict);\r\n        }\r\n    }\r\n    URI.isUri = function (thing) {\r\n        if (thing instanceof URI) {\r\n            return true;\r\n        }\r\n        if (!thing) {\r\n            return false;\r\n        }\r\n        return typeof thing.authority === 'string'\r\n            && typeof thing.fragment === 'string'\r\n            && typeof thing.path === 'string'\r\n            && typeof thing.query === 'string'\r\n            && typeof thing.scheme === 'string'\r\n            && typeof thing.fsPath === 'function'\r\n            && typeof thing.with === 'function'\r\n            && typeof thing.toString === 'function';\r\n    };\r\n    Object.defineProperty(URI.prototype, \"fsPath\", {\r\n        // ---- filesystem path -----------------------\r\n        /**\r\n         * Returns a string representing the corresponding file system path of this URI.\r\n         * Will handle UNC paths, normalizes windows drive letters to lower-case, and uses the\r\n         * platform specific path separator.\r\n         *\r\n         * * Will *not* validate the path for invalid characters and semantics.\r\n         * * Will *not* look at the scheme of this URI.\r\n         * * The result shall *not* be used for display purposes but for accessing a file on disk.\r\n         *\r\n         *\r\n         * The *difference* to `URI#path` is the use of the platform specific separator and the handling\r\n         * of UNC paths. See the below sample of a file-uri with an authority (UNC path).\r\n         *\r\n         * ```ts\r\n            const u = URI.parse('file://server/c$/folder/file.txt')\r\n            u.authority === 'server'\r\n            u.path === '/shares/c$/file.txt'\r\n            u.fsPath === '\\\\server\\c$\\folder\\file.txt'\r\n        ```\r\n         *\r\n         * Using `URI#path` to read a file (using fs-apis) would not be enough because parts of the path,\r\n         * namely the server name, would be missing. Therefore `URI#fsPath` exists - it's sugar to ease working\r\n         * with URIs that represent files on disk (`file` scheme).\r\n         */\r\n        get: function () {\r\n            // if (this.scheme !== 'file') {\r\n            // \tconsole.warn(`[UriError] calling fsPath with scheme ${this.scheme}`);\r\n            // }\r\n            return _makeFsPath(this);\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    // ---- modify to new -------------------------\r\n    URI.prototype.with = function (change) {\r\n        if (!change) {\r\n            return this;\r\n        }\r\n        var scheme = change.scheme, authority = change.authority, path = change.path, query = change.query, fragment = change.fragment;\r\n        if (scheme === undefined) {\r\n            scheme = this.scheme;\r\n        }\r\n        else if (scheme === null) {\r\n            scheme = _empty;\r\n        }\r\n        if (authority === undefined) {\r\n            authority = this.authority;\r\n        }\r\n        else if (authority === null) {\r\n            authority = _empty;\r\n        }\r\n        if (path === undefined) {\r\n            path = this.path;\r\n        }\r\n        else if (path === null) {\r\n            path = _empty;\r\n        }\r\n        if (query === undefined) {\r\n            query = this.query;\r\n        }\r\n        else if (query === null) {\r\n            query = _empty;\r\n        }\r\n        if (fragment === undefined) {\r\n            fragment = this.fragment;\r\n        }\r\n        else if (fragment === null) {\r\n            fragment = _empty;\r\n        }\r\n        if (scheme === this.scheme\r\n            && authority === this.authority\r\n            && path === this.path\r\n            && query === this.query\r\n            && fragment === this.fragment) {\r\n            return this;\r\n        }\r\n        return new _URI(scheme, authority, path, query, fragment);\r\n    };\r\n    // ---- parse & validate ------------------------\r\n    /**\r\n     * Creates a new URI from a string, e.g. `http://www.msft.com/some/path`,\r\n     * `file:///usr/home`, or `scheme:with/path`.\r\n     *\r\n     * @param value A string which represents an URI (see `URI#toString`).\r\n     */\r\n    URI.parse = function (value, _strict) {\r\n        if (_strict === void 0) { _strict = false; }\r\n        var match = _regexp.exec(value);\r\n        if (!match) {\r\n            return new _URI(_empty, _empty, _empty, _empty, _empty);\r\n        }\r\n        return new _URI(match[2] || _empty, percentDecode(match[4] || _empty), percentDecode(match[5] || _empty), percentDecode(match[7] || _empty), percentDecode(match[9] || _empty), _strict);\r\n    };\r\n    /**\r\n     * Creates a new URI from a file system path, e.g. `c:\\my\\files`,\r\n     * `/usr/home`, or `\\\\server\\share\\some\\path`.\r\n     *\r\n     * The *difference* between `URI#parse` and `URI#file` is that the latter treats the argument\r\n     * as path, not as stringified-uri. E.g. `URI.file(path)` is **not the same as**\r\n     * `URI.parse('file://' + path)` because the path might contain characters that are\r\n     * interpreted (# and ?). See the following sample:\r\n     * ```ts\r\n    const good = URI.file('/coding/c#/project1');\r\n    good.scheme === 'file';\r\n    good.path === '/coding/c#/project1';\r\n    good.fragment === '';\r\n    const bad = URI.parse('file://' + '/coding/c#/project1');\r\n    bad.scheme === 'file';\r\n    bad.path === '/coding/c'; // path is now broken\r\n    bad.fragment === '/project1';\r\n    ```\r\n     *\r\n     * @param path A file system path (see `URI#fsPath`)\r\n     */\r\n    URI.file = function (path) {\r\n        var authority = _empty;\r\n        // normalize to fwd-slashes on windows,\r\n        // on other systems bwd-slashes are valid\r\n        // filename character, eg /f\\oo/ba\\r.txt\r\n        if (_platform_js__WEBPACK_IMPORTED_MODULE_0__[\"isWindows\"]) {\r\n            path = path.replace(/\\\\/g, _slash);\r\n        }\r\n        // check for authority as used in UNC shares\r\n        // or use the path as given\r\n        if (path[0] === _slash && path[1] === _slash) {\r\n            var idx = path.indexOf(_slash, 2);\r\n            if (idx === -1) {\r\n                authority = path.substring(2);\r\n                path = _slash;\r\n            }\r\n            else {\r\n                authority = path.substring(2, idx);\r\n                path = path.substring(idx) || _slash;\r\n            }\r\n        }\r\n        return new _URI('file', authority, path, _empty, _empty);\r\n    };\r\n    URI.from = function (components) {\r\n        return new _URI(components.scheme, components.authority, components.path, components.query, components.fragment);\r\n    };\r\n    // ---- printing/externalize ---------------------------\r\n    /**\r\n     * Creates a string representation for this URI. It's guaranteed that calling\r\n     * `URI.parse` with the result of this function creates an URI which is equal\r\n     * to this URI.\r\n     *\r\n     * * The result shall *not* be used for display purposes but for externalization or transport.\r\n     * * The result will be encoded using the percentage encoding and encoding happens mostly\r\n     * ignore the scheme-specific encoding rules.\r\n     *\r\n     * @param skipEncoding Do not encode the result, default is `false`\r\n     */\r\n    URI.prototype.toString = function (skipEncoding) {\r\n        if (skipEncoding === void 0) { skipEncoding = false; }\r\n        return _asFormatted(this, skipEncoding);\r\n    };\r\n    URI.prototype.toJSON = function () {\r\n        return this;\r\n    };\r\n    URI.revive = function (data) {\r\n        if (!data) {\r\n            return data;\r\n        }\r\n        else if (data instanceof URI) {\r\n            return data;\r\n        }\r\n        else {\r\n            var result = new _URI(data);\r\n            result._formatted = data.external;\r\n            result._fsPath = data._sep === _pathSepMarker ? data.fsPath : null;\r\n            return result;\r\n        }\r\n    };\r\n    return URI;\r\n}());\r\n\r\nvar _pathSepMarker = _platform_js__WEBPACK_IMPORTED_MODULE_0__[\"isWindows\"] ? 1 : undefined;\r\n// eslint-disable-next-line @typescript-eslint/class-name-casing\r\nvar _URI = /** @class */ (function (_super) {\r\n    __extends(_URI, _super);\r\n    function _URI() {\r\n        var _this = _super !== null && _super.apply(this, arguments) || this;\r\n        _this._formatted = null;\r\n        _this._fsPath = null;\r\n        return _this;\r\n    }\r\n    Object.defineProperty(_URI.prototype, \"fsPath\", {\r\n        get: function () {\r\n            if (!this._fsPath) {\r\n                this._fsPath = _makeFsPath(this);\r\n            }\r\n            return this._fsPath;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    _URI.prototype.toString = function (skipEncoding) {\r\n        if (skipEncoding === void 0) { skipEncoding = false; }\r\n        if (!skipEncoding) {\r\n            if (!this._formatted) {\r\n                this._formatted = _asFormatted(this, false);\r\n            }\r\n            return this._formatted;\r\n        }\r\n        else {\r\n            // we don't cache that\r\n            return _asFormatted(this, true);\r\n        }\r\n    };\r\n    _URI.prototype.toJSON = function () {\r\n        var res = {\r\n            $mid: 1\r\n        };\r\n        // cached state\r\n        if (this._fsPath) {\r\n            res.fsPath = this._fsPath;\r\n            res._sep = _pathSepMarker;\r\n        }\r\n        if (this._formatted) {\r\n            res.external = this._formatted;\r\n        }\r\n        // uri components\r\n        if (this.path) {\r\n            res.path = this.path;\r\n        }\r\n        if (this.scheme) {\r\n            res.scheme = this.scheme;\r\n        }\r\n        if (this.authority) {\r\n            res.authority = this.authority;\r\n        }\r\n        if (this.query) {\r\n            res.query = this.query;\r\n        }\r\n        if (this.fragment) {\r\n            res.fragment = this.fragment;\r\n        }\r\n        return res;\r\n    };\r\n    return _URI;\r\n}(URI));\r\n// reserved characters: https://tools.ietf.org/html/rfc3986#section-2.2\r\nvar encodeTable = (_a = {},\r\n    _a[58 /* Colon */] = '%3A',\r\n    _a[47 /* Slash */] = '%2F',\r\n    _a[63 /* QuestionMark */] = '%3F',\r\n    _a[35 /* Hash */] = '%23',\r\n    _a[91 /* OpenSquareBracket */] = '%5B',\r\n    _a[93 /* CloseSquareBracket */] = '%5D',\r\n    _a[64 /* AtSign */] = '%40',\r\n    _a[33 /* ExclamationMark */] = '%21',\r\n    _a[36 /* DollarSign */] = '%24',\r\n    _a[38 /* Ampersand */] = '%26',\r\n    _a[39 /* SingleQuote */] = '%27',\r\n    _a[40 /* OpenParen */] = '%28',\r\n    _a[41 /* CloseParen */] = '%29',\r\n    _a[42 /* Asterisk */] = '%2A',\r\n    _a[43 /* Plus */] = '%2B',\r\n    _a[44 /* Comma */] = '%2C',\r\n    _a[59 /* Semicolon */] = '%3B',\r\n    _a[61 /* Equals */] = '%3D',\r\n    _a[32 /* Space */] = '%20',\r\n    _a);\r\nfunction encodeURIComponentFast(uriComponent, allowSlash) {\r\n    var res = undefined;\r\n    var nativeEncodePos = -1;\r\n    for (var pos = 0; pos < uriComponent.length; pos++) {\r\n        var code = uriComponent.charCodeAt(pos);\r\n        // unreserved characters: https://tools.ietf.org/html/rfc3986#section-2.3\r\n        if ((code >= 97 /* a */ && code <= 122 /* z */)\r\n            || (code >= 65 /* A */ && code <= 90 /* Z */)\r\n            || (code >= 48 /* Digit0 */ && code <= 57 /* Digit9 */)\r\n            || code === 45 /* Dash */\r\n            || code === 46 /* Period */\r\n            || code === 95 /* Underline */\r\n            || code === 126 /* Tilde */\r\n            || (allowSlash && code === 47 /* Slash */)) {\r\n            // check if we are delaying native encode\r\n            if (nativeEncodePos !== -1) {\r\n                res += encodeURIComponent(uriComponent.substring(nativeEncodePos, pos));\r\n                nativeEncodePos = -1;\r\n            }\r\n            // check if we write into a new string (by default we try to return the param)\r\n            if (res !== undefined) {\r\n                res += uriComponent.charAt(pos);\r\n            }\r\n        }\r\n        else {\r\n            // encoding needed, we need to allocate a new string\r\n            if (res === undefined) {\r\n                res = uriComponent.substr(0, pos);\r\n            }\r\n            // check with default table first\r\n            var escaped = encodeTable[code];\r\n            if (escaped !== undefined) {\r\n                // check if we are delaying native encode\r\n                if (nativeEncodePos !== -1) {\r\n                    res += encodeURIComponent(uriComponent.substring(nativeEncodePos, pos));\r\n                    nativeEncodePos = -1;\r\n                }\r\n                // append escaped variant to result\r\n                res += escaped;\r\n            }\r\n            else if (nativeEncodePos === -1) {\r\n                // use native encode only when needed\r\n                nativeEncodePos = pos;\r\n            }\r\n        }\r\n    }\r\n    if (nativeEncodePos !== -1) {\r\n        res += encodeURIComponent(uriComponent.substring(nativeEncodePos));\r\n    }\r\n    return res !== undefined ? res : uriComponent;\r\n}\r\nfunction encodeURIComponentMinimal(path) {\r\n    var res = undefined;\r\n    for (var pos = 0; pos < path.length; pos++) {\r\n        var code = path.charCodeAt(pos);\r\n        if (code === 35 /* Hash */ || code === 63 /* QuestionMark */) {\r\n            if (res === undefined) {\r\n                res = path.substr(0, pos);\r\n            }\r\n            res += encodeTable[code];\r\n        }\r\n        else {\r\n            if (res !== undefined) {\r\n                res += path[pos];\r\n            }\r\n        }\r\n    }\r\n    return res !== undefined ? res : path;\r\n}\r\n/**\r\n * Compute `fsPath` for the given uri\r\n */\r\nfunction _makeFsPath(uri) {\r\n    var value;\r\n    if (uri.authority && uri.path.length > 1 && uri.scheme === 'file') {\r\n        // unc path: file://shares/c$/far/boo\r\n        value = \"//\" + uri.authority + uri.path;\r\n    }\r\n    else if (uri.path.charCodeAt(0) === 47 /* Slash */\r\n        && (uri.path.charCodeAt(1) >= 65 /* A */ && uri.path.charCodeAt(1) <= 90 /* Z */ || uri.path.charCodeAt(1) >= 97 /* a */ && uri.path.charCodeAt(1) <= 122 /* z */)\r\n        && uri.path.charCodeAt(2) === 58 /* Colon */) {\r\n        // windows drive letter: file:///c:/far/boo\r\n        value = uri.path[1].toLowerCase() + uri.path.substr(2);\r\n    }\r\n    else {\r\n        // other path\r\n        value = uri.path;\r\n    }\r\n    if (_platform_js__WEBPACK_IMPORTED_MODULE_0__[\"isWindows\"]) {\r\n        value = value.replace(/\\//g, '\\\\');\r\n    }\r\n    return value;\r\n}\r\n/**\r\n * Create the external version of a uri\r\n */\r\nfunction _asFormatted(uri, skipEncoding) {\r\n    var encoder = !skipEncoding\r\n        ? encodeURIComponentFast\r\n        : encodeURIComponentMinimal;\r\n    var res = '';\r\n    var scheme = uri.scheme, authority = uri.authority, path = uri.path, query = uri.query, fragment = uri.fragment;\r\n    if (scheme) {\r\n        res += scheme;\r\n        res += ':';\r\n    }\r\n    if (authority || scheme === 'file') {\r\n        res += _slash;\r\n        res += _slash;\r\n    }\r\n    if (authority) {\r\n        var idx = authority.indexOf('@');\r\n        if (idx !== -1) {\r\n            // <user>@<auth>\r\n            var userinfo = authority.substr(0, idx);\r\n            authority = authority.substr(idx + 1);\r\n            idx = userinfo.indexOf(':');\r\n            if (idx === -1) {\r\n                res += encoder(userinfo, false);\r\n            }\r\n            else {\r\n                // <user>:<pass>@<auth>\r\n                res += encoder(userinfo.substr(0, idx), false);\r\n                res += ':';\r\n                res += encoder(userinfo.substr(idx + 1), false);\r\n            }\r\n            res += '@';\r\n        }\r\n        authority = authority.toLowerCase();\r\n        idx = authority.indexOf(':');\r\n        if (idx === -1) {\r\n            res += encoder(authority, false);\r\n        }\r\n        else {\r\n            // <auth>:<port>\r\n            res += encoder(authority.substr(0, idx), false);\r\n            res += authority.substr(idx);\r\n        }\r\n    }\r\n    if (path) {\r\n        // lower-case windows drive letters in /C:/fff or C:/fff\r\n        if (path.length >= 3 && path.charCodeAt(0) === 47 /* Slash */ && path.charCodeAt(2) === 58 /* Colon */) {\r\n            var code = path.charCodeAt(1);\r\n            if (code >= 65 /* A */ && code <= 90 /* Z */) {\r\n                path = \"/\" + String.fromCharCode(code + 32) + \":\" + path.substr(3); // \"/c:\".length === 3\r\n            }\r\n        }\r\n        else if (path.length >= 2 && path.charCodeAt(1) === 58 /* Colon */) {\r\n            var code = path.charCodeAt(0);\r\n            if (code >= 65 /* A */ && code <= 90 /* Z */) {\r\n                path = String.fromCharCode(code + 32) + \":\" + path.substr(2); // \"/c:\".length === 3\r\n            }\r\n        }\r\n        // encode the rest of the path\r\n        res += encoder(path, true);\r\n    }\r\n    if (query) {\r\n        res += '?';\r\n        res += encoder(query, false);\r\n    }\r\n    if (fragment) {\r\n        res += '#';\r\n        res += !skipEncoding ? encodeURIComponentFast(fragment, false) : fragment;\r\n    }\r\n    return res;\r\n}\r\n// --- decode\r\nfunction decodeURIComponentGraceful(str) {\r\n    try {\r\n        return decodeURIComponent(str);\r\n    }\r\n    catch (_a) {\r\n        if (str.length > 3) {\r\n            return str.substr(0, 3) + decodeURIComponentGraceful(str.substr(3));\r\n        }\r\n        else {\r\n            return str;\r\n        }\r\n    }\r\n}\r\nvar _rEncodedAsHex = /(%[0-9A-Za-z][0-9A-Za-z])+/g;\r\nfunction percentDecode(str) {\r\n    if (!str.match(_rEncodedAsHex)) {\r\n        return str;\r\n    }\r\n    return str.replace(_rEncodedAsHex, function (match) { return decodeURIComponentGraceful(match); });\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/uri.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/base/common/worker/simpleWorker.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/base/common/worker/simpleWorker.js ***!
-  \******************************************************************************/
-/*! exports provided: logOnceWebWorkerWarning, SimpleWorkerClient, SimpleWorkerServer, create */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"logOnceWebWorkerWarning\", function() { return logOnceWebWorkerWarning; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SimpleWorkerClient\", function() { return SimpleWorkerClient; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SimpleWorkerServer\", function() { return SimpleWorkerServer; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"create\", function() { return create; });\n/* harmony import */ var _errors_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../errors.js */ \"./node_modules/monaco-editor/esm/vs/base/common/errors.js\");\n/* harmony import */ var _lifecycle_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../lifecycle.js */ \"./node_modules/monaco-editor/esm/vs/base/common/lifecycle.js\");\n/* harmony import */ var _platform_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../platform.js */ \"./node_modules/monaco-editor/esm/vs/base/common/platform.js\");\n/* harmony import */ var _types_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../types.js */ \"./node_modules/monaco-editor/esm/vs/base/common/types.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\n\r\n\r\n\r\nvar INITIALIZE = '$initialize';\r\nvar webWorkerWarningLogged = false;\r\nfunction logOnceWebWorkerWarning(err) {\r\n    if (!_platform_js__WEBPACK_IMPORTED_MODULE_2__[\"isWeb\"]) {\r\n        // running tests\r\n        return;\r\n    }\r\n    if (!webWorkerWarningLogged) {\r\n        webWorkerWarningLogged = true;\r\n        console.warn('Could not create web worker(s). Falling back to loading web worker code in main thread, which might cause UI freezes. Please see https://github.com/Microsoft/monaco-editor#faq');\r\n    }\r\n    console.warn(err.message);\r\n}\r\nvar SimpleWorkerProtocol = /** @class */ (function () {\r\n    function SimpleWorkerProtocol(handler) {\r\n        this._workerId = -1;\r\n        this._handler = handler;\r\n        this._lastSentReq = 0;\r\n        this._pendingReplies = Object.create(null);\r\n    }\r\n    SimpleWorkerProtocol.prototype.setWorkerId = function (workerId) {\r\n        this._workerId = workerId;\r\n    };\r\n    SimpleWorkerProtocol.prototype.sendMessage = function (method, args) {\r\n        var _this = this;\r\n        var req = String(++this._lastSentReq);\r\n        return new Promise(function (resolve, reject) {\r\n            _this._pendingReplies[req] = {\r\n                resolve: resolve,\r\n                reject: reject\r\n            };\r\n            _this._send({\r\n                vsWorker: _this._workerId,\r\n                req: req,\r\n                method: method,\r\n                args: args\r\n            });\r\n        });\r\n    };\r\n    SimpleWorkerProtocol.prototype.handleMessage = function (message) {\r\n        if (!message || !message.vsWorker) {\r\n            return;\r\n        }\r\n        if (this._workerId !== -1 && message.vsWorker !== this._workerId) {\r\n            return;\r\n        }\r\n        this._handleMessage(message);\r\n    };\r\n    SimpleWorkerProtocol.prototype._handleMessage = function (msg) {\r\n        var _this = this;\r\n        if (msg.seq) {\r\n            var replyMessage = msg;\r\n            if (!this._pendingReplies[replyMessage.seq]) {\r\n                console.warn('Got reply to unknown seq');\r\n                return;\r\n            }\r\n            var reply = this._pendingReplies[replyMessage.seq];\r\n            delete this._pendingReplies[replyMessage.seq];\r\n            if (replyMessage.err) {\r\n                var err = replyMessage.err;\r\n                if (replyMessage.err.$isError) {\r\n                    err = new Error();\r\n                    err.name = replyMessage.err.name;\r\n                    err.message = replyMessage.err.message;\r\n                    err.stack = replyMessage.err.stack;\r\n                }\r\n                reply.reject(err);\r\n                return;\r\n            }\r\n            reply.resolve(replyMessage.res);\r\n            return;\r\n        }\r\n        var requestMessage = msg;\r\n        var req = requestMessage.req;\r\n        var result = this._handler.handleMessage(requestMessage.method, requestMessage.args);\r\n        result.then(function (r) {\r\n            _this._send({\r\n                vsWorker: _this._workerId,\r\n                seq: req,\r\n                res: r,\r\n                err: undefined\r\n            });\r\n        }, function (e) {\r\n            if (e.detail instanceof Error) {\r\n                // Loading errors have a detail property that points to the actual error\r\n                e.detail = Object(_errors_js__WEBPACK_IMPORTED_MODULE_0__[\"transformErrorForSerialization\"])(e.detail);\r\n            }\r\n            _this._send({\r\n                vsWorker: _this._workerId,\r\n                seq: req,\r\n                res: undefined,\r\n                err: Object(_errors_js__WEBPACK_IMPORTED_MODULE_0__[\"transformErrorForSerialization\"])(e)\r\n            });\r\n        });\r\n    };\r\n    SimpleWorkerProtocol.prototype._send = function (msg) {\r\n        var transfer = [];\r\n        if (msg.req) {\r\n            var m = msg;\r\n            for (var i = 0; i < m.args.length; i++) {\r\n                if (m.args[i] instanceof ArrayBuffer) {\r\n                    transfer.push(m.args[i]);\r\n                }\r\n            }\r\n        }\r\n        else {\r\n            var m = msg;\r\n            if (m.res instanceof ArrayBuffer) {\r\n                transfer.push(m.res);\r\n            }\r\n        }\r\n        this._handler.sendMessage(msg, transfer);\r\n    };\r\n    return SimpleWorkerProtocol;\r\n}());\r\n/**\r\n * Main thread side\r\n */\r\nvar SimpleWorkerClient = /** @class */ (function (_super) {\r\n    __extends(SimpleWorkerClient, _super);\r\n    function SimpleWorkerClient(workerFactory, moduleId, host) {\r\n        var _this = _super.call(this) || this;\r\n        var lazyProxyReject = null;\r\n        _this._worker = _this._register(workerFactory.create('vs/base/common/worker/simpleWorker', function (msg) {\r\n            _this._protocol.handleMessage(msg);\r\n        }, function (err) {\r\n            // in Firefox, web workers fail lazily :(\r\n            // we will reject the proxy\r\n            if (lazyProxyReject) {\r\n                lazyProxyReject(err);\r\n            }\r\n        }));\r\n        _this._protocol = new SimpleWorkerProtocol({\r\n            sendMessage: function (msg, transfer) {\r\n                _this._worker.postMessage(msg, transfer);\r\n            },\r\n            handleMessage: function (method, args) {\r\n                if (typeof host[method] !== 'function') {\r\n                    return Promise.reject(new Error('Missing method ' + method + ' on main thread host.'));\r\n                }\r\n                try {\r\n                    return Promise.resolve(host[method].apply(host, args));\r\n                }\r\n                catch (e) {\r\n                    return Promise.reject(e);\r\n                }\r\n            }\r\n        });\r\n        _this._protocol.setWorkerId(_this._worker.getId());\r\n        // Gather loader configuration\r\n        var loaderConfiguration = null;\r\n        if (typeof self.require !== 'undefined' && typeof self.require.getConfig === 'function') {\r\n            // Get the configuration from the Monaco AMD Loader\r\n            loaderConfiguration = self.require.getConfig();\r\n        }\r\n        else if (typeof self.requirejs !== 'undefined') {\r\n            // Get the configuration from requirejs\r\n            loaderConfiguration = self.requirejs.s.contexts._.config;\r\n        }\r\n        var hostMethods = _types_js__WEBPACK_IMPORTED_MODULE_3__[\"getAllMethodNames\"](host);\r\n        // Send initialize message\r\n        _this._onModuleLoaded = _this._protocol.sendMessage(INITIALIZE, [\r\n            _this._worker.getId(),\r\n            JSON.parse(JSON.stringify(loaderConfiguration)),\r\n            moduleId,\r\n            hostMethods,\r\n        ]);\r\n        // Create proxy to loaded code\r\n        var proxyMethodRequest = function (method, args) {\r\n            return _this._request(method, args);\r\n        };\r\n        _this._lazyProxy = new Promise(function (resolve, reject) {\r\n            lazyProxyReject = reject;\r\n            _this._onModuleLoaded.then(function (availableMethods) {\r\n                resolve(_types_js__WEBPACK_IMPORTED_MODULE_3__[\"createProxyObject\"](availableMethods, proxyMethodRequest));\r\n            }, function (e) {\r\n                reject(e);\r\n                _this._onError('Worker failed to load ' + moduleId, e);\r\n            });\r\n        });\r\n        return _this;\r\n    }\r\n    SimpleWorkerClient.prototype.getProxyObject = function () {\r\n        return this._lazyProxy;\r\n    };\r\n    SimpleWorkerClient.prototype._request = function (method, args) {\r\n        var _this = this;\r\n        return new Promise(function (resolve, reject) {\r\n            _this._onModuleLoaded.then(function () {\r\n                _this._protocol.sendMessage(method, args).then(resolve, reject);\r\n            }, reject);\r\n        });\r\n    };\r\n    SimpleWorkerClient.prototype._onError = function (message, error) {\r\n        console.error(message);\r\n        console.info(error);\r\n    };\r\n    return SimpleWorkerClient;\r\n}(_lifecycle_js__WEBPACK_IMPORTED_MODULE_1__[\"Disposable\"]));\r\n\r\n/**\r\n * Worker side\r\n */\r\nvar SimpleWorkerServer = /** @class */ (function () {\r\n    function SimpleWorkerServer(postMessage, requestHandlerFactory) {\r\n        var _this = this;\r\n        this._requestHandlerFactory = requestHandlerFactory;\r\n        this._requestHandler = null;\r\n        this._protocol = new SimpleWorkerProtocol({\r\n            sendMessage: function (msg, transfer) {\r\n                postMessage(msg, transfer);\r\n            },\r\n            handleMessage: function (method, args) { return _this._handleMessage(method, args); }\r\n        });\r\n    }\r\n    SimpleWorkerServer.prototype.onmessage = function (msg) {\r\n        this._protocol.handleMessage(msg);\r\n    };\r\n    SimpleWorkerServer.prototype._handleMessage = function (method, args) {\r\n        if (method === INITIALIZE) {\r\n            return this.initialize(args[0], args[1], args[2], args[3]);\r\n        }\r\n        if (!this._requestHandler || typeof this._requestHandler[method] !== 'function') {\r\n            return Promise.reject(new Error('Missing requestHandler or method: ' + method));\r\n        }\r\n        try {\r\n            return Promise.resolve(this._requestHandler[method].apply(this._requestHandler, args));\r\n        }\r\n        catch (e) {\r\n            return Promise.reject(e);\r\n        }\r\n    };\r\n    SimpleWorkerServer.prototype.initialize = function (workerId, loaderConfig, moduleId, hostMethods) {\r\n        var _this = this;\r\n        this._protocol.setWorkerId(workerId);\r\n        var proxyMethodRequest = function (method, args) {\r\n            return _this._protocol.sendMessage(method, args);\r\n        };\r\n        var hostProxy = _types_js__WEBPACK_IMPORTED_MODULE_3__[\"createProxyObject\"](hostMethods, proxyMethodRequest);\r\n        if (this._requestHandlerFactory) {\r\n            // static request handler\r\n            this._requestHandler = this._requestHandlerFactory(hostProxy);\r\n            return Promise.resolve(_types_js__WEBPACK_IMPORTED_MODULE_3__[\"getAllMethodNames\"](this._requestHandler));\r\n        }\r\n        if (loaderConfig) {\r\n            // Remove 'baseUrl', handling it is beyond scope for now\r\n            if (typeof loaderConfig.baseUrl !== 'undefined') {\r\n                delete loaderConfig['baseUrl'];\r\n            }\r\n            if (typeof loaderConfig.paths !== 'undefined') {\r\n                if (typeof loaderConfig.paths.vs !== 'undefined') {\r\n                    delete loaderConfig.paths['vs'];\r\n                }\r\n            }\r\n            // Since this is in a web worker, enable catching errors\r\n            loaderConfig.catchError = true;\r\n            self.require.config(loaderConfig);\r\n        }\r\n        return new Promise(function (resolve, reject) {\r\n            // Use the global require to be sure to get the global config\r\n            self.require([moduleId], function (module) {\r\n                _this._requestHandler = module.create(hostProxy);\r\n                if (!_this._requestHandler) {\r\n                    reject(new Error(\"No RequestHandler!\"));\r\n                    return;\r\n                }\r\n                resolve(_types_js__WEBPACK_IMPORTED_MODULE_3__[\"getAllMethodNames\"](_this._requestHandler));\r\n            }, reject);\r\n        });\r\n    };\r\n    return SimpleWorkerServer;\r\n}());\r\n\r\n/**\r\n * Called on the worker side\r\n */\r\nfunction create(postMessage) {\r\n    return new SimpleWorkerServer(postMessage, null);\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/base/common/worker/simpleWorker.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/core/characterClassifier.js":
-/*!*************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/core/characterClassifier.js ***!
-  \*************************************************************************************/
-/*! exports provided: CharacterClassifier, CharacterSet */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CharacterClassifier\", function() { return CharacterClassifier; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CharacterSet\", function() { return CharacterSet; });\n/* harmony import */ var _base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../base/common/uint.js */ \"./node_modules/monaco-editor/esm/vs/base/common/uint.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n/**\r\n * A fast character classifier that uses a compact array for ASCII values.\r\n */\r\nvar CharacterClassifier = /** @class */ (function () {\r\n    function CharacterClassifier(_defaultValue) {\r\n        var defaultValue = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint8\"])(_defaultValue);\r\n        this._defaultValue = defaultValue;\r\n        this._asciiMap = CharacterClassifier._createAsciiMap(defaultValue);\r\n        this._map = new Map();\r\n    }\r\n    CharacterClassifier._createAsciiMap = function (defaultValue) {\r\n        var asciiMap = new Uint8Array(256);\r\n        for (var i = 0; i < 256; i++) {\r\n            asciiMap[i] = defaultValue;\r\n        }\r\n        return asciiMap;\r\n    };\r\n    CharacterClassifier.prototype.set = function (charCode, _value) {\r\n        var value = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint8\"])(_value);\r\n        if (charCode >= 0 && charCode < 256) {\r\n            this._asciiMap[charCode] = value;\r\n        }\r\n        else {\r\n            this._map.set(charCode, value);\r\n        }\r\n    };\r\n    CharacterClassifier.prototype.get = function (charCode) {\r\n        if (charCode >= 0 && charCode < 256) {\r\n            return this._asciiMap[charCode];\r\n        }\r\n        else {\r\n            return (this._map.get(charCode) || this._defaultValue);\r\n        }\r\n    };\r\n    return CharacterClassifier;\r\n}());\r\n\r\nvar CharacterSet = /** @class */ (function () {\r\n    function CharacterSet() {\r\n        this._actual = new CharacterClassifier(0 /* False */);\r\n    }\r\n    CharacterSet.prototype.add = function (charCode) {\r\n        this._actual.set(charCode, 1 /* True */);\r\n    };\r\n    CharacterSet.prototype.has = function (charCode) {\r\n        return (this._actual.get(charCode) === 1 /* True */);\r\n    };\r\n    return CharacterSet;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/core/characterClassifier.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/core/position.js":
-/*!**************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/core/position.js ***!
-  \**************************************************************************/
-/*! exports provided: Position */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Position\", function() { return Position; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n/**\r\n * A position in the editor.\r\n */\r\nvar Position = /** @class */ (function () {\r\n    function Position(lineNumber, column) {\r\n        this.lineNumber = lineNumber;\r\n        this.column = column;\r\n    }\r\n    /**\r\n     * Create a new position from this position.\r\n     *\r\n     * @param newLineNumber new line number\r\n     * @param newColumn new column\r\n     */\r\n    Position.prototype.with = function (newLineNumber, newColumn) {\r\n        if (newLineNumber === void 0) { newLineNumber = this.lineNumber; }\r\n        if (newColumn === void 0) { newColumn = this.column; }\r\n        if (newLineNumber === this.lineNumber && newColumn === this.column) {\r\n            return this;\r\n        }\r\n        else {\r\n            return new Position(newLineNumber, newColumn);\r\n        }\r\n    };\r\n    /**\r\n     * Derive a new position from this position.\r\n     *\r\n     * @param deltaLineNumber line number delta\r\n     * @param deltaColumn column delta\r\n     */\r\n    Position.prototype.delta = function (deltaLineNumber, deltaColumn) {\r\n        if (deltaLineNumber === void 0) { deltaLineNumber = 0; }\r\n        if (deltaColumn === void 0) { deltaColumn = 0; }\r\n        return this.with(this.lineNumber + deltaLineNumber, this.column + deltaColumn);\r\n    };\r\n    /**\r\n     * Test if this position equals other position\r\n     */\r\n    Position.prototype.equals = function (other) {\r\n        return Position.equals(this, other);\r\n    };\r\n    /**\r\n     * Test if position `a` equals position `b`\r\n     */\r\n    Position.equals = function (a, b) {\r\n        if (!a && !b) {\r\n            return true;\r\n        }\r\n        return (!!a &&\r\n            !!b &&\r\n            a.lineNumber === b.lineNumber &&\r\n            a.column === b.column);\r\n    };\r\n    /**\r\n     * Test if this position is before other position.\r\n     * If the two positions are equal, the result will be false.\r\n     */\r\n    Position.prototype.isBefore = function (other) {\r\n        return Position.isBefore(this, other);\r\n    };\r\n    /**\r\n     * Test if position `a` is before position `b`.\r\n     * If the two positions are equal, the result will be false.\r\n     */\r\n    Position.isBefore = function (a, b) {\r\n        if (a.lineNumber < b.lineNumber) {\r\n            return true;\r\n        }\r\n        if (b.lineNumber < a.lineNumber) {\r\n            return false;\r\n        }\r\n        return a.column < b.column;\r\n    };\r\n    /**\r\n     * Test if this position is before other position.\r\n     * If the two positions are equal, the result will be true.\r\n     */\r\n    Position.prototype.isBeforeOrEqual = function (other) {\r\n        return Position.isBeforeOrEqual(this, other);\r\n    };\r\n    /**\r\n     * Test if position `a` is before position `b`.\r\n     * If the two positions are equal, the result will be true.\r\n     */\r\n    Position.isBeforeOrEqual = function (a, b) {\r\n        if (a.lineNumber < b.lineNumber) {\r\n            return true;\r\n        }\r\n        if (b.lineNumber < a.lineNumber) {\r\n            return false;\r\n        }\r\n        return a.column <= b.column;\r\n    };\r\n    /**\r\n     * A function that compares positions, useful for sorting\r\n     */\r\n    Position.compare = function (a, b) {\r\n        var aLineNumber = a.lineNumber | 0;\r\n        var bLineNumber = b.lineNumber | 0;\r\n        if (aLineNumber === bLineNumber) {\r\n            var aColumn = a.column | 0;\r\n            var bColumn = b.column | 0;\r\n            return aColumn - bColumn;\r\n        }\r\n        return aLineNumber - bLineNumber;\r\n    };\r\n    /**\r\n     * Clone this position.\r\n     */\r\n    Position.prototype.clone = function () {\r\n        return new Position(this.lineNumber, this.column);\r\n    };\r\n    /**\r\n     * Convert to a human-readable representation.\r\n     */\r\n    Position.prototype.toString = function () {\r\n        return '(' + this.lineNumber + ',' + this.column + ')';\r\n    };\r\n    // ---\r\n    /**\r\n     * Create a `Position` from an `IPosition`.\r\n     */\r\n    Position.lift = function (pos) {\r\n        return new Position(pos.lineNumber, pos.column);\r\n    };\r\n    /**\r\n     * Test if `obj` is an `IPosition`.\r\n     */\r\n    Position.isIPosition = function (obj) {\r\n        return (obj\r\n            && (typeof obj.lineNumber === 'number')\r\n            && (typeof obj.column === 'number'));\r\n    };\r\n    return Position;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/core/position.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/core/range.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/core/range.js ***!
-  \***********************************************************************/
-/*! exports provided: Range */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Range\", function() { return Range; });\n/* harmony import */ var _position_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./position.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/position.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n/**\r\n * A range in the editor. (startLineNumber,startColumn) is <= (endLineNumber,endColumn)\r\n */\r\nvar Range = /** @class */ (function () {\r\n    function Range(startLineNumber, startColumn, endLineNumber, endColumn) {\r\n        if ((startLineNumber > endLineNumber) || (startLineNumber === endLineNumber && startColumn > endColumn)) {\r\n            this.startLineNumber = endLineNumber;\r\n            this.startColumn = endColumn;\r\n            this.endLineNumber = startLineNumber;\r\n            this.endColumn = startColumn;\r\n        }\r\n        else {\r\n            this.startLineNumber = startLineNumber;\r\n            this.startColumn = startColumn;\r\n            this.endLineNumber = endLineNumber;\r\n            this.endColumn = endColumn;\r\n        }\r\n    }\r\n    /**\r\n     * Test if this range is empty.\r\n     */\r\n    Range.prototype.isEmpty = function () {\r\n        return Range.isEmpty(this);\r\n    };\r\n    /**\r\n     * Test if `range` is empty.\r\n     */\r\n    Range.isEmpty = function (range) {\r\n        return (range.startLineNumber === range.endLineNumber && range.startColumn === range.endColumn);\r\n    };\r\n    /**\r\n     * Test if position is in this range. If the position is at the edges, will return true.\r\n     */\r\n    Range.prototype.containsPosition = function (position) {\r\n        return Range.containsPosition(this, position);\r\n    };\r\n    /**\r\n     * Test if `position` is in `range`. If the position is at the edges, will return true.\r\n     */\r\n    Range.containsPosition = function (range, position) {\r\n        if (position.lineNumber < range.startLineNumber || position.lineNumber > range.endLineNumber) {\r\n            return false;\r\n        }\r\n        if (position.lineNumber === range.startLineNumber && position.column < range.startColumn) {\r\n            return false;\r\n        }\r\n        if (position.lineNumber === range.endLineNumber && position.column > range.endColumn) {\r\n            return false;\r\n        }\r\n        return true;\r\n    };\r\n    /**\r\n     * Test if range is in this range. If the range is equal to this range, will return true.\r\n     */\r\n    Range.prototype.containsRange = function (range) {\r\n        return Range.containsRange(this, range);\r\n    };\r\n    /**\r\n     * Test if `otherRange` is in `range`. If the ranges are equal, will return true.\r\n     */\r\n    Range.containsRange = function (range, otherRange) {\r\n        if (otherRange.startLineNumber < range.startLineNumber || otherRange.endLineNumber < range.startLineNumber) {\r\n            return false;\r\n        }\r\n        if (otherRange.startLineNumber > range.endLineNumber || otherRange.endLineNumber > range.endLineNumber) {\r\n            return false;\r\n        }\r\n        if (otherRange.startLineNumber === range.startLineNumber && otherRange.startColumn < range.startColumn) {\r\n            return false;\r\n        }\r\n        if (otherRange.endLineNumber === range.endLineNumber && otherRange.endColumn > range.endColumn) {\r\n            return false;\r\n        }\r\n        return true;\r\n    };\r\n    /**\r\n     * Test if `range` is strictly in this range. `range` must start after and end before this range for the result to be true.\r\n     */\r\n    Range.prototype.strictContainsRange = function (range) {\r\n        return Range.strictContainsRange(this, range);\r\n    };\r\n    /**\r\n     * Test if `otherRange` is strinctly in `range` (must start after, and end before). If the ranges are equal, will return false.\r\n     */\r\n    Range.strictContainsRange = function (range, otherRange) {\r\n        if (otherRange.startLineNumber < range.startLineNumber || otherRange.endLineNumber < range.startLineNumber) {\r\n            return false;\r\n        }\r\n        if (otherRange.startLineNumber > range.endLineNumber || otherRange.endLineNumber > range.endLineNumber) {\r\n            return false;\r\n        }\r\n        if (otherRange.startLineNumber === range.startLineNumber && otherRange.startColumn <= range.startColumn) {\r\n            return false;\r\n        }\r\n        if (otherRange.endLineNumber === range.endLineNumber && otherRange.endColumn >= range.endColumn) {\r\n            return false;\r\n        }\r\n        return true;\r\n    };\r\n    /**\r\n     * A reunion of the two ranges.\r\n     * The smallest position will be used as the start point, and the largest one as the end point.\r\n     */\r\n    Range.prototype.plusRange = function (range) {\r\n        return Range.plusRange(this, range);\r\n    };\r\n    /**\r\n     * A reunion of the two ranges.\r\n     * The smallest position will be used as the start point, and the largest one as the end point.\r\n     */\r\n    Range.plusRange = function (a, b) {\r\n        var startLineNumber;\r\n        var startColumn;\r\n        var endLineNumber;\r\n        var endColumn;\r\n        if (b.startLineNumber < a.startLineNumber) {\r\n            startLineNumber = b.startLineNumber;\r\n            startColumn = b.startColumn;\r\n        }\r\n        else if (b.startLineNumber === a.startLineNumber) {\r\n            startLineNumber = b.startLineNumber;\r\n            startColumn = Math.min(b.startColumn, a.startColumn);\r\n        }\r\n        else {\r\n            startLineNumber = a.startLineNumber;\r\n            startColumn = a.startColumn;\r\n        }\r\n        if (b.endLineNumber > a.endLineNumber) {\r\n            endLineNumber = b.endLineNumber;\r\n            endColumn = b.endColumn;\r\n        }\r\n        else if (b.endLineNumber === a.endLineNumber) {\r\n            endLineNumber = b.endLineNumber;\r\n            endColumn = Math.max(b.endColumn, a.endColumn);\r\n        }\r\n        else {\r\n            endLineNumber = a.endLineNumber;\r\n            endColumn = a.endColumn;\r\n        }\r\n        return new Range(startLineNumber, startColumn, endLineNumber, endColumn);\r\n    };\r\n    /**\r\n     * A intersection of the two ranges.\r\n     */\r\n    Range.prototype.intersectRanges = function (range) {\r\n        return Range.intersectRanges(this, range);\r\n    };\r\n    /**\r\n     * A intersection of the two ranges.\r\n     */\r\n    Range.intersectRanges = function (a, b) {\r\n        var resultStartLineNumber = a.startLineNumber;\r\n        var resultStartColumn = a.startColumn;\r\n        var resultEndLineNumber = a.endLineNumber;\r\n        var resultEndColumn = a.endColumn;\r\n        var otherStartLineNumber = b.startLineNumber;\r\n        var otherStartColumn = b.startColumn;\r\n        var otherEndLineNumber = b.endLineNumber;\r\n        var otherEndColumn = b.endColumn;\r\n        if (resultStartLineNumber < otherStartLineNumber) {\r\n            resultStartLineNumber = otherStartLineNumber;\r\n            resultStartColumn = otherStartColumn;\r\n        }\r\n        else if (resultStartLineNumber === otherStartLineNumber) {\r\n            resultStartColumn = Math.max(resultStartColumn, otherStartColumn);\r\n        }\r\n        if (resultEndLineNumber > otherEndLineNumber) {\r\n            resultEndLineNumber = otherEndLineNumber;\r\n            resultEndColumn = otherEndColumn;\r\n        }\r\n        else if (resultEndLineNumber === otherEndLineNumber) {\r\n            resultEndColumn = Math.min(resultEndColumn, otherEndColumn);\r\n        }\r\n        // Check if selection is now empty\r\n        if (resultStartLineNumber > resultEndLineNumber) {\r\n            return null;\r\n        }\r\n        if (resultStartLineNumber === resultEndLineNumber && resultStartColumn > resultEndColumn) {\r\n            return null;\r\n        }\r\n        return new Range(resultStartLineNumber, resultStartColumn, resultEndLineNumber, resultEndColumn);\r\n    };\r\n    /**\r\n     * Test if this range equals other.\r\n     */\r\n    Range.prototype.equalsRange = function (other) {\r\n        return Range.equalsRange(this, other);\r\n    };\r\n    /**\r\n     * Test if range `a` equals `b`.\r\n     */\r\n    Range.equalsRange = function (a, b) {\r\n        return (!!a &&\r\n            !!b &&\r\n            a.startLineNumber === b.startLineNumber &&\r\n            a.startColumn === b.startColumn &&\r\n            a.endLineNumber === b.endLineNumber &&\r\n            a.endColumn === b.endColumn);\r\n    };\r\n    /**\r\n     * Return the end position (which will be after or equal to the start position)\r\n     */\r\n    Range.prototype.getEndPosition = function () {\r\n        return new _position_js__WEBPACK_IMPORTED_MODULE_0__[\"Position\"](this.endLineNumber, this.endColumn);\r\n    };\r\n    /**\r\n     * Return the start position (which will be before or equal to the end position)\r\n     */\r\n    Range.prototype.getStartPosition = function () {\r\n        return new _position_js__WEBPACK_IMPORTED_MODULE_0__[\"Position\"](this.startLineNumber, this.startColumn);\r\n    };\r\n    /**\r\n     * Transform to a user presentable string representation.\r\n     */\r\n    Range.prototype.toString = function () {\r\n        return '[' + this.startLineNumber + ',' + this.startColumn + ' -> ' + this.endLineNumber + ',' + this.endColumn + ']';\r\n    };\r\n    /**\r\n     * Create a new range using this range's start position, and using endLineNumber and endColumn as the end position.\r\n     */\r\n    Range.prototype.setEndPosition = function (endLineNumber, endColumn) {\r\n        return new Range(this.startLineNumber, this.startColumn, endLineNumber, endColumn);\r\n    };\r\n    /**\r\n     * Create a new range using this range's end position, and using startLineNumber and startColumn as the start position.\r\n     */\r\n    Range.prototype.setStartPosition = function (startLineNumber, startColumn) {\r\n        return new Range(startLineNumber, startColumn, this.endLineNumber, this.endColumn);\r\n    };\r\n    /**\r\n     * Create a new empty range using this range's start position.\r\n     */\r\n    Range.prototype.collapseToStart = function () {\r\n        return Range.collapseToStart(this);\r\n    };\r\n    /**\r\n     * Create a new empty range using this range's start position.\r\n     */\r\n    Range.collapseToStart = function (range) {\r\n        return new Range(range.startLineNumber, range.startColumn, range.startLineNumber, range.startColumn);\r\n    };\r\n    // ---\r\n    Range.fromPositions = function (start, end) {\r\n        if (end === void 0) { end = start; }\r\n        return new Range(start.lineNumber, start.column, end.lineNumber, end.column);\r\n    };\r\n    Range.lift = function (range) {\r\n        if (!range) {\r\n            return null;\r\n        }\r\n        return new Range(range.startLineNumber, range.startColumn, range.endLineNumber, range.endColumn);\r\n    };\r\n    /**\r\n     * Test if `obj` is an `IRange`.\r\n     */\r\n    Range.isIRange = function (obj) {\r\n        return (obj\r\n            && (typeof obj.startLineNumber === 'number')\r\n            && (typeof obj.startColumn === 'number')\r\n            && (typeof obj.endLineNumber === 'number')\r\n            && (typeof obj.endColumn === 'number'));\r\n    };\r\n    /**\r\n     * Test if the two ranges are touching in any way.\r\n     */\r\n    Range.areIntersectingOrTouching = function (a, b) {\r\n        // Check if `a` is before `b`\r\n        if (a.endLineNumber < b.startLineNumber || (a.endLineNumber === b.startLineNumber && a.endColumn < b.startColumn)) {\r\n            return false;\r\n        }\r\n        // Check if `b` is before `a`\r\n        if (b.endLineNumber < a.startLineNumber || (b.endLineNumber === a.startLineNumber && b.endColumn < a.startColumn)) {\r\n            return false;\r\n        }\r\n        // These ranges must intersect\r\n        return true;\r\n    };\r\n    /**\r\n     * Test if the two ranges are intersecting. If the ranges are touching it returns true.\r\n     */\r\n    Range.areIntersecting = function (a, b) {\r\n        // Check if `a` is before `b`\r\n        if (a.endLineNumber < b.startLineNumber || (a.endLineNumber === b.startLineNumber && a.endColumn <= b.startColumn)) {\r\n            return false;\r\n        }\r\n        // Check if `b` is before `a`\r\n        if (b.endLineNumber < a.startLineNumber || (b.endLineNumber === a.startLineNumber && b.endColumn <= a.startColumn)) {\r\n            return false;\r\n        }\r\n        // These ranges must intersect\r\n        return true;\r\n    };\r\n    /**\r\n     * A function that compares ranges, useful for sorting ranges\r\n     * It will first compare ranges on the startPosition and then on the endPosition\r\n     */\r\n    Range.compareRangesUsingStarts = function (a, b) {\r\n        if (a && b) {\r\n            var aStartLineNumber = a.startLineNumber | 0;\r\n            var bStartLineNumber = b.startLineNumber | 0;\r\n            if (aStartLineNumber === bStartLineNumber) {\r\n                var aStartColumn = a.startColumn | 0;\r\n                var bStartColumn = b.startColumn | 0;\r\n                if (aStartColumn === bStartColumn) {\r\n                    var aEndLineNumber = a.endLineNumber | 0;\r\n                    var bEndLineNumber = b.endLineNumber | 0;\r\n                    if (aEndLineNumber === bEndLineNumber) {\r\n                        var aEndColumn = a.endColumn | 0;\r\n                        var bEndColumn = b.endColumn | 0;\r\n                        return aEndColumn - bEndColumn;\r\n                    }\r\n                    return aEndLineNumber - bEndLineNumber;\r\n                }\r\n                return aStartColumn - bStartColumn;\r\n            }\r\n            return aStartLineNumber - bStartLineNumber;\r\n        }\r\n        var aExists = (a ? 1 : 0);\r\n        var bExists = (b ? 1 : 0);\r\n        return aExists - bExists;\r\n    };\r\n    /**\r\n     * A function that compares ranges, useful for sorting ranges\r\n     * It will first compare ranges on the endPosition and then on the startPosition\r\n     */\r\n    Range.compareRangesUsingEnds = function (a, b) {\r\n        if (a.endLineNumber === b.endLineNumber) {\r\n            if (a.endColumn === b.endColumn) {\r\n                if (a.startLineNumber === b.startLineNumber) {\r\n                    return a.startColumn - b.startColumn;\r\n                }\r\n                return a.startLineNumber - b.startLineNumber;\r\n            }\r\n            return a.endColumn - b.endColumn;\r\n        }\r\n        return a.endLineNumber - b.endLineNumber;\r\n    };\r\n    /**\r\n     * Test if the range spans multiple lines.\r\n     */\r\n    Range.spansMultipleLines = function (range) {\r\n        return range.endLineNumber > range.startLineNumber;\r\n    };\r\n    return Range;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/core/range.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/core/selection.js":
-/*!***************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/core/selection.js ***!
-  \***************************************************************************/
-/*! exports provided: Selection */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Selection\", function() { return Selection; });\n/* harmony import */ var _position_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./position.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/position.js\");\n/* harmony import */ var _range_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./range.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/range.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\n\r\n\r\n/**\r\n * A selection in the editor.\r\n * The selection is a range that has an orientation.\r\n */\r\nvar Selection = /** @class */ (function (_super) {\r\n    __extends(Selection, _super);\r\n    function Selection(selectionStartLineNumber, selectionStartColumn, positionLineNumber, positionColumn) {\r\n        var _this = _super.call(this, selectionStartLineNumber, selectionStartColumn, positionLineNumber, positionColumn) || this;\r\n        _this.selectionStartLineNumber = selectionStartLineNumber;\r\n        _this.selectionStartColumn = selectionStartColumn;\r\n        _this.positionLineNumber = positionLineNumber;\r\n        _this.positionColumn = positionColumn;\r\n        return _this;\r\n    }\r\n    /**\r\n     * Transform to a human-readable representation.\r\n     */\r\n    Selection.prototype.toString = function () {\r\n        return '[' + this.selectionStartLineNumber + ',' + this.selectionStartColumn + ' -> ' + this.positionLineNumber + ',' + this.positionColumn + ']';\r\n    };\r\n    /**\r\n     * Test if equals other selection.\r\n     */\r\n    Selection.prototype.equalsSelection = function (other) {\r\n        return (Selection.selectionsEqual(this, other));\r\n    };\r\n    /**\r\n     * Test if the two selections are equal.\r\n     */\r\n    Selection.selectionsEqual = function (a, b) {\r\n        return (a.selectionStartLineNumber === b.selectionStartLineNumber &&\r\n            a.selectionStartColumn === b.selectionStartColumn &&\r\n            a.positionLineNumber === b.positionLineNumber &&\r\n            a.positionColumn === b.positionColumn);\r\n    };\r\n    /**\r\n     * Get directions (LTR or RTL).\r\n     */\r\n    Selection.prototype.getDirection = function () {\r\n        if (this.selectionStartLineNumber === this.startLineNumber && this.selectionStartColumn === this.startColumn) {\r\n            return 0 /* LTR */;\r\n        }\r\n        return 1 /* RTL */;\r\n    };\r\n    /**\r\n     * Create a new selection with a different `positionLineNumber` and `positionColumn`.\r\n     */\r\n    Selection.prototype.setEndPosition = function (endLineNumber, endColumn) {\r\n        if (this.getDirection() === 0 /* LTR */) {\r\n            return new Selection(this.startLineNumber, this.startColumn, endLineNumber, endColumn);\r\n        }\r\n        return new Selection(endLineNumber, endColumn, this.startLineNumber, this.startColumn);\r\n    };\r\n    /**\r\n     * Get the position at `positionLineNumber` and `positionColumn`.\r\n     */\r\n    Selection.prototype.getPosition = function () {\r\n        return new _position_js__WEBPACK_IMPORTED_MODULE_0__[\"Position\"](this.positionLineNumber, this.positionColumn);\r\n    };\r\n    /**\r\n     * Create a new selection with a different `selectionStartLineNumber` and `selectionStartColumn`.\r\n     */\r\n    Selection.prototype.setStartPosition = function (startLineNumber, startColumn) {\r\n        if (this.getDirection() === 0 /* LTR */) {\r\n            return new Selection(startLineNumber, startColumn, this.endLineNumber, this.endColumn);\r\n        }\r\n        return new Selection(this.endLineNumber, this.endColumn, startLineNumber, startColumn);\r\n    };\r\n    // ----\r\n    /**\r\n     * Create a `Selection` from one or two positions\r\n     */\r\n    Selection.fromPositions = function (start, end) {\r\n        if (end === void 0) { end = start; }\r\n        return new Selection(start.lineNumber, start.column, end.lineNumber, end.column);\r\n    };\r\n    /**\r\n     * Create a `Selection` from an `ISelection`.\r\n     */\r\n    Selection.liftSelection = function (sel) {\r\n        return new Selection(sel.selectionStartLineNumber, sel.selectionStartColumn, sel.positionLineNumber, sel.positionColumn);\r\n    };\r\n    /**\r\n     * `a` equals `b`.\r\n     */\r\n    Selection.selectionsArrEqual = function (a, b) {\r\n        if (a && !b || !a && b) {\r\n            return false;\r\n        }\r\n        if (!a && !b) {\r\n            return true;\r\n        }\r\n        if (a.length !== b.length) {\r\n            return false;\r\n        }\r\n        for (var i = 0, len = a.length; i < len; i++) {\r\n            if (!this.selectionsEqual(a[i], b[i])) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    };\r\n    /**\r\n     * Test if `obj` is an `ISelection`.\r\n     */\r\n    Selection.isISelection = function (obj) {\r\n        return (obj\r\n            && (typeof obj.selectionStartLineNumber === 'number')\r\n            && (typeof obj.selectionStartColumn === 'number')\r\n            && (typeof obj.positionLineNumber === 'number')\r\n            && (typeof obj.positionColumn === 'number'));\r\n    };\r\n    /**\r\n     * Create with a direction.\r\n     */\r\n    Selection.createWithDirection = function (startLineNumber, startColumn, endLineNumber, endColumn, direction) {\r\n        if (direction === 0 /* LTR */) {\r\n            return new Selection(startLineNumber, startColumn, endLineNumber, endColumn);\r\n        }\r\n        return new Selection(endLineNumber, endColumn, startLineNumber, startColumn);\r\n    };\r\n    return Selection;\r\n}(_range_js__WEBPACK_IMPORTED_MODULE_1__[\"Range\"]));\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/core/selection.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/core/token.js":
-/*!***********************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/core/token.js ***!
-  \***********************************************************************/
-/*! exports provided: Token, TokenizationResult, TokenizationResult2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Token\", function() { return Token; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TokenizationResult\", function() { return TokenizationResult; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TokenizationResult2\", function() { return TokenizationResult2; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar Token = /** @class */ (function () {\r\n    function Token(offset, type, language) {\r\n        this.offset = offset | 0; // @perf\r\n        this.type = type;\r\n        this.language = language;\r\n    }\r\n    Token.prototype.toString = function () {\r\n        return '(' + this.offset + ', ' + this.type + ')';\r\n    };\r\n    return Token;\r\n}());\r\n\r\nvar TokenizationResult = /** @class */ (function () {\r\n    function TokenizationResult(tokens, endState) {\r\n        this.tokens = tokens;\r\n        this.endState = endState;\r\n    }\r\n    return TokenizationResult;\r\n}());\r\n\r\nvar TokenizationResult2 = /** @class */ (function () {\r\n    function TokenizationResult2(tokens, endState) {\r\n        this.tokens = tokens;\r\n        this.endState = endState;\r\n    }\r\n    return TokenizationResult2;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/core/token.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/diff/diffComputer.js":
-/*!******************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/diff/diffComputer.js ***!
-  \******************************************************************************/
-/*! exports provided: DiffComputer */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DiffComputer\", function() { return DiffComputer; });\n/* harmony import */ var _base_common_diff_diff_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../base/common/diff/diff.js */ \"./node_modules/monaco-editor/esm/vs/base/common/diff/diff.js\");\n/* harmony import */ var _base_common_strings_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../base/common/strings.js */ \"./node_modules/monaco-editor/esm/vs/base/common/strings.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n\r\nvar MINIMUM_MATCHING_CHARACTER_LENGTH = 3;\r\nfunction computeDiff(originalSequence, modifiedSequence, continueProcessingPredicate, pretty) {\r\n    var diffAlgo = new _base_common_diff_diff_js__WEBPACK_IMPORTED_MODULE_0__[\"LcsDiff\"](originalSequence, modifiedSequence, continueProcessingPredicate);\r\n    return diffAlgo.ComputeDiff(pretty);\r\n}\r\nvar LineSequence = /** @class */ (function () {\r\n    function LineSequence(lines) {\r\n        var startColumns = [];\r\n        var endColumns = [];\r\n        for (var i = 0, length_1 = lines.length; i < length_1; i++) {\r\n            startColumns[i] = getFirstNonBlankColumn(lines[i], 1);\r\n            endColumns[i] = getLastNonBlankColumn(lines[i], 1);\r\n        }\r\n        this.lines = lines;\r\n        this._startColumns = startColumns;\r\n        this._endColumns = endColumns;\r\n    }\r\n    LineSequence.prototype.getElements = function () {\r\n        var elements = [];\r\n        for (var i = 0, len = this.lines.length; i < len; i++) {\r\n            elements[i] = this.lines[i].substring(this._startColumns[i] - 1, this._endColumns[i] - 1);\r\n        }\r\n        return elements;\r\n    };\r\n    LineSequence.prototype.getStartLineNumber = function (i) {\r\n        return i + 1;\r\n    };\r\n    LineSequence.prototype.getEndLineNumber = function (i) {\r\n        return i + 1;\r\n    };\r\n    LineSequence.prototype.createCharSequence = function (shouldIgnoreTrimWhitespace, startIndex, endIndex) {\r\n        var charCodes = [];\r\n        var lineNumbers = [];\r\n        var columns = [];\r\n        var len = 0;\r\n        for (var index = startIndex; index <= endIndex; index++) {\r\n            var lineContent = this.lines[index];\r\n            var startColumn = (shouldIgnoreTrimWhitespace ? this._startColumns[index] : 1);\r\n            var endColumn = (shouldIgnoreTrimWhitespace ? this._endColumns[index] : lineContent.length + 1);\r\n            for (var col = startColumn; col < endColumn; col++) {\r\n                charCodes[len] = lineContent.charCodeAt(col - 1);\r\n                lineNumbers[len] = index + 1;\r\n                columns[len] = col;\r\n                len++;\r\n            }\r\n        }\r\n        return new CharSequence(charCodes, lineNumbers, columns);\r\n    };\r\n    return LineSequence;\r\n}());\r\nvar CharSequence = /** @class */ (function () {\r\n    function CharSequence(charCodes, lineNumbers, columns) {\r\n        this._charCodes = charCodes;\r\n        this._lineNumbers = lineNumbers;\r\n        this._columns = columns;\r\n    }\r\n    CharSequence.prototype.getElements = function () {\r\n        return this._charCodes;\r\n    };\r\n    CharSequence.prototype.getStartLineNumber = function (i) {\r\n        return this._lineNumbers[i];\r\n    };\r\n    CharSequence.prototype.getStartColumn = function (i) {\r\n        return this._columns[i];\r\n    };\r\n    CharSequence.prototype.getEndLineNumber = function (i) {\r\n        return this._lineNumbers[i];\r\n    };\r\n    CharSequence.prototype.getEndColumn = function (i) {\r\n        return this._columns[i] + 1;\r\n    };\r\n    return CharSequence;\r\n}());\r\nvar CharChange = /** @class */ (function () {\r\n    function CharChange(originalStartLineNumber, originalStartColumn, originalEndLineNumber, originalEndColumn, modifiedStartLineNumber, modifiedStartColumn, modifiedEndLineNumber, modifiedEndColumn) {\r\n        this.originalStartLineNumber = originalStartLineNumber;\r\n        this.originalStartColumn = originalStartColumn;\r\n        this.originalEndLineNumber = originalEndLineNumber;\r\n        this.originalEndColumn = originalEndColumn;\r\n        this.modifiedStartLineNumber = modifiedStartLineNumber;\r\n        this.modifiedStartColumn = modifiedStartColumn;\r\n        this.modifiedEndLineNumber = modifiedEndLineNumber;\r\n        this.modifiedEndColumn = modifiedEndColumn;\r\n    }\r\n    CharChange.createFromDiffChange = function (diffChange, originalCharSequence, modifiedCharSequence) {\r\n        var originalStartLineNumber;\r\n        var originalStartColumn;\r\n        var originalEndLineNumber;\r\n        var originalEndColumn;\r\n        var modifiedStartLineNumber;\r\n        var modifiedStartColumn;\r\n        var modifiedEndLineNumber;\r\n        var modifiedEndColumn;\r\n        if (diffChange.originalLength === 0) {\r\n            originalStartLineNumber = 0;\r\n            originalStartColumn = 0;\r\n            originalEndLineNumber = 0;\r\n            originalEndColumn = 0;\r\n        }\r\n        else {\r\n            originalStartLineNumber = originalCharSequence.getStartLineNumber(diffChange.originalStart);\r\n            originalStartColumn = originalCharSequence.getStartColumn(diffChange.originalStart);\r\n            originalEndLineNumber = originalCharSequence.getEndLineNumber(diffChange.originalStart + diffChange.originalLength - 1);\r\n            originalEndColumn = originalCharSequence.getEndColumn(diffChange.originalStart + diffChange.originalLength - 1);\r\n        }\r\n        if (diffChange.modifiedLength === 0) {\r\n            modifiedStartLineNumber = 0;\r\n            modifiedStartColumn = 0;\r\n            modifiedEndLineNumber = 0;\r\n            modifiedEndColumn = 0;\r\n        }\r\n        else {\r\n            modifiedStartLineNumber = modifiedCharSequence.getStartLineNumber(diffChange.modifiedStart);\r\n            modifiedStartColumn = modifiedCharSequence.getStartColumn(diffChange.modifiedStart);\r\n            modifiedEndLineNumber = modifiedCharSequence.getEndLineNumber(diffChange.modifiedStart + diffChange.modifiedLength - 1);\r\n            modifiedEndColumn = modifiedCharSequence.getEndColumn(diffChange.modifiedStart + diffChange.modifiedLength - 1);\r\n        }\r\n        return new CharChange(originalStartLineNumber, originalStartColumn, originalEndLineNumber, originalEndColumn, modifiedStartLineNumber, modifiedStartColumn, modifiedEndLineNumber, modifiedEndColumn);\r\n    };\r\n    return CharChange;\r\n}());\r\nfunction postProcessCharChanges(rawChanges) {\r\n    if (rawChanges.length <= 1) {\r\n        return rawChanges;\r\n    }\r\n    var result = [rawChanges[0]];\r\n    var prevChange = result[0];\r\n    for (var i = 1, len = rawChanges.length; i < len; i++) {\r\n        var currChange = rawChanges[i];\r\n        var originalMatchingLength = currChange.originalStart - (prevChange.originalStart + prevChange.originalLength);\r\n        var modifiedMatchingLength = currChange.modifiedStart - (prevChange.modifiedStart + prevChange.modifiedLength);\r\n        // Both of the above should be equal, but the continueProcessingPredicate may prevent this from being true\r\n        var matchingLength = Math.min(originalMatchingLength, modifiedMatchingLength);\r\n        if (matchingLength < MINIMUM_MATCHING_CHARACTER_LENGTH) {\r\n            // Merge the current change into the previous one\r\n            prevChange.originalLength = (currChange.originalStart + currChange.originalLength) - prevChange.originalStart;\r\n            prevChange.modifiedLength = (currChange.modifiedStart + currChange.modifiedLength) - prevChange.modifiedStart;\r\n        }\r\n        else {\r\n            // Add the current change\r\n            result.push(currChange);\r\n            prevChange = currChange;\r\n        }\r\n    }\r\n    return result;\r\n}\r\nvar LineChange = /** @class */ (function () {\r\n    function LineChange(originalStartLineNumber, originalEndLineNumber, modifiedStartLineNumber, modifiedEndLineNumber, charChanges) {\r\n        this.originalStartLineNumber = originalStartLineNumber;\r\n        this.originalEndLineNumber = originalEndLineNumber;\r\n        this.modifiedStartLineNumber = modifiedStartLineNumber;\r\n        this.modifiedEndLineNumber = modifiedEndLineNumber;\r\n        this.charChanges = charChanges;\r\n    }\r\n    LineChange.createFromDiffResult = function (shouldIgnoreTrimWhitespace, diffChange, originalLineSequence, modifiedLineSequence, continueCharDiff, shouldComputeCharChanges, shouldPostProcessCharChanges) {\r\n        var originalStartLineNumber;\r\n        var originalEndLineNumber;\r\n        var modifiedStartLineNumber;\r\n        var modifiedEndLineNumber;\r\n        var charChanges = undefined;\r\n        if (diffChange.originalLength === 0) {\r\n            originalStartLineNumber = originalLineSequence.getStartLineNumber(diffChange.originalStart) - 1;\r\n            originalEndLineNumber = 0;\r\n        }\r\n        else {\r\n            originalStartLineNumber = originalLineSequence.getStartLineNumber(diffChange.originalStart);\r\n            originalEndLineNumber = originalLineSequence.getEndLineNumber(diffChange.originalStart + diffChange.originalLength - 1);\r\n        }\r\n        if (diffChange.modifiedLength === 0) {\r\n            modifiedStartLineNumber = modifiedLineSequence.getStartLineNumber(diffChange.modifiedStart) - 1;\r\n            modifiedEndLineNumber = 0;\r\n        }\r\n        else {\r\n            modifiedStartLineNumber = modifiedLineSequence.getStartLineNumber(diffChange.modifiedStart);\r\n            modifiedEndLineNumber = modifiedLineSequence.getEndLineNumber(diffChange.modifiedStart + diffChange.modifiedLength - 1);\r\n        }\r\n        if (shouldComputeCharChanges && diffChange.originalLength > 0 && diffChange.originalLength < 20 && diffChange.modifiedLength > 0 && diffChange.modifiedLength < 20 && continueCharDiff()) {\r\n            // Compute character changes for diff chunks of at most 20 lines...\r\n            var originalCharSequence = originalLineSequence.createCharSequence(shouldIgnoreTrimWhitespace, diffChange.originalStart, diffChange.originalStart + diffChange.originalLength - 1);\r\n            var modifiedCharSequence = modifiedLineSequence.createCharSequence(shouldIgnoreTrimWhitespace, diffChange.modifiedStart, diffChange.modifiedStart + diffChange.modifiedLength - 1);\r\n            var rawChanges = computeDiff(originalCharSequence, modifiedCharSequence, continueCharDiff, true).changes;\r\n            if (shouldPostProcessCharChanges) {\r\n                rawChanges = postProcessCharChanges(rawChanges);\r\n            }\r\n            charChanges = [];\r\n            for (var i = 0, length_2 = rawChanges.length; i < length_2; i++) {\r\n                charChanges.push(CharChange.createFromDiffChange(rawChanges[i], originalCharSequence, modifiedCharSequence));\r\n            }\r\n        }\r\n        return new LineChange(originalStartLineNumber, originalEndLineNumber, modifiedStartLineNumber, modifiedEndLineNumber, charChanges);\r\n    };\r\n    return LineChange;\r\n}());\r\nvar DiffComputer = /** @class */ (function () {\r\n    function DiffComputer(originalLines, modifiedLines, opts) {\r\n        this.shouldComputeCharChanges = opts.shouldComputeCharChanges;\r\n        this.shouldPostProcessCharChanges = opts.shouldPostProcessCharChanges;\r\n        this.shouldIgnoreTrimWhitespace = opts.shouldIgnoreTrimWhitespace;\r\n        this.shouldMakePrettyDiff = opts.shouldMakePrettyDiff;\r\n        this.originalLines = originalLines;\r\n        this.modifiedLines = modifiedLines;\r\n        this.original = new LineSequence(originalLines);\r\n        this.modified = new LineSequence(modifiedLines);\r\n        this.continueLineDiff = createContinueProcessingPredicate(opts.maxComputationTime);\r\n        this.continueCharDiff = createContinueProcessingPredicate(opts.maxComputationTime === 0 ? 0 : Math.min(opts.maxComputationTime, 5000)); // never run after 5s for character changes...\r\n    }\r\n    DiffComputer.prototype.computeDiff = function () {\r\n        if (this.original.lines.length === 1 && this.original.lines[0].length === 0) {\r\n            // empty original => fast path\r\n            return {\r\n                quitEarly: false,\r\n                changes: [{\r\n                        originalStartLineNumber: 1,\r\n                        originalEndLineNumber: 1,\r\n                        modifiedStartLineNumber: 1,\r\n                        modifiedEndLineNumber: this.modified.lines.length,\r\n                        charChanges: [{\r\n                                modifiedEndColumn: 0,\r\n                                modifiedEndLineNumber: 0,\r\n                                modifiedStartColumn: 0,\r\n                                modifiedStartLineNumber: 0,\r\n                                originalEndColumn: 0,\r\n                                originalEndLineNumber: 0,\r\n                                originalStartColumn: 0,\r\n                                originalStartLineNumber: 0\r\n                            }]\r\n                    }]\r\n            };\r\n        }\r\n        if (this.modified.lines.length === 1 && this.modified.lines[0].length === 0) {\r\n            // empty modified => fast path\r\n            return {\r\n                quitEarly: false,\r\n                changes: [{\r\n                        originalStartLineNumber: 1,\r\n                        originalEndLineNumber: this.original.lines.length,\r\n                        modifiedStartLineNumber: 1,\r\n                        modifiedEndLineNumber: 1,\r\n                        charChanges: [{\r\n                                modifiedEndColumn: 0,\r\n                                modifiedEndLineNumber: 0,\r\n                                modifiedStartColumn: 0,\r\n                                modifiedStartLineNumber: 0,\r\n                                originalEndColumn: 0,\r\n                                originalEndLineNumber: 0,\r\n                                originalStartColumn: 0,\r\n                                originalStartLineNumber: 0\r\n                            }]\r\n                    }]\r\n            };\r\n        }\r\n        var diffResult = computeDiff(this.original, this.modified, this.continueLineDiff, this.shouldMakePrettyDiff);\r\n        var rawChanges = diffResult.changes;\r\n        var quitEarly = diffResult.quitEarly;\r\n        // The diff is always computed with ignoring trim whitespace\r\n        // This ensures we get the prettiest diff\r\n        if (this.shouldIgnoreTrimWhitespace) {\r\n            var lineChanges = [];\r\n            for (var i = 0, length_3 = rawChanges.length; i < length_3; i++) {\r\n                lineChanges.push(LineChange.createFromDiffResult(this.shouldIgnoreTrimWhitespace, rawChanges[i], this.original, this.modified, this.continueCharDiff, this.shouldComputeCharChanges, this.shouldPostProcessCharChanges));\r\n            }\r\n            return {\r\n                quitEarly: quitEarly,\r\n                changes: lineChanges\r\n            };\r\n        }\r\n        // Need to post-process and introduce changes where the trim whitespace is different\r\n        // Note that we are looping starting at -1 to also cover the lines before the first change\r\n        var result = [];\r\n        var originalLineIndex = 0;\r\n        var modifiedLineIndex = 0;\r\n        for (var i = -1 /* !!!! */, len = rawChanges.length; i < len; i++) {\r\n            var nextChange = (i + 1 < len ? rawChanges[i + 1] : null);\r\n            var originalStop = (nextChange ? nextChange.originalStart : this.originalLines.length);\r\n            var modifiedStop = (nextChange ? nextChange.modifiedStart : this.modifiedLines.length);\r\n            while (originalLineIndex < originalStop && modifiedLineIndex < modifiedStop) {\r\n                var originalLine = this.originalLines[originalLineIndex];\r\n                var modifiedLine = this.modifiedLines[modifiedLineIndex];\r\n                if (originalLine !== modifiedLine) {\r\n                    // These lines differ only in trim whitespace\r\n                    // Check the leading whitespace\r\n                    {\r\n                        var originalStartColumn = getFirstNonBlankColumn(originalLine, 1);\r\n                        var modifiedStartColumn = getFirstNonBlankColumn(modifiedLine, 1);\r\n                        while (originalStartColumn > 1 && modifiedStartColumn > 1) {\r\n                            var originalChar = originalLine.charCodeAt(originalStartColumn - 2);\r\n                            var modifiedChar = modifiedLine.charCodeAt(modifiedStartColumn - 2);\r\n                            if (originalChar !== modifiedChar) {\r\n                                break;\r\n                            }\r\n                            originalStartColumn--;\r\n                            modifiedStartColumn--;\r\n                        }\r\n                        if (originalStartColumn > 1 || modifiedStartColumn > 1) {\r\n                            this._pushTrimWhitespaceCharChange(result, originalLineIndex + 1, 1, originalStartColumn, modifiedLineIndex + 1, 1, modifiedStartColumn);\r\n                        }\r\n                    }\r\n                    // Check the trailing whitespace\r\n                    {\r\n                        var originalEndColumn = getLastNonBlankColumn(originalLine, 1);\r\n                        var modifiedEndColumn = getLastNonBlankColumn(modifiedLine, 1);\r\n                        var originalMaxColumn = originalLine.length + 1;\r\n                        var modifiedMaxColumn = modifiedLine.length + 1;\r\n                        while (originalEndColumn < originalMaxColumn && modifiedEndColumn < modifiedMaxColumn) {\r\n                            var originalChar = originalLine.charCodeAt(originalEndColumn - 1);\r\n                            var modifiedChar = originalLine.charCodeAt(modifiedEndColumn - 1);\r\n                            if (originalChar !== modifiedChar) {\r\n                                break;\r\n                            }\r\n                            originalEndColumn++;\r\n                            modifiedEndColumn++;\r\n                        }\r\n                        if (originalEndColumn < originalMaxColumn || modifiedEndColumn < modifiedMaxColumn) {\r\n                            this._pushTrimWhitespaceCharChange(result, originalLineIndex + 1, originalEndColumn, originalMaxColumn, modifiedLineIndex + 1, modifiedEndColumn, modifiedMaxColumn);\r\n                        }\r\n                    }\r\n                }\r\n                originalLineIndex++;\r\n                modifiedLineIndex++;\r\n            }\r\n            if (nextChange) {\r\n                // Emit the actual change\r\n                result.push(LineChange.createFromDiffResult(this.shouldIgnoreTrimWhitespace, nextChange, this.original, this.modified, this.continueCharDiff, this.shouldComputeCharChanges, this.shouldPostProcessCharChanges));\r\n                originalLineIndex += nextChange.originalLength;\r\n                modifiedLineIndex += nextChange.modifiedLength;\r\n            }\r\n        }\r\n        return {\r\n            quitEarly: quitEarly,\r\n            changes: result\r\n        };\r\n    };\r\n    DiffComputer.prototype._pushTrimWhitespaceCharChange = function (result, originalLineNumber, originalStartColumn, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedEndColumn) {\r\n        if (this._mergeTrimWhitespaceCharChange(result, originalLineNumber, originalStartColumn, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedEndColumn)) {\r\n            // Merged into previous\r\n            return;\r\n        }\r\n        var charChanges = undefined;\r\n        if (this.shouldComputeCharChanges) {\r\n            charChanges = [new CharChange(originalLineNumber, originalStartColumn, originalLineNumber, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedLineNumber, modifiedEndColumn)];\r\n        }\r\n        result.push(new LineChange(originalLineNumber, originalLineNumber, modifiedLineNumber, modifiedLineNumber, charChanges));\r\n    };\r\n    DiffComputer.prototype._mergeTrimWhitespaceCharChange = function (result, originalLineNumber, originalStartColumn, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedEndColumn) {\r\n        var len = result.length;\r\n        if (len === 0) {\r\n            return false;\r\n        }\r\n        var prevChange = result[len - 1];\r\n        if (prevChange.originalEndLineNumber === 0 || prevChange.modifiedEndLineNumber === 0) {\r\n            // Don't merge with inserts/deletes\r\n            return false;\r\n        }\r\n        if (prevChange.originalEndLineNumber + 1 === originalLineNumber && prevChange.modifiedEndLineNumber + 1 === modifiedLineNumber) {\r\n            prevChange.originalEndLineNumber = originalLineNumber;\r\n            prevChange.modifiedEndLineNumber = modifiedLineNumber;\r\n            if (this.shouldComputeCharChanges && prevChange.charChanges) {\r\n                prevChange.charChanges.push(new CharChange(originalLineNumber, originalStartColumn, originalLineNumber, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedLineNumber, modifiedEndColumn));\r\n            }\r\n            return true;\r\n        }\r\n        return false;\r\n    };\r\n    return DiffComputer;\r\n}());\r\n\r\nfunction getFirstNonBlankColumn(txt, defaultValue) {\r\n    var r = _base_common_strings_js__WEBPACK_IMPORTED_MODULE_1__[\"firstNonWhitespaceIndex\"](txt);\r\n    if (r === -1) {\r\n        return defaultValue;\r\n    }\r\n    return r + 1;\r\n}\r\nfunction getLastNonBlankColumn(txt, defaultValue) {\r\n    var r = _base_common_strings_js__WEBPACK_IMPORTED_MODULE_1__[\"lastNonWhitespaceIndex\"](txt);\r\n    if (r === -1) {\r\n        return defaultValue;\r\n    }\r\n    return r + 2;\r\n}\r\nfunction createContinueProcessingPredicate(maximumRuntime) {\r\n    if (maximumRuntime === 0) {\r\n        return function () { return true; };\r\n    }\r\n    var startTime = Date.now();\r\n    return function () {\r\n        return Date.now() - startTime < maximumRuntime;\r\n    };\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/diff/diffComputer.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/model/mirrorTextModel.js":
-/*!**********************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/model/mirrorTextModel.js ***!
-  \**********************************************************************************/
-/*! exports provided: MirrorTextModel */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MirrorTextModel\", function() { return MirrorTextModel; });\n/* harmony import */ var _core_position_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/position.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/position.js\");\n/* harmony import */ var _viewModel_prefixSumComputer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../viewModel/prefixSumComputer.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/viewModel/prefixSumComputer.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n\r\nvar MirrorTextModel = /** @class */ (function () {\r\n    function MirrorTextModel(uri, lines, eol, versionId) {\r\n        this._uri = uri;\r\n        this._lines = lines;\r\n        this._eol = eol;\r\n        this._versionId = versionId;\r\n        this._lineStarts = null;\r\n    }\r\n    MirrorTextModel.prototype.dispose = function () {\r\n        this._lines.length = 0;\r\n    };\r\n    MirrorTextModel.prototype.getText = function () {\r\n        return this._lines.join(this._eol);\r\n    };\r\n    MirrorTextModel.prototype.onEvents = function (e) {\r\n        if (e.eol && e.eol !== this._eol) {\r\n            this._eol = e.eol;\r\n            this._lineStarts = null;\r\n        }\r\n        // Update my lines\r\n        var changes = e.changes;\r\n        for (var _i = 0, changes_1 = changes; _i < changes_1.length; _i++) {\r\n            var change = changes_1[_i];\r\n            this._acceptDeleteRange(change.range);\r\n            this._acceptInsertText(new _core_position_js__WEBPACK_IMPORTED_MODULE_0__[\"Position\"](change.range.startLineNumber, change.range.startColumn), change.text);\r\n        }\r\n        this._versionId = e.versionId;\r\n    };\r\n    MirrorTextModel.prototype._ensureLineStarts = function () {\r\n        if (!this._lineStarts) {\r\n            var eolLength = this._eol.length;\r\n            var linesLength = this._lines.length;\r\n            var lineStartValues = new Uint32Array(linesLength);\r\n            for (var i = 0; i < linesLength; i++) {\r\n                lineStartValues[i] = this._lines[i].length + eolLength;\r\n            }\r\n            this._lineStarts = new _viewModel_prefixSumComputer_js__WEBPACK_IMPORTED_MODULE_1__[\"PrefixSumComputer\"](lineStartValues);\r\n        }\r\n    };\r\n    /**\r\n     * All changes to a line's text go through this method\r\n     */\r\n    MirrorTextModel.prototype._setLineText = function (lineIndex, newValue) {\r\n        this._lines[lineIndex] = newValue;\r\n        if (this._lineStarts) {\r\n            // update prefix sum\r\n            this._lineStarts.changeValue(lineIndex, this._lines[lineIndex].length + this._eol.length);\r\n        }\r\n    };\r\n    MirrorTextModel.prototype._acceptDeleteRange = function (range) {\r\n        if (range.startLineNumber === range.endLineNumber) {\r\n            if (range.startColumn === range.endColumn) {\r\n                // Nothing to delete\r\n                return;\r\n            }\r\n            // Delete text on the affected line\r\n            this._setLineText(range.startLineNumber - 1, this._lines[range.startLineNumber - 1].substring(0, range.startColumn - 1)\r\n                + this._lines[range.startLineNumber - 1].substring(range.endColumn - 1));\r\n            return;\r\n        }\r\n        // Take remaining text on last line and append it to remaining text on first line\r\n        this._setLineText(range.startLineNumber - 1, this._lines[range.startLineNumber - 1].substring(0, range.startColumn - 1)\r\n            + this._lines[range.endLineNumber - 1].substring(range.endColumn - 1));\r\n        // Delete middle lines\r\n        this._lines.splice(range.startLineNumber, range.endLineNumber - range.startLineNumber);\r\n        if (this._lineStarts) {\r\n            // update prefix sum\r\n            this._lineStarts.removeValues(range.startLineNumber, range.endLineNumber - range.startLineNumber);\r\n        }\r\n    };\r\n    MirrorTextModel.prototype._acceptInsertText = function (position, insertText) {\r\n        if (insertText.length === 0) {\r\n            // Nothing to insert\r\n            return;\r\n        }\r\n        var insertLines = insertText.split(/\\r\\n|\\r|\\n/);\r\n        if (insertLines.length === 1) {\r\n            // Inserting text on one line\r\n            this._setLineText(position.lineNumber - 1, this._lines[position.lineNumber - 1].substring(0, position.column - 1)\r\n                + insertLines[0]\r\n                + this._lines[position.lineNumber - 1].substring(position.column - 1));\r\n            return;\r\n        }\r\n        // Append overflowing text from first line to the end of text to insert\r\n        insertLines[insertLines.length - 1] += this._lines[position.lineNumber - 1].substring(position.column - 1);\r\n        // Delete overflowing text from first line and insert text on first line\r\n        this._setLineText(position.lineNumber - 1, this._lines[position.lineNumber - 1].substring(0, position.column - 1)\r\n            + insertLines[0]);\r\n        // Insert new lines & store lengths\r\n        var newLengths = new Uint32Array(insertLines.length - 1);\r\n        for (var i = 1; i < insertLines.length; i++) {\r\n            this._lines.splice(position.lineNumber + i - 1, 0, insertLines[i]);\r\n            newLengths[i - 1] = insertLines[i].length + this._eol.length;\r\n        }\r\n        if (this._lineStarts) {\r\n            // update prefix sum\r\n            this._lineStarts.insertValues(position.lineNumber, newLengths);\r\n        }\r\n    };\r\n    return MirrorTextModel;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/model/mirrorTextModel.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/model/wordHelper.js":
-/*!*****************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/model/wordHelper.js ***!
-  \*****************************************************************************/
-/*! exports provided: USUAL_WORD_SEPARATORS, DEFAULT_WORD_REGEXP, ensureValidWordDefinition, getWordAtText */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"USUAL_WORD_SEPARATORS\", function() { return USUAL_WORD_SEPARATORS; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DEFAULT_WORD_REGEXP\", function() { return DEFAULT_WORD_REGEXP; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ensureValidWordDefinition\", function() { return ensureValidWordDefinition; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"getWordAtText\", function() { return getWordAtText; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar USUAL_WORD_SEPARATORS = '`~!@#$%^&*()-=+[{]}\\\\|;:\\'\",.<>/?';\r\n/**\r\n * Create a word definition regular expression based on default word separators.\r\n * Optionally provide allowed separators that should be included in words.\r\n *\r\n * The default would look like this:\r\n * /(-?\\d*\\.\\d\\w*)|([^\\`\\~\\!\\@\\#\\$\\%\\^\\&\\*\\(\\)\\-\\=\\+\\[\\{\\]\\}\\\\\\|\\;\\:\\'\\\"\\,\\.\\<\\>\\/\\?\\s]+)/g\r\n */\r\nfunction createWordRegExp(allowInWords) {\r\n    if (allowInWords === void 0) { allowInWords = ''; }\r\n    var source = '(-?\\\\d*\\\\.\\\\d\\\\w*)|([^';\r\n    for (var _i = 0, USUAL_WORD_SEPARATORS_1 = USUAL_WORD_SEPARATORS; _i < USUAL_WORD_SEPARATORS_1.length; _i++) {\r\n        var sep = USUAL_WORD_SEPARATORS_1[_i];\r\n        if (allowInWords.indexOf(sep) >= 0) {\r\n            continue;\r\n        }\r\n        source += '\\\\' + sep;\r\n    }\r\n    source += '\\\\s]+)';\r\n    return new RegExp(source, 'g');\r\n}\r\n// catches numbers (including floating numbers) in the first group, and alphanum in the second\r\nvar DEFAULT_WORD_REGEXP = createWordRegExp();\r\nfunction ensureValidWordDefinition(wordDefinition) {\r\n    var result = DEFAULT_WORD_REGEXP;\r\n    if (wordDefinition && (wordDefinition instanceof RegExp)) {\r\n        if (!wordDefinition.global) {\r\n            var flags = 'g';\r\n            if (wordDefinition.ignoreCase) {\r\n                flags += 'i';\r\n            }\r\n            if (wordDefinition.multiline) {\r\n                flags += 'm';\r\n            }\r\n            if (wordDefinition.unicode) {\r\n                flags += 'u';\r\n            }\r\n            result = new RegExp(wordDefinition.source, flags);\r\n        }\r\n        else {\r\n            result = wordDefinition;\r\n        }\r\n    }\r\n    result.lastIndex = 0;\r\n    return result;\r\n}\r\nfunction getWordAtPosFast(column, wordDefinition, text, textOffset) {\r\n    // find whitespace enclosed text around column and match from there\r\n    var pos = column - 1 - textOffset;\r\n    var start = text.lastIndexOf(' ', pos - 1) + 1;\r\n    wordDefinition.lastIndex = start;\r\n    var match;\r\n    while (match = wordDefinition.exec(text)) {\r\n        var matchIndex = match.index || 0;\r\n        if (matchIndex <= pos && wordDefinition.lastIndex >= pos) {\r\n            return {\r\n                word: match[0],\r\n                startColumn: textOffset + 1 + matchIndex,\r\n                endColumn: textOffset + 1 + wordDefinition.lastIndex\r\n            };\r\n        }\r\n    }\r\n    return null;\r\n}\r\nfunction getWordAtPosSlow(column, wordDefinition, text, textOffset) {\r\n    // matches all words starting at the beginning\r\n    // of the input until it finds a match that encloses\r\n    // the desired column. slow but correct\r\n    var pos = column - 1 - textOffset;\r\n    wordDefinition.lastIndex = 0;\r\n    var match;\r\n    while (match = wordDefinition.exec(text)) {\r\n        var matchIndex = match.index || 0;\r\n        if (matchIndex > pos) {\r\n            // |nW -> matched only after the pos\r\n            return null;\r\n        }\r\n        else if (wordDefinition.lastIndex >= pos) {\r\n            // W|W -> match encloses pos\r\n            return {\r\n                word: match[0],\r\n                startColumn: textOffset + 1 + matchIndex,\r\n                endColumn: textOffset + 1 + wordDefinition.lastIndex\r\n            };\r\n        }\r\n    }\r\n    return null;\r\n}\r\nfunction getWordAtText(column, wordDefinition, text, textOffset) {\r\n    // if `words` can contain whitespace character we have to use the slow variant\r\n    // otherwise we use the fast variant of finding a word\r\n    wordDefinition.lastIndex = 0;\r\n    var match = wordDefinition.exec(text);\r\n    if (!match) {\r\n        return null;\r\n    }\r\n    // todo@joh the `match` could already be the (first) word\r\n    var ret = match[0].indexOf(' ') >= 0\r\n        // did match a word which contains a space character -> use slow word find\r\n        ? getWordAtPosSlow(column, wordDefinition, text, textOffset)\r\n        // sane word definition -> use fast word find\r\n        : getWordAtPosFast(column, wordDefinition, text, textOffset);\r\n    // both (getWordAtPosFast and getWordAtPosSlow) leave the wordDefinition-RegExp\r\n    // in an undefined state and to not confuse other users of the wordDefinition\r\n    // we reset the lastIndex\r\n    wordDefinition.lastIndex = 0;\r\n    return ret;\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/model/wordHelper.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/modes/linkComputer.js":
-/*!*******************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/modes/linkComputer.js ***!
-  \*******************************************************************************/
-/*! exports provided: Uint8Matrix, StateMachine, LinkComputer, computeLinks */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"Uint8Matrix\", function() { return Uint8Matrix; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"StateMachine\", function() { return StateMachine; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"LinkComputer\", function() { return LinkComputer; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"computeLinks\", function() { return computeLinks; });\n/* harmony import */ var _core_characterClassifier_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/characterClassifier.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/characterClassifier.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\nvar Uint8Matrix = /** @class */ (function () {\r\n    function Uint8Matrix(rows, cols, defaultValue) {\r\n        var data = new Uint8Array(rows * cols);\r\n        for (var i = 0, len = rows * cols; i < len; i++) {\r\n            data[i] = defaultValue;\r\n        }\r\n        this._data = data;\r\n        this.rows = rows;\r\n        this.cols = cols;\r\n    }\r\n    Uint8Matrix.prototype.get = function (row, col) {\r\n        return this._data[row * this.cols + col];\r\n    };\r\n    Uint8Matrix.prototype.set = function (row, col, value) {\r\n        this._data[row * this.cols + col] = value;\r\n    };\r\n    return Uint8Matrix;\r\n}());\r\n\r\nvar StateMachine = /** @class */ (function () {\r\n    function StateMachine(edges) {\r\n        var maxCharCode = 0;\r\n        var maxState = 0 /* Invalid */;\r\n        for (var i = 0, len = edges.length; i < len; i++) {\r\n            var _a = edges[i], from = _a[0], chCode = _a[1], to = _a[2];\r\n            if (chCode > maxCharCode) {\r\n                maxCharCode = chCode;\r\n            }\r\n            if (from > maxState) {\r\n                maxState = from;\r\n            }\r\n            if (to > maxState) {\r\n                maxState = to;\r\n            }\r\n        }\r\n        maxCharCode++;\r\n        maxState++;\r\n        var states = new Uint8Matrix(maxState, maxCharCode, 0 /* Invalid */);\r\n        for (var i = 0, len = edges.length; i < len; i++) {\r\n            var _b = edges[i], from = _b[0], chCode = _b[1], to = _b[2];\r\n            states.set(from, chCode, to);\r\n        }\r\n        this._states = states;\r\n        this._maxCharCode = maxCharCode;\r\n    }\r\n    StateMachine.prototype.nextState = function (currentState, chCode) {\r\n        if (chCode < 0 || chCode >= this._maxCharCode) {\r\n            return 0 /* Invalid */;\r\n        }\r\n        return this._states.get(currentState, chCode);\r\n    };\r\n    return StateMachine;\r\n}());\r\n\r\n// State machine for http:// or https:// or file://\r\nvar _stateMachine = null;\r\nfunction getStateMachine() {\r\n    if (_stateMachine === null) {\r\n        _stateMachine = new StateMachine([\r\n            [1 /* Start */, 104 /* h */, 2 /* H */],\r\n            [1 /* Start */, 72 /* H */, 2 /* H */],\r\n            [1 /* Start */, 102 /* f */, 6 /* F */],\r\n            [1 /* Start */, 70 /* F */, 6 /* F */],\r\n            [2 /* H */, 116 /* t */, 3 /* HT */],\r\n            [2 /* H */, 84 /* T */, 3 /* HT */],\r\n            [3 /* HT */, 116 /* t */, 4 /* HTT */],\r\n            [3 /* HT */, 84 /* T */, 4 /* HTT */],\r\n            [4 /* HTT */, 112 /* p */, 5 /* HTTP */],\r\n            [4 /* HTT */, 80 /* P */, 5 /* HTTP */],\r\n            [5 /* HTTP */, 115 /* s */, 9 /* BeforeColon */],\r\n            [5 /* HTTP */, 83 /* S */, 9 /* BeforeColon */],\r\n            [5 /* HTTP */, 58 /* Colon */, 10 /* AfterColon */],\r\n            [6 /* F */, 105 /* i */, 7 /* FI */],\r\n            [6 /* F */, 73 /* I */, 7 /* FI */],\r\n            [7 /* FI */, 108 /* l */, 8 /* FIL */],\r\n            [7 /* FI */, 76 /* L */, 8 /* FIL */],\r\n            [8 /* FIL */, 101 /* e */, 9 /* BeforeColon */],\r\n            [8 /* FIL */, 69 /* E */, 9 /* BeforeColon */],\r\n            [9 /* BeforeColon */, 58 /* Colon */, 10 /* AfterColon */],\r\n            [10 /* AfterColon */, 47 /* Slash */, 11 /* AlmostThere */],\r\n            [11 /* AlmostThere */, 47 /* Slash */, 12 /* End */],\r\n        ]);\r\n    }\r\n    return _stateMachine;\r\n}\r\nvar _classifier = null;\r\nfunction getClassifier() {\r\n    if (_classifier === null) {\r\n        _classifier = new _core_characterClassifier_js__WEBPACK_IMPORTED_MODULE_0__[\"CharacterClassifier\"](0 /* None */);\r\n        var FORCE_TERMINATION_CHARACTERS = ' \\t<>\\'\\\"、。｡､，．：；？！＠＃＄％＆＊‘“〈《「『【〔（［｛｢｣｝］）〕】』」》〉”’｀～…';\r\n        for (var i = 0; i < FORCE_TERMINATION_CHARACTERS.length; i++) {\r\n            _classifier.set(FORCE_TERMINATION_CHARACTERS.charCodeAt(i), 1 /* ForceTermination */);\r\n        }\r\n        var CANNOT_END_WITH_CHARACTERS = '.,;';\r\n        for (var i = 0; i < CANNOT_END_WITH_CHARACTERS.length; i++) {\r\n            _classifier.set(CANNOT_END_WITH_CHARACTERS.charCodeAt(i), 2 /* CannotEndIn */);\r\n        }\r\n    }\r\n    return _classifier;\r\n}\r\nvar LinkComputer = /** @class */ (function () {\r\n    function LinkComputer() {\r\n    }\r\n    LinkComputer._createLink = function (classifier, line, lineNumber, linkBeginIndex, linkEndIndex) {\r\n        // Do not allow to end link in certain characters...\r\n        var lastIncludedCharIndex = linkEndIndex - 1;\r\n        do {\r\n            var chCode = line.charCodeAt(lastIncludedCharIndex);\r\n            var chClass = classifier.get(chCode);\r\n            if (chClass !== 2 /* CannotEndIn */) {\r\n                break;\r\n            }\r\n            lastIncludedCharIndex--;\r\n        } while (lastIncludedCharIndex > linkBeginIndex);\r\n        // Handle links enclosed in parens, square brackets and curlys.\r\n        if (linkBeginIndex > 0) {\r\n            var charCodeBeforeLink = line.charCodeAt(linkBeginIndex - 1);\r\n            var lastCharCodeInLink = line.charCodeAt(lastIncludedCharIndex);\r\n            if ((charCodeBeforeLink === 40 /* OpenParen */ && lastCharCodeInLink === 41 /* CloseParen */)\r\n                || (charCodeBeforeLink === 91 /* OpenSquareBracket */ && lastCharCodeInLink === 93 /* CloseSquareBracket */)\r\n                || (charCodeBeforeLink === 123 /* OpenCurlyBrace */ && lastCharCodeInLink === 125 /* CloseCurlyBrace */)) {\r\n                // Do not end in ) if ( is before the link start\r\n                // Do not end in ] if [ is before the link start\r\n                // Do not end in } if { is before the link start\r\n                lastIncludedCharIndex--;\r\n            }\r\n        }\r\n        return {\r\n            range: {\r\n                startLineNumber: lineNumber,\r\n                startColumn: linkBeginIndex + 1,\r\n                endLineNumber: lineNumber,\r\n                endColumn: lastIncludedCharIndex + 2\r\n            },\r\n            url: line.substring(linkBeginIndex, lastIncludedCharIndex + 1)\r\n        };\r\n    };\r\n    LinkComputer.computeLinks = function (model, stateMachine) {\r\n        if (stateMachine === void 0) { stateMachine = getStateMachine(); }\r\n        var classifier = getClassifier();\r\n        var result = [];\r\n        for (var i = 1, lineCount = model.getLineCount(); i <= lineCount; i++) {\r\n            var line = model.getLineContent(i);\r\n            var len = line.length;\r\n            var j = 0;\r\n            var linkBeginIndex = 0;\r\n            var linkBeginChCode = 0;\r\n            var state = 1 /* Start */;\r\n            var hasOpenParens = false;\r\n            var hasOpenSquareBracket = false;\r\n            var hasOpenCurlyBracket = false;\r\n            while (j < len) {\r\n                var resetStateMachine = false;\r\n                var chCode = line.charCodeAt(j);\r\n                if (state === 13 /* Accept */) {\r\n                    var chClass = void 0;\r\n                    switch (chCode) {\r\n                        case 40 /* OpenParen */:\r\n                            hasOpenParens = true;\r\n                            chClass = 0 /* None */;\r\n                            break;\r\n                        case 41 /* CloseParen */:\r\n                            chClass = (hasOpenParens ? 0 /* None */ : 1 /* ForceTermination */);\r\n                            break;\r\n                        case 91 /* OpenSquareBracket */:\r\n                            hasOpenSquareBracket = true;\r\n                            chClass = 0 /* None */;\r\n                            break;\r\n                        case 93 /* CloseSquareBracket */:\r\n                            chClass = (hasOpenSquareBracket ? 0 /* None */ : 1 /* ForceTermination */);\r\n                            break;\r\n                        case 123 /* OpenCurlyBrace */:\r\n                            hasOpenCurlyBracket = true;\r\n                            chClass = 0 /* None */;\r\n                            break;\r\n                        case 125 /* CloseCurlyBrace */:\r\n                            chClass = (hasOpenCurlyBracket ? 0 /* None */ : 1 /* ForceTermination */);\r\n                            break;\r\n                        /* The following three rules make it that ' or \" or ` are allowed inside links if the link began with a different one */\r\n                        case 39 /* SingleQuote */:\r\n                            chClass = (linkBeginChCode === 34 /* DoubleQuote */ || linkBeginChCode === 96 /* BackTick */) ? 0 /* None */ : 1 /* ForceTermination */;\r\n                            break;\r\n                        case 34 /* DoubleQuote */:\r\n                            chClass = (linkBeginChCode === 39 /* SingleQuote */ || linkBeginChCode === 96 /* BackTick */) ? 0 /* None */ : 1 /* ForceTermination */;\r\n                            break;\r\n                        case 96 /* BackTick */:\r\n                            chClass = (linkBeginChCode === 39 /* SingleQuote */ || linkBeginChCode === 34 /* DoubleQuote */) ? 0 /* None */ : 1 /* ForceTermination */;\r\n                            break;\r\n                        case 42 /* Asterisk */:\r\n                            // `*` terminates a link if the link began with `*`\r\n                            chClass = (linkBeginChCode === 42 /* Asterisk */) ? 1 /* ForceTermination */ : 0 /* None */;\r\n                            break;\r\n                        case 124 /* Pipe */:\r\n                            // `|` terminates a link if the link began with `|`\r\n                            chClass = (linkBeginChCode === 124 /* Pipe */) ? 1 /* ForceTermination */ : 0 /* None */;\r\n                            break;\r\n                        default:\r\n                            chClass = classifier.get(chCode);\r\n                    }\r\n                    // Check if character terminates link\r\n                    if (chClass === 1 /* ForceTermination */) {\r\n                        result.push(LinkComputer._createLink(classifier, line, i, linkBeginIndex, j));\r\n                        resetStateMachine = true;\r\n                    }\r\n                }\r\n                else if (state === 12 /* End */) {\r\n                    var chClass = void 0;\r\n                    if (chCode === 91 /* OpenSquareBracket */) {\r\n                        // Allow for the authority part to contain ipv6 addresses which contain [ and ]\r\n                        hasOpenSquareBracket = true;\r\n                        chClass = 0 /* None */;\r\n                    }\r\n                    else {\r\n                        chClass = classifier.get(chCode);\r\n                    }\r\n                    // Check if character terminates link\r\n                    if (chClass === 1 /* ForceTermination */) {\r\n                        resetStateMachine = true;\r\n                    }\r\n                    else {\r\n                        state = 13 /* Accept */;\r\n                    }\r\n                }\r\n                else {\r\n                    state = stateMachine.nextState(state, chCode);\r\n                    if (state === 0 /* Invalid */) {\r\n                        resetStateMachine = true;\r\n                    }\r\n                }\r\n                if (resetStateMachine) {\r\n                    state = 1 /* Start */;\r\n                    hasOpenParens = false;\r\n                    hasOpenSquareBracket = false;\r\n                    hasOpenCurlyBracket = false;\r\n                    // Record where the link started\r\n                    linkBeginIndex = j + 1;\r\n                    linkBeginChCode = chCode;\r\n                }\r\n                j++;\r\n            }\r\n            if (state === 13 /* Accept */) {\r\n                result.push(LinkComputer._createLink(classifier, line, i, linkBeginIndex, len));\r\n            }\r\n        }\r\n        return result;\r\n    };\r\n    return LinkComputer;\r\n}());\r\n\r\n/**\r\n * Returns an array of all links contains in the provided\r\n * document. *Note* that this operation is computational\r\n * expensive and should not run in the UI thread.\r\n */\r\nfunction computeLinks(model) {\r\n    if (!model || typeof model.getLineCount !== 'function' || typeof model.getLineContent !== 'function') {\r\n        // Unknown caller!\r\n        return [];\r\n    }\r\n    return LinkComputer.computeLinks(model);\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/modes/linkComputer.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/modes/supports/inplaceReplaceSupport.js":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/modes/supports/inplaceReplaceSupport.js ***!
-  \*************************************************************************************************/
-/*! exports provided: BasicInplaceReplace */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"BasicInplaceReplace\", function() { return BasicInplaceReplace; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar BasicInplaceReplace = /** @class */ (function () {\r\n    function BasicInplaceReplace() {\r\n        this._defaultValueSet = [\r\n            ['true', 'false'],\r\n            ['True', 'False'],\r\n            ['Private', 'Public', 'Friend', 'ReadOnly', 'Partial', 'Protected', 'WriteOnly'],\r\n            ['public', 'protected', 'private'],\r\n        ];\r\n    }\r\n    BasicInplaceReplace.prototype.navigateValueSet = function (range1, text1, range2, text2, up) {\r\n        if (range1 && text1) {\r\n            var result = this.doNavigateValueSet(text1, up);\r\n            if (result) {\r\n                return {\r\n                    range: range1,\r\n                    value: result\r\n                };\r\n            }\r\n        }\r\n        if (range2 && text2) {\r\n            var result = this.doNavigateValueSet(text2, up);\r\n            if (result) {\r\n                return {\r\n                    range: range2,\r\n                    value: result\r\n                };\r\n            }\r\n        }\r\n        return null;\r\n    };\r\n    BasicInplaceReplace.prototype.doNavigateValueSet = function (text, up) {\r\n        var numberResult = this.numberReplace(text, up);\r\n        if (numberResult !== null) {\r\n            return numberResult;\r\n        }\r\n        return this.textReplace(text, up);\r\n    };\r\n    BasicInplaceReplace.prototype.numberReplace = function (value, up) {\r\n        var precision = Math.pow(10, value.length - (value.lastIndexOf('.') + 1));\r\n        var n1 = Number(value);\r\n        var n2 = parseFloat(value);\r\n        if (!isNaN(n1) && !isNaN(n2) && n1 === n2) {\r\n            if (n1 === 0 && !up) {\r\n                return null; // don't do negative\r\n                //\t\t\t} else if(n1 === 9 && up) {\r\n                //\t\t\t\treturn null; // don't insert 10 into a number\r\n            }\r\n            else {\r\n                n1 = Math.floor(n1 * precision);\r\n                n1 += up ? precision : -precision;\r\n                return String(n1 / precision);\r\n            }\r\n        }\r\n        return null;\r\n    };\r\n    BasicInplaceReplace.prototype.textReplace = function (value, up) {\r\n        return this.valueSetsReplace(this._defaultValueSet, value, up);\r\n    };\r\n    BasicInplaceReplace.prototype.valueSetsReplace = function (valueSets, value, up) {\r\n        var result = null;\r\n        for (var i = 0, len = valueSets.length; result === null && i < len; i++) {\r\n            result = this.valueSetReplace(valueSets[i], value, up);\r\n        }\r\n        return result;\r\n    };\r\n    BasicInplaceReplace.prototype.valueSetReplace = function (valueSet, value, up) {\r\n        var idx = valueSet.indexOf(value);\r\n        if (idx >= 0) {\r\n            idx += up ? +1 : -1;\r\n            if (idx < 0) {\r\n                idx = valueSet.length - 1;\r\n            }\r\n            else {\r\n                idx %= valueSet.length;\r\n            }\r\n            return valueSet[idx];\r\n        }\r\n        return null;\r\n    };\r\n    BasicInplaceReplace.INSTANCE = new BasicInplaceReplace();\r\n    return BasicInplaceReplace;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/modes/supports/inplaceReplaceSupport.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/services/editorSimpleWorker.js":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/services/editorSimpleWorker.js ***!
-  \****************************************************************************************/
-/*! exports provided: EditorSimpleWorker, create */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EditorSimpleWorker\", function() { return EditorSimpleWorker; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"create\", function() { return create; });\n/* harmony import */ var _base_common_arrays_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../base/common/arrays.js */ \"./node_modules/monaco-editor/esm/vs/base/common/arrays.js\");\n/* harmony import */ var _base_common_diff_diff_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../base/common/diff/diff.js */ \"./node_modules/monaco-editor/esm/vs/base/common/diff/diff.js\");\n/* harmony import */ var _base_common_iterator_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../base/common/iterator.js */ \"./node_modules/monaco-editor/esm/vs/base/common/iterator.js\");\n/* harmony import */ var _base_common_platform_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../base/common/platform.js */ \"./node_modules/monaco-editor/esm/vs/base/common/platform.js\");\n/* harmony import */ var _base_common_uri_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../base/common/uri.js */ \"./node_modules/monaco-editor/esm/vs/base/common/uri.js\");\n/* harmony import */ var _core_position_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/position.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/position.js\");\n/* harmony import */ var _core_range_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/range.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/range.js\");\n/* harmony import */ var _diff_diffComputer_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../diff/diffComputer.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/diff/diffComputer.js\");\n/* harmony import */ var _model_mirrorTextModel_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../model/mirrorTextModel.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/model/mirrorTextModel.js\");\n/* harmony import */ var _model_wordHelper_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../model/wordHelper.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/model/wordHelper.js\");\n/* harmony import */ var _modes_linkComputer_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../modes/linkComputer.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/modes/linkComputer.js\");\n/* harmony import */ var _modes_supports_inplaceReplaceSupport_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../modes/supports/inplaceReplaceSupport.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/modes/supports/inplaceReplaceSupport.js\");\n/* harmony import */ var _standalone_standaloneBase_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../standalone/standaloneBase.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneBase.js\");\n/* harmony import */ var _base_common_types_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../../../base/common/types.js */ \"./node_modules/monaco-editor/esm/vs/base/common/types.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\nvar __extends = (undefined && undefined.__extends) || (function () {\r\n    var extendStatics = function (d, b) {\r\n        extendStatics = Object.setPrototypeOf ||\r\n            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||\r\n            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };\r\n        return extendStatics(d, b);\r\n    };\r\n    return function (d, b) {\r\n        extendStatics(d, b);\r\n        function __() { this.constructor = d; }\r\n        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());\r\n    };\r\n})();\r\nvar __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {\r\n    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }\r\n    return new (P || (P = Promise))(function (resolve, reject) {\r\n        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }\r\n        function rejected(value) { try { step(generator[\"throw\"](value)); } catch (e) { reject(e); } }\r\n        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }\r\n        step((generator = generator.apply(thisArg, _arguments || [])).next());\r\n    });\r\n};\r\nvar __generator = (undefined && undefined.__generator) || function (thisArg, body) {\r\n    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;\r\n    return g = { next: verb(0), \"throw\": verb(1), \"return\": verb(2) }, typeof Symbol === \"function\" && (g[Symbol.iterator] = function() { return this; }), g;\r\n    function verb(n) { return function (v) { return step([n, v]); }; }\r\n    function step(op) {\r\n        if (f) throw new TypeError(\"Generator is already executing.\");\r\n        while (_) try {\r\n            if (f = 1, y && (t = op[0] & 2 ? y[\"return\"] : op[0] ? y[\"throw\"] || ((t = y[\"return\"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;\r\n            if (y = 0, t) op = [op[0] & 2, t.value];\r\n            switch (op[0]) {\r\n                case 0: case 1: t = op; break;\r\n                case 4: _.label++; return { value: op[1], done: false };\r\n                case 5: _.label++; y = op[1]; op = [0]; continue;\r\n                case 7: op = _.ops.pop(); _.trys.pop(); continue;\r\n                default:\r\n                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }\r\n                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }\r\n                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }\r\n                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }\r\n                    if (t[2]) _.ops.pop();\r\n                    _.trys.pop(); continue;\r\n            }\r\n            op = body.call(thisArg, _);\r\n        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }\r\n        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };\r\n    }\r\n};\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n/**\r\n * @internal\r\n */\r\nvar MirrorModel = /** @class */ (function (_super) {\r\n    __extends(MirrorModel, _super);\r\n    function MirrorModel() {\r\n        return _super !== null && _super.apply(this, arguments) || this;\r\n    }\r\n    Object.defineProperty(MirrorModel.prototype, \"uri\", {\r\n        get: function () {\r\n            return this._uri;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(MirrorModel.prototype, \"version\", {\r\n        get: function () {\r\n            return this._versionId;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    Object.defineProperty(MirrorModel.prototype, \"eol\", {\r\n        get: function () {\r\n            return this._eol;\r\n        },\r\n        enumerable: true,\r\n        configurable: true\r\n    });\r\n    MirrorModel.prototype.getValue = function () {\r\n        return this.getText();\r\n    };\r\n    MirrorModel.prototype.getLinesContent = function () {\r\n        return this._lines.slice(0);\r\n    };\r\n    MirrorModel.prototype.getLineCount = function () {\r\n        return this._lines.length;\r\n    };\r\n    MirrorModel.prototype.getLineContent = function (lineNumber) {\r\n        return this._lines[lineNumber - 1];\r\n    };\r\n    MirrorModel.prototype.getWordAtPosition = function (position, wordDefinition) {\r\n        var wordAtText = Object(_model_wordHelper_js__WEBPACK_IMPORTED_MODULE_9__[\"getWordAtText\"])(position.column, Object(_model_wordHelper_js__WEBPACK_IMPORTED_MODULE_9__[\"ensureValidWordDefinition\"])(wordDefinition), this._lines[position.lineNumber - 1], 0);\r\n        if (wordAtText) {\r\n            return new _core_range_js__WEBPACK_IMPORTED_MODULE_6__[\"Range\"](position.lineNumber, wordAtText.startColumn, position.lineNumber, wordAtText.endColumn);\r\n        }\r\n        return null;\r\n    };\r\n    MirrorModel.prototype.createWordIterator = function (wordDefinition) {\r\n        var _this = this;\r\n        var obj;\r\n        var lineNumber = 0;\r\n        var lineText;\r\n        var wordRangesIdx = 0;\r\n        var wordRanges = [];\r\n        var next = function () {\r\n            if (wordRangesIdx < wordRanges.length) {\r\n                var value = lineText.substring(wordRanges[wordRangesIdx].start, wordRanges[wordRangesIdx].end);\r\n                wordRangesIdx += 1;\r\n                if (!obj) {\r\n                    obj = { done: false, value: value };\r\n                }\r\n                else {\r\n                    obj.value = value;\r\n                }\r\n                return obj;\r\n            }\r\n            else if (lineNumber >= _this._lines.length) {\r\n                return _base_common_iterator_js__WEBPACK_IMPORTED_MODULE_2__[\"FIN\"];\r\n            }\r\n            else {\r\n                lineText = _this._lines[lineNumber];\r\n                wordRanges = _this._wordenize(lineText, wordDefinition);\r\n                wordRangesIdx = 0;\r\n                lineNumber += 1;\r\n                return next();\r\n            }\r\n        };\r\n        return { next: next };\r\n    };\r\n    MirrorModel.prototype.getLineWords = function (lineNumber, wordDefinition) {\r\n        var content = this._lines[lineNumber - 1];\r\n        var ranges = this._wordenize(content, wordDefinition);\r\n        var words = [];\r\n        for (var _i = 0, ranges_1 = ranges; _i < ranges_1.length; _i++) {\r\n            var range = ranges_1[_i];\r\n            words.push({\r\n                word: content.substring(range.start, range.end),\r\n                startColumn: range.start + 1,\r\n                endColumn: range.end + 1\r\n            });\r\n        }\r\n        return words;\r\n    };\r\n    MirrorModel.prototype._wordenize = function (content, wordDefinition) {\r\n        var result = [];\r\n        var match;\r\n        wordDefinition.lastIndex = 0; // reset lastIndex just to be sure\r\n        while (match = wordDefinition.exec(content)) {\r\n            if (match[0].length === 0) {\r\n                // it did match the empty string\r\n                break;\r\n            }\r\n            result.push({ start: match.index, end: match.index + match[0].length });\r\n        }\r\n        return result;\r\n    };\r\n    MirrorModel.prototype.getValueInRange = function (range) {\r\n        range = this._validateRange(range);\r\n        if (range.startLineNumber === range.endLineNumber) {\r\n            return this._lines[range.startLineNumber - 1].substring(range.startColumn - 1, range.endColumn - 1);\r\n        }\r\n        var lineEnding = this._eol;\r\n        var startLineIndex = range.startLineNumber - 1;\r\n        var endLineIndex = range.endLineNumber - 1;\r\n        var resultLines = [];\r\n        resultLines.push(this._lines[startLineIndex].substring(range.startColumn - 1));\r\n        for (var i = startLineIndex + 1; i < endLineIndex; i++) {\r\n            resultLines.push(this._lines[i]);\r\n        }\r\n        resultLines.push(this._lines[endLineIndex].substring(0, range.endColumn - 1));\r\n        return resultLines.join(lineEnding);\r\n    };\r\n    MirrorModel.prototype.offsetAt = function (position) {\r\n        position = this._validatePosition(position);\r\n        this._ensureLineStarts();\r\n        return this._lineStarts.getAccumulatedValue(position.lineNumber - 2) + (position.column - 1);\r\n    };\r\n    MirrorModel.prototype.positionAt = function (offset) {\r\n        offset = Math.floor(offset);\r\n        offset = Math.max(0, offset);\r\n        this._ensureLineStarts();\r\n        var out = this._lineStarts.getIndexOf(offset);\r\n        var lineLength = this._lines[out.index].length;\r\n        // Ensure we return a valid position\r\n        return {\r\n            lineNumber: 1 + out.index,\r\n            column: 1 + Math.min(out.remainder, lineLength)\r\n        };\r\n    };\r\n    MirrorModel.prototype._validateRange = function (range) {\r\n        var start = this._validatePosition({ lineNumber: range.startLineNumber, column: range.startColumn });\r\n        var end = this._validatePosition({ lineNumber: range.endLineNumber, column: range.endColumn });\r\n        if (start.lineNumber !== range.startLineNumber\r\n            || start.column !== range.startColumn\r\n            || end.lineNumber !== range.endLineNumber\r\n            || end.column !== range.endColumn) {\r\n            return {\r\n                startLineNumber: start.lineNumber,\r\n                startColumn: start.column,\r\n                endLineNumber: end.lineNumber,\r\n                endColumn: end.column\r\n            };\r\n        }\r\n        return range;\r\n    };\r\n    MirrorModel.prototype._validatePosition = function (position) {\r\n        if (!_core_position_js__WEBPACK_IMPORTED_MODULE_5__[\"Position\"].isIPosition(position)) {\r\n            throw new Error('bad position');\r\n        }\r\n        var lineNumber = position.lineNumber, column = position.column;\r\n        var hasChanged = false;\r\n        if (lineNumber < 1) {\r\n            lineNumber = 1;\r\n            column = 1;\r\n            hasChanged = true;\r\n        }\r\n        else if (lineNumber > this._lines.length) {\r\n            lineNumber = this._lines.length;\r\n            column = this._lines[lineNumber - 1].length + 1;\r\n            hasChanged = true;\r\n        }\r\n        else {\r\n            var maxCharacter = this._lines[lineNumber - 1].length + 1;\r\n            if (column < 1) {\r\n                column = 1;\r\n                hasChanged = true;\r\n            }\r\n            else if (column > maxCharacter) {\r\n                column = maxCharacter;\r\n                hasChanged = true;\r\n            }\r\n        }\r\n        if (!hasChanged) {\r\n            return position;\r\n        }\r\n        else {\r\n            return { lineNumber: lineNumber, column: column };\r\n        }\r\n    };\r\n    return MirrorModel;\r\n}(_model_mirrorTextModel_js__WEBPACK_IMPORTED_MODULE_8__[\"MirrorTextModel\"]));\r\n/**\r\n * @internal\r\n */\r\nvar EditorSimpleWorker = /** @class */ (function () {\r\n    function EditorSimpleWorker(host, foreignModuleFactory) {\r\n        this._host = host;\r\n        this._models = Object.create(null);\r\n        this._foreignModuleFactory = foreignModuleFactory;\r\n        this._foreignModule = null;\r\n    }\r\n    EditorSimpleWorker.prototype.dispose = function () {\r\n        this._models = Object.create(null);\r\n    };\r\n    EditorSimpleWorker.prototype._getModel = function (uri) {\r\n        return this._models[uri];\r\n    };\r\n    EditorSimpleWorker.prototype._getModels = function () {\r\n        var _this = this;\r\n        var all = [];\r\n        Object.keys(this._models).forEach(function (key) { return all.push(_this._models[key]); });\r\n        return all;\r\n    };\r\n    EditorSimpleWorker.prototype.acceptNewModel = function (data) {\r\n        this._models[data.url] = new MirrorModel(_base_common_uri_js__WEBPACK_IMPORTED_MODULE_4__[\"URI\"].parse(data.url), data.lines, data.EOL, data.versionId);\r\n    };\r\n    EditorSimpleWorker.prototype.acceptModelChanged = function (strURL, e) {\r\n        if (!this._models[strURL]) {\r\n            return;\r\n        }\r\n        var model = this._models[strURL];\r\n        model.onEvents(e);\r\n    };\r\n    EditorSimpleWorker.prototype.acceptRemovedModel = function (strURL) {\r\n        if (!this._models[strURL]) {\r\n            return;\r\n        }\r\n        delete this._models[strURL];\r\n    };\r\n    // ---- BEGIN diff --------------------------------------------------------------------------\r\n    EditorSimpleWorker.prototype.computeDiff = function (originalUrl, modifiedUrl, ignoreTrimWhitespace, maxComputationTime) {\r\n        return __awaiter(this, void 0, void 0, function () {\r\n            var original, modified, originalLines, modifiedLines, diffComputer, diffResult, identical;\r\n            return __generator(this, function (_a) {\r\n                original = this._getModel(originalUrl);\r\n                modified = this._getModel(modifiedUrl);\r\n                if (!original || !modified) {\r\n                    return [2 /*return*/, null];\r\n                }\r\n                originalLines = original.getLinesContent();\r\n                modifiedLines = modified.getLinesContent();\r\n                diffComputer = new _diff_diffComputer_js__WEBPACK_IMPORTED_MODULE_7__[\"DiffComputer\"](originalLines, modifiedLines, {\r\n                    shouldComputeCharChanges: true,\r\n                    shouldPostProcessCharChanges: true,\r\n                    shouldIgnoreTrimWhitespace: ignoreTrimWhitespace,\r\n                    shouldMakePrettyDiff: true,\r\n                    maxComputationTime: maxComputationTime\r\n                });\r\n                diffResult = diffComputer.computeDiff();\r\n                identical = (diffResult.changes.length > 0 ? false : this._modelsAreIdentical(original, modified));\r\n                return [2 /*return*/, {\r\n                        quitEarly: diffResult.quitEarly,\r\n                        identical: identical,\r\n                        changes: diffResult.changes\r\n                    }];\r\n            });\r\n        });\r\n    };\r\n    EditorSimpleWorker.prototype._modelsAreIdentical = function (original, modified) {\r\n        var originalLineCount = original.getLineCount();\r\n        var modifiedLineCount = modified.getLineCount();\r\n        if (originalLineCount !== modifiedLineCount) {\r\n            return false;\r\n        }\r\n        for (var line = 1; line <= originalLineCount; line++) {\r\n            var originalLine = original.getLineContent(line);\r\n            var modifiedLine = modified.getLineContent(line);\r\n            if (originalLine !== modifiedLine) {\r\n                return false;\r\n            }\r\n        }\r\n        return true;\r\n    };\r\n    EditorSimpleWorker.prototype.computeMoreMinimalEdits = function (modelUrl, edits) {\r\n        return __awaiter(this, void 0, void 0, function () {\r\n            var model, result, lastEol, _i, edits_1, _a, range, text, eol, original, changes, editOffset, _b, changes_1, change, start, end, newEdit;\r\n            return __generator(this, function (_c) {\r\n                model = this._getModel(modelUrl);\r\n                if (!model) {\r\n                    return [2 /*return*/, edits];\r\n                }\r\n                result = [];\r\n                lastEol = undefined;\r\n                edits = Object(_base_common_arrays_js__WEBPACK_IMPORTED_MODULE_0__[\"mergeSort\"])(edits, function (a, b) {\r\n                    if (a.range && b.range) {\r\n                        return _core_range_js__WEBPACK_IMPORTED_MODULE_6__[\"Range\"].compareRangesUsingStarts(a.range, b.range);\r\n                    }\r\n                    // eol only changes should go to the end\r\n                    var aRng = a.range ? 0 : 1;\r\n                    var bRng = b.range ? 0 : 1;\r\n                    return aRng - bRng;\r\n                });\r\n                for (_i = 0, edits_1 = edits; _i < edits_1.length; _i++) {\r\n                    _a = edits_1[_i], range = _a.range, text = _a.text, eol = _a.eol;\r\n                    if (typeof eol === 'number') {\r\n                        lastEol = eol;\r\n                    }\r\n                    if (_core_range_js__WEBPACK_IMPORTED_MODULE_6__[\"Range\"].isEmpty(range) && !text) {\r\n                        // empty change\r\n                        continue;\r\n                    }\r\n                    original = model.getValueInRange(range);\r\n                    text = text.replace(/\\r\\n|\\n|\\r/g, model.eol);\r\n                    if (original === text) {\r\n                        // noop\r\n                        continue;\r\n                    }\r\n                    // make sure diff won't take too long\r\n                    if (Math.max(text.length, original.length) > EditorSimpleWorker._diffLimit) {\r\n                        result.push({ range: range, text: text });\r\n                        continue;\r\n                    }\r\n                    changes = Object(_base_common_diff_diff_js__WEBPACK_IMPORTED_MODULE_1__[\"stringDiff\"])(original, text, false);\r\n                    editOffset = model.offsetAt(_core_range_js__WEBPACK_IMPORTED_MODULE_6__[\"Range\"].lift(range).getStartPosition());\r\n                    for (_b = 0, changes_1 = changes; _b < changes_1.length; _b++) {\r\n                        change = changes_1[_b];\r\n                        start = model.positionAt(editOffset + change.originalStart);\r\n                        end = model.positionAt(editOffset + change.originalStart + change.originalLength);\r\n                        newEdit = {\r\n                            text: text.substr(change.modifiedStart, change.modifiedLength),\r\n                            range: { startLineNumber: start.lineNumber, startColumn: start.column, endLineNumber: end.lineNumber, endColumn: end.column }\r\n                        };\r\n                        if (model.getValueInRange(newEdit.range) !== newEdit.text) {\r\n                            result.push(newEdit);\r\n                        }\r\n                    }\r\n                }\r\n                if (typeof lastEol === 'number') {\r\n                    result.push({ eol: lastEol, text: '', range: { startLineNumber: 0, startColumn: 0, endLineNumber: 0, endColumn: 0 } });\r\n                }\r\n                return [2 /*return*/, result];\r\n            });\r\n        });\r\n    };\r\n    // ---- END minimal edits ---------------------------------------------------------------\r\n    EditorSimpleWorker.prototype.computeLinks = function (modelUrl) {\r\n        return __awaiter(this, void 0, void 0, function () {\r\n            var model;\r\n            return __generator(this, function (_a) {\r\n                model = this._getModel(modelUrl);\r\n                if (!model) {\r\n                    return [2 /*return*/, null];\r\n                }\r\n                return [2 /*return*/, Object(_modes_linkComputer_js__WEBPACK_IMPORTED_MODULE_10__[\"computeLinks\"])(model)];\r\n            });\r\n        });\r\n    };\r\n    EditorSimpleWorker.prototype.textualSuggest = function (modelUrl, position, wordDef, wordDefFlags) {\r\n        return __awaiter(this, void 0, void 0, function () {\r\n            var model, words, seen, wordDefRegExp, wordAt, iter, e, word;\r\n            return __generator(this, function (_a) {\r\n                model = this._getModel(modelUrl);\r\n                if (!model) {\r\n                    return [2 /*return*/, null];\r\n                }\r\n                words = [];\r\n                seen = new Set();\r\n                wordDefRegExp = new RegExp(wordDef, wordDefFlags);\r\n                wordAt = model.getWordAtPosition(position, wordDefRegExp);\r\n                if (wordAt) {\r\n                    seen.add(model.getValueInRange(wordAt));\r\n                }\r\n                for (iter = model.createWordIterator(wordDefRegExp), e = iter.next(); !e.done && seen.size <= EditorSimpleWorker._suggestionsLimit; e = iter.next()) {\r\n                    word = e.value;\r\n                    if (seen.has(word)) {\r\n                        continue;\r\n                    }\r\n                    seen.add(word);\r\n                    if (!isNaN(Number(word))) {\r\n                        continue;\r\n                    }\r\n                    words.push(word);\r\n                }\r\n                return [2 /*return*/, words];\r\n            });\r\n        });\r\n    };\r\n    // ---- END suggest --------------------------------------------------------------------------\r\n    //#region -- word ranges --\r\n    EditorSimpleWorker.prototype.computeWordRanges = function (modelUrl, range, wordDef, wordDefFlags) {\r\n        return __awaiter(this, void 0, void 0, function () {\r\n            var model, wordDefRegExp, result, line, words, _i, words_1, word, array;\r\n            return __generator(this, function (_a) {\r\n                model = this._getModel(modelUrl);\r\n                if (!model) {\r\n                    return [2 /*return*/, Object.create(null)];\r\n                }\r\n                wordDefRegExp = new RegExp(wordDef, wordDefFlags);\r\n                result = Object.create(null);\r\n                for (line = range.startLineNumber; line < range.endLineNumber; line++) {\r\n                    words = model.getLineWords(line, wordDefRegExp);\r\n                    for (_i = 0, words_1 = words; _i < words_1.length; _i++) {\r\n                        word = words_1[_i];\r\n                        if (!isNaN(Number(word.word))) {\r\n                            continue;\r\n                        }\r\n                        array = result[word.word];\r\n                        if (!array) {\r\n                            array = [];\r\n                            result[word.word] = array;\r\n                        }\r\n                        array.push({\r\n                            startLineNumber: line,\r\n                            startColumn: word.startColumn,\r\n                            endLineNumber: line,\r\n                            endColumn: word.endColumn\r\n                        });\r\n                    }\r\n                }\r\n                return [2 /*return*/, result];\r\n            });\r\n        });\r\n    };\r\n    //#endregion\r\n    EditorSimpleWorker.prototype.navigateValueSet = function (modelUrl, range, up, wordDef, wordDefFlags) {\r\n        return __awaiter(this, void 0, void 0, function () {\r\n            var model, wordDefRegExp, selectionText, wordRange, word, result;\r\n            return __generator(this, function (_a) {\r\n                model = this._getModel(modelUrl);\r\n                if (!model) {\r\n                    return [2 /*return*/, null];\r\n                }\r\n                wordDefRegExp = new RegExp(wordDef, wordDefFlags);\r\n                if (range.startColumn === range.endColumn) {\r\n                    range = {\r\n                        startLineNumber: range.startLineNumber,\r\n                        startColumn: range.startColumn,\r\n                        endLineNumber: range.endLineNumber,\r\n                        endColumn: range.endColumn + 1\r\n                    };\r\n                }\r\n                selectionText = model.getValueInRange(range);\r\n                wordRange = model.getWordAtPosition({ lineNumber: range.startLineNumber, column: range.startColumn }, wordDefRegExp);\r\n                if (!wordRange) {\r\n                    return [2 /*return*/, null];\r\n                }\r\n                word = model.getValueInRange(wordRange);\r\n                result = _modes_supports_inplaceReplaceSupport_js__WEBPACK_IMPORTED_MODULE_11__[\"BasicInplaceReplace\"].INSTANCE.navigateValueSet(range, selectionText, wordRange, word, up);\r\n                return [2 /*return*/, result];\r\n            });\r\n        });\r\n    };\r\n    // ---- BEGIN foreign module support --------------------------------------------------------------------------\r\n    EditorSimpleWorker.prototype.loadForeignModule = function (moduleId, createData, foreignHostMethods) {\r\n        var _this = this;\r\n        var proxyMethodRequest = function (method, args) {\r\n            return _this._host.fhr(method, args);\r\n        };\r\n        var foreignHost = _base_common_types_js__WEBPACK_IMPORTED_MODULE_13__[\"createProxyObject\"](foreignHostMethods, proxyMethodRequest);\r\n        var ctx = {\r\n            host: foreignHost,\r\n            getMirrorModels: function () {\r\n                return _this._getModels();\r\n            }\r\n        };\r\n        if (this._foreignModuleFactory) {\r\n            this._foreignModule = this._foreignModuleFactory(ctx, createData);\r\n            // static foreing module\r\n            return Promise.resolve(_base_common_types_js__WEBPACK_IMPORTED_MODULE_13__[\"getAllMethodNames\"](this._foreignModule));\r\n        }\r\n        // ESM-comment-begin\r\n        // \t\treturn new Promise<any>((resolve, reject) => {\r\n        // \t\t\trequire([moduleId], (foreignModule: { create: IForeignModuleFactory }) => {\r\n        // \t\t\t\tthis._foreignModule = foreignModule.create(ctx, createData);\r\n        // \r\n        // \t\t\t\tresolve(types.getAllMethodNames(this._foreignModule));\r\n        // \r\n        // \t\t\t}, reject);\r\n        // \t\t});\r\n        // ESM-comment-end\r\n        // ESM-uncomment-begin\r\n        return Promise.reject(new Error(\"Unexpected usage\"));\r\n        // ESM-uncomment-end\r\n    };\r\n    // foreign method request\r\n    EditorSimpleWorker.prototype.fmr = function (method, args) {\r\n        if (!this._foreignModule || typeof this._foreignModule[method] !== 'function') {\r\n            return Promise.reject(new Error('Missing requestHandler or method: ' + method));\r\n        }\r\n        try {\r\n            return Promise.resolve(this._foreignModule[method].apply(this._foreignModule, args));\r\n        }\r\n        catch (e) {\r\n            return Promise.reject(e);\r\n        }\r\n    };\r\n    // ---- END diff --------------------------------------------------------------------------\r\n    // ---- BEGIN minimal edits ---------------------------------------------------------------\r\n    EditorSimpleWorker._diffLimit = 100000;\r\n    // ---- BEGIN suggest --------------------------------------------------------------------------\r\n    EditorSimpleWorker._suggestionsLimit = 10000;\r\n    return EditorSimpleWorker;\r\n}());\r\n\r\n/**\r\n * Called on the worker side\r\n * @internal\r\n */\r\nfunction create(host) {\r\n    return new EditorSimpleWorker(host, null);\r\n}\r\nif (typeof importScripts === 'function') {\r\n    // Running in a web worker\r\n    _base_common_platform_js__WEBPACK_IMPORTED_MODULE_3__[\"globals\"].monaco = Object(_standalone_standaloneBase_js__WEBPACK_IMPORTED_MODULE_12__[\"createMonacoBaseAPI\"])();\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/services/editorSimpleWorker.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/standalone/promise-polyfill/polyfill.js":
-/*!*************************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/standalone/promise-polyfill/polyfill.js ***!
-  \*************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/* WEBPACK VAR INJECTION */(function(setImmediate, global) {/*!\nCopyright (c) 2014 Taylor Hakes\nCopyright (c) 2014 Forbes Lindesay\n */\n(function (global, factory) {\n\t true ? factory() :\n\t\tundefined;\n}(this, (function () {\n\t'use strict';\n\n\t/**\n\t * @this {Promise}\n\t */\n\tfunction finallyConstructor(callback) {\n\t\tvar constructor = this.constructor;\n\t\treturn this.then(\n\t\t\tfunction (value) {\n\t\t\t\treturn constructor.resolve(callback()).then(function () {\n\t\t\t\t\treturn value;\n\t\t\t\t});\n\t\t\t},\n\t\t\tfunction (reason) {\n\t\t\t\treturn constructor.resolve(callback()).then(function () {\n\t\t\t\t\treturn constructor.reject(reason);\n\t\t\t\t});\n\t\t\t}\n\t\t);\n\t}\n\n\t// Store setTimeout reference so promise-polyfill will be unaffected by\n\t// other code modifying setTimeout (like sinon.useFakeTimers())\n\tvar setTimeoutFunc = setTimeout;\n\n\tfunction noop() { }\n\n\t// Polyfill for Function.prototype.bind\n\tfunction bind(fn, thisArg) {\n\t\treturn function () {\n\t\t\tfn.apply(thisArg, arguments);\n\t\t};\n\t}\n\n\t/**\n\t * @constructor\n\t * @param {Function} fn\n\t */\n\tfunction Promise(fn) {\n\t\tif (!(this instanceof Promise))\n\t\t\tthrow new TypeError('Promises must be constructed via new');\n\t\tif (typeof fn !== 'function') throw new TypeError('not a function');\n\t\t/** @type {!number} */\n\t\tthis._state = 0;\n\t\t/** @type {!boolean} */\n\t\tthis._handled = false;\n\t\t/** @type {Promise|undefined} */\n\t\tthis._value = undefined;\n\t\t/** @type {!Array<!Function>} */\n\t\tthis._deferreds = [];\n\n\t\tdoResolve(fn, this);\n\t}\n\n\tfunction handle(self, deferred) {\n\t\twhile (self._state === 3) {\n\t\t\tself = self._value;\n\t\t}\n\t\tif (self._state === 0) {\n\t\t\tself._deferreds.push(deferred);\n\t\t\treturn;\n\t\t}\n\t\tself._handled = true;\n\t\tPromise._immediateFn(function () {\n\t\t\tvar cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;\n\t\t\tif (cb === null) {\n\t\t\t\t(self._state === 1 ? resolve : reject)(deferred.promise, self._value);\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tvar ret;\n\t\t\ttry {\n\t\t\t\tret = cb(self._value);\n\t\t\t} catch (e) {\n\t\t\t\treject(deferred.promise, e);\n\t\t\t\treturn;\n\t\t\t}\n\t\t\tresolve(deferred.promise, ret);\n\t\t});\n\t}\n\n\tfunction resolve(self, newValue) {\n\t\ttry {\n\t\t\t// Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure\n\t\t\tif (newValue === self)\n\t\t\t\tthrow new TypeError('A promise cannot be resolved with itself.');\n\t\t\tif (\n\t\t\t\tnewValue &&\n\t\t\t\t(typeof newValue === 'object' || typeof newValue === 'function')\n\t\t\t) {\n\t\t\t\tvar then = newValue.then;\n\t\t\t\tif (newValue instanceof Promise) {\n\t\t\t\t\tself._state = 3;\n\t\t\t\t\tself._value = newValue;\n\t\t\t\t\tfinale(self);\n\t\t\t\t\treturn;\n\t\t\t\t} else if (typeof then === 'function') {\n\t\t\t\t\tdoResolve(bind(then, newValue), self);\n\t\t\t\t\treturn;\n\t\t\t\t}\n\t\t\t}\n\t\t\tself._state = 1;\n\t\t\tself._value = newValue;\n\t\t\tfinale(self);\n\t\t} catch (e) {\n\t\t\treject(self, e);\n\t\t}\n\t}\n\n\tfunction reject(self, newValue) {\n\t\tself._state = 2;\n\t\tself._value = newValue;\n\t\tfinale(self);\n\t}\n\n\tfunction finale(self) {\n\t\tif (self._state === 2 && self._deferreds.length === 0) {\n\t\t\tPromise._immediateFn(function () {\n\t\t\t\tif (!self._handled) {\n\t\t\t\t\tPromise._unhandledRejectionFn(self._value);\n\t\t\t\t}\n\t\t\t});\n\t\t}\n\n\t\tfor (var i = 0, len = self._deferreds.length; i < len; i++) {\n\t\t\thandle(self, self._deferreds[i]);\n\t\t}\n\t\tself._deferreds = null;\n\t}\n\n\t/**\n\t * @constructor\n\t */\n\tfunction Handler(onFulfilled, onRejected, promise) {\n\t\tthis.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;\n\t\tthis.onRejected = typeof onRejected === 'function' ? onRejected : null;\n\t\tthis.promise = promise;\n\t}\n\n\t/**\n\t * Take a potentially misbehaving resolver function and make sure\n\t * onFulfilled and onRejected are only called once.\n\t *\n\t * Makes no guarantees about asynchrony.\n\t */\n\tfunction doResolve(fn, self) {\n\t\tvar done = false;\n\t\ttry {\n\t\t\tfn(\n\t\t\t\tfunction (value) {\n\t\t\t\t\tif (done) return;\n\t\t\t\t\tdone = true;\n\t\t\t\t\tresolve(self, value);\n\t\t\t\t},\n\t\t\t\tfunction (reason) {\n\t\t\t\t\tif (done) return;\n\t\t\t\t\tdone = true;\n\t\t\t\t\treject(self, reason);\n\t\t\t\t}\n\t\t\t);\n\t\t} catch (ex) {\n\t\t\tif (done) return;\n\t\t\tdone = true;\n\t\t\treject(self, ex);\n\t\t}\n\t}\n\n\tPromise.prototype['catch'] = function (onRejected) {\n\t\treturn this.then(null, onRejected);\n\t};\n\n\tPromise.prototype.then = function (onFulfilled, onRejected) {\n\t\t// @ts-ignore\n\t\tvar prom = new this.constructor(noop);\n\n\t\thandle(this, new Handler(onFulfilled, onRejected, prom));\n\t\treturn prom;\n\t};\n\n\tPromise.prototype['finally'] = finallyConstructor;\n\n\tPromise.all = function (arr) {\n\t\treturn new Promise(function (resolve, reject) {\n\t\t\tif (!arr || typeof arr.length === 'undefined')\n\t\t\t\tthrow new TypeError('Promise.all accepts an array');\n\t\t\tvar args = Array.prototype.slice.call(arr);\n\t\t\tif (args.length === 0) return resolve([]);\n\t\t\tvar remaining = args.length;\n\n\t\t\tfunction res(i, val) {\n\t\t\t\ttry {\n\t\t\t\t\tif (val && (typeof val === 'object' || typeof val === 'function')) {\n\t\t\t\t\t\tvar then = val.then;\n\t\t\t\t\t\tif (typeof then === 'function') {\n\t\t\t\t\t\t\tthen.call(\n\t\t\t\t\t\t\t\tval,\n\t\t\t\t\t\t\t\tfunction (val) {\n\t\t\t\t\t\t\t\t\tres(i, val);\n\t\t\t\t\t\t\t\t},\n\t\t\t\t\t\t\t\treject\n\t\t\t\t\t\t\t);\n\t\t\t\t\t\t\treturn;\n\t\t\t\t\t\t}\n\t\t\t\t\t}\n\t\t\t\t\targs[i] = val;\n\t\t\t\t\tif (--remaining === 0) {\n\t\t\t\t\t\tresolve(args);\n\t\t\t\t\t}\n\t\t\t\t} catch (ex) {\n\t\t\t\t\treject(ex);\n\t\t\t\t}\n\t\t\t}\n\n\t\t\tfor (var i = 0; i < args.length; i++) {\n\t\t\t\tres(i, args[i]);\n\t\t\t}\n\t\t});\n\t};\n\n\tPromise.resolve = function (value) {\n\t\tif (value && typeof value === 'object' && value.constructor === Promise) {\n\t\t\treturn value;\n\t\t}\n\n\t\treturn new Promise(function (resolve) {\n\t\t\tresolve(value);\n\t\t});\n\t};\n\n\tPromise.reject = function (value) {\n\t\treturn new Promise(function (resolve, reject) {\n\t\t\treject(value);\n\t\t});\n\t};\n\n\tPromise.race = function (values) {\n\t\treturn new Promise(function (resolve, reject) {\n\t\t\tfor (var i = 0, len = values.length; i < len; i++) {\n\t\t\t\tvalues[i].then(resolve, reject);\n\t\t\t}\n\t\t});\n\t};\n\n\t// Use polyfill for setImmediate for performance gains\n\tPromise._immediateFn =\n\t\t(typeof setImmediate === 'function' &&\n\t\t\tfunction (fn) {\n\t\t\t\tsetImmediate(fn);\n\t\t\t}) ||\n\t\tfunction (fn) {\n\t\t\tsetTimeoutFunc(fn, 0);\n\t\t};\n\n\tPromise._unhandledRejectionFn = function _unhandledRejectionFn(err) {\n\t\tif (typeof console !== 'undefined' && console) {\n\t\t\tconsole.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console\n\t\t}\n\t};\n\n\t/** @suppress {undefinedVars} */\n\tvar globalNS = (function () {\n\t\t// the only reliable means to get the global object is\n\t\t// `Function('return this')()`\n\t\t// However, this causes CSP violations in Chrome apps.\n\t\tif (typeof self !== 'undefined') {\n\t\t\treturn self;\n\t\t}\n\t\tif (typeof window !== 'undefined') {\n\t\t\treturn window;\n\t\t}\n\t\tif (typeof global !== 'undefined') {\n\t\t\treturn global;\n\t\t}\n\t\tthrow new Error('unable to locate global object');\n\t})();\n\n\tif (!('Promise' in globalNS)) {\n\t\tglobalNS['Promise'] = Promise;\n\t} else if (!globalNS.Promise.prototype['finally']) {\n\t\tglobalNS.Promise.prototype['finally'] = finallyConstructor;\n\t}\n\n})));\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../../../../../../timers-browserify/main.js */ \"./node_modules/timers-browserify/main.js\").setImmediate, __webpack_require__(/*! ./../../../../../../../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/standalone/promise-polyfill/polyfill.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneBase.js":
-/*!**************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneBase.js ***!
-  \**************************************************************************************/
-/*! exports provided: KeyMod, createMonacoBaseAPI */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"KeyMod\", function() { return KeyMod; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"createMonacoBaseAPI\", function() { return createMonacoBaseAPI; });\n/* harmony import */ var _promise_polyfill_polyfill_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./promise-polyfill/polyfill.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/standalone/promise-polyfill/polyfill.js\");\n/* harmony import */ var _promise_polyfill_polyfill_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_promise_polyfill_polyfill_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _base_common_cancellation_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../base/common/cancellation.js */ \"./node_modules/monaco-editor/esm/vs/base/common/cancellation.js\");\n/* harmony import */ var _base_common_event_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../base/common/event.js */ \"./node_modules/monaco-editor/esm/vs/base/common/event.js\");\n/* harmony import */ var _base_common_keyCodes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../base/common/keyCodes.js */ \"./node_modules/monaco-editor/esm/vs/base/common/keyCodes.js\");\n/* harmony import */ var _base_common_uri_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../base/common/uri.js */ \"./node_modules/monaco-editor/esm/vs/base/common/uri.js\");\n/* harmony import */ var _core_position_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/position.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/position.js\");\n/* harmony import */ var _core_range_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/range.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/range.js\");\n/* harmony import */ var _core_selection_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/selection.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/selection.js\");\n/* harmony import */ var _core_token_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/token.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/core/token.js\");\n/* harmony import */ var _standaloneEnums_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./standaloneEnums.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneEnums.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\n\r\nvar KeyMod = /** @class */ (function () {\r\n    function KeyMod() {\r\n    }\r\n    KeyMod.chord = function (firstPart, secondPart) {\r\n        return Object(_base_common_keyCodes_js__WEBPACK_IMPORTED_MODULE_3__[\"KeyChord\"])(firstPart, secondPart);\r\n    };\r\n    KeyMod.CtrlCmd = 2048 /* CtrlCmd */;\r\n    KeyMod.Shift = 1024 /* Shift */;\r\n    KeyMod.Alt = 512 /* Alt */;\r\n    KeyMod.WinCtrl = 256 /* WinCtrl */;\r\n    return KeyMod;\r\n}());\r\n\r\nfunction createMonacoBaseAPI() {\r\n    return {\r\n        editor: undefined,\r\n        languages: undefined,\r\n        CancellationTokenSource: _base_common_cancellation_js__WEBPACK_IMPORTED_MODULE_1__[\"CancellationTokenSource\"],\r\n        Emitter: _base_common_event_js__WEBPACK_IMPORTED_MODULE_2__[\"Emitter\"],\r\n        KeyCode: _standaloneEnums_js__WEBPACK_IMPORTED_MODULE_9__[\"KeyCode\"],\r\n        KeyMod: KeyMod,\r\n        Position: _core_position_js__WEBPACK_IMPORTED_MODULE_5__[\"Position\"],\r\n        Range: _core_range_js__WEBPACK_IMPORTED_MODULE_6__[\"Range\"],\r\n        Selection: _core_selection_js__WEBPACK_IMPORTED_MODULE_7__[\"Selection\"],\r\n        SelectionDirection: _standaloneEnums_js__WEBPACK_IMPORTED_MODULE_9__[\"SelectionDirection\"],\r\n        MarkerSeverity: _standaloneEnums_js__WEBPACK_IMPORTED_MODULE_9__[\"MarkerSeverity\"],\r\n        MarkerTag: _standaloneEnums_js__WEBPACK_IMPORTED_MODULE_9__[\"MarkerTag\"],\r\n        Uri: _base_common_uri_js__WEBPACK_IMPORTED_MODULE_4__[\"URI\"],\r\n        Token: _core_token_js__WEBPACK_IMPORTED_MODULE_8__[\"Token\"]\r\n    };\r\n}\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneBase.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneEnums.js":
-/*!***************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneEnums.js ***!
-  \***************************************************************************************/
-/*! exports provided: AccessibilitySupport, CompletionItemInsertTextRule, CompletionItemKind, CompletionItemTag, CompletionTriggerKind, ContentWidgetPositionPreference, CursorChangeReason, DefaultEndOfLine, DocumentHighlightKind, EditorAutoIndentStrategy, EditorOption, EndOfLinePreference, EndOfLineSequence, IndentAction, KeyCode, MarkerSeverity, MarkerTag, MinimapPosition, MouseTargetType, OverlayWidgetPositionPreference, OverviewRulerLane, RenderLineNumbersType, RenderMinimap, ScrollType, ScrollbarVisibility, SelectionDirection, SignatureHelpTriggerKind, SymbolKind, SymbolTag, TextEditorCursorBlinkingStyle, TextEditorCursorStyle, TrackedRangeStickiness, WrappingIndent */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"AccessibilitySupport\", function() { return AccessibilitySupport; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CompletionItemInsertTextRule\", function() { return CompletionItemInsertTextRule; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CompletionItemKind\", function() { return CompletionItemKind; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CompletionItemTag\", function() { return CompletionItemTag; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CompletionTriggerKind\", function() { return CompletionTriggerKind; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ContentWidgetPositionPreference\", function() { return ContentWidgetPositionPreference; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"CursorChangeReason\", function() { return CursorChangeReason; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DefaultEndOfLine\", function() { return DefaultEndOfLine; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"DocumentHighlightKind\", function() { return DocumentHighlightKind; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EditorAutoIndentStrategy\", function() { return EditorAutoIndentStrategy; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EditorOption\", function() { return EditorOption; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EndOfLinePreference\", function() { return EndOfLinePreference; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"EndOfLineSequence\", function() { return EndOfLineSequence; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"IndentAction\", function() { return IndentAction; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"KeyCode\", function() { return KeyCode; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MarkerSeverity\", function() { return MarkerSeverity; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MarkerTag\", function() { return MarkerTag; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MinimapPosition\", function() { return MinimapPosition; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"MouseTargetType\", function() { return MouseTargetType; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"OverlayWidgetPositionPreference\", function() { return OverlayWidgetPositionPreference; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"OverviewRulerLane\", function() { return OverviewRulerLane; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RenderLineNumbersType\", function() { return RenderLineNumbersType; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"RenderMinimap\", function() { return RenderMinimap; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ScrollType\", function() { return ScrollType; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"ScrollbarVisibility\", function() { return ScrollbarVisibility; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SelectionDirection\", function() { return SelectionDirection; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SignatureHelpTriggerKind\", function() { return SignatureHelpTriggerKind; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SymbolKind\", function() { return SymbolKind; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"SymbolTag\", function() { return SymbolTag; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TextEditorCursorBlinkingStyle\", function() { return TextEditorCursorBlinkingStyle; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TextEditorCursorStyle\", function() { return TextEditorCursorStyle; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"TrackedRangeStickiness\", function() { return TrackedRangeStickiness; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"WrappingIndent\", function() { return WrappingIndent; });\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n// THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY.\r\nvar AccessibilitySupport;\r\n(function (AccessibilitySupport) {\r\n    /**\r\n     * This should be the browser case where it is not known if a screen reader is attached or no.\r\n     */\r\n    AccessibilitySupport[AccessibilitySupport[\"Unknown\"] = 0] = \"Unknown\";\r\n    AccessibilitySupport[AccessibilitySupport[\"Disabled\"] = 1] = \"Disabled\";\r\n    AccessibilitySupport[AccessibilitySupport[\"Enabled\"] = 2] = \"Enabled\";\r\n})(AccessibilitySupport || (AccessibilitySupport = {}));\r\nvar CompletionItemInsertTextRule;\r\n(function (CompletionItemInsertTextRule) {\r\n    /**\r\n     * Adjust whitespace/indentation of multiline insert texts to\r\n     * match the current line indentation.\r\n     */\r\n    CompletionItemInsertTextRule[CompletionItemInsertTextRule[\"KeepWhitespace\"] = 1] = \"KeepWhitespace\";\r\n    /**\r\n     * `insertText` is a snippet.\r\n     */\r\n    CompletionItemInsertTextRule[CompletionItemInsertTextRule[\"InsertAsSnippet\"] = 4] = \"InsertAsSnippet\";\r\n})(CompletionItemInsertTextRule || (CompletionItemInsertTextRule = {}));\r\nvar CompletionItemKind;\r\n(function (CompletionItemKind) {\r\n    CompletionItemKind[CompletionItemKind[\"Method\"] = 0] = \"Method\";\r\n    CompletionItemKind[CompletionItemKind[\"Function\"] = 1] = \"Function\";\r\n    CompletionItemKind[CompletionItemKind[\"Constructor\"] = 2] = \"Constructor\";\r\n    CompletionItemKind[CompletionItemKind[\"Field\"] = 3] = \"Field\";\r\n    CompletionItemKind[CompletionItemKind[\"Variable\"] = 4] = \"Variable\";\r\n    CompletionItemKind[CompletionItemKind[\"Class\"] = 5] = \"Class\";\r\n    CompletionItemKind[CompletionItemKind[\"Struct\"] = 6] = \"Struct\";\r\n    CompletionItemKind[CompletionItemKind[\"Interface\"] = 7] = \"Interface\";\r\n    CompletionItemKind[CompletionItemKind[\"Module\"] = 8] = \"Module\";\r\n    CompletionItemKind[CompletionItemKind[\"Property\"] = 9] = \"Property\";\r\n    CompletionItemKind[CompletionItemKind[\"Event\"] = 10] = \"Event\";\r\n    CompletionItemKind[CompletionItemKind[\"Operator\"] = 11] = \"Operator\";\r\n    CompletionItemKind[CompletionItemKind[\"Unit\"] = 12] = \"Unit\";\r\n    CompletionItemKind[CompletionItemKind[\"Value\"] = 13] = \"Value\";\r\n    CompletionItemKind[CompletionItemKind[\"Constant\"] = 14] = \"Constant\";\r\n    CompletionItemKind[CompletionItemKind[\"Enum\"] = 15] = \"Enum\";\r\n    CompletionItemKind[CompletionItemKind[\"EnumMember\"] = 16] = \"EnumMember\";\r\n    CompletionItemKind[CompletionItemKind[\"Keyword\"] = 17] = \"Keyword\";\r\n    CompletionItemKind[CompletionItemKind[\"Text\"] = 18] = \"Text\";\r\n    CompletionItemKind[CompletionItemKind[\"Color\"] = 19] = \"Color\";\r\n    CompletionItemKind[CompletionItemKind[\"File\"] = 20] = \"File\";\r\n    CompletionItemKind[CompletionItemKind[\"Reference\"] = 21] = \"Reference\";\r\n    CompletionItemKind[CompletionItemKind[\"Customcolor\"] = 22] = \"Customcolor\";\r\n    CompletionItemKind[CompletionItemKind[\"Folder\"] = 23] = \"Folder\";\r\n    CompletionItemKind[CompletionItemKind[\"TypeParameter\"] = 24] = \"TypeParameter\";\r\n    CompletionItemKind[CompletionItemKind[\"Snippet\"] = 25] = \"Snippet\";\r\n})(CompletionItemKind || (CompletionItemKind = {}));\r\nvar CompletionItemTag;\r\n(function (CompletionItemTag) {\r\n    CompletionItemTag[CompletionItemTag[\"Deprecated\"] = 1] = \"Deprecated\";\r\n})(CompletionItemTag || (CompletionItemTag = {}));\r\n/**\r\n * How a suggest provider was triggered.\r\n */\r\nvar CompletionTriggerKind;\r\n(function (CompletionTriggerKind) {\r\n    CompletionTriggerKind[CompletionTriggerKind[\"Invoke\"] = 0] = \"Invoke\";\r\n    CompletionTriggerKind[CompletionTriggerKind[\"TriggerCharacter\"] = 1] = \"TriggerCharacter\";\r\n    CompletionTriggerKind[CompletionTriggerKind[\"TriggerForIncompleteCompletions\"] = 2] = \"TriggerForIncompleteCompletions\";\r\n})(CompletionTriggerKind || (CompletionTriggerKind = {}));\r\n/**\r\n * A positioning preference for rendering content widgets.\r\n */\r\nvar ContentWidgetPositionPreference;\r\n(function (ContentWidgetPositionPreference) {\r\n    /**\r\n     * Place the content widget exactly at a position\r\n     */\r\n    ContentWidgetPositionPreference[ContentWidgetPositionPreference[\"EXACT\"] = 0] = \"EXACT\";\r\n    /**\r\n     * Place the content widget above a position\r\n     */\r\n    ContentWidgetPositionPreference[ContentWidgetPositionPreference[\"ABOVE\"] = 1] = \"ABOVE\";\r\n    /**\r\n     * Place the content widget below a position\r\n     */\r\n    ContentWidgetPositionPreference[ContentWidgetPositionPreference[\"BELOW\"] = 2] = \"BELOW\";\r\n})(ContentWidgetPositionPreference || (ContentWidgetPositionPreference = {}));\r\n/**\r\n * Describes the reason the cursor has changed its position.\r\n */\r\nvar CursorChangeReason;\r\n(function (CursorChangeReason) {\r\n    /**\r\n     * Unknown or not set.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"NotSet\"] = 0] = \"NotSet\";\r\n    /**\r\n     * A `model.setValue()` was called.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"ContentFlush\"] = 1] = \"ContentFlush\";\r\n    /**\r\n     * The `model` has been changed outside of this cursor and the cursor recovers its position from associated markers.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"RecoverFromMarkers\"] = 2] = \"RecoverFromMarkers\";\r\n    /**\r\n     * There was an explicit user gesture.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"Explicit\"] = 3] = \"Explicit\";\r\n    /**\r\n     * There was a Paste.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"Paste\"] = 4] = \"Paste\";\r\n    /**\r\n     * There was an Undo.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"Undo\"] = 5] = \"Undo\";\r\n    /**\r\n     * There was a Redo.\r\n     */\r\n    CursorChangeReason[CursorChangeReason[\"Redo\"] = 6] = \"Redo\";\r\n})(CursorChangeReason || (CursorChangeReason = {}));\r\n/**\r\n * The default end of line to use when instantiating models.\r\n */\r\nvar DefaultEndOfLine;\r\n(function (DefaultEndOfLine) {\r\n    /**\r\n     * Use line feed (\\n) as the end of line character.\r\n     */\r\n    DefaultEndOfLine[DefaultEndOfLine[\"LF\"] = 1] = \"LF\";\r\n    /**\r\n     * Use carriage return and line feed (\\r\\n) as the end of line character.\r\n     */\r\n    DefaultEndOfLine[DefaultEndOfLine[\"CRLF\"] = 2] = \"CRLF\";\r\n})(DefaultEndOfLine || (DefaultEndOfLine = {}));\r\n/**\r\n * A document highlight kind.\r\n */\r\nvar DocumentHighlightKind;\r\n(function (DocumentHighlightKind) {\r\n    /**\r\n     * A textual occurrence.\r\n     */\r\n    DocumentHighlightKind[DocumentHighlightKind[\"Text\"] = 0] = \"Text\";\r\n    /**\r\n     * Read-access of a symbol, like reading a variable.\r\n     */\r\n    DocumentHighlightKind[DocumentHighlightKind[\"Read\"] = 1] = \"Read\";\r\n    /**\r\n     * Write-access of a symbol, like writing to a variable.\r\n     */\r\n    DocumentHighlightKind[DocumentHighlightKind[\"Write\"] = 2] = \"Write\";\r\n})(DocumentHighlightKind || (DocumentHighlightKind = {}));\r\n/**\r\n * Configuration options for auto indentation in the editor\r\n */\r\nvar EditorAutoIndentStrategy;\r\n(function (EditorAutoIndentStrategy) {\r\n    EditorAutoIndentStrategy[EditorAutoIndentStrategy[\"None\"] = 0] = \"None\";\r\n    EditorAutoIndentStrategy[EditorAutoIndentStrategy[\"Keep\"] = 1] = \"Keep\";\r\n    EditorAutoIndentStrategy[EditorAutoIndentStrategy[\"Brackets\"] = 2] = \"Brackets\";\r\n    EditorAutoIndentStrategy[EditorAutoIndentStrategy[\"Advanced\"] = 3] = \"Advanced\";\r\n    EditorAutoIndentStrategy[EditorAutoIndentStrategy[\"Full\"] = 4] = \"Full\";\r\n})(EditorAutoIndentStrategy || (EditorAutoIndentStrategy = {}));\r\nvar EditorOption;\r\n(function (EditorOption) {\r\n    EditorOption[EditorOption[\"acceptSuggestionOnCommitCharacter\"] = 0] = \"acceptSuggestionOnCommitCharacter\";\r\n    EditorOption[EditorOption[\"acceptSuggestionOnEnter\"] = 1] = \"acceptSuggestionOnEnter\";\r\n    EditorOption[EditorOption[\"accessibilitySupport\"] = 2] = \"accessibilitySupport\";\r\n    EditorOption[EditorOption[\"accessibilityPageSize\"] = 3] = \"accessibilityPageSize\";\r\n    EditorOption[EditorOption[\"ariaLabel\"] = 4] = \"ariaLabel\";\r\n    EditorOption[EditorOption[\"autoClosingBrackets\"] = 5] = \"autoClosingBrackets\";\r\n    EditorOption[EditorOption[\"autoClosingOvertype\"] = 6] = \"autoClosingOvertype\";\r\n    EditorOption[EditorOption[\"autoClosingQuotes\"] = 7] = \"autoClosingQuotes\";\r\n    EditorOption[EditorOption[\"autoIndent\"] = 8] = \"autoIndent\";\r\n    EditorOption[EditorOption[\"automaticLayout\"] = 9] = \"automaticLayout\";\r\n    EditorOption[EditorOption[\"autoSurround\"] = 10] = \"autoSurround\";\r\n    EditorOption[EditorOption[\"codeLens\"] = 11] = \"codeLens\";\r\n    EditorOption[EditorOption[\"colorDecorators\"] = 12] = \"colorDecorators\";\r\n    EditorOption[EditorOption[\"comments\"] = 13] = \"comments\";\r\n    EditorOption[EditorOption[\"contextmenu\"] = 14] = \"contextmenu\";\r\n    EditorOption[EditorOption[\"copyWithSyntaxHighlighting\"] = 15] = \"copyWithSyntaxHighlighting\";\r\n    EditorOption[EditorOption[\"cursorBlinking\"] = 16] = \"cursorBlinking\";\r\n    EditorOption[EditorOption[\"cursorSmoothCaretAnimation\"] = 17] = \"cursorSmoothCaretAnimation\";\r\n    EditorOption[EditorOption[\"cursorStyle\"] = 18] = \"cursorStyle\";\r\n    EditorOption[EditorOption[\"cursorSurroundingLines\"] = 19] = \"cursorSurroundingLines\";\r\n    EditorOption[EditorOption[\"cursorSurroundingLinesStyle\"] = 20] = \"cursorSurroundingLinesStyle\";\r\n    EditorOption[EditorOption[\"cursorWidth\"] = 21] = \"cursorWidth\";\r\n    EditorOption[EditorOption[\"disableLayerHinting\"] = 22] = \"disableLayerHinting\";\r\n    EditorOption[EditorOption[\"disableMonospaceOptimizations\"] = 23] = \"disableMonospaceOptimizations\";\r\n    EditorOption[EditorOption[\"dragAndDrop\"] = 24] = \"dragAndDrop\";\r\n    EditorOption[EditorOption[\"emptySelectionClipboard\"] = 25] = \"emptySelectionClipboard\";\r\n    EditorOption[EditorOption[\"extraEditorClassName\"] = 26] = \"extraEditorClassName\";\r\n    EditorOption[EditorOption[\"fastScrollSensitivity\"] = 27] = \"fastScrollSensitivity\";\r\n    EditorOption[EditorOption[\"find\"] = 28] = \"find\";\r\n    EditorOption[EditorOption[\"fixedOverflowWidgets\"] = 29] = \"fixedOverflowWidgets\";\r\n    EditorOption[EditorOption[\"folding\"] = 30] = \"folding\";\r\n    EditorOption[EditorOption[\"foldingStrategy\"] = 31] = \"foldingStrategy\";\r\n    EditorOption[EditorOption[\"foldingHighlight\"] = 32] = \"foldingHighlight\";\r\n    EditorOption[EditorOption[\"fontFamily\"] = 33] = \"fontFamily\";\r\n    EditorOption[EditorOption[\"fontInfo\"] = 34] = \"fontInfo\";\r\n    EditorOption[EditorOption[\"fontLigatures\"] = 35] = \"fontLigatures\";\r\n    EditorOption[EditorOption[\"fontSize\"] = 36] = \"fontSize\";\r\n    EditorOption[EditorOption[\"fontWeight\"] = 37] = \"fontWeight\";\r\n    EditorOption[EditorOption[\"formatOnPaste\"] = 38] = \"formatOnPaste\";\r\n    EditorOption[EditorOption[\"formatOnType\"] = 39] = \"formatOnType\";\r\n    EditorOption[EditorOption[\"glyphMargin\"] = 40] = \"glyphMargin\";\r\n    EditorOption[EditorOption[\"gotoLocation\"] = 41] = \"gotoLocation\";\r\n    EditorOption[EditorOption[\"hideCursorInOverviewRuler\"] = 42] = \"hideCursorInOverviewRuler\";\r\n    EditorOption[EditorOption[\"highlightActiveIndentGuide\"] = 43] = \"highlightActiveIndentGuide\";\r\n    EditorOption[EditorOption[\"hover\"] = 44] = \"hover\";\r\n    EditorOption[EditorOption[\"inDiffEditor\"] = 45] = \"inDiffEditor\";\r\n    EditorOption[EditorOption[\"letterSpacing\"] = 46] = \"letterSpacing\";\r\n    EditorOption[EditorOption[\"lightbulb\"] = 47] = \"lightbulb\";\r\n    EditorOption[EditorOption[\"lineDecorationsWidth\"] = 48] = \"lineDecorationsWidth\";\r\n    EditorOption[EditorOption[\"lineHeight\"] = 49] = \"lineHeight\";\r\n    EditorOption[EditorOption[\"lineNumbers\"] = 50] = \"lineNumbers\";\r\n    EditorOption[EditorOption[\"lineNumbersMinChars\"] = 51] = \"lineNumbersMinChars\";\r\n    EditorOption[EditorOption[\"links\"] = 52] = \"links\";\r\n    EditorOption[EditorOption[\"matchBrackets\"] = 53] = \"matchBrackets\";\r\n    EditorOption[EditorOption[\"minimap\"] = 54] = \"minimap\";\r\n    EditorOption[EditorOption[\"mouseStyle\"] = 55] = \"mouseStyle\";\r\n    EditorOption[EditorOption[\"mouseWheelScrollSensitivity\"] = 56] = \"mouseWheelScrollSensitivity\";\r\n    EditorOption[EditorOption[\"mouseWheelZoom\"] = 57] = \"mouseWheelZoom\";\r\n    EditorOption[EditorOption[\"multiCursorMergeOverlapping\"] = 58] = \"multiCursorMergeOverlapping\";\r\n    EditorOption[EditorOption[\"multiCursorModifier\"] = 59] = \"multiCursorModifier\";\r\n    EditorOption[EditorOption[\"multiCursorPaste\"] = 60] = \"multiCursorPaste\";\r\n    EditorOption[EditorOption[\"occurrencesHighlight\"] = 61] = \"occurrencesHighlight\";\r\n    EditorOption[EditorOption[\"overviewRulerBorder\"] = 62] = \"overviewRulerBorder\";\r\n    EditorOption[EditorOption[\"overviewRulerLanes\"] = 63] = \"overviewRulerLanes\";\r\n    EditorOption[EditorOption[\"parameterHints\"] = 64] = \"parameterHints\";\r\n    EditorOption[EditorOption[\"peekWidgetDefaultFocus\"] = 65] = \"peekWidgetDefaultFocus\";\r\n    EditorOption[EditorOption[\"quickSuggestions\"] = 66] = \"quickSuggestions\";\r\n    EditorOption[EditorOption[\"quickSuggestionsDelay\"] = 67] = \"quickSuggestionsDelay\";\r\n    EditorOption[EditorOption[\"readOnly\"] = 68] = \"readOnly\";\r\n    EditorOption[EditorOption[\"renderControlCharacters\"] = 69] = \"renderControlCharacters\";\r\n    EditorOption[EditorOption[\"renderIndentGuides\"] = 70] = \"renderIndentGuides\";\r\n    EditorOption[EditorOption[\"renderFinalNewline\"] = 71] = \"renderFinalNewline\";\r\n    EditorOption[EditorOption[\"renderLineHighlight\"] = 72] = \"renderLineHighlight\";\r\n    EditorOption[EditorOption[\"renderValidationDecorations\"] = 73] = \"renderValidationDecorations\";\r\n    EditorOption[EditorOption[\"renderWhitespace\"] = 74] = \"renderWhitespace\";\r\n    EditorOption[EditorOption[\"revealHorizontalRightPadding\"] = 75] = \"revealHorizontalRightPadding\";\r\n    EditorOption[EditorOption[\"roundedSelection\"] = 76] = \"roundedSelection\";\r\n    EditorOption[EditorOption[\"rulers\"] = 77] = \"rulers\";\r\n    EditorOption[EditorOption[\"scrollbar\"] = 78] = \"scrollbar\";\r\n    EditorOption[EditorOption[\"scrollBeyondLastColumn\"] = 79] = \"scrollBeyondLastColumn\";\r\n    EditorOption[EditorOption[\"scrollBeyondLastLine\"] = 80] = \"scrollBeyondLastLine\";\r\n    EditorOption[EditorOption[\"selectionClipboard\"] = 81] = \"selectionClipboard\";\r\n    EditorOption[EditorOption[\"selectionHighlight\"] = 82] = \"selectionHighlight\";\r\n    EditorOption[EditorOption[\"selectOnLineNumbers\"] = 83] = \"selectOnLineNumbers\";\r\n    EditorOption[EditorOption[\"showFoldingControls\"] = 84] = \"showFoldingControls\";\r\n    EditorOption[EditorOption[\"showUnused\"] = 85] = \"showUnused\";\r\n    EditorOption[EditorOption[\"snippetSuggestions\"] = 86] = \"snippetSuggestions\";\r\n    EditorOption[EditorOption[\"smoothScrolling\"] = 87] = \"smoothScrolling\";\r\n    EditorOption[EditorOption[\"stopRenderingLineAfter\"] = 88] = \"stopRenderingLineAfter\";\r\n    EditorOption[EditorOption[\"suggest\"] = 89] = \"suggest\";\r\n    EditorOption[EditorOption[\"suggestFontSize\"] = 90] = \"suggestFontSize\";\r\n    EditorOption[EditorOption[\"suggestLineHeight\"] = 91] = \"suggestLineHeight\";\r\n    EditorOption[EditorOption[\"suggestOnTriggerCharacters\"] = 92] = \"suggestOnTriggerCharacters\";\r\n    EditorOption[EditorOption[\"suggestSelection\"] = 93] = \"suggestSelection\";\r\n    EditorOption[EditorOption[\"tabCompletion\"] = 94] = \"tabCompletion\";\r\n    EditorOption[EditorOption[\"useTabStops\"] = 95] = \"useTabStops\";\r\n    EditorOption[EditorOption[\"wordSeparators\"] = 96] = \"wordSeparators\";\r\n    EditorOption[EditorOption[\"wordWrap\"] = 97] = \"wordWrap\";\r\n    EditorOption[EditorOption[\"wordWrapBreakAfterCharacters\"] = 98] = \"wordWrapBreakAfterCharacters\";\r\n    EditorOption[EditorOption[\"wordWrapBreakBeforeCharacters\"] = 99] = \"wordWrapBreakBeforeCharacters\";\r\n    EditorOption[EditorOption[\"wordWrapColumn\"] = 100] = \"wordWrapColumn\";\r\n    EditorOption[EditorOption[\"wordWrapMinified\"] = 101] = \"wordWrapMinified\";\r\n    EditorOption[EditorOption[\"wrappingIndent\"] = 102] = \"wrappingIndent\";\r\n    EditorOption[EditorOption[\"wrappingStrategy\"] = 103] = \"wrappingStrategy\";\r\n    EditorOption[EditorOption[\"editorClassName\"] = 104] = \"editorClassName\";\r\n    EditorOption[EditorOption[\"pixelRatio\"] = 105] = \"pixelRatio\";\r\n    EditorOption[EditorOption[\"tabFocusMode\"] = 106] = \"tabFocusMode\";\r\n    EditorOption[EditorOption[\"layoutInfo\"] = 107] = \"layoutInfo\";\r\n    EditorOption[EditorOption[\"wrappingInfo\"] = 108] = \"wrappingInfo\";\r\n})(EditorOption || (EditorOption = {}));\r\n/**\r\n * End of line character preference.\r\n */\r\nvar EndOfLinePreference;\r\n(function (EndOfLinePreference) {\r\n    /**\r\n     * Use the end of line character identified in the text buffer.\r\n     */\r\n    EndOfLinePreference[EndOfLinePreference[\"TextDefined\"] = 0] = \"TextDefined\";\r\n    /**\r\n     * Use line feed (\\n) as the end of line character.\r\n     */\r\n    EndOfLinePreference[EndOfLinePreference[\"LF\"] = 1] = \"LF\";\r\n    /**\r\n     * Use carriage return and line feed (\\r\\n) as the end of line character.\r\n     */\r\n    EndOfLinePreference[EndOfLinePreference[\"CRLF\"] = 2] = \"CRLF\";\r\n})(EndOfLinePreference || (EndOfLinePreference = {}));\r\n/**\r\n * End of line character preference.\r\n */\r\nvar EndOfLineSequence;\r\n(function (EndOfLineSequence) {\r\n    /**\r\n     * Use line feed (\\n) as the end of line character.\r\n     */\r\n    EndOfLineSequence[EndOfLineSequence[\"LF\"] = 0] = \"LF\";\r\n    /**\r\n     * Use carriage return and line feed (\\r\\n) as the end of line character.\r\n     */\r\n    EndOfLineSequence[EndOfLineSequence[\"CRLF\"] = 1] = \"CRLF\";\r\n})(EndOfLineSequence || (EndOfLineSequence = {}));\r\n/**\r\n * Describes what to do with the indentation when pressing Enter.\r\n */\r\nvar IndentAction;\r\n(function (IndentAction) {\r\n    /**\r\n     * Insert new line and copy the previous line's indentation.\r\n     */\r\n    IndentAction[IndentAction[\"None\"] = 0] = \"None\";\r\n    /**\r\n     * Insert new line and indent once (relative to the previous line's indentation).\r\n     */\r\n    IndentAction[IndentAction[\"Indent\"] = 1] = \"Indent\";\r\n    /**\r\n     * Insert two new lines:\r\n     *  - the first one indented which will hold the cursor\r\n     *  - the second one at the same indentation level\r\n     */\r\n    IndentAction[IndentAction[\"IndentOutdent\"] = 2] = \"IndentOutdent\";\r\n    /**\r\n     * Insert new line and outdent once (relative to the previous line's indentation).\r\n     */\r\n    IndentAction[IndentAction[\"Outdent\"] = 3] = \"Outdent\";\r\n})(IndentAction || (IndentAction = {}));\r\n/**\r\n * Virtual Key Codes, the value does not hold any inherent meaning.\r\n * Inspired somewhat from https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx\r\n * But these are \"more general\", as they should work across browsers & OS`s.\r\n */\r\nvar KeyCode;\r\n(function (KeyCode) {\r\n    /**\r\n     * Placed first to cover the 0 value of the enum.\r\n     */\r\n    KeyCode[KeyCode[\"Unknown\"] = 0] = \"Unknown\";\r\n    KeyCode[KeyCode[\"Backspace\"] = 1] = \"Backspace\";\r\n    KeyCode[KeyCode[\"Tab\"] = 2] = \"Tab\";\r\n    KeyCode[KeyCode[\"Enter\"] = 3] = \"Enter\";\r\n    KeyCode[KeyCode[\"Shift\"] = 4] = \"Shift\";\r\n    KeyCode[KeyCode[\"Ctrl\"] = 5] = \"Ctrl\";\r\n    KeyCode[KeyCode[\"Alt\"] = 6] = \"Alt\";\r\n    KeyCode[KeyCode[\"PauseBreak\"] = 7] = \"PauseBreak\";\r\n    KeyCode[KeyCode[\"CapsLock\"] = 8] = \"CapsLock\";\r\n    KeyCode[KeyCode[\"Escape\"] = 9] = \"Escape\";\r\n    KeyCode[KeyCode[\"Space\"] = 10] = \"Space\";\r\n    KeyCode[KeyCode[\"PageUp\"] = 11] = \"PageUp\";\r\n    KeyCode[KeyCode[\"PageDown\"] = 12] = \"PageDown\";\r\n    KeyCode[KeyCode[\"End\"] = 13] = \"End\";\r\n    KeyCode[KeyCode[\"Home\"] = 14] = \"Home\";\r\n    KeyCode[KeyCode[\"LeftArrow\"] = 15] = \"LeftArrow\";\r\n    KeyCode[KeyCode[\"UpArrow\"] = 16] = \"UpArrow\";\r\n    KeyCode[KeyCode[\"RightArrow\"] = 17] = \"RightArrow\";\r\n    KeyCode[KeyCode[\"DownArrow\"] = 18] = \"DownArrow\";\r\n    KeyCode[KeyCode[\"Insert\"] = 19] = \"Insert\";\r\n    KeyCode[KeyCode[\"Delete\"] = 20] = \"Delete\";\r\n    KeyCode[KeyCode[\"KEY_0\"] = 21] = \"KEY_0\";\r\n    KeyCode[KeyCode[\"KEY_1\"] = 22] = \"KEY_1\";\r\n    KeyCode[KeyCode[\"KEY_2\"] = 23] = \"KEY_2\";\r\n    KeyCode[KeyCode[\"KEY_3\"] = 24] = \"KEY_3\";\r\n    KeyCode[KeyCode[\"KEY_4\"] = 25] = \"KEY_4\";\r\n    KeyCode[KeyCode[\"KEY_5\"] = 26] = \"KEY_5\";\r\n    KeyCode[KeyCode[\"KEY_6\"] = 27] = \"KEY_6\";\r\n    KeyCode[KeyCode[\"KEY_7\"] = 28] = \"KEY_7\";\r\n    KeyCode[KeyCode[\"KEY_8\"] = 29] = \"KEY_8\";\r\n    KeyCode[KeyCode[\"KEY_9\"] = 30] = \"KEY_9\";\r\n    KeyCode[KeyCode[\"KEY_A\"] = 31] = \"KEY_A\";\r\n    KeyCode[KeyCode[\"KEY_B\"] = 32] = \"KEY_B\";\r\n    KeyCode[KeyCode[\"KEY_C\"] = 33] = \"KEY_C\";\r\n    KeyCode[KeyCode[\"KEY_D\"] = 34] = \"KEY_D\";\r\n    KeyCode[KeyCode[\"KEY_E\"] = 35] = \"KEY_E\";\r\n    KeyCode[KeyCode[\"KEY_F\"] = 36] = \"KEY_F\";\r\n    KeyCode[KeyCode[\"KEY_G\"] = 37] = \"KEY_G\";\r\n    KeyCode[KeyCode[\"KEY_H\"] = 38] = \"KEY_H\";\r\n    KeyCode[KeyCode[\"KEY_I\"] = 39] = \"KEY_I\";\r\n    KeyCode[KeyCode[\"KEY_J\"] = 40] = \"KEY_J\";\r\n    KeyCode[KeyCode[\"KEY_K\"] = 41] = \"KEY_K\";\r\n    KeyCode[KeyCode[\"KEY_L\"] = 42] = \"KEY_L\";\r\n    KeyCode[KeyCode[\"KEY_M\"] = 43] = \"KEY_M\";\r\n    KeyCode[KeyCode[\"KEY_N\"] = 44] = \"KEY_N\";\r\n    KeyCode[KeyCode[\"KEY_O\"] = 45] = \"KEY_O\";\r\n    KeyCode[KeyCode[\"KEY_P\"] = 46] = \"KEY_P\";\r\n    KeyCode[KeyCode[\"KEY_Q\"] = 47] = \"KEY_Q\";\r\n    KeyCode[KeyCode[\"KEY_R\"] = 48] = \"KEY_R\";\r\n    KeyCode[KeyCode[\"KEY_S\"] = 49] = \"KEY_S\";\r\n    KeyCode[KeyCode[\"KEY_T\"] = 50] = \"KEY_T\";\r\n    KeyCode[KeyCode[\"KEY_U\"] = 51] = \"KEY_U\";\r\n    KeyCode[KeyCode[\"KEY_V\"] = 52] = \"KEY_V\";\r\n    KeyCode[KeyCode[\"KEY_W\"] = 53] = \"KEY_W\";\r\n    KeyCode[KeyCode[\"KEY_X\"] = 54] = \"KEY_X\";\r\n    KeyCode[KeyCode[\"KEY_Y\"] = 55] = \"KEY_Y\";\r\n    KeyCode[KeyCode[\"KEY_Z\"] = 56] = \"KEY_Z\";\r\n    KeyCode[KeyCode[\"Meta\"] = 57] = \"Meta\";\r\n    KeyCode[KeyCode[\"ContextMenu\"] = 58] = \"ContextMenu\";\r\n    KeyCode[KeyCode[\"F1\"] = 59] = \"F1\";\r\n    KeyCode[KeyCode[\"F2\"] = 60] = \"F2\";\r\n    KeyCode[KeyCode[\"F3\"] = 61] = \"F3\";\r\n    KeyCode[KeyCode[\"F4\"] = 62] = \"F4\";\r\n    KeyCode[KeyCode[\"F5\"] = 63] = \"F5\";\r\n    KeyCode[KeyCode[\"F6\"] = 64] = \"F6\";\r\n    KeyCode[KeyCode[\"F7\"] = 65] = \"F7\";\r\n    KeyCode[KeyCode[\"F8\"] = 66] = \"F8\";\r\n    KeyCode[KeyCode[\"F9\"] = 67] = \"F9\";\r\n    KeyCode[KeyCode[\"F10\"] = 68] = \"F10\";\r\n    KeyCode[KeyCode[\"F11\"] = 69] = \"F11\";\r\n    KeyCode[KeyCode[\"F12\"] = 70] = \"F12\";\r\n    KeyCode[KeyCode[\"F13\"] = 71] = \"F13\";\r\n    KeyCode[KeyCode[\"F14\"] = 72] = \"F14\";\r\n    KeyCode[KeyCode[\"F15\"] = 73] = \"F15\";\r\n    KeyCode[KeyCode[\"F16\"] = 74] = \"F16\";\r\n    KeyCode[KeyCode[\"F17\"] = 75] = \"F17\";\r\n    KeyCode[KeyCode[\"F18\"] = 76] = \"F18\";\r\n    KeyCode[KeyCode[\"F19\"] = 77] = \"F19\";\r\n    KeyCode[KeyCode[\"NumLock\"] = 78] = \"NumLock\";\r\n    KeyCode[KeyCode[\"ScrollLock\"] = 79] = \"ScrollLock\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the ';:' key\r\n     */\r\n    KeyCode[KeyCode[\"US_SEMICOLON\"] = 80] = \"US_SEMICOLON\";\r\n    /**\r\n     * For any country/region, the '+' key\r\n     * For the US standard keyboard, the '=+' key\r\n     */\r\n    KeyCode[KeyCode[\"US_EQUAL\"] = 81] = \"US_EQUAL\";\r\n    /**\r\n     * For any country/region, the ',' key\r\n     * For the US standard keyboard, the ',<' key\r\n     */\r\n    KeyCode[KeyCode[\"US_COMMA\"] = 82] = \"US_COMMA\";\r\n    /**\r\n     * For any country/region, the '-' key\r\n     * For the US standard keyboard, the '-_' key\r\n     */\r\n    KeyCode[KeyCode[\"US_MINUS\"] = 83] = \"US_MINUS\";\r\n    /**\r\n     * For any country/region, the '.' key\r\n     * For the US standard keyboard, the '.>' key\r\n     */\r\n    KeyCode[KeyCode[\"US_DOT\"] = 84] = \"US_DOT\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the '/?' key\r\n     */\r\n    KeyCode[KeyCode[\"US_SLASH\"] = 85] = \"US_SLASH\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the '`~' key\r\n     */\r\n    KeyCode[KeyCode[\"US_BACKTICK\"] = 86] = \"US_BACKTICK\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the '[{' key\r\n     */\r\n    KeyCode[KeyCode[\"US_OPEN_SQUARE_BRACKET\"] = 87] = \"US_OPEN_SQUARE_BRACKET\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the '\\|' key\r\n     */\r\n    KeyCode[KeyCode[\"US_BACKSLASH\"] = 88] = \"US_BACKSLASH\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the ']}' key\r\n     */\r\n    KeyCode[KeyCode[\"US_CLOSE_SQUARE_BRACKET\"] = 89] = \"US_CLOSE_SQUARE_BRACKET\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     * For the US standard keyboard, the ''\"' key\r\n     */\r\n    KeyCode[KeyCode[\"US_QUOTE\"] = 90] = \"US_QUOTE\";\r\n    /**\r\n     * Used for miscellaneous characters; it can vary by keyboard.\r\n     */\r\n    KeyCode[KeyCode[\"OEM_8\"] = 91] = \"OEM_8\";\r\n    /**\r\n     * Either the angle bracket key or the backslash key on the RT 102-key keyboard.\r\n     */\r\n    KeyCode[KeyCode[\"OEM_102\"] = 92] = \"OEM_102\";\r\n    KeyCode[KeyCode[\"NUMPAD_0\"] = 93] = \"NUMPAD_0\";\r\n    KeyCode[KeyCode[\"NUMPAD_1\"] = 94] = \"NUMPAD_1\";\r\n    KeyCode[KeyCode[\"NUMPAD_2\"] = 95] = \"NUMPAD_2\";\r\n    KeyCode[KeyCode[\"NUMPAD_3\"] = 96] = \"NUMPAD_3\";\r\n    KeyCode[KeyCode[\"NUMPAD_4\"] = 97] = \"NUMPAD_4\";\r\n    KeyCode[KeyCode[\"NUMPAD_5\"] = 98] = \"NUMPAD_5\";\r\n    KeyCode[KeyCode[\"NUMPAD_6\"] = 99] = \"NUMPAD_6\";\r\n    KeyCode[KeyCode[\"NUMPAD_7\"] = 100] = \"NUMPAD_7\";\r\n    KeyCode[KeyCode[\"NUMPAD_8\"] = 101] = \"NUMPAD_8\";\r\n    KeyCode[KeyCode[\"NUMPAD_9\"] = 102] = \"NUMPAD_9\";\r\n    KeyCode[KeyCode[\"NUMPAD_MULTIPLY\"] = 103] = \"NUMPAD_MULTIPLY\";\r\n    KeyCode[KeyCode[\"NUMPAD_ADD\"] = 104] = \"NUMPAD_ADD\";\r\n    KeyCode[KeyCode[\"NUMPAD_SEPARATOR\"] = 105] = \"NUMPAD_SEPARATOR\";\r\n    KeyCode[KeyCode[\"NUMPAD_SUBTRACT\"] = 106] = \"NUMPAD_SUBTRACT\";\r\n    KeyCode[KeyCode[\"NUMPAD_DECIMAL\"] = 107] = \"NUMPAD_DECIMAL\";\r\n    KeyCode[KeyCode[\"NUMPAD_DIVIDE\"] = 108] = \"NUMPAD_DIVIDE\";\r\n    /**\r\n     * Cover all key codes when IME is processing input.\r\n     */\r\n    KeyCode[KeyCode[\"KEY_IN_COMPOSITION\"] = 109] = \"KEY_IN_COMPOSITION\";\r\n    KeyCode[KeyCode[\"ABNT_C1\"] = 110] = \"ABNT_C1\";\r\n    KeyCode[KeyCode[\"ABNT_C2\"] = 111] = \"ABNT_C2\";\r\n    /**\r\n     * Placed last to cover the length of the enum.\r\n     * Please do not depend on this value!\r\n     */\r\n    KeyCode[KeyCode[\"MAX_VALUE\"] = 112] = \"MAX_VALUE\";\r\n})(KeyCode || (KeyCode = {}));\r\nvar MarkerSeverity;\r\n(function (MarkerSeverity) {\r\n    MarkerSeverity[MarkerSeverity[\"Hint\"] = 1] = \"Hint\";\r\n    MarkerSeverity[MarkerSeverity[\"Info\"] = 2] = \"Info\";\r\n    MarkerSeverity[MarkerSeverity[\"Warning\"] = 4] = \"Warning\";\r\n    MarkerSeverity[MarkerSeverity[\"Error\"] = 8] = \"Error\";\r\n})(MarkerSeverity || (MarkerSeverity = {}));\r\nvar MarkerTag;\r\n(function (MarkerTag) {\r\n    MarkerTag[MarkerTag[\"Unnecessary\"] = 1] = \"Unnecessary\";\r\n    MarkerTag[MarkerTag[\"Deprecated\"] = 2] = \"Deprecated\";\r\n})(MarkerTag || (MarkerTag = {}));\r\n/**\r\n * Position in the minimap to render the decoration.\r\n */\r\nvar MinimapPosition;\r\n(function (MinimapPosition) {\r\n    MinimapPosition[MinimapPosition[\"Inline\"] = 1] = \"Inline\";\r\n    MinimapPosition[MinimapPosition[\"Gutter\"] = 2] = \"Gutter\";\r\n})(MinimapPosition || (MinimapPosition = {}));\r\n/**\r\n * Type of hit element with the mouse in the editor.\r\n */\r\nvar MouseTargetType;\r\n(function (MouseTargetType) {\r\n    /**\r\n     * Mouse is on top of an unknown element.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"UNKNOWN\"] = 0] = \"UNKNOWN\";\r\n    /**\r\n     * Mouse is on top of the textarea used for input.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"TEXTAREA\"] = 1] = \"TEXTAREA\";\r\n    /**\r\n     * Mouse is on top of the glyph margin\r\n     */\r\n    MouseTargetType[MouseTargetType[\"GUTTER_GLYPH_MARGIN\"] = 2] = \"GUTTER_GLYPH_MARGIN\";\r\n    /**\r\n     * Mouse is on top of the line numbers\r\n     */\r\n    MouseTargetType[MouseTargetType[\"GUTTER_LINE_NUMBERS\"] = 3] = \"GUTTER_LINE_NUMBERS\";\r\n    /**\r\n     * Mouse is on top of the line decorations\r\n     */\r\n    MouseTargetType[MouseTargetType[\"GUTTER_LINE_DECORATIONS\"] = 4] = \"GUTTER_LINE_DECORATIONS\";\r\n    /**\r\n     * Mouse is on top of the whitespace left in the gutter by a view zone.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"GUTTER_VIEW_ZONE\"] = 5] = \"GUTTER_VIEW_ZONE\";\r\n    /**\r\n     * Mouse is on top of text in the content.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"CONTENT_TEXT\"] = 6] = \"CONTENT_TEXT\";\r\n    /**\r\n     * Mouse is on top of empty space in the content (e.g. after line text or below last line)\r\n     */\r\n    MouseTargetType[MouseTargetType[\"CONTENT_EMPTY\"] = 7] = \"CONTENT_EMPTY\";\r\n    /**\r\n     * Mouse is on top of a view zone in the content.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"CONTENT_VIEW_ZONE\"] = 8] = \"CONTENT_VIEW_ZONE\";\r\n    /**\r\n     * Mouse is on top of a content widget.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"CONTENT_WIDGET\"] = 9] = \"CONTENT_WIDGET\";\r\n    /**\r\n     * Mouse is on top of the decorations overview ruler.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"OVERVIEW_RULER\"] = 10] = \"OVERVIEW_RULER\";\r\n    /**\r\n     * Mouse is on top of a scrollbar.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"SCROLLBAR\"] = 11] = \"SCROLLBAR\";\r\n    /**\r\n     * Mouse is on top of an overlay widget.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"OVERLAY_WIDGET\"] = 12] = \"OVERLAY_WIDGET\";\r\n    /**\r\n     * Mouse is outside of the editor.\r\n     */\r\n    MouseTargetType[MouseTargetType[\"OUTSIDE_EDITOR\"] = 13] = \"OUTSIDE_EDITOR\";\r\n})(MouseTargetType || (MouseTargetType = {}));\r\n/**\r\n * A positioning preference for rendering overlay widgets.\r\n */\r\nvar OverlayWidgetPositionPreference;\r\n(function (OverlayWidgetPositionPreference) {\r\n    /**\r\n     * Position the overlay widget in the top right corner\r\n     */\r\n    OverlayWidgetPositionPreference[OverlayWidgetPositionPreference[\"TOP_RIGHT_CORNER\"] = 0] = \"TOP_RIGHT_CORNER\";\r\n    /**\r\n     * Position the overlay widget in the bottom right corner\r\n     */\r\n    OverlayWidgetPositionPreference[OverlayWidgetPositionPreference[\"BOTTOM_RIGHT_CORNER\"] = 1] = \"BOTTOM_RIGHT_CORNER\";\r\n    /**\r\n     * Position the overlay widget in the top center\r\n     */\r\n    OverlayWidgetPositionPreference[OverlayWidgetPositionPreference[\"TOP_CENTER\"] = 2] = \"TOP_CENTER\";\r\n})(OverlayWidgetPositionPreference || (OverlayWidgetPositionPreference = {}));\r\n/**\r\n * Vertical Lane in the overview ruler of the editor.\r\n */\r\nvar OverviewRulerLane;\r\n(function (OverviewRulerLane) {\r\n    OverviewRulerLane[OverviewRulerLane[\"Left\"] = 1] = \"Left\";\r\n    OverviewRulerLane[OverviewRulerLane[\"Center\"] = 2] = \"Center\";\r\n    OverviewRulerLane[OverviewRulerLane[\"Right\"] = 4] = \"Right\";\r\n    OverviewRulerLane[OverviewRulerLane[\"Full\"] = 7] = \"Full\";\r\n})(OverviewRulerLane || (OverviewRulerLane = {}));\r\nvar RenderLineNumbersType;\r\n(function (RenderLineNumbersType) {\r\n    RenderLineNumbersType[RenderLineNumbersType[\"Off\"] = 0] = \"Off\";\r\n    RenderLineNumbersType[RenderLineNumbersType[\"On\"] = 1] = \"On\";\r\n    RenderLineNumbersType[RenderLineNumbersType[\"Relative\"] = 2] = \"Relative\";\r\n    RenderLineNumbersType[RenderLineNumbersType[\"Interval\"] = 3] = \"Interval\";\r\n    RenderLineNumbersType[RenderLineNumbersType[\"Custom\"] = 4] = \"Custom\";\r\n})(RenderLineNumbersType || (RenderLineNumbersType = {}));\r\nvar RenderMinimap;\r\n(function (RenderMinimap) {\r\n    RenderMinimap[RenderMinimap[\"None\"] = 0] = \"None\";\r\n    RenderMinimap[RenderMinimap[\"Text\"] = 1] = \"Text\";\r\n    RenderMinimap[RenderMinimap[\"Blocks\"] = 2] = \"Blocks\";\r\n})(RenderMinimap || (RenderMinimap = {}));\r\nvar ScrollType;\r\n(function (ScrollType) {\r\n    ScrollType[ScrollType[\"Smooth\"] = 0] = \"Smooth\";\r\n    ScrollType[ScrollType[\"Immediate\"] = 1] = \"Immediate\";\r\n})(ScrollType || (ScrollType = {}));\r\nvar ScrollbarVisibility;\r\n(function (ScrollbarVisibility) {\r\n    ScrollbarVisibility[ScrollbarVisibility[\"Auto\"] = 1] = \"Auto\";\r\n    ScrollbarVisibility[ScrollbarVisibility[\"Hidden\"] = 2] = \"Hidden\";\r\n    ScrollbarVisibility[ScrollbarVisibility[\"Visible\"] = 3] = \"Visible\";\r\n})(ScrollbarVisibility || (ScrollbarVisibility = {}));\r\n/**\r\n * The direction of a selection.\r\n */\r\nvar SelectionDirection;\r\n(function (SelectionDirection) {\r\n    /**\r\n     * The selection starts above where it ends.\r\n     */\r\n    SelectionDirection[SelectionDirection[\"LTR\"] = 0] = \"LTR\";\r\n    /**\r\n     * The selection starts below where it ends.\r\n     */\r\n    SelectionDirection[SelectionDirection[\"RTL\"] = 1] = \"RTL\";\r\n})(SelectionDirection || (SelectionDirection = {}));\r\nvar SignatureHelpTriggerKind;\r\n(function (SignatureHelpTriggerKind) {\r\n    SignatureHelpTriggerKind[SignatureHelpTriggerKind[\"Invoke\"] = 1] = \"Invoke\";\r\n    SignatureHelpTriggerKind[SignatureHelpTriggerKind[\"TriggerCharacter\"] = 2] = \"TriggerCharacter\";\r\n    SignatureHelpTriggerKind[SignatureHelpTriggerKind[\"ContentChange\"] = 3] = \"ContentChange\";\r\n})(SignatureHelpTriggerKind || (SignatureHelpTriggerKind = {}));\r\n/**\r\n * A symbol kind.\r\n */\r\nvar SymbolKind;\r\n(function (SymbolKind) {\r\n    SymbolKind[SymbolKind[\"File\"] = 0] = \"File\";\r\n    SymbolKind[SymbolKind[\"Module\"] = 1] = \"Module\";\r\n    SymbolKind[SymbolKind[\"Namespace\"] = 2] = \"Namespace\";\r\n    SymbolKind[SymbolKind[\"Package\"] = 3] = \"Package\";\r\n    SymbolKind[SymbolKind[\"Class\"] = 4] = \"Class\";\r\n    SymbolKind[SymbolKind[\"Method\"] = 5] = \"Method\";\r\n    SymbolKind[SymbolKind[\"Property\"] = 6] = \"Property\";\r\n    SymbolKind[SymbolKind[\"Field\"] = 7] = \"Field\";\r\n    SymbolKind[SymbolKind[\"Constructor\"] = 8] = \"Constructor\";\r\n    SymbolKind[SymbolKind[\"Enum\"] = 9] = \"Enum\";\r\n    SymbolKind[SymbolKind[\"Interface\"] = 10] = \"Interface\";\r\n    SymbolKind[SymbolKind[\"Function\"] = 11] = \"Function\";\r\n    SymbolKind[SymbolKind[\"Variable\"] = 12] = \"Variable\";\r\n    SymbolKind[SymbolKind[\"Constant\"] = 13] = \"Constant\";\r\n    SymbolKind[SymbolKind[\"String\"] = 14] = \"String\";\r\n    SymbolKind[SymbolKind[\"Number\"] = 15] = \"Number\";\r\n    SymbolKind[SymbolKind[\"Boolean\"] = 16] = \"Boolean\";\r\n    SymbolKind[SymbolKind[\"Array\"] = 17] = \"Array\";\r\n    SymbolKind[SymbolKind[\"Object\"] = 18] = \"Object\";\r\n    SymbolKind[SymbolKind[\"Key\"] = 19] = \"Key\";\r\n    SymbolKind[SymbolKind[\"Null\"] = 20] = \"Null\";\r\n    SymbolKind[SymbolKind[\"EnumMember\"] = 21] = \"EnumMember\";\r\n    SymbolKind[SymbolKind[\"Struct\"] = 22] = \"Struct\";\r\n    SymbolKind[SymbolKind[\"Event\"] = 23] = \"Event\";\r\n    SymbolKind[SymbolKind[\"Operator\"] = 24] = \"Operator\";\r\n    SymbolKind[SymbolKind[\"TypeParameter\"] = 25] = \"TypeParameter\";\r\n})(SymbolKind || (SymbolKind = {}));\r\nvar SymbolTag;\r\n(function (SymbolTag) {\r\n    SymbolTag[SymbolTag[\"Deprecated\"] = 1] = \"Deprecated\";\r\n})(SymbolTag || (SymbolTag = {}));\r\n/**\r\n * The kind of animation in which the editor's cursor should be rendered.\r\n */\r\nvar TextEditorCursorBlinkingStyle;\r\n(function (TextEditorCursorBlinkingStyle) {\r\n    /**\r\n     * Hidden\r\n     */\r\n    TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle[\"Hidden\"] = 0] = \"Hidden\";\r\n    /**\r\n     * Blinking\r\n     */\r\n    TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle[\"Blink\"] = 1] = \"Blink\";\r\n    /**\r\n     * Blinking with smooth fading\r\n     */\r\n    TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle[\"Smooth\"] = 2] = \"Smooth\";\r\n    /**\r\n     * Blinking with prolonged filled state and smooth fading\r\n     */\r\n    TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle[\"Phase\"] = 3] = \"Phase\";\r\n    /**\r\n     * Expand collapse animation on the y axis\r\n     */\r\n    TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle[\"Expand\"] = 4] = \"Expand\";\r\n    /**\r\n     * No-Blinking\r\n     */\r\n    TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle[\"Solid\"] = 5] = \"Solid\";\r\n})(TextEditorCursorBlinkingStyle || (TextEditorCursorBlinkingStyle = {}));\r\n/**\r\n * The style in which the editor's cursor should be rendered.\r\n */\r\nvar TextEditorCursorStyle;\r\n(function (TextEditorCursorStyle) {\r\n    /**\r\n     * As a vertical line (sitting between two characters).\r\n     */\r\n    TextEditorCursorStyle[TextEditorCursorStyle[\"Line\"] = 1] = \"Line\";\r\n    /**\r\n     * As a block (sitting on top of a character).\r\n     */\r\n    TextEditorCursorStyle[TextEditorCursorStyle[\"Block\"] = 2] = \"Block\";\r\n    /**\r\n     * As a horizontal line (sitting under a character).\r\n     */\r\n    TextEditorCursorStyle[TextEditorCursorStyle[\"Underline\"] = 3] = \"Underline\";\r\n    /**\r\n     * As a thin vertical line (sitting between two characters).\r\n     */\r\n    TextEditorCursorStyle[TextEditorCursorStyle[\"LineThin\"] = 4] = \"LineThin\";\r\n    /**\r\n     * As an outlined block (sitting on top of a character).\r\n     */\r\n    TextEditorCursorStyle[TextEditorCursorStyle[\"BlockOutline\"] = 5] = \"BlockOutline\";\r\n    /**\r\n     * As a thin horizontal line (sitting under a character).\r\n     */\r\n    TextEditorCursorStyle[TextEditorCursorStyle[\"UnderlineThin\"] = 6] = \"UnderlineThin\";\r\n})(TextEditorCursorStyle || (TextEditorCursorStyle = {}));\r\n/**\r\n * Describes the behavior of decorations when typing/editing near their edges.\r\n * Note: Please do not edit the values, as they very carefully match `DecorationRangeBehavior`\r\n */\r\nvar TrackedRangeStickiness;\r\n(function (TrackedRangeStickiness) {\r\n    TrackedRangeStickiness[TrackedRangeStickiness[\"AlwaysGrowsWhenTypingAtEdges\"] = 0] = \"AlwaysGrowsWhenTypingAtEdges\";\r\n    TrackedRangeStickiness[TrackedRangeStickiness[\"NeverGrowsWhenTypingAtEdges\"] = 1] = \"NeverGrowsWhenTypingAtEdges\";\r\n    TrackedRangeStickiness[TrackedRangeStickiness[\"GrowsOnlyWhenTypingBefore\"] = 2] = \"GrowsOnlyWhenTypingBefore\";\r\n    TrackedRangeStickiness[TrackedRangeStickiness[\"GrowsOnlyWhenTypingAfter\"] = 3] = \"GrowsOnlyWhenTypingAfter\";\r\n})(TrackedRangeStickiness || (TrackedRangeStickiness = {}));\r\n/**\r\n * Describes how to indent wrapped lines.\r\n */\r\nvar WrappingIndent;\r\n(function (WrappingIndent) {\r\n    /**\r\n     * No indentation => wrapped lines begin at column 1.\r\n     */\r\n    WrappingIndent[WrappingIndent[\"None\"] = 0] = \"None\";\r\n    /**\r\n     * Same => wrapped lines get the same indentation as the parent.\r\n     */\r\n    WrappingIndent[WrappingIndent[\"Same\"] = 1] = \"Same\";\r\n    /**\r\n     * Indent => wrapped lines get +1 indentation toward the parent.\r\n     */\r\n    WrappingIndent[WrappingIndent[\"Indent\"] = 2] = \"Indent\";\r\n    /**\r\n     * DeepIndent => wrapped lines get +2 indentation toward the parent.\r\n     */\r\n    WrappingIndent[WrappingIndent[\"DeepIndent\"] = 3] = \"DeepIndent\";\r\n})(WrappingIndent || (WrappingIndent = {}));\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/standalone/standaloneEnums.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/common/viewModel/prefixSumComputer.js":
-/*!****************************************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/common/viewModel/prefixSumComputer.js ***!
-  \****************************************************************************************/
-/*! exports provided: PrefixSumIndexOfResult, PrefixSumComputer */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"PrefixSumIndexOfResult\", function() { return PrefixSumIndexOfResult; });\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"PrefixSumComputer\", function() { return PrefixSumComputer; });\n/* harmony import */ var _base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../base/common/uint.js */ \"./node_modules/monaco-editor/esm/vs/base/common/uint.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\nvar PrefixSumIndexOfResult = /** @class */ (function () {\r\n    function PrefixSumIndexOfResult(index, remainder) {\r\n        this.index = index;\r\n        this.remainder = remainder;\r\n    }\r\n    return PrefixSumIndexOfResult;\r\n}());\r\n\r\nvar PrefixSumComputer = /** @class */ (function () {\r\n    function PrefixSumComputer(values) {\r\n        this.values = values;\r\n        this.prefixSum = new Uint32Array(values.length);\r\n        this.prefixSumValidIndex = new Int32Array(1);\r\n        this.prefixSumValidIndex[0] = -1;\r\n    }\r\n    PrefixSumComputer.prototype.insertValues = function (insertIndex, insertValues) {\r\n        insertIndex = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint32\"])(insertIndex);\r\n        var oldValues = this.values;\r\n        var oldPrefixSum = this.prefixSum;\r\n        var insertValuesLen = insertValues.length;\r\n        if (insertValuesLen === 0) {\r\n            return false;\r\n        }\r\n        this.values = new Uint32Array(oldValues.length + insertValuesLen);\r\n        this.values.set(oldValues.subarray(0, insertIndex), 0);\r\n        this.values.set(oldValues.subarray(insertIndex), insertIndex + insertValuesLen);\r\n        this.values.set(insertValues, insertIndex);\r\n        if (insertIndex - 1 < this.prefixSumValidIndex[0]) {\r\n            this.prefixSumValidIndex[0] = insertIndex - 1;\r\n        }\r\n        this.prefixSum = new Uint32Array(this.values.length);\r\n        if (this.prefixSumValidIndex[0] >= 0) {\r\n            this.prefixSum.set(oldPrefixSum.subarray(0, this.prefixSumValidIndex[0] + 1));\r\n        }\r\n        return true;\r\n    };\r\n    PrefixSumComputer.prototype.changeValue = function (index, value) {\r\n        index = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint32\"])(index);\r\n        value = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint32\"])(value);\r\n        if (this.values[index] === value) {\r\n            return false;\r\n        }\r\n        this.values[index] = value;\r\n        if (index - 1 < this.prefixSumValidIndex[0]) {\r\n            this.prefixSumValidIndex[0] = index - 1;\r\n        }\r\n        return true;\r\n    };\r\n    PrefixSumComputer.prototype.removeValues = function (startIndex, cnt) {\r\n        startIndex = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint32\"])(startIndex);\r\n        cnt = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint32\"])(cnt);\r\n        var oldValues = this.values;\r\n        var oldPrefixSum = this.prefixSum;\r\n        if (startIndex >= oldValues.length) {\r\n            return false;\r\n        }\r\n        var maxCnt = oldValues.length - startIndex;\r\n        if (cnt >= maxCnt) {\r\n            cnt = maxCnt;\r\n        }\r\n        if (cnt === 0) {\r\n            return false;\r\n        }\r\n        this.values = new Uint32Array(oldValues.length - cnt);\r\n        this.values.set(oldValues.subarray(0, startIndex), 0);\r\n        this.values.set(oldValues.subarray(startIndex + cnt), startIndex);\r\n        this.prefixSum = new Uint32Array(this.values.length);\r\n        if (startIndex - 1 < this.prefixSumValidIndex[0]) {\r\n            this.prefixSumValidIndex[0] = startIndex - 1;\r\n        }\r\n        if (this.prefixSumValidIndex[0] >= 0) {\r\n            this.prefixSum.set(oldPrefixSum.subarray(0, this.prefixSumValidIndex[0] + 1));\r\n        }\r\n        return true;\r\n    };\r\n    PrefixSumComputer.prototype.getTotalValue = function () {\r\n        if (this.values.length === 0) {\r\n            return 0;\r\n        }\r\n        return this._getAccumulatedValue(this.values.length - 1);\r\n    };\r\n    PrefixSumComputer.prototype.getAccumulatedValue = function (index) {\r\n        if (index < 0) {\r\n            return 0;\r\n        }\r\n        index = Object(_base_common_uint_js__WEBPACK_IMPORTED_MODULE_0__[\"toUint32\"])(index);\r\n        return this._getAccumulatedValue(index);\r\n    };\r\n    PrefixSumComputer.prototype._getAccumulatedValue = function (index) {\r\n        if (index <= this.prefixSumValidIndex[0]) {\r\n            return this.prefixSum[index];\r\n        }\r\n        var startIndex = this.prefixSumValidIndex[0] + 1;\r\n        if (startIndex === 0) {\r\n            this.prefixSum[0] = this.values[0];\r\n            startIndex++;\r\n        }\r\n        if (index >= this.values.length) {\r\n            index = this.values.length - 1;\r\n        }\r\n        for (var i = startIndex; i <= index; i++) {\r\n            this.prefixSum[i] = this.prefixSum[i - 1] + this.values[i];\r\n        }\r\n        this.prefixSumValidIndex[0] = Math.max(this.prefixSumValidIndex[0], index);\r\n        return this.prefixSum[index];\r\n    };\r\n    PrefixSumComputer.prototype.getIndexOf = function (accumulatedValue) {\r\n        accumulatedValue = Math.floor(accumulatedValue); //@perf\r\n        // Compute all sums (to get a fully valid prefixSum)\r\n        this.getTotalValue();\r\n        var low = 0;\r\n        var high = this.values.length - 1;\r\n        var mid = 0;\r\n        var midStop = 0;\r\n        var midStart = 0;\r\n        while (low <= high) {\r\n            mid = low + ((high - low) / 2) | 0;\r\n            midStop = this.prefixSum[mid];\r\n            midStart = midStop - this.values[mid];\r\n            if (accumulatedValue < midStart) {\r\n                high = mid - 1;\r\n            }\r\n            else if (accumulatedValue >= midStop) {\r\n                low = mid + 1;\r\n            }\r\n            else {\r\n                break;\r\n            }\r\n        }\r\n        return new PrefixSumIndexOfResult(mid, accumulatedValue - midStart);\r\n    };\r\n    return PrefixSumComputer;\r\n}());\r\n\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/common/viewModel/prefixSumComputer.js?");
-
-/***/ }),
-
-/***/ "./node_modules/monaco-editor/esm/vs/editor/editor.worker.js":
-/*!*******************************************************************!*\
-  !*** ./node_modules/monaco-editor/esm/vs/editor/editor.worker.js ***!
-  \*******************************************************************/
-/*! exports provided: initialize */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"initialize\", function() { return initialize; });\n/* harmony import */ var _base_common_worker_simpleWorker_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../base/common/worker/simpleWorker.js */ \"./node_modules/monaco-editor/esm/vs/base/common/worker/simpleWorker.js\");\n/* harmony import */ var _common_services_editorSimpleWorker_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/services/editorSimpleWorker.js */ \"./node_modules/monaco-editor/esm/vs/editor/common/services/editorSimpleWorker.js\");\n/*---------------------------------------------------------------------------------------------\r\n *  Copyright (c) Microsoft Corporation. All rights reserved.\r\n *  Licensed under the MIT License. See License.txt in the project root for license information.\r\n *--------------------------------------------------------------------------------------------*/\r\n\r\n\r\nvar initialized = false;\r\nfunction initialize(foreignModule) {\r\n    if (initialized) {\r\n        return;\r\n    }\r\n    initialized = true;\r\n    var simpleWorker = new _base_common_worker_simpleWorker_js__WEBPACK_IMPORTED_MODULE_0__[\"SimpleWorkerServer\"](function (msg) {\r\n        self.postMessage(msg);\r\n    }, function (host) { return new _common_services_editorSimpleWorker_js__WEBPACK_IMPORTED_MODULE_1__[\"EditorSimpleWorker\"](host, foreignModule); });\r\n    self.onmessage = function (e) {\r\n        simpleWorker.onmessage(e.data);\r\n    };\r\n}\r\nself.onmessage = function (e) {\r\n    // Ignore first message in this case and initialize if not yet initialized\r\n    if (!initialized) {\r\n        initialize(null);\r\n    }\r\n};\r\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/monaco-editor/esm/vs/editor/editor.worker.js?");
-
-/***/ }),
-
-/***/ "./node_modules/process/browser.js":
-/*!*****************************************!*\
-  !*** ./node_modules/process/browser.js ***!
-  \*****************************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("// shim for using process in browser\nvar process = module.exports = {};\n\n// cached from whatever global is present so that test runners that stub it\n// don't break things.  But we need to wrap it in a try catch in case it is\n// wrapped in strict mode code which doesn't define any globals.  It's inside a\n// function because try/catches deoptimize in certain engines.\n\nvar cachedSetTimeout;\nvar cachedClearTimeout;\n\nfunction defaultSetTimout() {\n    throw new Error('setTimeout has not been defined');\n}\nfunction defaultClearTimeout () {\n    throw new Error('clearTimeout has not been defined');\n}\n(function () {\n    try {\n        if (typeof setTimeout === 'function') {\n            cachedSetTimeout = setTimeout;\n        } else {\n            cachedSetTimeout = defaultSetTimout;\n        }\n    } catch (e) {\n        cachedSetTimeout = defaultSetTimout;\n    }\n    try {\n        if (typeof clearTimeout === 'function') {\n            cachedClearTimeout = clearTimeout;\n        } else {\n            cachedClearTimeout = defaultClearTimeout;\n        }\n    } catch (e) {\n        cachedClearTimeout = defaultClearTimeout;\n    }\n} ())\nfunction runTimeout(fun) {\n    if (cachedSetTimeout === setTimeout) {\n        //normal enviroments in sane situations\n        return setTimeout(fun, 0);\n    }\n    // if setTimeout wasn't available but was latter defined\n    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {\n        cachedSetTimeout = setTimeout;\n        return setTimeout(fun, 0);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedSetTimeout(fun, 0);\n    } catch(e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally\n            return cachedSetTimeout.call(null, fun, 0);\n        } catch(e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error\n            return cachedSetTimeout.call(this, fun, 0);\n        }\n    }\n\n\n}\nfunction runClearTimeout(marker) {\n    if (cachedClearTimeout === clearTimeout) {\n        //normal enviroments in sane situations\n        return clearTimeout(marker);\n    }\n    // if clearTimeout wasn't available but was latter defined\n    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {\n        cachedClearTimeout = clearTimeout;\n        return clearTimeout(marker);\n    }\n    try {\n        // when when somebody has screwed with setTimeout but no I.E. maddness\n        return cachedClearTimeout(marker);\n    } catch (e){\n        try {\n            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally\n            return cachedClearTimeout.call(null, marker);\n        } catch (e){\n            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.\n            // Some versions of I.E. have different rules for clearTimeout vs setTimeout\n            return cachedClearTimeout.call(this, marker);\n        }\n    }\n\n\n\n}\nvar queue = [];\nvar draining = false;\nvar currentQueue;\nvar queueIndex = -1;\n\nfunction cleanUpNextTick() {\n    if (!draining || !currentQueue) {\n        return;\n    }\n    draining = false;\n    if (currentQueue.length) {\n        queue = currentQueue.concat(queue);\n    } else {\n        queueIndex = -1;\n    }\n    if (queue.length) {\n        drainQueue();\n    }\n}\n\nfunction drainQueue() {\n    if (draining) {\n        return;\n    }\n    var timeout = runTimeout(cleanUpNextTick);\n    draining = true;\n\n    var len = queue.length;\n    while(len) {\n        currentQueue = queue;\n        queue = [];\n        while (++queueIndex < len) {\n            if (currentQueue) {\n                currentQueue[queueIndex].run();\n            }\n        }\n        queueIndex = -1;\n        len = queue.length;\n    }\n    currentQueue = null;\n    draining = false;\n    runClearTimeout(timeout);\n}\n\nprocess.nextTick = function (fun) {\n    var args = new Array(arguments.length - 1);\n    if (arguments.length > 1) {\n        for (var i = 1; i < arguments.length; i++) {\n            args[i - 1] = arguments[i];\n        }\n    }\n    queue.push(new Item(fun, args));\n    if (queue.length === 1 && !draining) {\n        runTimeout(drainQueue);\n    }\n};\n\n// v8 likes predictible objects\nfunction Item(fun, array) {\n    this.fun = fun;\n    this.array = array;\n}\nItem.prototype.run = function () {\n    this.fun.apply(null, this.array);\n};\nprocess.title = 'browser';\nprocess.browser = true;\nprocess.env = {};\nprocess.argv = [];\nprocess.version = ''; // empty string to avoid regexp issues\nprocess.versions = {};\n\nfunction noop() {}\n\nprocess.on = noop;\nprocess.addListener = noop;\nprocess.once = noop;\nprocess.off = noop;\nprocess.removeListener = noop;\nprocess.removeAllListeners = noop;\nprocess.emit = noop;\nprocess.prependListener = noop;\nprocess.prependOnceListener = noop;\n\nprocess.listeners = function (name) { return [] }\n\nprocess.binding = function (name) {\n    throw new Error('process.binding is not supported');\n};\n\nprocess.cwd = function () { return '/' };\nprocess.chdir = function (dir) {\n    throw new Error('process.chdir is not supported');\n};\nprocess.umask = function() { return 0; };\n\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/process/browser.js?");
-
-/***/ }),
-
-/***/ "./node_modules/setimmediate/setImmediate.js":
-/*!***************************************************!*\
-  !*** ./node_modules/setimmediate/setImmediate.js ***!
-  \***************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {\n    \"use strict\";\n\n    if (global.setImmediate) {\n        return;\n    }\n\n    var nextHandle = 1; // Spec says greater than zero\n    var tasksByHandle = {};\n    var currentlyRunningATask = false;\n    var doc = global.document;\n    var registerImmediate;\n\n    function setImmediate(callback) {\n      // Callback can either be a function or a string\n      if (typeof callback !== \"function\") {\n        callback = new Function(\"\" + callback);\n      }\n      // Copy function arguments\n      var args = new Array(arguments.length - 1);\n      for (var i = 0; i < args.length; i++) {\n          args[i] = arguments[i + 1];\n      }\n      // Store and register the task\n      var task = { callback: callback, args: args };\n      tasksByHandle[nextHandle] = task;\n      registerImmediate(nextHandle);\n      return nextHandle++;\n    }\n\n    function clearImmediate(handle) {\n        delete tasksByHandle[handle];\n    }\n\n    function run(task) {\n        var callback = task.callback;\n        var args = task.args;\n        switch (args.length) {\n        case 0:\n            callback();\n            break;\n        case 1:\n            callback(args[0]);\n            break;\n        case 2:\n            callback(args[0], args[1]);\n            break;\n        case 3:\n            callback(args[0], args[1], args[2]);\n            break;\n        default:\n            callback.apply(undefined, args);\n            break;\n        }\n    }\n\n    function runIfPresent(handle) {\n        // From the spec: \"Wait until any invocations of this algorithm started before this one have completed.\"\n        // So if we're currently running a task, we'll need to delay this invocation.\n        if (currentlyRunningATask) {\n            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a\n            // \"too much recursion\" error.\n            setTimeout(runIfPresent, 0, handle);\n        } else {\n            var task = tasksByHandle[handle];\n            if (task) {\n                currentlyRunningATask = true;\n                try {\n                    run(task);\n                } finally {\n                    clearImmediate(handle);\n                    currentlyRunningATask = false;\n                }\n            }\n        }\n    }\n\n    function installNextTickImplementation() {\n        registerImmediate = function(handle) {\n            process.nextTick(function () { runIfPresent(handle); });\n        };\n    }\n\n    function canUsePostMessage() {\n        // The test against `importScripts` prevents this implementation from being installed inside a web worker,\n        // where `global.postMessage` means something completely different and can't be used for this purpose.\n        if (global.postMessage && !global.importScripts) {\n            var postMessageIsAsynchronous = true;\n            var oldOnMessage = global.onmessage;\n            global.onmessage = function() {\n                postMessageIsAsynchronous = false;\n            };\n            global.postMessage(\"\", \"*\");\n            global.onmessage = oldOnMessage;\n            return postMessageIsAsynchronous;\n        }\n    }\n\n    function installPostMessageImplementation() {\n        // Installs an event handler on `global` for the `message` event: see\n        // * https://developer.mozilla.org/en/DOM/window.postMessage\n        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages\n\n        var messagePrefix = \"setImmediate$\" + Math.random() + \"$\";\n        var onGlobalMessage = function(event) {\n            if (event.source === global &&\n                typeof event.data === \"string\" &&\n                event.data.indexOf(messagePrefix) === 0) {\n                runIfPresent(+event.data.slice(messagePrefix.length));\n            }\n        };\n\n        if (global.addEventListener) {\n            global.addEventListener(\"message\", onGlobalMessage, false);\n        } else {\n            global.attachEvent(\"onmessage\", onGlobalMessage);\n        }\n\n        registerImmediate = function(handle) {\n            global.postMessage(messagePrefix + handle, \"*\");\n        };\n    }\n\n    function installMessageChannelImplementation() {\n        var channel = new MessageChannel();\n        channel.port1.onmessage = function(event) {\n            var handle = event.data;\n            runIfPresent(handle);\n        };\n\n        registerImmediate = function(handle) {\n            channel.port2.postMessage(handle);\n        };\n    }\n\n    function installReadyStateChangeImplementation() {\n        var html = doc.documentElement;\n        registerImmediate = function(handle) {\n            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted\n            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.\n            var script = doc.createElement(\"script\");\n            script.onreadystatechange = function () {\n                runIfPresent(handle);\n                script.onreadystatechange = null;\n                html.removeChild(script);\n                script = null;\n            };\n            html.appendChild(script);\n        };\n    }\n\n    function installSetTimeoutImplementation() {\n        registerImmediate = function(handle) {\n            setTimeout(runIfPresent, 0, handle);\n        };\n    }\n\n    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.\n    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);\n    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;\n\n    // Don't get fooled by e.g. browserify environments.\n    if ({}.toString.call(global.process) === \"[object process]\") {\n        // For Node.js before 0.9\n        installNextTickImplementation();\n\n    } else if (canUsePostMessage()) {\n        // For non-IE10 modern browsers\n        installPostMessageImplementation();\n\n    } else if (global.MessageChannel) {\n        // For web workers, where supported\n        installMessageChannelImplementation();\n\n    } else if (doc && \"onreadystatechange\" in doc.createElement(\"script\")) {\n        // For IE 6–8\n        installReadyStateChangeImplementation();\n\n    } else {\n        // For older browsers\n        installSetTimeoutImplementation();\n    }\n\n    attachTo.setImmediate = setImmediate;\n    attachTo.clearImmediate = clearImmediate;\n}(typeof self === \"undefined\" ? typeof global === \"undefined\" ? this : global : self));\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\"), __webpack_require__(/*! ./../process/browser.js */ \"./node_modules/process/browser.js\")))\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/setimmediate/setImmediate.js?");
-
-/***/ }),
-
-/***/ "./node_modules/timers-browserify/main.js":
-/*!************************************************!*\
-  !*** ./node_modules/timers-browserify/main.js ***!
-  \************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-eval("/* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== \"undefined\" && global) ||\n            (typeof self !== \"undefined\" && self) ||\n            window;\nvar apply = Function.prototype.apply;\n\n// DOM APIs, for completeness\n\nexports.setTimeout = function() {\n  return new Timeout(apply.call(setTimeout, scope, arguments), clearTimeout);\n};\nexports.setInterval = function() {\n  return new Timeout(apply.call(setInterval, scope, arguments), clearInterval);\n};\nexports.clearTimeout =\nexports.clearInterval = function(timeout) {\n  if (timeout) {\n    timeout.close();\n  }\n};\n\nfunction Timeout(id, clearFn) {\n  this._id = id;\n  this._clearFn = clearFn;\n}\nTimeout.prototype.unref = Timeout.prototype.ref = function() {};\nTimeout.prototype.close = function() {\n  this._clearFn.call(scope, this._id);\n};\n\n// Does not start the time, just sets up the members needed.\nexports.enroll = function(item, msecs) {\n  clearTimeout(item._idleTimeoutId);\n  item._idleTimeout = msecs;\n};\n\nexports.unenroll = function(item) {\n  clearTimeout(item._idleTimeoutId);\n  item._idleTimeout = -1;\n};\n\nexports._unrefActive = exports.active = function(item) {\n  clearTimeout(item._idleTimeoutId);\n\n  var msecs = item._idleTimeout;\n  if (msecs >= 0) {\n    item._idleTimeoutId = setTimeout(function onTimeout() {\n      if (item._onTimeout)\n        item._onTimeout();\n    }, msecs);\n  }\n};\n\n// setimmediate attaches itself to the global object\n__webpack_require__(/*! setimmediate */ \"./node_modules/setimmediate/setImmediate.js\");\n// On some exotic environments, it's not clear which object `setimmediate` was\n// able to install onto.  Search each possibility in the same order as the\n// `setimmediate` library.\nexports.setImmediate = (typeof self !== \"undefined\" && self.setImmediate) ||\n                       (typeof global !== \"undefined\" && global.setImmediate) ||\n                       (this && this.setImmediate);\nexports.clearImmediate = (typeof self !== \"undefined\" && self.clearImmediate) ||\n                         (typeof global !== \"undefined\" && global.clearImmediate) ||\n                         (this && this.clearImmediate);\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://MONACO_MOD/./node_modules/timers-browserify/main.js?");
-
-/***/ }),
-
-/***/ "./node_modules/webpack/buildin/global.js":
-/*!***********************************!*\
-  !*** (webpack)/buildin/global.js ***!
-  \***********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn this;\n})();\n\ntry {\n\t// This works if eval is allowed (see CSP)\n\tg = g || new Function(\"return this\")();\n} catch (e) {\n\t// This works if the window reference is available\n\tif (typeof window === \"object\") g = window;\n}\n\n// g can still be undefined, but nothing to do about it...\n// We return undefined, instead of nothing here, so it's\n// easier to handle this case. if(!global) { ...}\n\nmodule.exports = g;\n\n\n//# sourceURL=webpack://MONACO_MOD/(webpack)/buildin/global.js?");
-
-/***/ })
-
-/******/ });
-
-
-const _MONACO_MOD$initialize = MONACO_MOD['initialize'];
-
-export {
-    _MONACO_MOD$initialize as initialize
-}
+(function (exports) {
+    'use strict';
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    // Avoid circular dependency on EventEmitter by implementing a subset of the interface.
+    var ErrorHandler = /** @class */ (function () {
+        function ErrorHandler() {
+            this.listeners = [];
+            this.unexpectedErrorHandler = function (e) {
+                setTimeout(function () {
+                    if (e.stack) {
+                        throw new Error(e.message + '\n\n' + e.stack);
+                    }
+                    throw e;
+                }, 0);
+            };
+        }
+        ErrorHandler.prototype.emit = function (e) {
+            this.listeners.forEach(function (listener) {
+                listener(e);
+            });
+        };
+        ErrorHandler.prototype.onUnexpectedError = function (e) {
+            this.unexpectedErrorHandler(e);
+            this.emit(e);
+        };
+        // For external errors, we don't want the listeners to be called
+        ErrorHandler.prototype.onUnexpectedExternalError = function (e) {
+            this.unexpectedErrorHandler(e);
+        };
+        return ErrorHandler;
+    }());
+    var errorHandler = new ErrorHandler();
+    function onUnexpectedError(e) {
+        // ignore errors from cancelled promises
+        if (!isPromiseCanceledError(e)) {
+            errorHandler.onUnexpectedError(e);
+        }
+        return undefined;
+    }
+    function transformErrorForSerialization(error) {
+        if (error instanceof Error) {
+            var name_1 = error.name, message = error.message;
+            var stack = error.stacktrace || error.stack;
+            return {
+                $isError: true,
+                name: name_1,
+                message: message,
+                stack: stack
+            };
+        }
+        // return as is
+        return error;
+    }
+    var canceledName = 'Canceled';
+    /**
+     * Checks if the given error is a promise in canceled state
+     */
+    function isPromiseCanceledError(error) {
+        return error instanceof Error && error.name === canceledName && error.message === canceledName;
+    }
+
+    /**
+     * Enables logging of potentially leaked disposables.
+     *
+     * A disposable is considered leaked if it is not disposed or not registered as the child of
+     * another disposable. This tracking is very simple an only works for classes that either
+     * extend Disposable or use a DisposableStore. This means there are a lot of false positives.
+     */
+    function trackDisposable(x) {
+        {
+            return x;
+        }
+    }
+    function dispose(disposables) {
+        if (Array.isArray(disposables)) {
+            disposables.forEach(function (d) {
+                if (d) {
+                    d.dispose();
+                }
+            });
+            return [];
+        }
+        else if (disposables) {
+            disposables.dispose();
+            return disposables;
+        }
+        else {
+            return undefined;
+        }
+    }
+    function combinedDisposable() {
+        var disposables = [];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            disposables[_i] = arguments[_i];
+        }
+        return trackDisposable({ dispose: function () { return dispose(disposables); } });
+    }
+    function toDisposable(fn) {
+        var self = trackDisposable({
+            dispose: function () {
+                fn();
+            }
+        });
+        return self;
+    }
+    var DisposableStore = /** @class */ (function () {
+        function DisposableStore() {
+            this._toDispose = new Set();
+            this._isDisposed = false;
+        }
+        /**
+         * Dispose of all registered disposables and mark this object as disposed.
+         *
+         * Any future disposables added to this object will be disposed of on `add`.
+         */
+        DisposableStore.prototype.dispose = function () {
+            if (this._isDisposed) {
+                return;
+            }
+            this._isDisposed = true;
+            this.clear();
+        };
+        /**
+         * Dispose of all registered disposables but do not mark this object as disposed.
+         */
+        DisposableStore.prototype.clear = function () {
+            this._toDispose.forEach(function (item) { return item.dispose(); });
+            this._toDispose.clear();
+        };
+        DisposableStore.prototype.add = function (t) {
+            if (!t) {
+                return t;
+            }
+            if (t === this) {
+                throw new Error('Cannot register a disposable on itself!');
+            }
+            if (this._isDisposed) {
+                console.warn(new Error('Trying to add a disposable to a DisposableStore that has already been disposed of. The added object will be leaked!').stack);
+            }
+            else {
+                this._toDispose.add(t);
+            }
+            return t;
+        };
+        return DisposableStore;
+    }());
+    var Disposable = /** @class */ (function () {
+        function Disposable() {
+            this._store = new DisposableStore();
+        }
+        Disposable.prototype.dispose = function () {
+            this._store.dispose();
+        };
+        Disposable.prototype._register = function (t) {
+            if (t === this) {
+                throw new Error('Cannot register a disposable on itself!');
+            }
+            return this._store.add(t);
+        };
+        Disposable.None = Object.freeze({ dispose: function () { } });
+        return Disposable;
+    }());
+    /**
+     * Manages the lifecycle of a disposable value that may be changed.
+     *
+     * This ensures that when the disposable value is changed, the previously held disposable is disposed of. You can
+     * also register a `MutableDisposable` on a `Disposable` to ensure it is automatically cleaned up.
+     */
+    var MutableDisposable = /** @class */ (function () {
+        function MutableDisposable() {
+            this._isDisposed = false;
+        }
+        Object.defineProperty(MutableDisposable.prototype, "value", {
+            get: function () {
+                return this._isDisposed ? undefined : this._value;
+            },
+            set: function (value) {
+                if (this._isDisposed || value === this._value) {
+                    return;
+                }
+                if (this._value) {
+                    this._value.dispose();
+                }
+                this._value = value;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        MutableDisposable.prototype.clear = function () {
+            this.value = undefined;
+        };
+        MutableDisposable.prototype.dispose = function () {
+            this._isDisposed = true;
+            if (this._value) {
+                this._value.dispose();
+            }
+            this._value = undefined;
+        };
+        return MutableDisposable;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var LANGUAGE_DEFAULT = 'en';
+    var _isWindows = false;
+    var _isMacintosh = false;
+    var _isLinux = false;
+    var _isIOS = false;
+    var _locale = undefined;
+    var _language = LANGUAGE_DEFAULT;
+    var _translationsConfigFile = undefined;
+    var _userAgent = undefined;
+    var isElectronRenderer = (typeof process !== 'undefined' && typeof process.versions !== 'undefined' && typeof process.versions.electron !== 'undefined' && process.type === 'renderer');
+    // OS detection
+    if (typeof navigator === 'object' && !isElectronRenderer) {
+        _userAgent = navigator.userAgent;
+        _isWindows = _userAgent.indexOf('Windows') >= 0;
+        _isMacintosh = _userAgent.indexOf('Macintosh') >= 0;
+        _isIOS = _userAgent.indexOf('Macintosh') >= 0 && !!navigator.maxTouchPoints && navigator.maxTouchPoints > 0;
+        _isLinux = _userAgent.indexOf('Linux') >= 0;
+        _locale = navigator.language;
+        _language = _locale;
+    }
+    else if (typeof process === 'object') {
+        _isWindows = (process.platform === 'win32');
+        _isMacintosh = (process.platform === 'darwin');
+        _isLinux = (process.platform === 'linux');
+        _locale = LANGUAGE_DEFAULT;
+        _language = LANGUAGE_DEFAULT;
+        var rawNlsConfig = process.env['VSCODE_NLS_CONFIG'];
+        if (rawNlsConfig) {
+            try {
+                var nlsConfig = JSON.parse(rawNlsConfig);
+                var resolved = nlsConfig.availableLanguages['*'];
+                _locale = nlsConfig.locale;
+                // VSCode's default language is 'en'
+                _language = resolved ? resolved : LANGUAGE_DEFAULT;
+                _translationsConfigFile = nlsConfig._translationsConfigFile;
+            }
+            catch (e) {
+            }
+        }
+    }
+    var isWindows = _isWindows;
+    var _globals = (typeof self === 'object' ? self : typeof global === 'object' ? global : {});
+    var globals = _globals;
+    var setImmediate$1 = (function defineSetImmediate() {
+        if (globals.setImmediate) {
+            return globals.setImmediate.bind(globals);
+        }
+        if (typeof globals.postMessage === 'function' && !globals.importScripts) {
+            var pending_1 = [];
+            globals.addEventListener('message', function (e) {
+                if (e.data && e.data.vscodeSetImmediateId) {
+                    for (var i = 0, len = pending_1.length; i < len; i++) {
+                        var candidate = pending_1[i];
+                        if (candidate.id === e.data.vscodeSetImmediateId) {
+                            pending_1.splice(i, 1);
+                            candidate.callback();
+                            return;
+                        }
+                    }
+                }
+            });
+            var lastId_1 = 0;
+            return function (callback) {
+                var myId = ++lastId_1;
+                pending_1.push({
+                    id: myId,
+                    callback: callback
+                });
+                globals.postMessage({ vscodeSetImmediateId: myId }, '*');
+            };
+        }
+        if (typeof process !== 'undefined' && typeof process.nextTick === 'function') {
+            return process.nextTick.bind(process);
+        }
+        var _promise = Promise.resolve();
+        return function (callback) { return _promise.then(callback); };
+    })();
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    function getAllPropertyNames(obj) {
+        var res = [];
+        var proto = Object.getPrototypeOf(obj);
+        while (Object.prototype !== proto) {
+            res = res.concat(Object.getOwnPropertyNames(proto));
+            proto = Object.getPrototypeOf(proto);
+        }
+        return res;
+    }
+    function getAllMethodNames(obj) {
+        var methods = [];
+        for (var _i = 0, _a = getAllPropertyNames(obj); _i < _a.length; _i++) {
+            var prop = _a[_i];
+            if (typeof obj[prop] === 'function') {
+                methods.push(prop);
+            }
+        }
+        return methods;
+    }
+    function createProxyObject(methodNames, invoke) {
+        var createProxyMethod = function (method) {
+            return function () {
+                var args = Array.prototype.slice.call(arguments, 0);
+                return invoke(method, args);
+            };
+        };
+        var result = {};
+        for (var _i = 0, methodNames_1 = methodNames; _i < methodNames_1.length; _i++) {
+            var methodName = methodNames_1[_i];
+            result[methodName] = createProxyMethod(methodName);
+        }
+        return result;
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var __extends = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var INITIALIZE = '$initialize';
+    var SimpleWorkerProtocol = /** @class */ (function () {
+        function SimpleWorkerProtocol(handler) {
+            this._workerId = -1;
+            this._handler = handler;
+            this._lastSentReq = 0;
+            this._pendingReplies = Object.create(null);
+        }
+        SimpleWorkerProtocol.prototype.setWorkerId = function (workerId) {
+            this._workerId = workerId;
+        };
+        SimpleWorkerProtocol.prototype.sendMessage = function (method, args) {
+            var _this = this;
+            var req = String(++this._lastSentReq);
+            return new Promise(function (resolve, reject) {
+                _this._pendingReplies[req] = {
+                    resolve: resolve,
+                    reject: reject
+                };
+                _this._send({
+                    vsWorker: _this._workerId,
+                    req: req,
+                    method: method,
+                    args: args
+                });
+            });
+        };
+        SimpleWorkerProtocol.prototype.handleMessage = function (message) {
+            if (!message || !message.vsWorker) {
+                return;
+            }
+            if (this._workerId !== -1 && message.vsWorker !== this._workerId) {
+                return;
+            }
+            this._handleMessage(message);
+        };
+        SimpleWorkerProtocol.prototype._handleMessage = function (msg) {
+            var _this = this;
+            if (msg.seq) {
+                var replyMessage = msg;
+                if (!this._pendingReplies[replyMessage.seq]) {
+                    console.warn('Got reply to unknown seq');
+                    return;
+                }
+                var reply = this._pendingReplies[replyMessage.seq];
+                delete this._pendingReplies[replyMessage.seq];
+                if (replyMessage.err) {
+                    var err = replyMessage.err;
+                    if (replyMessage.err.$isError) {
+                        err = new Error();
+                        err.name = replyMessage.err.name;
+                        err.message = replyMessage.err.message;
+                        err.stack = replyMessage.err.stack;
+                    }
+                    reply.reject(err);
+                    return;
+                }
+                reply.resolve(replyMessage.res);
+                return;
+            }
+            var requestMessage = msg;
+            var req = requestMessage.req;
+            var result = this._handler.handleMessage(requestMessage.method, requestMessage.args);
+            result.then(function (r) {
+                _this._send({
+                    vsWorker: _this._workerId,
+                    seq: req,
+                    res: r,
+                    err: undefined
+                });
+            }, function (e) {
+                if (e.detail instanceof Error) {
+                    // Loading errors have a detail property that points to the actual error
+                    e.detail = transformErrorForSerialization(e.detail);
+                }
+                _this._send({
+                    vsWorker: _this._workerId,
+                    seq: req,
+                    res: undefined,
+                    err: transformErrorForSerialization(e)
+                });
+            });
+        };
+        SimpleWorkerProtocol.prototype._send = function (msg) {
+            var transfer = [];
+            if (msg.req) {
+                var m = msg;
+                for (var i = 0; i < m.args.length; i++) {
+                    if (m.args[i] instanceof ArrayBuffer) {
+                        transfer.push(m.args[i]);
+                    }
+                }
+            }
+            else {
+                var m = msg;
+                if (m.res instanceof ArrayBuffer) {
+                    transfer.push(m.res);
+                }
+            }
+            this._handler.sendMessage(msg, transfer);
+        };
+        return SimpleWorkerProtocol;
+    }());
+    /**
+     * Main thread side
+     */
+    var SimpleWorkerClient = /** @class */ (function (_super) {
+        __extends(SimpleWorkerClient, _super);
+        function SimpleWorkerClient(workerFactory, moduleId, host) {
+            var _this = _super.call(this) || this;
+            var lazyProxyReject = null;
+            _this._worker = _this._register(workerFactory.create('vs/base/common/worker/simpleWorker', function (msg) {
+                _this._protocol.handleMessage(msg);
+            }, function (err) {
+                // in Firefox, web workers fail lazily :(
+                // we will reject the proxy
+                if (lazyProxyReject) {
+                    lazyProxyReject(err);
+                }
+            }));
+            _this._protocol = new SimpleWorkerProtocol({
+                sendMessage: function (msg, transfer) {
+                    _this._worker.postMessage(msg, transfer);
+                },
+                handleMessage: function (method, args) {
+                    if (typeof host[method] !== 'function') {
+                        return Promise.reject(new Error('Missing method ' + method + ' on main thread host.'));
+                    }
+                    try {
+                        return Promise.resolve(host[method].apply(host, args));
+                    }
+                    catch (e) {
+                        return Promise.reject(e);
+                    }
+                }
+            });
+            _this._protocol.setWorkerId(_this._worker.getId());
+            // Gather loader configuration
+            var loaderConfiguration = null;
+            if (typeof self.require !== 'undefined' && typeof self.require.getConfig === 'function') {
+                // Get the configuration from the Monaco AMD Loader
+                loaderConfiguration = self.require.getConfig();
+            }
+            else if (typeof self.requirejs !== 'undefined') {
+                // Get the configuration from requirejs
+                loaderConfiguration = self.requirejs.s.contexts._.config;
+            }
+            var hostMethods = getAllMethodNames(host);
+            // Send initialize message
+            _this._onModuleLoaded = _this._protocol.sendMessage(INITIALIZE, [
+                _this._worker.getId(),
+                JSON.parse(JSON.stringify(loaderConfiguration)),
+                moduleId,
+                hostMethods,
+            ]);
+            // Create proxy to loaded code
+            var proxyMethodRequest = function (method, args) {
+                return _this._request(method, args);
+            };
+            _this._lazyProxy = new Promise(function (resolve, reject) {
+                lazyProxyReject = reject;
+                _this._onModuleLoaded.then(function (availableMethods) {
+                    resolve(createProxyObject(availableMethods, proxyMethodRequest));
+                }, function (e) {
+                    reject(e);
+                    _this._onError('Worker failed to load ' + moduleId, e);
+                });
+            });
+            return _this;
+        }
+        SimpleWorkerClient.prototype.getProxyObject = function () {
+            return this._lazyProxy;
+        };
+        SimpleWorkerClient.prototype._request = function (method, args) {
+            var _this = this;
+            return new Promise(function (resolve, reject) {
+                _this._onModuleLoaded.then(function () {
+                    _this._protocol.sendMessage(method, args).then(resolve, reject);
+                }, reject);
+            });
+        };
+        SimpleWorkerClient.prototype._onError = function (message, error) {
+            console.error(message);
+            console.info(error);
+        };
+        return SimpleWorkerClient;
+    }(Disposable));
+    /**
+     * Worker side
+     */
+    var SimpleWorkerServer = /** @class */ (function () {
+        function SimpleWorkerServer(postMessage, requestHandlerFactory) {
+            var _this = this;
+            this._requestHandlerFactory = requestHandlerFactory;
+            this._requestHandler = null;
+            this._protocol = new SimpleWorkerProtocol({
+                sendMessage: function (msg, transfer) {
+                    postMessage(msg, transfer);
+                },
+                handleMessage: function (method, args) { return _this._handleMessage(method, args); }
+            });
+        }
+        SimpleWorkerServer.prototype.onmessage = function (msg) {
+            this._protocol.handleMessage(msg);
+        };
+        SimpleWorkerServer.prototype._handleMessage = function (method, args) {
+            if (method === INITIALIZE) {
+                return this.initialize(args[0], args[1], args[2], args[3]);
+            }
+            if (!this._requestHandler || typeof this._requestHandler[method] !== 'function') {
+                return Promise.reject(new Error('Missing requestHandler or method: ' + method));
+            }
+            try {
+                return Promise.resolve(this._requestHandler[method].apply(this._requestHandler, args));
+            }
+            catch (e) {
+                return Promise.reject(e);
+            }
+        };
+        SimpleWorkerServer.prototype.initialize = function (workerId, loaderConfig, moduleId, hostMethods) {
+            var _this = this;
+            this._protocol.setWorkerId(workerId);
+            var proxyMethodRequest = function (method, args) {
+                return _this._protocol.sendMessage(method, args);
+            };
+            var hostProxy = createProxyObject(hostMethods, proxyMethodRequest);
+            if (this._requestHandlerFactory) {
+                // static request handler
+                this._requestHandler = this._requestHandlerFactory(hostProxy);
+                return Promise.resolve(getAllMethodNames(this._requestHandler));
+            }
+            if (loaderConfig) {
+                // Remove 'baseUrl', handling it is beyond scope for now
+                if (typeof loaderConfig.baseUrl !== 'undefined') {
+                    delete loaderConfig['baseUrl'];
+                }
+                if (typeof loaderConfig.paths !== 'undefined') {
+                    if (typeof loaderConfig.paths.vs !== 'undefined') {
+                        delete loaderConfig.paths['vs'];
+                    }
+                }
+                // Since this is in a web worker, enable catching errors
+                loaderConfig.catchError = true;
+                self.require.config(loaderConfig);
+            }
+            return new Promise(function (resolve, reject) {
+                // Use the global require to be sure to get the global config
+                self.require([moduleId], function (module) {
+                    _this._requestHandler = module.create(hostProxy);
+                    if (!_this._requestHandler) {
+                        reject(new Error("No RequestHandler!"));
+                        return;
+                    }
+                    resolve(getAllMethodNames(_this._requestHandler));
+                }, reject);
+            });
+        };
+        return SimpleWorkerServer;
+    }());
+
+    /**
+     * Returns the last element of an array.
+     * @param array The array.
+     * @param n Which element from the end (default is zero).
+     */
+    /**
+     * Like `Array#sort` but always stable. Usually runs a little slower `than Array#sort`
+     * so only use this when actually needing stable sort.
+     */
+    function mergeSort(data, compare) {
+        _sort(data, compare, 0, data.length - 1, []);
+        return data;
+    }
+    function _merge(a, compare, lo, mid, hi, aux) {
+        var leftIdx = lo, rightIdx = mid + 1;
+        for (var i = lo; i <= hi; i++) {
+            aux[i] = a[i];
+        }
+        for (var i = lo; i <= hi; i++) {
+            if (leftIdx > mid) {
+                // left side consumed
+                a[i] = aux[rightIdx++];
+            }
+            else if (rightIdx > hi) {
+                // right side consumed
+                a[i] = aux[leftIdx++];
+            }
+            else if (compare(aux[rightIdx], aux[leftIdx]) < 0) {
+                // right element is less -> comes first
+                a[i] = aux[rightIdx++];
+            }
+            else {
+                // left element comes first (less or equal)
+                a[i] = aux[leftIdx++];
+            }
+        }
+    }
+    function _sort(a, compare, lo, hi, aux) {
+        if (hi <= lo) {
+            return;
+        }
+        var mid = lo + ((hi - lo) / 2) | 0;
+        _sort(a, compare, lo, mid, aux);
+        _sort(a, compare, mid + 1, hi, aux);
+        if (compare(a[mid], a[mid + 1]) <= 0) {
+            // left and right are sorted and if the last-left element is less
+            // or equals than the first-right element there is nothing else
+            // to do
+            return;
+        }
+        _merge(a, compare, lo, mid, hi, aux);
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    /**
+     * Represents information about a specific difference between two sequences.
+     */
+    var DiffChange = /** @class */ (function () {
+        /**
+         * Constructs a new DiffChange with the given sequence information
+         * and content.
+         */
+        function DiffChange(originalStart, originalLength, modifiedStart, modifiedLength) {
+            //Debug.Assert(originalLength > 0 || modifiedLength > 0, "originalLength and modifiedLength cannot both be <= 0");
+            this.originalStart = originalStart;
+            this.originalLength = originalLength;
+            this.modifiedStart = modifiedStart;
+            this.modifiedLength = modifiedLength;
+        }
+        /**
+         * The end point (exclusive) of the change in the original sequence.
+         */
+        DiffChange.prototype.getOriginalEnd = function () {
+            return this.originalStart + this.originalLength;
+        };
+        /**
+         * The end point (exclusive) of the change in the modified sequence.
+         */
+        DiffChange.prototype.getModifiedEnd = function () {
+            return this.modifiedStart + this.modifiedLength;
+        };
+        return DiffChange;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    function numberHash(val, initialHashVal) {
+        return (((initialHashVal << 5) - initialHashVal) + val) | 0; // hashVal * 31 + ch, keep as int32
+    }
+    function stringHash(s, hashVal) {
+        hashVal = numberHash(149417, hashVal);
+        for (var i = 0, length_1 = s.length; i < length_1; i++) {
+            hashVal = numberHash(s.charCodeAt(i), hashVal);
+        }
+        return hashVal;
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var StringDiffSequence = /** @class */ (function () {
+        function StringDiffSequence(source) {
+            this.source = source;
+        }
+        StringDiffSequence.prototype.getElements = function () {
+            var source = this.source;
+            var characters = new Int32Array(source.length);
+            for (var i = 0, len = source.length; i < len; i++) {
+                characters[i] = source.charCodeAt(i);
+            }
+            return characters;
+        };
+        return StringDiffSequence;
+    }());
+    function stringDiff(original, modified, pretty) {
+        return new LcsDiff(new StringDiffSequence(original), new StringDiffSequence(modified)).ComputeDiff(pretty).changes;
+    }
+    //
+    // The code below has been ported from a C# implementation in VS
+    //
+    var Debug = /** @class */ (function () {
+        function Debug() {
+        }
+        Debug.Assert = function (condition, message) {
+            if (!condition) {
+                throw new Error(message);
+            }
+        };
+        return Debug;
+    }());
+    var MyArray = /** @class */ (function () {
+        function MyArray() {
+        }
+        /**
+         * Copies a range of elements from an Array starting at the specified source index and pastes
+         * them to another Array starting at the specified destination index. The length and the indexes
+         * are specified as 64-bit integers.
+         * sourceArray:
+         *		The Array that contains the data to copy.
+         * sourceIndex:
+         *		A 64-bit integer that represents the index in the sourceArray at which copying begins.
+         * destinationArray:
+         *		The Array that receives the data.
+         * destinationIndex:
+         *		A 64-bit integer that represents the index in the destinationArray at which storing begins.
+         * length:
+         *		A 64-bit integer that represents the number of elements to copy.
+         */
+        MyArray.Copy = function (sourceArray, sourceIndex, destinationArray, destinationIndex, length) {
+            for (var i = 0; i < length; i++) {
+                destinationArray[destinationIndex + i] = sourceArray[sourceIndex + i];
+            }
+        };
+        MyArray.Copy2 = function (sourceArray, sourceIndex, destinationArray, destinationIndex, length) {
+            for (var i = 0; i < length; i++) {
+                destinationArray[destinationIndex + i] = sourceArray[sourceIndex + i];
+            }
+        };
+        return MyArray;
+    }());
+    /**
+     * A utility class which helps to create the set of DiffChanges from
+     * a difference operation. This class accepts original DiffElements and
+     * modified DiffElements that are involved in a particular change. The
+     * MarktNextChange() method can be called to mark the separation between
+     * distinct changes. At the end, the Changes property can be called to retrieve
+     * the constructed changes.
+     */
+    var DiffChangeHelper = /** @class */ (function () {
+        /**
+         * Constructs a new DiffChangeHelper for the given DiffSequences.
+         */
+        function DiffChangeHelper() {
+            this.m_changes = [];
+            this.m_originalStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;
+            this.m_modifiedStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;
+            this.m_originalCount = 0;
+            this.m_modifiedCount = 0;
+        }
+        /**
+         * Marks the beginning of the next change in the set of differences.
+         */
+        DiffChangeHelper.prototype.MarkNextChange = function () {
+            // Only add to the list if there is something to add
+            if (this.m_originalCount > 0 || this.m_modifiedCount > 0) {
+                // Add the new change to our list
+                this.m_changes.push(new DiffChange(this.m_originalStart, this.m_originalCount, this.m_modifiedStart, this.m_modifiedCount));
+            }
+            // Reset for the next change
+            this.m_originalCount = 0;
+            this.m_modifiedCount = 0;
+            this.m_originalStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;
+            this.m_modifiedStart = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;
+        };
+        /**
+         * Adds the original element at the given position to the elements
+         * affected by the current change. The modified index gives context
+         * to the change position with respect to the original sequence.
+         * @param originalIndex The index of the original element to add.
+         * @param modifiedIndex The index of the modified element that provides corresponding position in the modified sequence.
+         */
+        DiffChangeHelper.prototype.AddOriginalElement = function (originalIndex, modifiedIndex) {
+            // The 'true' start index is the smallest of the ones we've seen
+            this.m_originalStart = Math.min(this.m_originalStart, originalIndex);
+            this.m_modifiedStart = Math.min(this.m_modifiedStart, modifiedIndex);
+            this.m_originalCount++;
+        };
+        /**
+         * Adds the modified element at the given position to the elements
+         * affected by the current change. The original index gives context
+         * to the change position with respect to the modified sequence.
+         * @param originalIndex The index of the original element that provides corresponding position in the original sequence.
+         * @param modifiedIndex The index of the modified element to add.
+         */
+        DiffChangeHelper.prototype.AddModifiedElement = function (originalIndex, modifiedIndex) {
+            // The 'true' start index is the smallest of the ones we've seen
+            this.m_originalStart = Math.min(this.m_originalStart, originalIndex);
+            this.m_modifiedStart = Math.min(this.m_modifiedStart, modifiedIndex);
+            this.m_modifiedCount++;
+        };
+        /**
+         * Retrieves all of the changes marked by the class.
+         */
+        DiffChangeHelper.prototype.getChanges = function () {
+            if (this.m_originalCount > 0 || this.m_modifiedCount > 0) {
+                // Finish up on whatever is left
+                this.MarkNextChange();
+            }
+            return this.m_changes;
+        };
+        /**
+         * Retrieves all of the changes marked by the class in the reverse order
+         */
+        DiffChangeHelper.prototype.getReverseChanges = function () {
+            if (this.m_originalCount > 0 || this.m_modifiedCount > 0) {
+                // Finish up on whatever is left
+                this.MarkNextChange();
+            }
+            this.m_changes.reverse();
+            return this.m_changes;
+        };
+        return DiffChangeHelper;
+    }());
+    /**
+     * An implementation of the difference algorithm described in
+     * "An O(ND) Difference Algorithm and its variations" by Eugene W. Myers
+     */
+    var LcsDiff = /** @class */ (function () {
+        /**
+         * Constructs the DiffFinder
+         */
+        function LcsDiff(originalSequence, modifiedSequence, continueProcessingPredicate) {
+            if (continueProcessingPredicate === void 0) { continueProcessingPredicate = null; }
+            this.ContinueProcessingPredicate = continueProcessingPredicate;
+            var _a = LcsDiff._getElements(originalSequence), originalStringElements = _a[0], originalElementsOrHash = _a[1], originalHasStrings = _a[2];
+            var _b = LcsDiff._getElements(modifiedSequence), modifiedStringElements = _b[0], modifiedElementsOrHash = _b[1], modifiedHasStrings = _b[2];
+            this._hasStrings = (originalHasStrings && modifiedHasStrings);
+            this._originalStringElements = originalStringElements;
+            this._originalElementsOrHash = originalElementsOrHash;
+            this._modifiedStringElements = modifiedStringElements;
+            this._modifiedElementsOrHash = modifiedElementsOrHash;
+            this.m_forwardHistory = [];
+            this.m_reverseHistory = [];
+        }
+        LcsDiff._isStringArray = function (arr) {
+            return (arr.length > 0 && typeof arr[0] === 'string');
+        };
+        LcsDiff._getElements = function (sequence) {
+            var elements = sequence.getElements();
+            if (LcsDiff._isStringArray(elements)) {
+                var hashes = new Int32Array(elements.length);
+                for (var i = 0, len = elements.length; i < len; i++) {
+                    hashes[i] = stringHash(elements[i], 0);
+                }
+                return [elements, hashes, true];
+            }
+            if (elements instanceof Int32Array) {
+                return [[], elements, false];
+            }
+            return [[], new Int32Array(elements), false];
+        };
+        LcsDiff.prototype.ElementsAreEqual = function (originalIndex, newIndex) {
+            if (this._originalElementsOrHash[originalIndex] !== this._modifiedElementsOrHash[newIndex]) {
+                return false;
+            }
+            return (this._hasStrings ? this._originalStringElements[originalIndex] === this._modifiedStringElements[newIndex] : true);
+        };
+        LcsDiff.prototype.OriginalElementsAreEqual = function (index1, index2) {
+            if (this._originalElementsOrHash[index1] !== this._originalElementsOrHash[index2]) {
+                return false;
+            }
+            return (this._hasStrings ? this._originalStringElements[index1] === this._originalStringElements[index2] : true);
+        };
+        LcsDiff.prototype.ModifiedElementsAreEqual = function (index1, index2) {
+            if (this._modifiedElementsOrHash[index1] !== this._modifiedElementsOrHash[index2]) {
+                return false;
+            }
+            return (this._hasStrings ? this._modifiedStringElements[index1] === this._modifiedStringElements[index2] : true);
+        };
+        LcsDiff.prototype.ComputeDiff = function (pretty) {
+            return this._ComputeDiff(0, this._originalElementsOrHash.length - 1, 0, this._modifiedElementsOrHash.length - 1, pretty);
+        };
+        /**
+         * Computes the differences between the original and modified input
+         * sequences on the bounded range.
+         * @returns An array of the differences between the two input sequences.
+         */
+        LcsDiff.prototype._ComputeDiff = function (originalStart, originalEnd, modifiedStart, modifiedEnd, pretty) {
+            var quitEarlyArr = [false];
+            var changes = this.ComputeDiffRecursive(originalStart, originalEnd, modifiedStart, modifiedEnd, quitEarlyArr);
+            if (pretty) {
+                // We have to clean up the computed diff to be more intuitive
+                // but it turns out this cannot be done correctly until the entire set
+                // of diffs have been computed
+                changes = this.PrettifyChanges(changes);
+            }
+            return {
+                quitEarly: quitEarlyArr[0],
+                changes: changes
+            };
+        };
+        /**
+         * Private helper method which computes the differences on the bounded range
+         * recursively.
+         * @returns An array of the differences between the two input sequences.
+         */
+        LcsDiff.prototype.ComputeDiffRecursive = function (originalStart, originalEnd, modifiedStart, modifiedEnd, quitEarlyArr) {
+            quitEarlyArr[0] = false;
+            // Find the start of the differences
+            while (originalStart <= originalEnd && modifiedStart <= modifiedEnd && this.ElementsAreEqual(originalStart, modifiedStart)) {
+                originalStart++;
+                modifiedStart++;
+            }
+            // Find the end of the differences
+            while (originalEnd >= originalStart && modifiedEnd >= modifiedStart && this.ElementsAreEqual(originalEnd, modifiedEnd)) {
+                originalEnd--;
+                modifiedEnd--;
+            }
+            // In the special case where we either have all insertions or all deletions or the sequences are identical
+            if (originalStart > originalEnd || modifiedStart > modifiedEnd) {
+                var changes = void 0;
+                if (modifiedStart <= modifiedEnd) {
+                    Debug.Assert(originalStart === originalEnd + 1, 'originalStart should only be one more than originalEnd');
+                    // All insertions
+                    changes = [
+                        new DiffChange(originalStart, 0, modifiedStart, modifiedEnd - modifiedStart + 1)
+                    ];
+                }
+                else if (originalStart <= originalEnd) {
+                    Debug.Assert(modifiedStart === modifiedEnd + 1, 'modifiedStart should only be one more than modifiedEnd');
+                    // All deletions
+                    changes = [
+                        new DiffChange(originalStart, originalEnd - originalStart + 1, modifiedStart, 0)
+                    ];
+                }
+                else {
+                    Debug.Assert(originalStart === originalEnd + 1, 'originalStart should only be one more than originalEnd');
+                    Debug.Assert(modifiedStart === modifiedEnd + 1, 'modifiedStart should only be one more than modifiedEnd');
+                    // Identical sequences - No differences
+                    changes = [];
+                }
+                return changes;
+            }
+            // This problem can be solved using the Divide-And-Conquer technique.
+            var midOriginalArr = [0];
+            var midModifiedArr = [0];
+            var result = this.ComputeRecursionPoint(originalStart, originalEnd, modifiedStart, modifiedEnd, midOriginalArr, midModifiedArr, quitEarlyArr);
+            var midOriginal = midOriginalArr[0];
+            var midModified = midModifiedArr[0];
+            if (result !== null) {
+                // Result is not-null when there was enough memory to compute the changes while
+                // searching for the recursion point
+                return result;
+            }
+            else if (!quitEarlyArr[0]) {
+                // We can break the problem down recursively by finding the changes in the
+                // First Half:   (originalStart, modifiedStart) to (midOriginal, midModified)
+                // Second Half:  (midOriginal + 1, minModified + 1) to (originalEnd, modifiedEnd)
+                // NOTE: ComputeDiff() is inclusive, therefore the second range starts on the next point
+                var leftChanges = this.ComputeDiffRecursive(originalStart, midOriginal, modifiedStart, midModified, quitEarlyArr);
+                var rightChanges = [];
+                if (!quitEarlyArr[0]) {
+                    rightChanges = this.ComputeDiffRecursive(midOriginal + 1, originalEnd, midModified + 1, modifiedEnd, quitEarlyArr);
+                }
+                else {
+                    // We did't have time to finish the first half, so we don't have time to compute this half.
+                    // Consider the entire rest of the sequence different.
+                    rightChanges = [
+                        new DiffChange(midOriginal + 1, originalEnd - (midOriginal + 1) + 1, midModified + 1, modifiedEnd - (midModified + 1) + 1)
+                    ];
+                }
+                return this.ConcatenateChanges(leftChanges, rightChanges);
+            }
+            // If we hit here, we quit early, and so can't return anything meaningful
+            return [
+                new DiffChange(originalStart, originalEnd - originalStart + 1, modifiedStart, modifiedEnd - modifiedStart + 1)
+            ];
+        };
+        LcsDiff.prototype.WALKTRACE = function (diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr) {
+            var forwardChanges = null;
+            var reverseChanges = null;
+            // First, walk backward through the forward diagonals history
+            var changeHelper = new DiffChangeHelper();
+            var diagonalMin = diagonalForwardStart;
+            var diagonalMax = diagonalForwardEnd;
+            var diagonalRelative = (midOriginalArr[0] - midModifiedArr[0]) - diagonalForwardOffset;
+            var lastOriginalIndex = -1073741824 /* MIN_SAFE_SMALL_INTEGER */;
+            var historyIndex = this.m_forwardHistory.length - 1;
+            do {
+                // Get the diagonal index from the relative diagonal number
+                var diagonal = diagonalRelative + diagonalForwardBase;
+                // Figure out where we came from
+                if (diagonal === diagonalMin || (diagonal < diagonalMax && forwardPoints[diagonal - 1] < forwardPoints[diagonal + 1])) {
+                    // Vertical line (the element is an insert)
+                    originalIndex = forwardPoints[diagonal + 1];
+                    modifiedIndex = originalIndex - diagonalRelative - diagonalForwardOffset;
+                    if (originalIndex < lastOriginalIndex) {
+                        changeHelper.MarkNextChange();
+                    }
+                    lastOriginalIndex = originalIndex;
+                    changeHelper.AddModifiedElement(originalIndex + 1, modifiedIndex);
+                    diagonalRelative = (diagonal + 1) - diagonalForwardBase; //Setup for the next iteration
+                }
+                else {
+                    // Horizontal line (the element is a deletion)
+                    originalIndex = forwardPoints[diagonal - 1] + 1;
+                    modifiedIndex = originalIndex - diagonalRelative - diagonalForwardOffset;
+                    if (originalIndex < lastOriginalIndex) {
+                        changeHelper.MarkNextChange();
+                    }
+                    lastOriginalIndex = originalIndex - 1;
+                    changeHelper.AddOriginalElement(originalIndex, modifiedIndex + 1);
+                    diagonalRelative = (diagonal - 1) - diagonalForwardBase; //Setup for the next iteration
+                }
+                if (historyIndex >= 0) {
+                    forwardPoints = this.m_forwardHistory[historyIndex];
+                    diagonalForwardBase = forwardPoints[0]; //We stored this in the first spot
+                    diagonalMin = 1;
+                    diagonalMax = forwardPoints.length - 1;
+                }
+            } while (--historyIndex >= -1);
+            // Ironically, we get the forward changes as the reverse of the
+            // order we added them since we technically added them backwards
+            forwardChanges = changeHelper.getReverseChanges();
+            if (quitEarlyArr[0]) {
+                // TODO: Calculate a partial from the reverse diagonals.
+                //       For now, just assume everything after the midOriginal/midModified point is a diff
+                var originalStartPoint = midOriginalArr[0] + 1;
+                var modifiedStartPoint = midModifiedArr[0] + 1;
+                if (forwardChanges !== null && forwardChanges.length > 0) {
+                    var lastForwardChange = forwardChanges[forwardChanges.length - 1];
+                    originalStartPoint = Math.max(originalStartPoint, lastForwardChange.getOriginalEnd());
+                    modifiedStartPoint = Math.max(modifiedStartPoint, lastForwardChange.getModifiedEnd());
+                }
+                reverseChanges = [
+                    new DiffChange(originalStartPoint, originalEnd - originalStartPoint + 1, modifiedStartPoint, modifiedEnd - modifiedStartPoint + 1)
+                ];
+            }
+            else {
+                // Now walk backward through the reverse diagonals history
+                changeHelper = new DiffChangeHelper();
+                diagonalMin = diagonalReverseStart;
+                diagonalMax = diagonalReverseEnd;
+                diagonalRelative = (midOriginalArr[0] - midModifiedArr[0]) - diagonalReverseOffset;
+                lastOriginalIndex = 1073741824 /* MAX_SAFE_SMALL_INTEGER */;
+                historyIndex = (deltaIsEven) ? this.m_reverseHistory.length - 1 : this.m_reverseHistory.length - 2;
+                do {
+                    // Get the diagonal index from the relative diagonal number
+                    var diagonal = diagonalRelative + diagonalReverseBase;
+                    // Figure out where we came from
+                    if (diagonal === diagonalMin || (diagonal < diagonalMax && reversePoints[diagonal - 1] >= reversePoints[diagonal + 1])) {
+                        // Horizontal line (the element is a deletion))
+                        originalIndex = reversePoints[diagonal + 1] - 1;
+                        modifiedIndex = originalIndex - diagonalRelative - diagonalReverseOffset;
+                        if (originalIndex > lastOriginalIndex) {
+                            changeHelper.MarkNextChange();
+                        }
+                        lastOriginalIndex = originalIndex + 1;
+                        changeHelper.AddOriginalElement(originalIndex + 1, modifiedIndex + 1);
+                        diagonalRelative = (diagonal + 1) - diagonalReverseBase; //Setup for the next iteration
+                    }
+                    else {
+                        // Vertical line (the element is an insertion)
+                        originalIndex = reversePoints[diagonal - 1];
+                        modifiedIndex = originalIndex - diagonalRelative - diagonalReverseOffset;
+                        if (originalIndex > lastOriginalIndex) {
+                            changeHelper.MarkNextChange();
+                        }
+                        lastOriginalIndex = originalIndex;
+                        changeHelper.AddModifiedElement(originalIndex + 1, modifiedIndex + 1);
+                        diagonalRelative = (diagonal - 1) - diagonalReverseBase; //Setup for the next iteration
+                    }
+                    if (historyIndex >= 0) {
+                        reversePoints = this.m_reverseHistory[historyIndex];
+                        diagonalReverseBase = reversePoints[0]; //We stored this in the first spot
+                        diagonalMin = 1;
+                        diagonalMax = reversePoints.length - 1;
+                    }
+                } while (--historyIndex >= -1);
+                // There are cases where the reverse history will find diffs that
+                // are correct, but not intuitive, so we need shift them.
+                reverseChanges = changeHelper.getChanges();
+            }
+            return this.ConcatenateChanges(forwardChanges, reverseChanges);
+        };
+        /**
+         * Given the range to compute the diff on, this method finds the point:
+         * (midOriginal, midModified)
+         * that exists in the middle of the LCS of the two sequences and
+         * is the point at which the LCS problem may be broken down recursively.
+         * This method will try to keep the LCS trace in memory. If the LCS recursion
+         * point is calculated and the full trace is available in memory, then this method
+         * will return the change list.
+         * @param originalStart The start bound of the original sequence range
+         * @param originalEnd The end bound of the original sequence range
+         * @param modifiedStart The start bound of the modified sequence range
+         * @param modifiedEnd The end bound of the modified sequence range
+         * @param midOriginal The middle point of the original sequence range
+         * @param midModified The middle point of the modified sequence range
+         * @returns The diff changes, if available, otherwise null
+         */
+        LcsDiff.prototype.ComputeRecursionPoint = function (originalStart, originalEnd, modifiedStart, modifiedEnd, midOriginalArr, midModifiedArr, quitEarlyArr) {
+            var originalIndex = 0, modifiedIndex = 0;
+            var diagonalForwardStart = 0, diagonalForwardEnd = 0;
+            var diagonalReverseStart = 0, diagonalReverseEnd = 0;
+            // To traverse the edit graph and produce the proper LCS, our actual
+            // start position is just outside the given boundary
+            originalStart--;
+            modifiedStart--;
+            // We set these up to make the compiler happy, but they will
+            // be replaced before we return with the actual recursion point
+            midOriginalArr[0] = 0;
+            midModifiedArr[0] = 0;
+            // Clear out the history
+            this.m_forwardHistory = [];
+            this.m_reverseHistory = [];
+            // Each cell in the two arrays corresponds to a diagonal in the edit graph.
+            // The integer value in the cell represents the originalIndex of the furthest
+            // reaching point found so far that ends in that diagonal.
+            // The modifiedIndex can be computed mathematically from the originalIndex and the diagonal number.
+            var maxDifferences = (originalEnd - originalStart) + (modifiedEnd - modifiedStart);
+            var numDiagonals = maxDifferences + 1;
+            var forwardPoints = new Int32Array(numDiagonals);
+            var reversePoints = new Int32Array(numDiagonals);
+            // diagonalForwardBase: Index into forwardPoints of the diagonal which passes through (originalStart, modifiedStart)
+            // diagonalReverseBase: Index into reversePoints of the diagonal which passes through (originalEnd, modifiedEnd)
+            var diagonalForwardBase = (modifiedEnd - modifiedStart);
+            var diagonalReverseBase = (originalEnd - originalStart);
+            // diagonalForwardOffset: Geometric offset which allows modifiedIndex to be computed from originalIndex and the
+            //    diagonal number (relative to diagonalForwardBase)
+            // diagonalReverseOffset: Geometric offset which allows modifiedIndex to be computed from originalIndex and the
+            //    diagonal number (relative to diagonalReverseBase)
+            var diagonalForwardOffset = (originalStart - modifiedStart);
+            var diagonalReverseOffset = (originalEnd - modifiedEnd);
+            // delta: The difference between the end diagonal and the start diagonal. This is used to relate diagonal numbers
+            //   relative to the start diagonal with diagonal numbers relative to the end diagonal.
+            // The Even/Oddn-ness of this delta is important for determining when we should check for overlap
+            var delta = diagonalReverseBase - diagonalForwardBase;
+            var deltaIsEven = (delta % 2 === 0);
+            // Here we set up the start and end points as the furthest points found so far
+            // in both the forward and reverse directions, respectively
+            forwardPoints[diagonalForwardBase] = originalStart;
+            reversePoints[diagonalReverseBase] = originalEnd;
+            // Remember if we quit early, and thus need to do a best-effort result instead of a real result.
+            quitEarlyArr[0] = false;
+            // A couple of points:
+            // --With this method, we iterate on the number of differences between the two sequences.
+            //   The more differences there actually are, the longer this will take.
+            // --Also, as the number of differences increases, we have to search on diagonals further
+            //   away from the reference diagonal (which is diagonalForwardBase for forward, diagonalReverseBase for reverse).
+            // --We extend on even diagonals (relative to the reference diagonal) only when numDifferences
+            //   is even and odd diagonals only when numDifferences is odd.
+            for (var numDifferences = 1; numDifferences <= (maxDifferences / 2) + 1; numDifferences++) {
+                var furthestOriginalIndex = 0;
+                var furthestModifiedIndex = 0;
+                // Run the algorithm in the forward direction
+                diagonalForwardStart = this.ClipDiagonalBound(diagonalForwardBase - numDifferences, numDifferences, diagonalForwardBase, numDiagonals);
+                diagonalForwardEnd = this.ClipDiagonalBound(diagonalForwardBase + numDifferences, numDifferences, diagonalForwardBase, numDiagonals);
+                for (var diagonal = diagonalForwardStart; diagonal <= diagonalForwardEnd; diagonal += 2) {
+                    // STEP 1: We extend the furthest reaching point in the present diagonal
+                    // by looking at the diagonals above and below and picking the one whose point
+                    // is further away from the start point (originalStart, modifiedStart)
+                    if (diagonal === diagonalForwardStart || (diagonal < diagonalForwardEnd && forwardPoints[diagonal - 1] < forwardPoints[diagonal + 1])) {
+                        originalIndex = forwardPoints[diagonal + 1];
+                    }
+                    else {
+                        originalIndex = forwardPoints[diagonal - 1] + 1;
+                    }
+                    modifiedIndex = originalIndex - (diagonal - diagonalForwardBase) - diagonalForwardOffset;
+                    // Save the current originalIndex so we can test for false overlap in step 3
+                    var tempOriginalIndex = originalIndex;
+                    // STEP 2: We can continue to extend the furthest reaching point in the present diagonal
+                    // so long as the elements are equal.
+                    while (originalIndex < originalEnd && modifiedIndex < modifiedEnd && this.ElementsAreEqual(originalIndex + 1, modifiedIndex + 1)) {
+                        originalIndex++;
+                        modifiedIndex++;
+                    }
+                    forwardPoints[diagonal] = originalIndex;
+                    if (originalIndex + modifiedIndex > furthestOriginalIndex + furthestModifiedIndex) {
+                        furthestOriginalIndex = originalIndex;
+                        furthestModifiedIndex = modifiedIndex;
+                    }
+                    // STEP 3: If delta is odd (overlap first happens on forward when delta is odd)
+                    // and diagonal is in the range of reverse diagonals computed for numDifferences-1
+                    // (the previous iteration; we haven't computed reverse diagonals for numDifferences yet)
+                    // then check for overlap.
+                    if (!deltaIsEven && Math.abs(diagonal - diagonalReverseBase) <= (numDifferences - 1)) {
+                        if (originalIndex >= reversePoints[diagonal]) {
+                            midOriginalArr[0] = originalIndex;
+                            midModifiedArr[0] = modifiedIndex;
+                            if (tempOriginalIndex <= reversePoints[diagonal] && 1447 /* MaxDifferencesHistory */ > 0 && numDifferences <= (1447 /* MaxDifferencesHistory */ + 1)) {
+                                // BINGO! We overlapped, and we have the full trace in memory!
+                                return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);
+                            }
+                            else {
+                                // Either false overlap, or we didn't have enough memory for the full trace
+                                // Just return the recursion point
+                                return null;
+                            }
+                        }
+                    }
+                }
+                // Check to see if we should be quitting early, before moving on to the next iteration.
+                var matchLengthOfLongest = ((furthestOriginalIndex - originalStart) + (furthestModifiedIndex - modifiedStart) - numDifferences) / 2;
+                if (this.ContinueProcessingPredicate !== null && !this.ContinueProcessingPredicate(furthestOriginalIndex, matchLengthOfLongest)) {
+                    // We can't finish, so skip ahead to generating a result from what we have.
+                    quitEarlyArr[0] = true;
+                    // Use the furthest distance we got in the forward direction.
+                    midOriginalArr[0] = furthestOriginalIndex;
+                    midModifiedArr[0] = furthestModifiedIndex;
+                    if (matchLengthOfLongest > 0 && 1447 /* MaxDifferencesHistory */ > 0 && numDifferences <= (1447 /* MaxDifferencesHistory */ + 1)) {
+                        // Enough of the history is in memory to walk it backwards
+                        return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);
+                    }
+                    else {
+                        // We didn't actually remember enough of the history.
+                        //Since we are quiting the diff early, we need to shift back the originalStart and modified start
+                        //back into the boundary limits since we decremented their value above beyond the boundary limit.
+                        originalStart++;
+                        modifiedStart++;
+                        return [
+                            new DiffChange(originalStart, originalEnd - originalStart + 1, modifiedStart, modifiedEnd - modifiedStart + 1)
+                        ];
+                    }
+                }
+                // Run the algorithm in the reverse direction
+                diagonalReverseStart = this.ClipDiagonalBound(diagonalReverseBase - numDifferences, numDifferences, diagonalReverseBase, numDiagonals);
+                diagonalReverseEnd = this.ClipDiagonalBound(diagonalReverseBase + numDifferences, numDifferences, diagonalReverseBase, numDiagonals);
+                for (var diagonal = diagonalReverseStart; diagonal <= diagonalReverseEnd; diagonal += 2) {
+                    // STEP 1: We extend the furthest reaching point in the present diagonal
+                    // by looking at the diagonals above and below and picking the one whose point
+                    // is further away from the start point (originalEnd, modifiedEnd)
+                    if (diagonal === diagonalReverseStart || (diagonal < diagonalReverseEnd && reversePoints[diagonal - 1] >= reversePoints[diagonal + 1])) {
+                        originalIndex = reversePoints[diagonal + 1] - 1;
+                    }
+                    else {
+                        originalIndex = reversePoints[diagonal - 1];
+                    }
+                    modifiedIndex = originalIndex - (diagonal - diagonalReverseBase) - diagonalReverseOffset;
+                    // Save the current originalIndex so we can test for false overlap
+                    var tempOriginalIndex = originalIndex;
+                    // STEP 2: We can continue to extend the furthest reaching point in the present diagonal
+                    // as long as the elements are equal.
+                    while (originalIndex > originalStart && modifiedIndex > modifiedStart && this.ElementsAreEqual(originalIndex, modifiedIndex)) {
+                        originalIndex--;
+                        modifiedIndex--;
+                    }
+                    reversePoints[diagonal] = originalIndex;
+                    // STEP 4: If delta is even (overlap first happens on reverse when delta is even)
+                    // and diagonal is in the range of forward diagonals computed for numDifferences
+                    // then check for overlap.
+                    if (deltaIsEven && Math.abs(diagonal - diagonalForwardBase) <= numDifferences) {
+                        if (originalIndex <= forwardPoints[diagonal]) {
+                            midOriginalArr[0] = originalIndex;
+                            midModifiedArr[0] = modifiedIndex;
+                            if (tempOriginalIndex >= forwardPoints[diagonal] && 1447 /* MaxDifferencesHistory */ > 0 && numDifferences <= (1447 /* MaxDifferencesHistory */ + 1)) {
+                                // BINGO! We overlapped, and we have the full trace in memory!
+                                return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);
+                            }
+                            else {
+                                // Either false overlap, or we didn't have enough memory for the full trace
+                                // Just return the recursion point
+                                return null;
+                            }
+                        }
+                    }
+                }
+                // Save current vectors to history before the next iteration
+                if (numDifferences <= 1447 /* MaxDifferencesHistory */) {
+                    // We are allocating space for one extra int, which we fill with
+                    // the index of the diagonal base index
+                    var temp = new Int32Array(diagonalForwardEnd - diagonalForwardStart + 2);
+                    temp[0] = diagonalForwardBase - diagonalForwardStart + 1;
+                    MyArray.Copy2(forwardPoints, diagonalForwardStart, temp, 1, diagonalForwardEnd - diagonalForwardStart + 1);
+                    this.m_forwardHistory.push(temp);
+                    temp = new Int32Array(diagonalReverseEnd - diagonalReverseStart + 2);
+                    temp[0] = diagonalReverseBase - diagonalReverseStart + 1;
+                    MyArray.Copy2(reversePoints, diagonalReverseStart, temp, 1, diagonalReverseEnd - diagonalReverseStart + 1);
+                    this.m_reverseHistory.push(temp);
+                }
+            }
+            // If we got here, then we have the full trace in history. We just have to convert it to a change list
+            // NOTE: This part is a bit messy
+            return this.WALKTRACE(diagonalForwardBase, diagonalForwardStart, diagonalForwardEnd, diagonalForwardOffset, diagonalReverseBase, diagonalReverseStart, diagonalReverseEnd, diagonalReverseOffset, forwardPoints, reversePoints, originalIndex, originalEnd, midOriginalArr, modifiedIndex, modifiedEnd, midModifiedArr, deltaIsEven, quitEarlyArr);
+        };
+        /**
+         * Shifts the given changes to provide a more intuitive diff.
+         * While the first element in a diff matches the first element after the diff,
+         * we shift the diff down.
+         *
+         * @param changes The list of changes to shift
+         * @returns The shifted changes
+         */
+        LcsDiff.prototype.PrettifyChanges = function (changes) {
+            // Shift all the changes down first
+            for (var i = 0; i < changes.length; i++) {
+                var change = changes[i];
+                var originalStop = (i < changes.length - 1) ? changes[i + 1].originalStart : this._originalElementsOrHash.length;
+                var modifiedStop = (i < changes.length - 1) ? changes[i + 1].modifiedStart : this._modifiedElementsOrHash.length;
+                var checkOriginal = change.originalLength > 0;
+                var checkModified = change.modifiedLength > 0;
+                while (change.originalStart + change.originalLength < originalStop &&
+                    change.modifiedStart + change.modifiedLength < modifiedStop &&
+                    (!checkOriginal || this.OriginalElementsAreEqual(change.originalStart, change.originalStart + change.originalLength)) &&
+                    (!checkModified || this.ModifiedElementsAreEqual(change.modifiedStart, change.modifiedStart + change.modifiedLength))) {
+                    change.originalStart++;
+                    change.modifiedStart++;
+                }
+                var mergedChangeArr = [null];
+                if (i < changes.length - 1 && this.ChangesOverlap(changes[i], changes[i + 1], mergedChangeArr)) {
+                    changes[i] = mergedChangeArr[0];
+                    changes.splice(i + 1, 1);
+                    i--;
+                    continue;
+                }
+            }
+            // Shift changes back up until we hit empty or whitespace-only lines
+            for (var i = changes.length - 1; i >= 0; i--) {
+                var change = changes[i];
+                var originalStop = 0;
+                var modifiedStop = 0;
+                if (i > 0) {
+                    var prevChange = changes[i - 1];
+                    if (prevChange.originalLength > 0) {
+                        originalStop = prevChange.originalStart + prevChange.originalLength;
+                    }
+                    if (prevChange.modifiedLength > 0) {
+                        modifiedStop = prevChange.modifiedStart + prevChange.modifiedLength;
+                    }
+                }
+                var checkOriginal = change.originalLength > 0;
+                var checkModified = change.modifiedLength > 0;
+                var bestDelta = 0;
+                var bestScore = this._boundaryScore(change.originalStart, change.originalLength, change.modifiedStart, change.modifiedLength);
+                for (var delta = 1;; delta++) {
+                    var originalStart = change.originalStart - delta;
+                    var modifiedStart = change.modifiedStart - delta;
+                    if (originalStart < originalStop || modifiedStart < modifiedStop) {
+                        break;
+                    }
+                    if (checkOriginal && !this.OriginalElementsAreEqual(originalStart, originalStart + change.originalLength)) {
+                        break;
+                    }
+                    if (checkModified && !this.ModifiedElementsAreEqual(modifiedStart, modifiedStart + change.modifiedLength)) {
+                        break;
+                    }
+                    var score = this._boundaryScore(originalStart, change.originalLength, modifiedStart, change.modifiedLength);
+                    if (score > bestScore) {
+                        bestScore = score;
+                        bestDelta = delta;
+                    }
+                }
+                change.originalStart -= bestDelta;
+                change.modifiedStart -= bestDelta;
+            }
+            return changes;
+        };
+        LcsDiff.prototype._OriginalIsBoundary = function (index) {
+            if (index <= 0 || index >= this._originalElementsOrHash.length - 1) {
+                return true;
+            }
+            return (this._hasStrings && /^\s*$/.test(this._originalStringElements[index]));
+        };
+        LcsDiff.prototype._OriginalRegionIsBoundary = function (originalStart, originalLength) {
+            if (this._OriginalIsBoundary(originalStart) || this._OriginalIsBoundary(originalStart - 1)) {
+                return true;
+            }
+            if (originalLength > 0) {
+                var originalEnd = originalStart + originalLength;
+                if (this._OriginalIsBoundary(originalEnd - 1) || this._OriginalIsBoundary(originalEnd)) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        LcsDiff.prototype._ModifiedIsBoundary = function (index) {
+            if (index <= 0 || index >= this._modifiedElementsOrHash.length - 1) {
+                return true;
+            }
+            return (this._hasStrings && /^\s*$/.test(this._modifiedStringElements[index]));
+        };
+        LcsDiff.prototype._ModifiedRegionIsBoundary = function (modifiedStart, modifiedLength) {
+            if (this._ModifiedIsBoundary(modifiedStart) || this._ModifiedIsBoundary(modifiedStart - 1)) {
+                return true;
+            }
+            if (modifiedLength > 0) {
+                var modifiedEnd = modifiedStart + modifiedLength;
+                if (this._ModifiedIsBoundary(modifiedEnd - 1) || this._ModifiedIsBoundary(modifiedEnd)) {
+                    return true;
+                }
+            }
+            return false;
+        };
+        LcsDiff.prototype._boundaryScore = function (originalStart, originalLength, modifiedStart, modifiedLength) {
+            var originalScore = (this._OriginalRegionIsBoundary(originalStart, originalLength) ? 1 : 0);
+            var modifiedScore = (this._ModifiedRegionIsBoundary(modifiedStart, modifiedLength) ? 1 : 0);
+            return (originalScore + modifiedScore);
+        };
+        /**
+         * Concatenates the two input DiffChange lists and returns the resulting
+         * list.
+         * @param The left changes
+         * @param The right changes
+         * @returns The concatenated list
+         */
+        LcsDiff.prototype.ConcatenateChanges = function (left, right) {
+            var mergedChangeArr = [];
+            if (left.length === 0 || right.length === 0) {
+                return (right.length > 0) ? right : left;
+            }
+            else if (this.ChangesOverlap(left[left.length - 1], right[0], mergedChangeArr)) {
+                // Since we break the problem down recursively, it is possible that we
+                // might recurse in the middle of a change thereby splitting it into
+                // two changes. Here in the combining stage, we detect and fuse those
+                // changes back together
+                var result = new Array(left.length + right.length - 1);
+                MyArray.Copy(left, 0, result, 0, left.length - 1);
+                result[left.length - 1] = mergedChangeArr[0];
+                MyArray.Copy(right, 1, result, left.length, right.length - 1);
+                return result;
+            }
+            else {
+                var result = new Array(left.length + right.length);
+                MyArray.Copy(left, 0, result, 0, left.length);
+                MyArray.Copy(right, 0, result, left.length, right.length);
+                return result;
+            }
+        };
+        /**
+         * Returns true if the two changes overlap and can be merged into a single
+         * change
+         * @param left The left change
+         * @param right The right change
+         * @param mergedChange The merged change if the two overlap, null otherwise
+         * @returns True if the two changes overlap
+         */
+        LcsDiff.prototype.ChangesOverlap = function (left, right, mergedChangeArr) {
+            Debug.Assert(left.originalStart <= right.originalStart, 'Left change is not less than or equal to right change');
+            Debug.Assert(left.modifiedStart <= right.modifiedStart, 'Left change is not less than or equal to right change');
+            if (left.originalStart + left.originalLength >= right.originalStart || left.modifiedStart + left.modifiedLength >= right.modifiedStart) {
+                var originalStart = left.originalStart;
+                var originalLength = left.originalLength;
+                var modifiedStart = left.modifiedStart;
+                var modifiedLength = left.modifiedLength;
+                if (left.originalStart + left.originalLength >= right.originalStart) {
+                    originalLength = right.originalStart + right.originalLength - left.originalStart;
+                }
+                if (left.modifiedStart + left.modifiedLength >= right.modifiedStart) {
+                    modifiedLength = right.modifiedStart + right.modifiedLength - left.modifiedStart;
+                }
+                mergedChangeArr[0] = new DiffChange(originalStart, originalLength, modifiedStart, modifiedLength);
+                return true;
+            }
+            else {
+                mergedChangeArr[0] = null;
+                return false;
+            }
+        };
+        /**
+         * Helper method used to clip a diagonal index to the range of valid
+         * diagonals. This also decides whether or not the diagonal index,
+         * if it exceeds the boundary, should be clipped to the boundary or clipped
+         * one inside the boundary depending on the Even/Odd status of the boundary
+         * and numDifferences.
+         * @param diagonal The index of the diagonal to clip.
+         * @param numDifferences The current number of differences being iterated upon.
+         * @param diagonalBaseIndex The base reference diagonal.
+         * @param numDiagonals The total number of diagonals.
+         * @returns The clipped diagonal index.
+         */
+        LcsDiff.prototype.ClipDiagonalBound = function (diagonal, numDifferences, diagonalBaseIndex, numDiagonals) {
+            if (diagonal >= 0 && diagonal < numDiagonals) {
+                // Nothing to clip, its in range
+                return diagonal;
+            }
+            // diagonalsBelow: The number of diagonals below the reference diagonal
+            // diagonalsAbove: The number of diagonals above the reference diagonal
+            var diagonalsBelow = diagonalBaseIndex;
+            var diagonalsAbove = numDiagonals - diagonalBaseIndex - 1;
+            var diffEven = (numDifferences % 2 === 0);
+            if (diagonal < 0) {
+                var lowerBoundEven = (diagonalsBelow % 2 === 0);
+                return (diffEven === lowerBoundEven) ? 0 : 1;
+            }
+            else {
+                var upperBoundEven = (diagonalsAbove % 2 === 0);
+                return (diffEven === upperBoundEven) ? numDiagonals - 1 : numDiagonals - 2;
+            }
+        };
+        return LcsDiff;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var __extends$1 = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var FIN = { done: true, value: undefined };
+    var Iterator;
+    (function (Iterator) {
+        var _empty = {
+            next: function () {
+                return FIN;
+            }
+        };
+        function empty() {
+            return _empty;
+        }
+        Iterator.empty = empty;
+        function single(value) {
+            var done = false;
+            return {
+                next: function () {
+                    if (done) {
+                        return FIN;
+                    }
+                    done = true;
+                    return { done: false, value: value };
+                }
+            };
+        }
+        Iterator.single = single;
+        function fromArray(array, index, length) {
+            if (index === void 0) { index = 0; }
+            if (length === void 0) { length = array.length; }
+            return {
+                next: function () {
+                    if (index >= length) {
+                        return FIN;
+                    }
+                    return { done: false, value: array[index++] };
+                }
+            };
+        }
+        Iterator.fromArray = fromArray;
+        function fromNativeIterator(it) {
+            return {
+                next: function () {
+                    var result = it.next();
+                    if (result.done) {
+                        return FIN;
+                    }
+                    return { done: false, value: result.value };
+                }
+            };
+        }
+        Iterator.fromNativeIterator = fromNativeIterator;
+        function from(elements) {
+            if (!elements) {
+                return Iterator.empty();
+            }
+            else if (Array.isArray(elements)) {
+                return Iterator.fromArray(elements);
+            }
+            else {
+                return elements;
+            }
+        }
+        Iterator.from = from;
+        function map(iterator, fn) {
+            return {
+                next: function () {
+                    var element = iterator.next();
+                    if (element.done) {
+                        return FIN;
+                    }
+                    else {
+                        return { done: false, value: fn(element.value) };
+                    }
+                }
+            };
+        }
+        Iterator.map = map;
+        function filter(iterator, fn) {
+            return {
+                next: function () {
+                    while (true) {
+                        var element = iterator.next();
+                        if (element.done) {
+                            return FIN;
+                        }
+                        if (fn(element.value)) {
+                            return { done: false, value: element.value };
+                        }
+                    }
+                }
+            };
+        }
+        Iterator.filter = filter;
+        function forEach(iterator, fn) {
+            for (var next = iterator.next(); !next.done; next = iterator.next()) {
+                fn(next.value);
+            }
+        }
+        Iterator.forEach = forEach;
+        function collect(iterator, atMost) {
+            if (atMost === void 0) { atMost = Number.POSITIVE_INFINITY; }
+            var result = [];
+            if (atMost === 0) {
+                return result;
+            }
+            var i = 0;
+            for (var next = iterator.next(); !next.done; next = iterator.next()) {
+                result.push(next.value);
+                if (++i >= atMost) {
+                    break;
+                }
+            }
+            return result;
+        }
+        Iterator.collect = collect;
+        function concat() {
+            var iterators = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                iterators[_i] = arguments[_i];
+            }
+            var i = 0;
+            return {
+                next: function () {
+                    if (i >= iterators.length) {
+                        return FIN;
+                    }
+                    var iterator = iterators[i];
+                    var result = iterator.next();
+                    if (result.done) {
+                        i++;
+                        return this.next();
+                    }
+                    return result;
+                }
+            };
+        }
+        Iterator.concat = concat;
+        function chain(iterator) {
+            return new ChainableIterator(iterator);
+        }
+        Iterator.chain = chain;
+    })(Iterator || (Iterator = {}));
+    var ChainableIterator = /** @class */ (function () {
+        function ChainableIterator(it) {
+            this.it = it;
+        }
+        ChainableIterator.prototype.next = function () { return this.it.next(); };
+        return ChainableIterator;
+    }());
+    var ArrayIterator = /** @class */ (function () {
+        function ArrayIterator(items, start, end, index) {
+            if (start === void 0) { start = 0; }
+            if (end === void 0) { end = items.length; }
+            if (index === void 0) { index = start - 1; }
+            this.items = items;
+            this.start = start;
+            this.end = end;
+            this.index = index;
+        }
+        ArrayIterator.prototype.first = function () {
+            this.index = this.start;
+            return this.current();
+        };
+        ArrayIterator.prototype.next = function () {
+            this.index = Math.min(this.index + 1, this.end);
+            return this.current();
+        };
+        ArrayIterator.prototype.current = function () {
+            if (this.index === this.start - 1 || this.index === this.end) {
+                return null;
+            }
+            return this.items[this.index];
+        };
+        return ArrayIterator;
+    }());
+    var ArrayNavigator = /** @class */ (function (_super) {
+        __extends$1(ArrayNavigator, _super);
+        function ArrayNavigator(items, start, end, index) {
+            if (start === void 0) { start = 0; }
+            if (end === void 0) { end = items.length; }
+            if (index === void 0) { index = start - 1; }
+            return _super.call(this, items, start, end, index) || this;
+        }
+        ArrayNavigator.prototype.current = function () {
+            return _super.prototype.current.call(this);
+        };
+        ArrayNavigator.prototype.previous = function () {
+            this.index = Math.max(this.index - 1, this.start - 1);
+            return this.current();
+        };
+        ArrayNavigator.prototype.first = function () {
+            this.index = this.start;
+            return this.current();
+        };
+        ArrayNavigator.prototype.last = function () {
+            this.index = this.end - 1;
+            return this.current();
+        };
+        ArrayNavigator.prototype.parent = function () {
+            return null;
+        };
+        return ArrayNavigator;
+    }(ArrayIterator));
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var __extends$2 = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var _a;
+    var _schemePattern = /^\w[\w\d+.-]*$/;
+    var _singleSlashStart = /^\//;
+    var _doubleSlashStart = /^\/\//;
+    function _validateUri(ret, _strict) {
+        // scheme, must be set
+        if (!ret.scheme && _strict) {
+            throw new Error("[UriError]: Scheme is missing: {scheme: \"\", authority: \"" + ret.authority + "\", path: \"" + ret.path + "\", query: \"" + ret.query + "\", fragment: \"" + ret.fragment + "\"}");
+        }
+        // scheme, https://tools.ietf.org/html/rfc3986#section-3.1
+        // ALPHA *( ALPHA / DIGIT / "+" / "-" / "." )
+        if (ret.scheme && !_schemePattern.test(ret.scheme)) {
+            throw new Error('[UriError]: Scheme contains illegal characters.');
+        }
+        // path, http://tools.ietf.org/html/rfc3986#section-3.3
+        // If a URI contains an authority component, then the path component
+        // must either be empty or begin with a slash ("/") character.  If a URI
+        // does not contain an authority component, then the path cannot begin
+        // with two slash characters ("//").
+        if (ret.path) {
+            if (ret.authority) {
+                if (!_singleSlashStart.test(ret.path)) {
+                    throw new Error('[UriError]: If a URI contains an authority component, then the path component must either be empty or begin with a slash ("/") character');
+                }
+            }
+            else {
+                if (_doubleSlashStart.test(ret.path)) {
+                    throw new Error('[UriError]: If a URI does not contain an authority component, then the path cannot begin with two slash characters ("//")');
+                }
+            }
+        }
+    }
+    // for a while we allowed uris *without* schemes and this is the migration
+    // for them, e.g. an uri without scheme and without strict-mode warns and falls
+    // back to the file-scheme. that should cause the least carnage and still be a
+    // clear warning
+    function _schemeFix(scheme, _strict) {
+        if (!scheme && !_strict) {
+            return 'file';
+        }
+        return scheme;
+    }
+    // implements a bit of https://tools.ietf.org/html/rfc3986#section-5
+    function _referenceResolution(scheme, path) {
+        // the slash-character is our 'default base' as we don't
+        // support constructing URIs relative to other URIs. This
+        // also means that we alter and potentially break paths.
+        // see https://tools.ietf.org/html/rfc3986#section-5.1.4
+        switch (scheme) {
+            case 'https':
+            case 'http':
+            case 'file':
+                if (!path) {
+                    path = _slash;
+                }
+                else if (path[0] !== _slash) {
+                    path = _slash + path;
+                }
+                break;
+        }
+        return path;
+    }
+    var _empty = '';
+    var _slash = '/';
+    var _regexp = /^(([^:/?#]+?):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
+    /**
+     * Uniform Resource Identifier (URI) http://tools.ietf.org/html/rfc3986.
+     * This class is a simple parser which creates the basic component parts
+     * (http://tools.ietf.org/html/rfc3986#section-3) with minimal validation
+     * and encoding.
+     *
+     *       foo://example.com:8042/over/there?name=ferret#nose
+     *       \_/   \______________/\_________/ \_________/ \__/
+     *        |           |            |            |        |
+     *     scheme     authority       path        query   fragment
+     *        |   _____________________|__
+     *       / \ /                        \
+     *       urn:example:animal:ferret:nose
+     */
+    var URI = /** @class */ (function () {
+        /**
+         * @internal
+         */
+        function URI(schemeOrData, authority, path, query, fragment, _strict) {
+            if (_strict === void 0) { _strict = false; }
+            if (typeof schemeOrData === 'object') {
+                this.scheme = schemeOrData.scheme || _empty;
+                this.authority = schemeOrData.authority || _empty;
+                this.path = schemeOrData.path || _empty;
+                this.query = schemeOrData.query || _empty;
+                this.fragment = schemeOrData.fragment || _empty;
+                // no validation because it's this URI
+                // that creates uri components.
+                // _validateUri(this);
+            }
+            else {
+                this.scheme = _schemeFix(schemeOrData, _strict);
+                this.authority = authority || _empty;
+                this.path = _referenceResolution(this.scheme, path || _empty);
+                this.query = query || _empty;
+                this.fragment = fragment || _empty;
+                _validateUri(this, _strict);
+            }
+        }
+        URI.isUri = function (thing) {
+            if (thing instanceof URI) {
+                return true;
+            }
+            if (!thing) {
+                return false;
+            }
+            return typeof thing.authority === 'string'
+                && typeof thing.fragment === 'string'
+                && typeof thing.path === 'string'
+                && typeof thing.query === 'string'
+                && typeof thing.scheme === 'string'
+                && typeof thing.fsPath === 'function'
+                && typeof thing.with === 'function'
+                && typeof thing.toString === 'function';
+        };
+        Object.defineProperty(URI.prototype, "fsPath", {
+            // ---- filesystem path -----------------------
+            /**
+             * Returns a string representing the corresponding file system path of this URI.
+             * Will handle UNC paths, normalizes windows drive letters to lower-case, and uses the
+             * platform specific path separator.
+             *
+             * * Will *not* validate the path for invalid characters and semantics.
+             * * Will *not* look at the scheme of this URI.
+             * * The result shall *not* be used for display purposes but for accessing a file on disk.
+             *
+             *
+             * The *difference* to `URI#path` is the use of the platform specific separator and the handling
+             * of UNC paths. See the below sample of a file-uri with an authority (UNC path).
+             *
+             * ```ts
+                const u = URI.parse('file://server/c$/folder/file.txt')
+                u.authority === 'server'
+                u.path === '/shares/c$/file.txt'
+                u.fsPath === '\\server\c$\folder\file.txt'
+            ```
+             *
+             * Using `URI#path` to read a file (using fs-apis) would not be enough because parts of the path,
+             * namely the server name, would be missing. Therefore `URI#fsPath` exists - it's sugar to ease working
+             * with URIs that represent files on disk (`file` scheme).
+             */
+            get: function () {
+                // if (this.scheme !== 'file') {
+                // 	console.warn(`[UriError] calling fsPath with scheme ${this.scheme}`);
+                // }
+                return _makeFsPath(this);
+            },
+            enumerable: true,
+            configurable: true
+        });
+        // ---- modify to new -------------------------
+        URI.prototype.with = function (change) {
+            if (!change) {
+                return this;
+            }
+            var scheme = change.scheme, authority = change.authority, path = change.path, query = change.query, fragment = change.fragment;
+            if (scheme === undefined) {
+                scheme = this.scheme;
+            }
+            else if (scheme === null) {
+                scheme = _empty;
+            }
+            if (authority === undefined) {
+                authority = this.authority;
+            }
+            else if (authority === null) {
+                authority = _empty;
+            }
+            if (path === undefined) {
+                path = this.path;
+            }
+            else if (path === null) {
+                path = _empty;
+            }
+            if (query === undefined) {
+                query = this.query;
+            }
+            else if (query === null) {
+                query = _empty;
+            }
+            if (fragment === undefined) {
+                fragment = this.fragment;
+            }
+            else if (fragment === null) {
+                fragment = _empty;
+            }
+            if (scheme === this.scheme
+                && authority === this.authority
+                && path === this.path
+                && query === this.query
+                && fragment === this.fragment) {
+                return this;
+            }
+            return new _URI(scheme, authority, path, query, fragment);
+        };
+        // ---- parse & validate ------------------------
+        /**
+         * Creates a new URI from a string, e.g. `http://www.msft.com/some/path`,
+         * `file:///usr/home`, or `scheme:with/path`.
+         *
+         * @param value A string which represents an URI (see `URI#toString`).
+         */
+        URI.parse = function (value, _strict) {
+            if (_strict === void 0) { _strict = false; }
+            var match = _regexp.exec(value);
+            if (!match) {
+                return new _URI(_empty, _empty, _empty, _empty, _empty);
+            }
+            return new _URI(match[2] || _empty, percentDecode(match[4] || _empty), percentDecode(match[5] || _empty), percentDecode(match[7] || _empty), percentDecode(match[9] || _empty), _strict);
+        };
+        /**
+         * Creates a new URI from a file system path, e.g. `c:\my\files`,
+         * `/usr/home`, or `\\server\share\some\path`.
+         *
+         * The *difference* between `URI#parse` and `URI#file` is that the latter treats the argument
+         * as path, not as stringified-uri. E.g. `URI.file(path)` is **not the same as**
+         * `URI.parse('file://' + path)` because the path might contain characters that are
+         * interpreted (# and ?). See the following sample:
+         * ```ts
+        const good = URI.file('/coding/c#/project1');
+        good.scheme === 'file';
+        good.path === '/coding/c#/project1';
+        good.fragment === '';
+        const bad = URI.parse('file://' + '/coding/c#/project1');
+        bad.scheme === 'file';
+        bad.path === '/coding/c'; // path is now broken
+        bad.fragment === '/project1';
+        ```
+         *
+         * @param path A file system path (see `URI#fsPath`)
+         */
+        URI.file = function (path) {
+            var authority = _empty;
+            // normalize to fwd-slashes on windows,
+            // on other systems bwd-slashes are valid
+            // filename character, eg /f\oo/ba\r.txt
+            if (isWindows) {
+                path = path.replace(/\\/g, _slash);
+            }
+            // check for authority as used in UNC shares
+            // or use the path as given
+            if (path[0] === _slash && path[1] === _slash) {
+                var idx = path.indexOf(_slash, 2);
+                if (idx === -1) {
+                    authority = path.substring(2);
+                    path = _slash;
+                }
+                else {
+                    authority = path.substring(2, idx);
+                    path = path.substring(idx) || _slash;
+                }
+            }
+            return new _URI('file', authority, path, _empty, _empty);
+        };
+        URI.from = function (components) {
+            return new _URI(components.scheme, components.authority, components.path, components.query, components.fragment);
+        };
+        // ---- printing/externalize ---------------------------
+        /**
+         * Creates a string representation for this URI. It's guaranteed that calling
+         * `URI.parse` with the result of this function creates an URI which is equal
+         * to this URI.
+         *
+         * * The result shall *not* be used for display purposes but for externalization or transport.
+         * * The result will be encoded using the percentage encoding and encoding happens mostly
+         * ignore the scheme-specific encoding rules.
+         *
+         * @param skipEncoding Do not encode the result, default is `false`
+         */
+        URI.prototype.toString = function (skipEncoding) {
+            if (skipEncoding === void 0) { skipEncoding = false; }
+            return _asFormatted(this, skipEncoding);
+        };
+        URI.prototype.toJSON = function () {
+            return this;
+        };
+        URI.revive = function (data) {
+            if (!data) {
+                return data;
+            }
+            else if (data instanceof URI) {
+                return data;
+            }
+            else {
+                var result = new _URI(data);
+                result._formatted = data.external;
+                result._fsPath = data._sep === _pathSepMarker ? data.fsPath : null;
+                return result;
+            }
+        };
+        return URI;
+    }());
+    var _pathSepMarker = isWindows ? 1 : undefined;
+    // eslint-disable-next-line @typescript-eslint/class-name-casing
+    var _URI = /** @class */ (function (_super) {
+        __extends$2(_URI, _super);
+        function _URI() {
+            var _this = _super !== null && _super.apply(this, arguments) || this;
+            _this._formatted = null;
+            _this._fsPath = null;
+            return _this;
+        }
+        Object.defineProperty(_URI.prototype, "fsPath", {
+            get: function () {
+                if (!this._fsPath) {
+                    this._fsPath = _makeFsPath(this);
+                }
+                return this._fsPath;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        _URI.prototype.toString = function (skipEncoding) {
+            if (skipEncoding === void 0) { skipEncoding = false; }
+            if (!skipEncoding) {
+                if (!this._formatted) {
+                    this._formatted = _asFormatted(this, false);
+                }
+                return this._formatted;
+            }
+            else {
+                // we don't cache that
+                return _asFormatted(this, true);
+            }
+        };
+        _URI.prototype.toJSON = function () {
+            var res = {
+                $mid: 1
+            };
+            // cached state
+            if (this._fsPath) {
+                res.fsPath = this._fsPath;
+                res._sep = _pathSepMarker;
+            }
+            if (this._formatted) {
+                res.external = this._formatted;
+            }
+            // uri components
+            if (this.path) {
+                res.path = this.path;
+            }
+            if (this.scheme) {
+                res.scheme = this.scheme;
+            }
+            if (this.authority) {
+                res.authority = this.authority;
+            }
+            if (this.query) {
+                res.query = this.query;
+            }
+            if (this.fragment) {
+                res.fragment = this.fragment;
+            }
+            return res;
+        };
+        return _URI;
+    }(URI));
+    // reserved characters: https://tools.ietf.org/html/rfc3986#section-2.2
+    var encodeTable = (_a = {},
+        _a[58 /* Colon */] = '%3A',
+        _a[47 /* Slash */] = '%2F',
+        _a[63 /* QuestionMark */] = '%3F',
+        _a[35 /* Hash */] = '%23',
+        _a[91 /* OpenSquareBracket */] = '%5B',
+        _a[93 /* CloseSquareBracket */] = '%5D',
+        _a[64 /* AtSign */] = '%40',
+        _a[33 /* ExclamationMark */] = '%21',
+        _a[36 /* DollarSign */] = '%24',
+        _a[38 /* Ampersand */] = '%26',
+        _a[39 /* SingleQuote */] = '%27',
+        _a[40 /* OpenParen */] = '%28',
+        _a[41 /* CloseParen */] = '%29',
+        _a[42 /* Asterisk */] = '%2A',
+        _a[43 /* Plus */] = '%2B',
+        _a[44 /* Comma */] = '%2C',
+        _a[59 /* Semicolon */] = '%3B',
+        _a[61 /* Equals */] = '%3D',
+        _a[32 /* Space */] = '%20',
+        _a);
+    function encodeURIComponentFast(uriComponent, allowSlash) {
+        var res = undefined;
+        var nativeEncodePos = -1;
+        for (var pos = 0; pos < uriComponent.length; pos++) {
+            var code = uriComponent.charCodeAt(pos);
+            // unreserved characters: https://tools.ietf.org/html/rfc3986#section-2.3
+            if ((code >= 97 /* a */ && code <= 122 /* z */)
+                || (code >= 65 /* A */ && code <= 90 /* Z */)
+                || (code >= 48 /* Digit0 */ && code <= 57 /* Digit9 */)
+                || code === 45 /* Dash */
+                || code === 46 /* Period */
+                || code === 95 /* Underline */
+                || code === 126 /* Tilde */
+                || (allowSlash && code === 47 /* Slash */)) {
+                // check if we are delaying native encode
+                if (nativeEncodePos !== -1) {
+                    res += encodeURIComponent(uriComponent.substring(nativeEncodePos, pos));
+                    nativeEncodePos = -1;
+                }
+                // check if we write into a new string (by default we try to return the param)
+                if (res !== undefined) {
+                    res += uriComponent.charAt(pos);
+                }
+            }
+            else {
+                // encoding needed, we need to allocate a new string
+                if (res === undefined) {
+                    res = uriComponent.substr(0, pos);
+                }
+                // check with default table first
+                var escaped = encodeTable[code];
+                if (escaped !== undefined) {
+                    // check if we are delaying native encode
+                    if (nativeEncodePos !== -1) {
+                        res += encodeURIComponent(uriComponent.substring(nativeEncodePos, pos));
+                        nativeEncodePos = -1;
+                    }
+                    // append escaped variant to result
+                    res += escaped;
+                }
+                else if (nativeEncodePos === -1) {
+                    // use native encode only when needed
+                    nativeEncodePos = pos;
+                }
+            }
+        }
+        if (nativeEncodePos !== -1) {
+            res += encodeURIComponent(uriComponent.substring(nativeEncodePos));
+        }
+        return res !== undefined ? res : uriComponent;
+    }
+    function encodeURIComponentMinimal(path) {
+        var res = undefined;
+        for (var pos = 0; pos < path.length; pos++) {
+            var code = path.charCodeAt(pos);
+            if (code === 35 /* Hash */ || code === 63 /* QuestionMark */) {
+                if (res === undefined) {
+                    res = path.substr(0, pos);
+                }
+                res += encodeTable[code];
+            }
+            else {
+                if (res !== undefined) {
+                    res += path[pos];
+                }
+            }
+        }
+        return res !== undefined ? res : path;
+    }
+    /**
+     * Compute `fsPath` for the given uri
+     */
+    function _makeFsPath(uri) {
+        var value;
+        if (uri.authority && uri.path.length > 1 && uri.scheme === 'file') {
+            // unc path: file://shares/c$/far/boo
+            value = "//" + uri.authority + uri.path;
+        }
+        else if (uri.path.charCodeAt(0) === 47 /* Slash */
+            && (uri.path.charCodeAt(1) >= 65 /* A */ && uri.path.charCodeAt(1) <= 90 /* Z */ || uri.path.charCodeAt(1) >= 97 /* a */ && uri.path.charCodeAt(1) <= 122 /* z */)
+            && uri.path.charCodeAt(2) === 58 /* Colon */) {
+            // windows drive letter: file:///c:/far/boo
+            value = uri.path[1].toLowerCase() + uri.path.substr(2);
+        }
+        else {
+            // other path
+            value = uri.path;
+        }
+        if (isWindows) {
+            value = value.replace(/\//g, '\\');
+        }
+        return value;
+    }
+    /**
+     * Create the external version of a uri
+     */
+    function _asFormatted(uri, skipEncoding) {
+        var encoder = !skipEncoding
+            ? encodeURIComponentFast
+            : encodeURIComponentMinimal;
+        var res = '';
+        var scheme = uri.scheme, authority = uri.authority, path = uri.path, query = uri.query, fragment = uri.fragment;
+        if (scheme) {
+            res += scheme;
+            res += ':';
+        }
+        if (authority || scheme === 'file') {
+            res += _slash;
+            res += _slash;
+        }
+        if (authority) {
+            var idx = authority.indexOf('@');
+            if (idx !== -1) {
+                // <user>@<auth>
+                var userinfo = authority.substr(0, idx);
+                authority = authority.substr(idx + 1);
+                idx = userinfo.indexOf(':');
+                if (idx === -1) {
+                    res += encoder(userinfo, false);
+                }
+                else {
+                    // <user>:<pass>@<auth>
+                    res += encoder(userinfo.substr(0, idx), false);
+                    res += ':';
+                    res += encoder(userinfo.substr(idx + 1), false);
+                }
+                res += '@';
+            }
+            authority = authority.toLowerCase();
+            idx = authority.indexOf(':');
+            if (idx === -1) {
+                res += encoder(authority, false);
+            }
+            else {
+                // <auth>:<port>
+                res += encoder(authority.substr(0, idx), false);
+                res += authority.substr(idx);
+            }
+        }
+        if (path) {
+            // lower-case windows drive letters in /C:/fff or C:/fff
+            if (path.length >= 3 && path.charCodeAt(0) === 47 /* Slash */ && path.charCodeAt(2) === 58 /* Colon */) {
+                var code = path.charCodeAt(1);
+                if (code >= 65 /* A */ && code <= 90 /* Z */) {
+                    path = "/" + String.fromCharCode(code + 32) + ":" + path.substr(3); // "/c:".length === 3
+                }
+            }
+            else if (path.length >= 2 && path.charCodeAt(1) === 58 /* Colon */) {
+                var code = path.charCodeAt(0);
+                if (code >= 65 /* A */ && code <= 90 /* Z */) {
+                    path = String.fromCharCode(code + 32) + ":" + path.substr(2); // "/c:".length === 3
+                }
+            }
+            // encode the rest of the path
+            res += encoder(path, true);
+        }
+        if (query) {
+            res += '?';
+            res += encoder(query, false);
+        }
+        if (fragment) {
+            res += '#';
+            res += !skipEncoding ? encodeURIComponentFast(fragment, false) : fragment;
+        }
+        return res;
+    }
+    // --- decode
+    function decodeURIComponentGraceful(str) {
+        try {
+            return decodeURIComponent(str);
+        }
+        catch (_a) {
+            if (str.length > 3) {
+                return str.substr(0, 3) + decodeURIComponentGraceful(str.substr(3));
+            }
+            else {
+                return str;
+            }
+        }
+    }
+    var _rEncodedAsHex = /(%[0-9A-Za-z][0-9A-Za-z])+/g;
+    function percentDecode(str) {
+        if (!str.match(_rEncodedAsHex)) {
+            return str;
+        }
+        return str.replace(_rEncodedAsHex, function (match) { return decodeURIComponentGraceful(match); });
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    /**
+     * A position in the editor.
+     */
+    var Position = /** @class */ (function () {
+        function Position(lineNumber, column) {
+            this.lineNumber = lineNumber;
+            this.column = column;
+        }
+        /**
+         * Create a new position from this position.
+         *
+         * @param newLineNumber new line number
+         * @param newColumn new column
+         */
+        Position.prototype.with = function (newLineNumber, newColumn) {
+            if (newLineNumber === void 0) { newLineNumber = this.lineNumber; }
+            if (newColumn === void 0) { newColumn = this.column; }
+            if (newLineNumber === this.lineNumber && newColumn === this.column) {
+                return this;
+            }
+            else {
+                return new Position(newLineNumber, newColumn);
+            }
+        };
+        /**
+         * Derive a new position from this position.
+         *
+         * @param deltaLineNumber line number delta
+         * @param deltaColumn column delta
+         */
+        Position.prototype.delta = function (deltaLineNumber, deltaColumn) {
+            if (deltaLineNumber === void 0) { deltaLineNumber = 0; }
+            if (deltaColumn === void 0) { deltaColumn = 0; }
+            return this.with(this.lineNumber + deltaLineNumber, this.column + deltaColumn);
+        };
+        /**
+         * Test if this position equals other position
+         */
+        Position.prototype.equals = function (other) {
+            return Position.equals(this, other);
+        };
+        /**
+         * Test if position `a` equals position `b`
+         */
+        Position.equals = function (a, b) {
+            if (!a && !b) {
+                return true;
+            }
+            return (!!a &&
+                !!b &&
+                a.lineNumber === b.lineNumber &&
+                a.column === b.column);
+        };
+        /**
+         * Test if this position is before other position.
+         * If the two positions are equal, the result will be false.
+         */
+        Position.prototype.isBefore = function (other) {
+            return Position.isBefore(this, other);
+        };
+        /**
+         * Test if position `a` is before position `b`.
+         * If the two positions are equal, the result will be false.
+         */
+        Position.isBefore = function (a, b) {
+            if (a.lineNumber < b.lineNumber) {
+                return true;
+            }
+            if (b.lineNumber < a.lineNumber) {
+                return false;
+            }
+            return a.column < b.column;
+        };
+        /**
+         * Test if this position is before other position.
+         * If the two positions are equal, the result will be true.
+         */
+        Position.prototype.isBeforeOrEqual = function (other) {
+            return Position.isBeforeOrEqual(this, other);
+        };
+        /**
+         * Test if position `a` is before position `b`.
+         * If the two positions are equal, the result will be true.
+         */
+        Position.isBeforeOrEqual = function (a, b) {
+            if (a.lineNumber < b.lineNumber) {
+                return true;
+            }
+            if (b.lineNumber < a.lineNumber) {
+                return false;
+            }
+            return a.column <= b.column;
+        };
+        /**
+         * A function that compares positions, useful for sorting
+         */
+        Position.compare = function (a, b) {
+            var aLineNumber = a.lineNumber | 0;
+            var bLineNumber = b.lineNumber | 0;
+            if (aLineNumber === bLineNumber) {
+                var aColumn = a.column | 0;
+                var bColumn = b.column | 0;
+                return aColumn - bColumn;
+            }
+            return aLineNumber - bLineNumber;
+        };
+        /**
+         * Clone this position.
+         */
+        Position.prototype.clone = function () {
+            return new Position(this.lineNumber, this.column);
+        };
+        /**
+         * Convert to a human-readable representation.
+         */
+        Position.prototype.toString = function () {
+            return '(' + this.lineNumber + ',' + this.column + ')';
+        };
+        // ---
+        /**
+         * Create a `Position` from an `IPosition`.
+         */
+        Position.lift = function (pos) {
+            return new Position(pos.lineNumber, pos.column);
+        };
+        /**
+         * Test if `obj` is an `IPosition`.
+         */
+        Position.isIPosition = function (obj) {
+            return (obj
+                && (typeof obj.lineNumber === 'number')
+                && (typeof obj.column === 'number'));
+        };
+        return Position;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    /**
+     * A range in the editor. (startLineNumber,startColumn) is <= (endLineNumber,endColumn)
+     */
+    var Range = /** @class */ (function () {
+        function Range(startLineNumber, startColumn, endLineNumber, endColumn) {
+            if ((startLineNumber > endLineNumber) || (startLineNumber === endLineNumber && startColumn > endColumn)) {
+                this.startLineNumber = endLineNumber;
+                this.startColumn = endColumn;
+                this.endLineNumber = startLineNumber;
+                this.endColumn = startColumn;
+            }
+            else {
+                this.startLineNumber = startLineNumber;
+                this.startColumn = startColumn;
+                this.endLineNumber = endLineNumber;
+                this.endColumn = endColumn;
+            }
+        }
+        /**
+         * Test if this range is empty.
+         */
+        Range.prototype.isEmpty = function () {
+            return Range.isEmpty(this);
+        };
+        /**
+         * Test if `range` is empty.
+         */
+        Range.isEmpty = function (range) {
+            return (range.startLineNumber === range.endLineNumber && range.startColumn === range.endColumn);
+        };
+        /**
+         * Test if position is in this range. If the position is at the edges, will return true.
+         */
+        Range.prototype.containsPosition = function (position) {
+            return Range.containsPosition(this, position);
+        };
+        /**
+         * Test if `position` is in `range`. If the position is at the edges, will return true.
+         */
+        Range.containsPosition = function (range, position) {
+            if (position.lineNumber < range.startLineNumber || position.lineNumber > range.endLineNumber) {
+                return false;
+            }
+            if (position.lineNumber === range.startLineNumber && position.column < range.startColumn) {
+                return false;
+            }
+            if (position.lineNumber === range.endLineNumber && position.column > range.endColumn) {
+                return false;
+            }
+            return true;
+        };
+        /**
+         * Test if range is in this range. If the range is equal to this range, will return true.
+         */
+        Range.prototype.containsRange = function (range) {
+            return Range.containsRange(this, range);
+        };
+        /**
+         * Test if `otherRange` is in `range`. If the ranges are equal, will return true.
+         */
+        Range.containsRange = function (range, otherRange) {
+            if (otherRange.startLineNumber < range.startLineNumber || otherRange.endLineNumber < range.startLineNumber) {
+                return false;
+            }
+            if (otherRange.startLineNumber > range.endLineNumber || otherRange.endLineNumber > range.endLineNumber) {
+                return false;
+            }
+            if (otherRange.startLineNumber === range.startLineNumber && otherRange.startColumn < range.startColumn) {
+                return false;
+            }
+            if (otherRange.endLineNumber === range.endLineNumber && otherRange.endColumn > range.endColumn) {
+                return false;
+            }
+            return true;
+        };
+        /**
+         * Test if `range` is strictly in this range. `range` must start after and end before this range for the result to be true.
+         */
+        Range.prototype.strictContainsRange = function (range) {
+            return Range.strictContainsRange(this, range);
+        };
+        /**
+         * Test if `otherRange` is strinctly in `range` (must start after, and end before). If the ranges are equal, will return false.
+         */
+        Range.strictContainsRange = function (range, otherRange) {
+            if (otherRange.startLineNumber < range.startLineNumber || otherRange.endLineNumber < range.startLineNumber) {
+                return false;
+            }
+            if (otherRange.startLineNumber > range.endLineNumber || otherRange.endLineNumber > range.endLineNumber) {
+                return false;
+            }
+            if (otherRange.startLineNumber === range.startLineNumber && otherRange.startColumn <= range.startColumn) {
+                return false;
+            }
+            if (otherRange.endLineNumber === range.endLineNumber && otherRange.endColumn >= range.endColumn) {
+                return false;
+            }
+            return true;
+        };
+        /**
+         * A reunion of the two ranges.
+         * The smallest position will be used as the start point, and the largest one as the end point.
+         */
+        Range.prototype.plusRange = function (range) {
+            return Range.plusRange(this, range);
+        };
+        /**
+         * A reunion of the two ranges.
+         * The smallest position will be used as the start point, and the largest one as the end point.
+         */
+        Range.plusRange = function (a, b) {
+            var startLineNumber;
+            var startColumn;
+            var endLineNumber;
+            var endColumn;
+            if (b.startLineNumber < a.startLineNumber) {
+                startLineNumber = b.startLineNumber;
+                startColumn = b.startColumn;
+            }
+            else if (b.startLineNumber === a.startLineNumber) {
+                startLineNumber = b.startLineNumber;
+                startColumn = Math.min(b.startColumn, a.startColumn);
+            }
+            else {
+                startLineNumber = a.startLineNumber;
+                startColumn = a.startColumn;
+            }
+            if (b.endLineNumber > a.endLineNumber) {
+                endLineNumber = b.endLineNumber;
+                endColumn = b.endColumn;
+            }
+            else if (b.endLineNumber === a.endLineNumber) {
+                endLineNumber = b.endLineNumber;
+                endColumn = Math.max(b.endColumn, a.endColumn);
+            }
+            else {
+                endLineNumber = a.endLineNumber;
+                endColumn = a.endColumn;
+            }
+            return new Range(startLineNumber, startColumn, endLineNumber, endColumn);
+        };
+        /**
+         * A intersection of the two ranges.
+         */
+        Range.prototype.intersectRanges = function (range) {
+            return Range.intersectRanges(this, range);
+        };
+        /**
+         * A intersection of the two ranges.
+         */
+        Range.intersectRanges = function (a, b) {
+            var resultStartLineNumber = a.startLineNumber;
+            var resultStartColumn = a.startColumn;
+            var resultEndLineNumber = a.endLineNumber;
+            var resultEndColumn = a.endColumn;
+            var otherStartLineNumber = b.startLineNumber;
+            var otherStartColumn = b.startColumn;
+            var otherEndLineNumber = b.endLineNumber;
+            var otherEndColumn = b.endColumn;
+            if (resultStartLineNumber < otherStartLineNumber) {
+                resultStartLineNumber = otherStartLineNumber;
+                resultStartColumn = otherStartColumn;
+            }
+            else if (resultStartLineNumber === otherStartLineNumber) {
+                resultStartColumn = Math.max(resultStartColumn, otherStartColumn);
+            }
+            if (resultEndLineNumber > otherEndLineNumber) {
+                resultEndLineNumber = otherEndLineNumber;
+                resultEndColumn = otherEndColumn;
+            }
+            else if (resultEndLineNumber === otherEndLineNumber) {
+                resultEndColumn = Math.min(resultEndColumn, otherEndColumn);
+            }
+            // Check if selection is now empty
+            if (resultStartLineNumber > resultEndLineNumber) {
+                return null;
+            }
+            if (resultStartLineNumber === resultEndLineNumber && resultStartColumn > resultEndColumn) {
+                return null;
+            }
+            return new Range(resultStartLineNumber, resultStartColumn, resultEndLineNumber, resultEndColumn);
+        };
+        /**
+         * Test if this range equals other.
+         */
+        Range.prototype.equalsRange = function (other) {
+            return Range.equalsRange(this, other);
+        };
+        /**
+         * Test if range `a` equals `b`.
+         */
+        Range.equalsRange = function (a, b) {
+            return (!!a &&
+                !!b &&
+                a.startLineNumber === b.startLineNumber &&
+                a.startColumn === b.startColumn &&
+                a.endLineNumber === b.endLineNumber &&
+                a.endColumn === b.endColumn);
+        };
+        /**
+         * Return the end position (which will be after or equal to the start position)
+         */
+        Range.prototype.getEndPosition = function () {
+            return new Position(this.endLineNumber, this.endColumn);
+        };
+        /**
+         * Return the start position (which will be before or equal to the end position)
+         */
+        Range.prototype.getStartPosition = function () {
+            return new Position(this.startLineNumber, this.startColumn);
+        };
+        /**
+         * Transform to a user presentable string representation.
+         */
+        Range.prototype.toString = function () {
+            return '[' + this.startLineNumber + ',' + this.startColumn + ' -> ' + this.endLineNumber + ',' + this.endColumn + ']';
+        };
+        /**
+         * Create a new range using this range's start position, and using endLineNumber and endColumn as the end position.
+         */
+        Range.prototype.setEndPosition = function (endLineNumber, endColumn) {
+            return new Range(this.startLineNumber, this.startColumn, endLineNumber, endColumn);
+        };
+        /**
+         * Create a new range using this range's end position, and using startLineNumber and startColumn as the start position.
+         */
+        Range.prototype.setStartPosition = function (startLineNumber, startColumn) {
+            return new Range(startLineNumber, startColumn, this.endLineNumber, this.endColumn);
+        };
+        /**
+         * Create a new empty range using this range's start position.
+         */
+        Range.prototype.collapseToStart = function () {
+            return Range.collapseToStart(this);
+        };
+        /**
+         * Create a new empty range using this range's start position.
+         */
+        Range.collapseToStart = function (range) {
+            return new Range(range.startLineNumber, range.startColumn, range.startLineNumber, range.startColumn);
+        };
+        // ---
+        Range.fromPositions = function (start, end) {
+            if (end === void 0) { end = start; }
+            return new Range(start.lineNumber, start.column, end.lineNumber, end.column);
+        };
+        Range.lift = function (range) {
+            if (!range) {
+                return null;
+            }
+            return new Range(range.startLineNumber, range.startColumn, range.endLineNumber, range.endColumn);
+        };
+        /**
+         * Test if `obj` is an `IRange`.
+         */
+        Range.isIRange = function (obj) {
+            return (obj
+                && (typeof obj.startLineNumber === 'number')
+                && (typeof obj.startColumn === 'number')
+                && (typeof obj.endLineNumber === 'number')
+                && (typeof obj.endColumn === 'number'));
+        };
+        /**
+         * Test if the two ranges are touching in any way.
+         */
+        Range.areIntersectingOrTouching = function (a, b) {
+            // Check if `a` is before `b`
+            if (a.endLineNumber < b.startLineNumber || (a.endLineNumber === b.startLineNumber && a.endColumn < b.startColumn)) {
+                return false;
+            }
+            // Check if `b` is before `a`
+            if (b.endLineNumber < a.startLineNumber || (b.endLineNumber === a.startLineNumber && b.endColumn < a.startColumn)) {
+                return false;
+            }
+            // These ranges must intersect
+            return true;
+        };
+        /**
+         * Test if the two ranges are intersecting. If the ranges are touching it returns true.
+         */
+        Range.areIntersecting = function (a, b) {
+            // Check if `a` is before `b`
+            if (a.endLineNumber < b.startLineNumber || (a.endLineNumber === b.startLineNumber && a.endColumn <= b.startColumn)) {
+                return false;
+            }
+            // Check if `b` is before `a`
+            if (b.endLineNumber < a.startLineNumber || (b.endLineNumber === a.startLineNumber && b.endColumn <= a.startColumn)) {
+                return false;
+            }
+            // These ranges must intersect
+            return true;
+        };
+        /**
+         * A function that compares ranges, useful for sorting ranges
+         * It will first compare ranges on the startPosition and then on the endPosition
+         */
+        Range.compareRangesUsingStarts = function (a, b) {
+            if (a && b) {
+                var aStartLineNumber = a.startLineNumber | 0;
+                var bStartLineNumber = b.startLineNumber | 0;
+                if (aStartLineNumber === bStartLineNumber) {
+                    var aStartColumn = a.startColumn | 0;
+                    var bStartColumn = b.startColumn | 0;
+                    if (aStartColumn === bStartColumn) {
+                        var aEndLineNumber = a.endLineNumber | 0;
+                        var bEndLineNumber = b.endLineNumber | 0;
+                        if (aEndLineNumber === bEndLineNumber) {
+                            var aEndColumn = a.endColumn | 0;
+                            var bEndColumn = b.endColumn | 0;
+                            return aEndColumn - bEndColumn;
+                        }
+                        return aEndLineNumber - bEndLineNumber;
+                    }
+                    return aStartColumn - bStartColumn;
+                }
+                return aStartLineNumber - bStartLineNumber;
+            }
+            var aExists = (a ? 1 : 0);
+            var bExists = (b ? 1 : 0);
+            return aExists - bExists;
+        };
+        /**
+         * A function that compares ranges, useful for sorting ranges
+         * It will first compare ranges on the endPosition and then on the startPosition
+         */
+        Range.compareRangesUsingEnds = function (a, b) {
+            if (a.endLineNumber === b.endLineNumber) {
+                if (a.endColumn === b.endColumn) {
+                    if (a.startLineNumber === b.startLineNumber) {
+                        return a.startColumn - b.startColumn;
+                    }
+                    return a.startLineNumber - b.startLineNumber;
+                }
+                return a.endColumn - b.endColumn;
+            }
+            return a.endLineNumber - b.endLineNumber;
+        };
+        /**
+         * Test if the range spans multiple lines.
+         */
+        Range.spansMultipleLines = function (range) {
+            return range.endLineNumber > range.startLineNumber;
+        };
+        return Range;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    /**
+     * Returns first index of the string that is not whitespace.
+     * If string is empty or contains only whitespaces, returns -1
+     */
+    function firstNonWhitespaceIndex(str) {
+        for (var i = 0, len = str.length; i < len; i++) {
+            var chCode = str.charCodeAt(i);
+            if (chCode !== 32 /* Space */ && chCode !== 9 /* Tab */) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    /**
+     * Returns last index of the string that is not whitespace.
+     * If string is empty or contains only whitespaces, returns -1
+     */
+    function lastNonWhitespaceIndex(str, startIndex) {
+        if (startIndex === void 0) { startIndex = str.length - 1; }
+        for (var i = startIndex; i >= 0; i--) {
+            var chCode = str.charCodeAt(i);
+            if (chCode !== 32 /* Space */ && chCode !== 9 /* Tab */) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    var GraphemeBreakTree = /** @class */ (function () {
+        function GraphemeBreakTree() {
+            this._data = getGraphemeBreakRawData();
+        }
+        GraphemeBreakTree.getInstance = function () {
+            if (!GraphemeBreakTree._INSTANCE) {
+                GraphemeBreakTree._INSTANCE = new GraphemeBreakTree();
+            }
+            return GraphemeBreakTree._INSTANCE;
+        };
+        GraphemeBreakTree.prototype.getGraphemeBreakType = function (codePoint) {
+            // !!! Let's make 7bit ASCII a bit faster: 0..31
+            if (codePoint < 32) {
+                if (codePoint === 10 /* LineFeed */) {
+                    return 3 /* LF */;
+                }
+                if (codePoint === 13 /* CarriageReturn */) {
+                    return 2 /* CR */;
+                }
+                return 4 /* Control */;
+            }
+            // !!! Let's make 7bit ASCII a bit faster: 32..126
+            if (codePoint < 127) {
+                return 0 /* Other */;
+            }
+            var data = this._data;
+            var nodeCount = data.length / 3;
+            var nodeIndex = 1;
+            while (nodeIndex <= nodeCount) {
+                if (codePoint < data[3 * nodeIndex]) {
+                    // go left
+                    nodeIndex = 2 * nodeIndex;
+                }
+                else if (codePoint > data[3 * nodeIndex + 1]) {
+                    // go right
+                    nodeIndex = 2 * nodeIndex + 1;
+                }
+                else {
+                    // hit
+                    return data[3 * nodeIndex + 2];
+                }
+            }
+            return 0 /* Other */;
+        };
+        GraphemeBreakTree._INSTANCE = null;
+        return GraphemeBreakTree;
+    }());
+    function getGraphemeBreakRawData() {
+        // generated using https://github.com/alexandrudima/unicode-utils/blob/master/generate-grapheme-break.js
+        return JSON.parse('[0,0,0,51592,51592,11,44424,44424,11,72251,72254,5,7150,7150,7,48008,48008,11,55176,55176,11,128420,128420,14,3276,3277,5,9979,9980,14,46216,46216,11,49800,49800,11,53384,53384,11,70726,70726,5,122915,122916,5,129320,129327,14,2558,2558,5,5906,5908,5,9762,9763,14,43360,43388,8,45320,45320,11,47112,47112,11,48904,48904,11,50696,50696,11,52488,52488,11,54280,54280,11,70082,70083,1,71350,71350,7,73111,73111,5,127892,127893,14,128726,128727,14,129473,129474,14,2027,2035,5,2901,2902,5,3784,3789,5,6754,6754,5,8418,8420,5,9877,9877,14,11088,11088,14,44008,44008,5,44872,44872,11,45768,45768,11,46664,46664,11,47560,47560,11,48456,48456,11,49352,49352,11,50248,50248,11,51144,51144,11,52040,52040,11,52936,52936,11,53832,53832,11,54728,54728,11,69811,69814,5,70459,70460,5,71096,71099,7,71998,71998,5,72874,72880,5,119149,119149,7,127374,127374,14,128335,128335,14,128482,128482,14,128765,128767,14,129399,129400,14,129680,129685,14,1476,1477,5,2377,2380,7,2759,2760,5,3137,3140,7,3458,3459,7,4153,4154,5,6432,6434,5,6978,6978,5,7675,7679,5,9723,9726,14,9823,9823,14,9919,9923,14,10035,10036,14,42736,42737,5,43596,43596,5,44200,44200,11,44648,44648,11,45096,45096,11,45544,45544,11,45992,45992,11,46440,46440,11,46888,46888,11,47336,47336,11,47784,47784,11,48232,48232,11,48680,48680,11,49128,49128,11,49576,49576,11,50024,50024,11,50472,50472,11,50920,50920,11,51368,51368,11,51816,51816,11,52264,52264,11,52712,52712,11,53160,53160,11,53608,53608,11,54056,54056,11,54504,54504,11,54952,54952,11,68108,68111,5,69933,69940,5,70197,70197,7,70498,70499,7,70845,70845,5,71229,71229,5,71727,71735,5,72154,72155,5,72344,72345,5,73023,73029,5,94095,94098,5,121403,121452,5,126981,127182,14,127538,127546,14,127990,127990,14,128391,128391,14,128445,128449,14,128500,128505,14,128752,128752,14,129160,129167,14,129356,129356,14,129432,129442,14,129648,129651,14,129751,131069,14,173,173,4,1757,1757,1,2274,2274,1,2494,2494,5,2641,2641,5,2876,2876,5,3014,3016,7,3262,3262,7,3393,3396,5,3570,3571,7,3968,3972,5,4228,4228,7,6086,6086,5,6679,6680,5,6912,6915,5,7080,7081,5,7380,7392,5,8252,8252,14,9096,9096,14,9748,9749,14,9784,9786,14,9833,9850,14,9890,9894,14,9938,9938,14,9999,9999,14,10085,10087,14,12349,12349,14,43136,43137,7,43454,43456,7,43755,43755,7,44088,44088,11,44312,44312,11,44536,44536,11,44760,44760,11,44984,44984,11,45208,45208,11,45432,45432,11,45656,45656,11,45880,45880,11,46104,46104,11,46328,46328,11,46552,46552,11,46776,46776,11,47000,47000,11,47224,47224,11,47448,47448,11,47672,47672,11,47896,47896,11,48120,48120,11,48344,48344,11,48568,48568,11,48792,48792,11,49016,49016,11,49240,49240,11,49464,49464,11,49688,49688,11,49912,49912,11,50136,50136,11,50360,50360,11,50584,50584,11,50808,50808,11,51032,51032,11,51256,51256,11,51480,51480,11,51704,51704,11,51928,51928,11,52152,52152,11,52376,52376,11,52600,52600,11,52824,52824,11,53048,53048,11,53272,53272,11,53496,53496,11,53720,53720,11,53944,53944,11,54168,54168,11,54392,54392,11,54616,54616,11,54840,54840,11,55064,55064,11,65438,65439,5,69633,69633,5,69837,69837,1,70018,70018,7,70188,70190,7,70368,70370,7,70465,70468,7,70712,70719,5,70835,70840,5,70850,70851,5,71132,71133,5,71340,71340,7,71458,71461,5,71985,71989,7,72002,72002,7,72193,72202,5,72281,72283,5,72766,72766,7,72885,72886,5,73104,73105,5,92912,92916,5,113824,113827,4,119173,119179,5,121505,121519,5,125136,125142,5,127279,127279,14,127489,127490,14,127570,127743,14,127900,127901,14,128254,128254,14,128369,128370,14,128400,128400,14,128425,128432,14,128468,128475,14,128489,128494,14,128715,128720,14,128745,128745,14,128759,128760,14,129004,129023,14,129296,129304,14,129340,129342,14,129388,129392,14,129404,129407,14,129454,129455,14,129485,129487,14,129659,129663,14,129719,129727,14,917536,917631,5,13,13,2,1160,1161,5,1564,1564,4,1807,1807,1,2085,2087,5,2363,2363,7,2402,2403,5,2507,2508,7,2622,2624,7,2691,2691,7,2786,2787,5,2881,2884,5,3006,3006,5,3072,3072,5,3170,3171,5,3267,3268,7,3330,3331,7,3406,3406,1,3538,3540,5,3655,3662,5,3897,3897,5,4038,4038,5,4184,4185,5,4352,4447,8,6068,6069,5,6155,6157,5,6448,6449,7,6742,6742,5,6783,6783,5,6966,6970,5,7042,7042,7,7143,7143,7,7212,7219,5,7412,7412,5,8206,8207,4,8294,8303,4,8596,8601,14,9410,9410,14,9742,9742,14,9757,9757,14,9770,9770,14,9794,9794,14,9828,9828,14,9855,9855,14,9882,9882,14,9900,9903,14,9929,9933,14,9963,9967,14,9987,9988,14,10006,10006,14,10062,10062,14,10175,10175,14,11744,11775,5,42607,42607,5,43043,43044,7,43263,43263,5,43444,43445,7,43569,43570,5,43698,43700,5,43766,43766,5,44032,44032,11,44144,44144,11,44256,44256,11,44368,44368,11,44480,44480,11,44592,44592,11,44704,44704,11,44816,44816,11,44928,44928,11,45040,45040,11,45152,45152,11,45264,45264,11,45376,45376,11,45488,45488,11,45600,45600,11,45712,45712,11,45824,45824,11,45936,45936,11,46048,46048,11,46160,46160,11,46272,46272,11,46384,46384,11,46496,46496,11,46608,46608,11,46720,46720,11,46832,46832,11,46944,46944,11,47056,47056,11,47168,47168,11,47280,47280,11,47392,47392,11,47504,47504,11,47616,47616,11,47728,47728,11,47840,47840,11,47952,47952,11,48064,48064,11,48176,48176,11,48288,48288,11,48400,48400,11,48512,48512,11,48624,48624,11,48736,48736,11,48848,48848,11,48960,48960,11,49072,49072,11,49184,49184,11,49296,49296,11,49408,49408,11,49520,49520,11,49632,49632,11,49744,49744,11,49856,49856,11,49968,49968,11,50080,50080,11,50192,50192,11,50304,50304,11,50416,50416,11,50528,50528,11,50640,50640,11,50752,50752,11,50864,50864,11,50976,50976,11,51088,51088,11,51200,51200,11,51312,51312,11,51424,51424,11,51536,51536,11,51648,51648,11,51760,51760,11,51872,51872,11,51984,51984,11,52096,52096,11,52208,52208,11,52320,52320,11,52432,52432,11,52544,52544,11,52656,52656,11,52768,52768,11,52880,52880,11,52992,52992,11,53104,53104,11,53216,53216,11,53328,53328,11,53440,53440,11,53552,53552,11,53664,53664,11,53776,53776,11,53888,53888,11,54000,54000,11,54112,54112,11,54224,54224,11,54336,54336,11,54448,54448,11,54560,54560,11,54672,54672,11,54784,54784,11,54896,54896,11,55008,55008,11,55120,55120,11,64286,64286,5,66272,66272,5,68900,68903,5,69762,69762,7,69817,69818,5,69927,69931,5,70003,70003,5,70070,70078,5,70094,70094,7,70194,70195,7,70206,70206,5,70400,70401,5,70463,70463,7,70475,70477,7,70512,70516,5,70722,70724,5,70832,70832,5,70842,70842,5,70847,70848,5,71088,71089,7,71102,71102,7,71219,71226,5,71231,71232,5,71342,71343,7,71453,71455,5,71463,71467,5,71737,71738,5,71995,71996,5,72000,72000,7,72145,72147,7,72160,72160,5,72249,72249,7,72273,72278,5,72330,72342,5,72752,72758,5,72850,72871,5,72882,72883,5,73018,73018,5,73031,73031,5,73109,73109,5,73461,73462,7,94031,94031,5,94192,94193,7,119142,119142,7,119155,119162,4,119362,119364,5,121476,121476,5,122888,122904,5,123184,123190,5,126976,126979,14,127184,127231,14,127344,127345,14,127405,127461,14,127514,127514,14,127561,127567,14,127778,127779,14,127896,127896,14,127985,127986,14,127995,127999,5,128326,128328,14,128360,128366,14,128378,128378,14,128394,128397,14,128405,128406,14,128422,128423,14,128435,128443,14,128453,128464,14,128479,128480,14,128484,128487,14,128496,128498,14,128640,128709,14,128723,128724,14,128736,128741,14,128747,128748,14,128755,128755,14,128762,128762,14,128981,128991,14,129096,129103,14,129292,129292,14,129311,129311,14,129329,129330,14,129344,129349,14,129360,129374,14,129394,129394,14,129402,129402,14,129413,129425,14,129445,129450,14,129466,129471,14,129483,129483,14,129511,129535,14,129653,129655,14,129667,129670,14,129705,129711,14,129731,129743,14,917505,917505,4,917760,917999,5,10,10,3,127,159,4,768,879,5,1471,1471,5,1536,1541,1,1648,1648,5,1767,1768,5,1840,1866,5,2070,2073,5,2137,2139,5,2307,2307,7,2366,2368,7,2382,2383,7,2434,2435,7,2497,2500,5,2519,2519,5,2563,2563,7,2631,2632,5,2677,2677,5,2750,2752,7,2763,2764,7,2817,2817,5,2879,2879,5,2891,2892,7,2914,2915,5,3008,3008,5,3021,3021,5,3076,3076,5,3146,3149,5,3202,3203,7,3264,3265,7,3271,3272,7,3298,3299,5,3390,3390,5,3402,3404,7,3426,3427,5,3535,3535,5,3544,3550,7,3635,3635,7,3763,3763,7,3893,3893,5,3953,3966,5,3981,3991,5,4145,4145,7,4157,4158,5,4209,4212,5,4237,4237,5,4520,4607,10,5970,5971,5,6071,6077,5,6089,6099,5,6277,6278,5,6439,6440,5,6451,6456,7,6683,6683,5,6744,6750,5,6765,6770,7,6846,6846,5,6964,6964,5,6972,6972,5,7019,7027,5,7074,7077,5,7083,7085,5,7146,7148,7,7154,7155,7,7222,7223,5,7394,7400,5,7416,7417,5,8204,8204,5,8233,8233,4,8288,8292,4,8413,8416,5,8482,8482,14,8986,8987,14,9193,9203,14,9654,9654,14,9733,9733,14,9745,9745,14,9752,9752,14,9760,9760,14,9766,9766,14,9774,9775,14,9792,9792,14,9800,9811,14,9825,9826,14,9831,9831,14,9852,9853,14,9872,9873,14,9880,9880,14,9885,9887,14,9896,9897,14,9906,9916,14,9926,9927,14,9936,9936,14,9941,9960,14,9974,9974,14,9982,9985,14,9992,9997,14,10002,10002,14,10017,10017,14,10055,10055,14,10071,10071,14,10145,10145,14,11013,11015,14,11503,11505,5,12334,12335,5,12951,12951,14,42612,42621,5,43014,43014,5,43047,43047,7,43204,43205,5,43335,43345,5,43395,43395,7,43450,43451,7,43561,43566,5,43573,43574,5,43644,43644,5,43710,43711,5,43758,43759,7,44005,44005,5,44012,44012,7,44060,44060,11,44116,44116,11,44172,44172,11,44228,44228,11,44284,44284,11,44340,44340,11,44396,44396,11,44452,44452,11,44508,44508,11,44564,44564,11,44620,44620,11,44676,44676,11,44732,44732,11,44788,44788,11,44844,44844,11,44900,44900,11,44956,44956,11,45012,45012,11,45068,45068,11,45124,45124,11,45180,45180,11,45236,45236,11,45292,45292,11,45348,45348,11,45404,45404,11,45460,45460,11,45516,45516,11,45572,45572,11,45628,45628,11,45684,45684,11,45740,45740,11,45796,45796,11,45852,45852,11,45908,45908,11,45964,45964,11,46020,46020,11,46076,46076,11,46132,46132,11,46188,46188,11,46244,46244,11,46300,46300,11,46356,46356,11,46412,46412,11,46468,46468,11,46524,46524,11,46580,46580,11,46636,46636,11,46692,46692,11,46748,46748,11,46804,46804,11,46860,46860,11,46916,46916,11,46972,46972,11,47028,47028,11,47084,47084,11,47140,47140,11,47196,47196,11,47252,47252,11,47308,47308,11,47364,47364,11,47420,47420,11,47476,47476,11,47532,47532,11,47588,47588,11,47644,47644,11,47700,47700,11,47756,47756,11,47812,47812,11,47868,47868,11,47924,47924,11,47980,47980,11,48036,48036,11,48092,48092,11,48148,48148,11,48204,48204,11,48260,48260,11,48316,48316,11,48372,48372,11,48428,48428,11,48484,48484,11,48540,48540,11,48596,48596,11,48652,48652,11,48708,48708,11,48764,48764,11,48820,48820,11,48876,48876,11,48932,48932,11,48988,48988,11,49044,49044,11,49100,49100,11,49156,49156,11,49212,49212,11,49268,49268,11,49324,49324,11,49380,49380,11,49436,49436,11,49492,49492,11,49548,49548,11,49604,49604,11,49660,49660,11,49716,49716,11,49772,49772,11,49828,49828,11,49884,49884,11,49940,49940,11,49996,49996,11,50052,50052,11,50108,50108,11,50164,50164,11,50220,50220,11,50276,50276,11,50332,50332,11,50388,50388,11,50444,50444,11,50500,50500,11,50556,50556,11,50612,50612,11,50668,50668,11,50724,50724,11,50780,50780,11,50836,50836,11,50892,50892,11,50948,50948,11,51004,51004,11,51060,51060,11,51116,51116,11,51172,51172,11,51228,51228,11,51284,51284,11,51340,51340,11,51396,51396,11,51452,51452,11,51508,51508,11,51564,51564,11,51620,51620,11,51676,51676,11,51732,51732,11,51788,51788,11,51844,51844,11,51900,51900,11,51956,51956,11,52012,52012,11,52068,52068,11,52124,52124,11,52180,52180,11,52236,52236,11,52292,52292,11,52348,52348,11,52404,52404,11,52460,52460,11,52516,52516,11,52572,52572,11,52628,52628,11,52684,52684,11,52740,52740,11,52796,52796,11,52852,52852,11,52908,52908,11,52964,52964,11,53020,53020,11,53076,53076,11,53132,53132,11,53188,53188,11,53244,53244,11,53300,53300,11,53356,53356,11,53412,53412,11,53468,53468,11,53524,53524,11,53580,53580,11,53636,53636,11,53692,53692,11,53748,53748,11,53804,53804,11,53860,53860,11,53916,53916,11,53972,53972,11,54028,54028,11,54084,54084,11,54140,54140,11,54196,54196,11,54252,54252,11,54308,54308,11,54364,54364,11,54420,54420,11,54476,54476,11,54532,54532,11,54588,54588,11,54644,54644,11,54700,54700,11,54756,54756,11,54812,54812,11,54868,54868,11,54924,54924,11,54980,54980,11,55036,55036,11,55092,55092,11,55148,55148,11,55216,55238,9,65056,65071,5,65529,65531,4,68097,68099,5,68159,68159,5,69446,69456,5,69688,69702,5,69808,69810,7,69815,69816,7,69821,69821,1,69888,69890,5,69932,69932,7,69957,69958,7,70016,70017,5,70067,70069,7,70079,70080,7,70089,70092,5,70095,70095,5,70191,70193,5,70196,70196,5,70198,70199,5,70367,70367,5,70371,70378,5,70402,70403,7,70462,70462,5,70464,70464,5,70471,70472,7,70487,70487,5,70502,70508,5,70709,70711,7,70720,70721,7,70725,70725,7,70750,70750,5,70833,70834,7,70841,70841,7,70843,70844,7,70846,70846,7,70849,70849,7,71087,71087,5,71090,71093,5,71100,71101,5,71103,71104,5,71216,71218,7,71227,71228,7,71230,71230,7,71339,71339,5,71341,71341,5,71344,71349,5,71351,71351,5,71456,71457,7,71462,71462,7,71724,71726,7,71736,71736,7,71984,71984,5,71991,71992,7,71997,71997,7,71999,71999,1,72001,72001,1,72003,72003,5,72148,72151,5,72156,72159,7,72164,72164,7,72243,72248,5,72250,72250,1,72263,72263,5,72279,72280,7,72324,72329,1,72343,72343,7,72751,72751,7,72760,72765,5,72767,72767,5,72873,72873,7,72881,72881,7,72884,72884,7,73009,73014,5,73020,73021,5,73030,73030,1,73098,73102,7,73107,73108,7,73110,73110,7,73459,73460,5,78896,78904,4,92976,92982,5,94033,94087,7,94180,94180,5,113821,113822,5,119141,119141,5,119143,119145,5,119150,119154,5,119163,119170,5,119210,119213,5,121344,121398,5,121461,121461,5,121499,121503,5,122880,122886,5,122907,122913,5,122918,122922,5,123628,123631,5,125252,125258,5,126980,126980,14,127183,127183,14,127245,127247,14,127340,127343,14,127358,127359,14,127377,127386,14,127462,127487,6,127491,127503,14,127535,127535,14,127548,127551,14,127568,127569,14,127744,127777,14,127780,127891,14,127894,127895,14,127897,127899,14,127902,127984,14,127987,127989,14,127991,127994,14,128000,128253,14,128255,128317,14,128329,128334,14,128336,128359,14,128367,128368,14,128371,128377,14,128379,128390,14,128392,128393,14,128398,128399,14,128401,128404,14,128407,128419,14,128421,128421,14,128424,128424,14,128433,128434,14,128444,128444,14,128450,128452,14,128465,128467,14,128476,128478,14,128481,128481,14,128483,128483,14,128488,128488,14,128495,128495,14,128499,128499,14,128506,128591,14,128710,128714,14,128721,128722,14,128725,128725,14,128728,128735,14,128742,128744,14,128746,128746,14,128749,128751,14,128753,128754,14,128756,128758,14,128761,128761,14,128763,128764,14,128884,128895,14,128992,129003,14,129036,129039,14,129114,129119,14,129198,129279,14,129293,129295,14,129305,129310,14,129312,129319,14,129328,129328,14,129331,129338,14,129343,129343,14,129351,129355,14,129357,129359,14,129375,129387,14,129393,129393,14,129395,129398,14,129401,129401,14,129403,129403,14,129408,129412,14,129426,129431,14,129443,129444,14,129451,129453,14,129456,129465,14,129472,129472,14,129475,129482,14,129484,129484,14,129488,129510,14,129536,129647,14,129652,129652,14,129656,129658,14,129664,129666,14,129671,129679,14,129686,129704,14,129712,129718,14,129728,129730,14,129744,129750,14,917504,917504,4,917506,917535,4,917632,917759,4,918000,921599,4,0,9,4,11,12,4,14,31,4,169,169,14,174,174,14,1155,1159,5,1425,1469,5,1473,1474,5,1479,1479,5,1552,1562,5,1611,1631,5,1750,1756,5,1759,1764,5,1770,1773,5,1809,1809,5,1958,1968,5,2045,2045,5,2075,2083,5,2089,2093,5,2259,2273,5,2275,2306,5,2362,2362,5,2364,2364,5,2369,2376,5,2381,2381,5,2385,2391,5,2433,2433,5,2492,2492,5,2495,2496,7,2503,2504,7,2509,2509,5,2530,2531,5,2561,2562,5,2620,2620,5,2625,2626,5,2635,2637,5,2672,2673,5,2689,2690,5,2748,2748,5,2753,2757,5,2761,2761,7,2765,2765,5,2810,2815,5,2818,2819,7,2878,2878,5,2880,2880,7,2887,2888,7,2893,2893,5,2903,2903,5,2946,2946,5,3007,3007,7,3009,3010,7,3018,3020,7,3031,3031,5,3073,3075,7,3134,3136,5,3142,3144,5,3157,3158,5,3201,3201,5,3260,3260,5,3263,3263,5,3266,3266,5,3270,3270,5,3274,3275,7,3285,3286,5,3328,3329,5,3387,3388,5,3391,3392,7,3398,3400,7,3405,3405,5,3415,3415,5,3457,3457,5,3530,3530,5,3536,3537,7,3542,3542,5,3551,3551,5,3633,3633,5,3636,3642,5,3761,3761,5,3764,3772,5,3864,3865,5,3895,3895,5,3902,3903,7,3967,3967,7,3974,3975,5,3993,4028,5,4141,4144,5,4146,4151,5,4155,4156,7,4182,4183,7,4190,4192,5,4226,4226,5,4229,4230,5,4253,4253,5,4448,4519,9,4957,4959,5,5938,5940,5,6002,6003,5,6070,6070,7,6078,6085,7,6087,6088,7,6109,6109,5,6158,6158,4,6313,6313,5,6435,6438,7,6441,6443,7,6450,6450,5,6457,6459,5,6681,6682,7,6741,6741,7,6743,6743,7,6752,6752,5,6757,6764,5,6771,6780,5,6832,6845,5,6847,6848,5,6916,6916,7,6965,6965,5,6971,6971,7,6973,6977,7,6979,6980,7,7040,7041,5,7073,7073,7,7078,7079,7,7082,7082,7,7142,7142,5,7144,7145,5,7149,7149,5,7151,7153,5,7204,7211,7,7220,7221,7,7376,7378,5,7393,7393,7,7405,7405,5,7415,7415,7,7616,7673,5,8203,8203,4,8205,8205,13,8232,8232,4,8234,8238,4,8265,8265,14,8293,8293,4,8400,8412,5,8417,8417,5,8421,8432,5,8505,8505,14,8617,8618,14,9000,9000,14,9167,9167,14,9208,9210,14,9642,9643,14,9664,9664,14,9728,9732,14,9735,9741,14,9743,9744,14,9746,9746,14,9750,9751,14,9753,9756,14,9758,9759,14,9761,9761,14,9764,9765,14,9767,9769,14,9771,9773,14,9776,9783,14,9787,9791,14,9793,9793,14,9795,9799,14,9812,9822,14,9824,9824,14,9827,9827,14,9829,9830,14,9832,9832,14,9851,9851,14,9854,9854,14,9856,9861,14,9874,9876,14,9878,9879,14,9881,9881,14,9883,9884,14,9888,9889,14,9895,9895,14,9898,9899,14,9904,9905,14,9917,9918,14,9924,9925,14,9928,9928,14,9934,9935,14,9937,9937,14,9939,9940,14,9961,9962,14,9968,9973,14,9975,9978,14,9981,9981,14,9986,9986,14,9989,9989,14,9998,9998,14,10000,10001,14,10004,10004,14,10013,10013,14,10024,10024,14,10052,10052,14,10060,10060,14,10067,10069,14,10083,10084,14,10133,10135,14,10160,10160,14,10548,10549,14,11035,11036,14,11093,11093,14,11647,11647,5,12330,12333,5,12336,12336,14,12441,12442,5,12953,12953,14,42608,42610,5,42654,42655,5,43010,43010,5,43019,43019,5,43045,43046,5,43052,43052,5,43188,43203,7,43232,43249,5,43302,43309,5,43346,43347,7,43392,43394,5,43443,43443,5,43446,43449,5,43452,43453,5,43493,43493,5,43567,43568,7,43571,43572,7,43587,43587,5,43597,43597,7,43696,43696,5,43703,43704,5,43713,43713,5,43756,43757,5,43765,43765,7,44003,44004,7,44006,44007,7,44009,44010,7,44013,44013,5,44033,44059,12,44061,44087,12,44089,44115,12,44117,44143,12,44145,44171,12,44173,44199,12,44201,44227,12,44229,44255,12,44257,44283,12,44285,44311,12,44313,44339,12,44341,44367,12,44369,44395,12,44397,44423,12,44425,44451,12,44453,44479,12,44481,44507,12,44509,44535,12,44537,44563,12,44565,44591,12,44593,44619,12,44621,44647,12,44649,44675,12,44677,44703,12,44705,44731,12,44733,44759,12,44761,44787,12,44789,44815,12,44817,44843,12,44845,44871,12,44873,44899,12,44901,44927,12,44929,44955,12,44957,44983,12,44985,45011,12,45013,45039,12,45041,45067,12,45069,45095,12,45097,45123,12,45125,45151,12,45153,45179,12,45181,45207,12,45209,45235,12,45237,45263,12,45265,45291,12,45293,45319,12,45321,45347,12,45349,45375,12,45377,45403,12,45405,45431,12,45433,45459,12,45461,45487,12,45489,45515,12,45517,45543,12,45545,45571,12,45573,45599,12,45601,45627,12,45629,45655,12,45657,45683,12,45685,45711,12,45713,45739,12,45741,45767,12,45769,45795,12,45797,45823,12,45825,45851,12,45853,45879,12,45881,45907,12,45909,45935,12,45937,45963,12,45965,45991,12,45993,46019,12,46021,46047,12,46049,46075,12,46077,46103,12,46105,46131,12,46133,46159,12,46161,46187,12,46189,46215,12,46217,46243,12,46245,46271,12,46273,46299,12,46301,46327,12,46329,46355,12,46357,46383,12,46385,46411,12,46413,46439,12,46441,46467,12,46469,46495,12,46497,46523,12,46525,46551,12,46553,46579,12,46581,46607,12,46609,46635,12,46637,46663,12,46665,46691,12,46693,46719,12,46721,46747,12,46749,46775,12,46777,46803,12,46805,46831,12,46833,46859,12,46861,46887,12,46889,46915,12,46917,46943,12,46945,46971,12,46973,46999,12,47001,47027,12,47029,47055,12,47057,47083,12,47085,47111,12,47113,47139,12,47141,47167,12,47169,47195,12,47197,47223,12,47225,47251,12,47253,47279,12,47281,47307,12,47309,47335,12,47337,47363,12,47365,47391,12,47393,47419,12,47421,47447,12,47449,47475,12,47477,47503,12,47505,47531,12,47533,47559,12,47561,47587,12,47589,47615,12,47617,47643,12,47645,47671,12,47673,47699,12,47701,47727,12,47729,47755,12,47757,47783,12,47785,47811,12,47813,47839,12,47841,47867,12,47869,47895,12,47897,47923,12,47925,47951,12,47953,47979,12,47981,48007,12,48009,48035,12,48037,48063,12,48065,48091,12,48093,48119,12,48121,48147,12,48149,48175,12,48177,48203,12,48205,48231,12,48233,48259,12,48261,48287,12,48289,48315,12,48317,48343,12,48345,48371,12,48373,48399,12,48401,48427,12,48429,48455,12,48457,48483,12,48485,48511,12,48513,48539,12,48541,48567,12,48569,48595,12,48597,48623,12,48625,48651,12,48653,48679,12,48681,48707,12,48709,48735,12,48737,48763,12,48765,48791,12,48793,48819,12,48821,48847,12,48849,48875,12,48877,48903,12,48905,48931,12,48933,48959,12,48961,48987,12,48989,49015,12,49017,49043,12,49045,49071,12,49073,49099,12,49101,49127,12,49129,49155,12,49157,49183,12,49185,49211,12,49213,49239,12,49241,49267,12,49269,49295,12,49297,49323,12,49325,49351,12,49353,49379,12,49381,49407,12,49409,49435,12,49437,49463,12,49465,49491,12,49493,49519,12,49521,49547,12,49549,49575,12,49577,49603,12,49605,49631,12,49633,49659,12,49661,49687,12,49689,49715,12,49717,49743,12,49745,49771,12,49773,49799,12,49801,49827,12,49829,49855,12,49857,49883,12,49885,49911,12,49913,49939,12,49941,49967,12,49969,49995,12,49997,50023,12,50025,50051,12,50053,50079,12,50081,50107,12,50109,50135,12,50137,50163,12,50165,50191,12,50193,50219,12,50221,50247,12,50249,50275,12,50277,50303,12,50305,50331,12,50333,50359,12,50361,50387,12,50389,50415,12,50417,50443,12,50445,50471,12,50473,50499,12,50501,50527,12,50529,50555,12,50557,50583,12,50585,50611,12,50613,50639,12,50641,50667,12,50669,50695,12,50697,50723,12,50725,50751,12,50753,50779,12,50781,50807,12,50809,50835,12,50837,50863,12,50865,50891,12,50893,50919,12,50921,50947,12,50949,50975,12,50977,51003,12,51005,51031,12,51033,51059,12,51061,51087,12,51089,51115,12,51117,51143,12,51145,51171,12,51173,51199,12,51201,51227,12,51229,51255,12,51257,51283,12,51285,51311,12,51313,51339,12,51341,51367,12,51369,51395,12,51397,51423,12,51425,51451,12,51453,51479,12,51481,51507,12,51509,51535,12,51537,51563,12,51565,51591,12,51593,51619,12,51621,51647,12,51649,51675,12,51677,51703,12,51705,51731,12,51733,51759,12,51761,51787,12,51789,51815,12,51817,51843,12,51845,51871,12,51873,51899,12,51901,51927,12,51929,51955,12,51957,51983,12,51985,52011,12,52013,52039,12,52041,52067,12,52069,52095,12,52097,52123,12,52125,52151,12,52153,52179,12,52181,52207,12,52209,52235,12,52237,52263,12,52265,52291,12,52293,52319,12,52321,52347,12,52349,52375,12,52377,52403,12,52405,52431,12,52433,52459,12,52461,52487,12,52489,52515,12,52517,52543,12,52545,52571,12,52573,52599,12,52601,52627,12,52629,52655,12,52657,52683,12,52685,52711,12,52713,52739,12,52741,52767,12,52769,52795,12,52797,52823,12,52825,52851,12,52853,52879,12,52881,52907,12,52909,52935,12,52937,52963,12,52965,52991,12,52993,53019,12,53021,53047,12,53049,53075,12,53077,53103,12,53105,53131,12,53133,53159,12,53161,53187,12,53189,53215,12,53217,53243,12,53245,53271,12,53273,53299,12,53301,53327,12,53329,53355,12,53357,53383,12,53385,53411,12,53413,53439,12,53441,53467,12,53469,53495,12,53497,53523,12,53525,53551,12,53553,53579,12,53581,53607,12,53609,53635,12,53637,53663,12,53665,53691,12,53693,53719,12,53721,53747,12,53749,53775,12,53777,53803,12,53805,53831,12,53833,53859,12,53861,53887,12,53889,53915,12,53917,53943,12,53945,53971,12,53973,53999,12,54001,54027,12,54029,54055,12,54057,54083,12,54085,54111,12,54113,54139,12,54141,54167,12,54169,54195,12,54197,54223,12,54225,54251,12,54253,54279,12,54281,54307,12,54309,54335,12,54337,54363,12,54365,54391,12,54393,54419,12,54421,54447,12,54449,54475,12,54477,54503,12,54505,54531,12,54533,54559,12,54561,54587,12,54589,54615,12,54617,54643,12,54645,54671,12,54673,54699,12,54701,54727,12,54729,54755,12,54757,54783,12,54785,54811,12,54813,54839,12,54841,54867,12,54869,54895,12,54897,54923,12,54925,54951,12,54953,54979,12,54981,55007,12,55009,55035,12,55037,55063,12,55065,55091,12,55093,55119,12,55121,55147,12,55149,55175,12,55177,55203,12,55243,55291,10,65024,65039,5,65279,65279,4,65520,65528,4,66045,66045,5,66422,66426,5,68101,68102,5,68152,68154,5,68325,68326,5,69291,69292,5,69632,69632,7,69634,69634,7,69759,69761,5]');
+    }
+    //#endregion
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var MINIMUM_MATCHING_CHARACTER_LENGTH = 3;
+    function computeDiff(originalSequence, modifiedSequence, continueProcessingPredicate, pretty) {
+        var diffAlgo = new LcsDiff(originalSequence, modifiedSequence, continueProcessingPredicate);
+        return diffAlgo.ComputeDiff(pretty);
+    }
+    var LineSequence = /** @class */ (function () {
+        function LineSequence(lines) {
+            var startColumns = [];
+            var endColumns = [];
+            for (var i = 0, length_1 = lines.length; i < length_1; i++) {
+                startColumns[i] = getFirstNonBlankColumn(lines[i], 1);
+                endColumns[i] = getLastNonBlankColumn(lines[i], 1);
+            }
+            this.lines = lines;
+            this._startColumns = startColumns;
+            this._endColumns = endColumns;
+        }
+        LineSequence.prototype.getElements = function () {
+            var elements = [];
+            for (var i = 0, len = this.lines.length; i < len; i++) {
+                elements[i] = this.lines[i].substring(this._startColumns[i] - 1, this._endColumns[i] - 1);
+            }
+            return elements;
+        };
+        LineSequence.prototype.getStartLineNumber = function (i) {
+            return i + 1;
+        };
+        LineSequence.prototype.getEndLineNumber = function (i) {
+            return i + 1;
+        };
+        LineSequence.prototype.createCharSequence = function (shouldIgnoreTrimWhitespace, startIndex, endIndex) {
+            var charCodes = [];
+            var lineNumbers = [];
+            var columns = [];
+            var len = 0;
+            for (var index = startIndex; index <= endIndex; index++) {
+                var lineContent = this.lines[index];
+                var startColumn = (shouldIgnoreTrimWhitespace ? this._startColumns[index] : 1);
+                var endColumn = (shouldIgnoreTrimWhitespace ? this._endColumns[index] : lineContent.length + 1);
+                for (var col = startColumn; col < endColumn; col++) {
+                    charCodes[len] = lineContent.charCodeAt(col - 1);
+                    lineNumbers[len] = index + 1;
+                    columns[len] = col;
+                    len++;
+                }
+            }
+            return new CharSequence(charCodes, lineNumbers, columns);
+        };
+        return LineSequence;
+    }());
+    var CharSequence = /** @class */ (function () {
+        function CharSequence(charCodes, lineNumbers, columns) {
+            this._charCodes = charCodes;
+            this._lineNumbers = lineNumbers;
+            this._columns = columns;
+        }
+        CharSequence.prototype.getElements = function () {
+            return this._charCodes;
+        };
+        CharSequence.prototype.getStartLineNumber = function (i) {
+            return this._lineNumbers[i];
+        };
+        CharSequence.prototype.getStartColumn = function (i) {
+            return this._columns[i];
+        };
+        CharSequence.prototype.getEndLineNumber = function (i) {
+            return this._lineNumbers[i];
+        };
+        CharSequence.prototype.getEndColumn = function (i) {
+            return this._columns[i] + 1;
+        };
+        return CharSequence;
+    }());
+    var CharChange = /** @class */ (function () {
+        function CharChange(originalStartLineNumber, originalStartColumn, originalEndLineNumber, originalEndColumn, modifiedStartLineNumber, modifiedStartColumn, modifiedEndLineNumber, modifiedEndColumn) {
+            this.originalStartLineNumber = originalStartLineNumber;
+            this.originalStartColumn = originalStartColumn;
+            this.originalEndLineNumber = originalEndLineNumber;
+            this.originalEndColumn = originalEndColumn;
+            this.modifiedStartLineNumber = modifiedStartLineNumber;
+            this.modifiedStartColumn = modifiedStartColumn;
+            this.modifiedEndLineNumber = modifiedEndLineNumber;
+            this.modifiedEndColumn = modifiedEndColumn;
+        }
+        CharChange.createFromDiffChange = function (diffChange, originalCharSequence, modifiedCharSequence) {
+            var originalStartLineNumber;
+            var originalStartColumn;
+            var originalEndLineNumber;
+            var originalEndColumn;
+            var modifiedStartLineNumber;
+            var modifiedStartColumn;
+            var modifiedEndLineNumber;
+            var modifiedEndColumn;
+            if (diffChange.originalLength === 0) {
+                originalStartLineNumber = 0;
+                originalStartColumn = 0;
+                originalEndLineNumber = 0;
+                originalEndColumn = 0;
+            }
+            else {
+                originalStartLineNumber = originalCharSequence.getStartLineNumber(diffChange.originalStart);
+                originalStartColumn = originalCharSequence.getStartColumn(diffChange.originalStart);
+                originalEndLineNumber = originalCharSequence.getEndLineNumber(diffChange.originalStart + diffChange.originalLength - 1);
+                originalEndColumn = originalCharSequence.getEndColumn(diffChange.originalStart + diffChange.originalLength - 1);
+            }
+            if (diffChange.modifiedLength === 0) {
+                modifiedStartLineNumber = 0;
+                modifiedStartColumn = 0;
+                modifiedEndLineNumber = 0;
+                modifiedEndColumn = 0;
+            }
+            else {
+                modifiedStartLineNumber = modifiedCharSequence.getStartLineNumber(diffChange.modifiedStart);
+                modifiedStartColumn = modifiedCharSequence.getStartColumn(diffChange.modifiedStart);
+                modifiedEndLineNumber = modifiedCharSequence.getEndLineNumber(diffChange.modifiedStart + diffChange.modifiedLength - 1);
+                modifiedEndColumn = modifiedCharSequence.getEndColumn(diffChange.modifiedStart + diffChange.modifiedLength - 1);
+            }
+            return new CharChange(originalStartLineNumber, originalStartColumn, originalEndLineNumber, originalEndColumn, modifiedStartLineNumber, modifiedStartColumn, modifiedEndLineNumber, modifiedEndColumn);
+        };
+        return CharChange;
+    }());
+    function postProcessCharChanges(rawChanges) {
+        if (rawChanges.length <= 1) {
+            return rawChanges;
+        }
+        var result = [rawChanges[0]];
+        var prevChange = result[0];
+        for (var i = 1, len = rawChanges.length; i < len; i++) {
+            var currChange = rawChanges[i];
+            var originalMatchingLength = currChange.originalStart - (prevChange.originalStart + prevChange.originalLength);
+            var modifiedMatchingLength = currChange.modifiedStart - (prevChange.modifiedStart + prevChange.modifiedLength);
+            // Both of the above should be equal, but the continueProcessingPredicate may prevent this from being true
+            var matchingLength = Math.min(originalMatchingLength, modifiedMatchingLength);
+            if (matchingLength < MINIMUM_MATCHING_CHARACTER_LENGTH) {
+                // Merge the current change into the previous one
+                prevChange.originalLength = (currChange.originalStart + currChange.originalLength) - prevChange.originalStart;
+                prevChange.modifiedLength = (currChange.modifiedStart + currChange.modifiedLength) - prevChange.modifiedStart;
+            }
+            else {
+                // Add the current change
+                result.push(currChange);
+                prevChange = currChange;
+            }
+        }
+        return result;
+    }
+    var LineChange = /** @class */ (function () {
+        function LineChange(originalStartLineNumber, originalEndLineNumber, modifiedStartLineNumber, modifiedEndLineNumber, charChanges) {
+            this.originalStartLineNumber = originalStartLineNumber;
+            this.originalEndLineNumber = originalEndLineNumber;
+            this.modifiedStartLineNumber = modifiedStartLineNumber;
+            this.modifiedEndLineNumber = modifiedEndLineNumber;
+            this.charChanges = charChanges;
+        }
+        LineChange.createFromDiffResult = function (shouldIgnoreTrimWhitespace, diffChange, originalLineSequence, modifiedLineSequence, continueCharDiff, shouldComputeCharChanges, shouldPostProcessCharChanges) {
+            var originalStartLineNumber;
+            var originalEndLineNumber;
+            var modifiedStartLineNumber;
+            var modifiedEndLineNumber;
+            var charChanges = undefined;
+            if (diffChange.originalLength === 0) {
+                originalStartLineNumber = originalLineSequence.getStartLineNumber(diffChange.originalStart) - 1;
+                originalEndLineNumber = 0;
+            }
+            else {
+                originalStartLineNumber = originalLineSequence.getStartLineNumber(diffChange.originalStart);
+                originalEndLineNumber = originalLineSequence.getEndLineNumber(diffChange.originalStart + diffChange.originalLength - 1);
+            }
+            if (diffChange.modifiedLength === 0) {
+                modifiedStartLineNumber = modifiedLineSequence.getStartLineNumber(diffChange.modifiedStart) - 1;
+                modifiedEndLineNumber = 0;
+            }
+            else {
+                modifiedStartLineNumber = modifiedLineSequence.getStartLineNumber(diffChange.modifiedStart);
+                modifiedEndLineNumber = modifiedLineSequence.getEndLineNumber(diffChange.modifiedStart + diffChange.modifiedLength - 1);
+            }
+            if (shouldComputeCharChanges && diffChange.originalLength > 0 && diffChange.originalLength < 20 && diffChange.modifiedLength > 0 && diffChange.modifiedLength < 20 && continueCharDiff()) {
+                // Compute character changes for diff chunks of at most 20 lines...
+                var originalCharSequence = originalLineSequence.createCharSequence(shouldIgnoreTrimWhitespace, diffChange.originalStart, diffChange.originalStart + diffChange.originalLength - 1);
+                var modifiedCharSequence = modifiedLineSequence.createCharSequence(shouldIgnoreTrimWhitespace, diffChange.modifiedStart, diffChange.modifiedStart + diffChange.modifiedLength - 1);
+                var rawChanges = computeDiff(originalCharSequence, modifiedCharSequence, continueCharDiff, true).changes;
+                if (shouldPostProcessCharChanges) {
+                    rawChanges = postProcessCharChanges(rawChanges);
+                }
+                charChanges = [];
+                for (var i = 0, length_2 = rawChanges.length; i < length_2; i++) {
+                    charChanges.push(CharChange.createFromDiffChange(rawChanges[i], originalCharSequence, modifiedCharSequence));
+                }
+            }
+            return new LineChange(originalStartLineNumber, originalEndLineNumber, modifiedStartLineNumber, modifiedEndLineNumber, charChanges);
+        };
+        return LineChange;
+    }());
+    var DiffComputer = /** @class */ (function () {
+        function DiffComputer(originalLines, modifiedLines, opts) {
+            this.shouldComputeCharChanges = opts.shouldComputeCharChanges;
+            this.shouldPostProcessCharChanges = opts.shouldPostProcessCharChanges;
+            this.shouldIgnoreTrimWhitespace = opts.shouldIgnoreTrimWhitespace;
+            this.shouldMakePrettyDiff = opts.shouldMakePrettyDiff;
+            this.originalLines = originalLines;
+            this.modifiedLines = modifiedLines;
+            this.original = new LineSequence(originalLines);
+            this.modified = new LineSequence(modifiedLines);
+            this.continueLineDiff = createContinueProcessingPredicate(opts.maxComputationTime);
+            this.continueCharDiff = createContinueProcessingPredicate(opts.maxComputationTime === 0 ? 0 : Math.min(opts.maxComputationTime, 5000)); // never run after 5s for character changes...
+        }
+        DiffComputer.prototype.computeDiff = function () {
+            if (this.original.lines.length === 1 && this.original.lines[0].length === 0) {
+                // empty original => fast path
+                return {
+                    quitEarly: false,
+                    changes: [{
+                            originalStartLineNumber: 1,
+                            originalEndLineNumber: 1,
+                            modifiedStartLineNumber: 1,
+                            modifiedEndLineNumber: this.modified.lines.length,
+                            charChanges: [{
+                                    modifiedEndColumn: 0,
+                                    modifiedEndLineNumber: 0,
+                                    modifiedStartColumn: 0,
+                                    modifiedStartLineNumber: 0,
+                                    originalEndColumn: 0,
+                                    originalEndLineNumber: 0,
+                                    originalStartColumn: 0,
+                                    originalStartLineNumber: 0
+                                }]
+                        }]
+                };
+            }
+            if (this.modified.lines.length === 1 && this.modified.lines[0].length === 0) {
+                // empty modified => fast path
+                return {
+                    quitEarly: false,
+                    changes: [{
+                            originalStartLineNumber: 1,
+                            originalEndLineNumber: this.original.lines.length,
+                            modifiedStartLineNumber: 1,
+                            modifiedEndLineNumber: 1,
+                            charChanges: [{
+                                    modifiedEndColumn: 0,
+                                    modifiedEndLineNumber: 0,
+                                    modifiedStartColumn: 0,
+                                    modifiedStartLineNumber: 0,
+                                    originalEndColumn: 0,
+                                    originalEndLineNumber: 0,
+                                    originalStartColumn: 0,
+                                    originalStartLineNumber: 0
+                                }]
+                        }]
+                };
+            }
+            var diffResult = computeDiff(this.original, this.modified, this.continueLineDiff, this.shouldMakePrettyDiff);
+            var rawChanges = diffResult.changes;
+            var quitEarly = diffResult.quitEarly;
+            // The diff is always computed with ignoring trim whitespace
+            // This ensures we get the prettiest diff
+            if (this.shouldIgnoreTrimWhitespace) {
+                var lineChanges = [];
+                for (var i = 0, length_3 = rawChanges.length; i < length_3; i++) {
+                    lineChanges.push(LineChange.createFromDiffResult(this.shouldIgnoreTrimWhitespace, rawChanges[i], this.original, this.modified, this.continueCharDiff, this.shouldComputeCharChanges, this.shouldPostProcessCharChanges));
+                }
+                return {
+                    quitEarly: quitEarly,
+                    changes: lineChanges
+                };
+            }
+            // Need to post-process and introduce changes where the trim whitespace is different
+            // Note that we are looping starting at -1 to also cover the lines before the first change
+            var result = [];
+            var originalLineIndex = 0;
+            var modifiedLineIndex = 0;
+            for (var i = -1 /* !!!! */, len = rawChanges.length; i < len; i++) {
+                var nextChange = (i + 1 < len ? rawChanges[i + 1] : null);
+                var originalStop = (nextChange ? nextChange.originalStart : this.originalLines.length);
+                var modifiedStop = (nextChange ? nextChange.modifiedStart : this.modifiedLines.length);
+                while (originalLineIndex < originalStop && modifiedLineIndex < modifiedStop) {
+                    var originalLine = this.originalLines[originalLineIndex];
+                    var modifiedLine = this.modifiedLines[modifiedLineIndex];
+                    if (originalLine !== modifiedLine) {
+                        // These lines differ only in trim whitespace
+                        // Check the leading whitespace
+                        {
+                            var originalStartColumn = getFirstNonBlankColumn(originalLine, 1);
+                            var modifiedStartColumn = getFirstNonBlankColumn(modifiedLine, 1);
+                            while (originalStartColumn > 1 && modifiedStartColumn > 1) {
+                                var originalChar = originalLine.charCodeAt(originalStartColumn - 2);
+                                var modifiedChar = modifiedLine.charCodeAt(modifiedStartColumn - 2);
+                                if (originalChar !== modifiedChar) {
+                                    break;
+                                }
+                                originalStartColumn--;
+                                modifiedStartColumn--;
+                            }
+                            if (originalStartColumn > 1 || modifiedStartColumn > 1) {
+                                this._pushTrimWhitespaceCharChange(result, originalLineIndex + 1, 1, originalStartColumn, modifiedLineIndex + 1, 1, modifiedStartColumn);
+                            }
+                        }
+                        // Check the trailing whitespace
+                        {
+                            var originalEndColumn = getLastNonBlankColumn(originalLine, 1);
+                            var modifiedEndColumn = getLastNonBlankColumn(modifiedLine, 1);
+                            var originalMaxColumn = originalLine.length + 1;
+                            var modifiedMaxColumn = modifiedLine.length + 1;
+                            while (originalEndColumn < originalMaxColumn && modifiedEndColumn < modifiedMaxColumn) {
+                                var originalChar = originalLine.charCodeAt(originalEndColumn - 1);
+                                var modifiedChar = originalLine.charCodeAt(modifiedEndColumn - 1);
+                                if (originalChar !== modifiedChar) {
+                                    break;
+                                }
+                                originalEndColumn++;
+                                modifiedEndColumn++;
+                            }
+                            if (originalEndColumn < originalMaxColumn || modifiedEndColumn < modifiedMaxColumn) {
+                                this._pushTrimWhitespaceCharChange(result, originalLineIndex + 1, originalEndColumn, originalMaxColumn, modifiedLineIndex + 1, modifiedEndColumn, modifiedMaxColumn);
+                            }
+                        }
+                    }
+                    originalLineIndex++;
+                    modifiedLineIndex++;
+                }
+                if (nextChange) {
+                    // Emit the actual change
+                    result.push(LineChange.createFromDiffResult(this.shouldIgnoreTrimWhitespace, nextChange, this.original, this.modified, this.continueCharDiff, this.shouldComputeCharChanges, this.shouldPostProcessCharChanges));
+                    originalLineIndex += nextChange.originalLength;
+                    modifiedLineIndex += nextChange.modifiedLength;
+                }
+            }
+            return {
+                quitEarly: quitEarly,
+                changes: result
+            };
+        };
+        DiffComputer.prototype._pushTrimWhitespaceCharChange = function (result, originalLineNumber, originalStartColumn, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedEndColumn) {
+            if (this._mergeTrimWhitespaceCharChange(result, originalLineNumber, originalStartColumn, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedEndColumn)) {
+                // Merged into previous
+                return;
+            }
+            var charChanges = undefined;
+            if (this.shouldComputeCharChanges) {
+                charChanges = [new CharChange(originalLineNumber, originalStartColumn, originalLineNumber, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedLineNumber, modifiedEndColumn)];
+            }
+            result.push(new LineChange(originalLineNumber, originalLineNumber, modifiedLineNumber, modifiedLineNumber, charChanges));
+        };
+        DiffComputer.prototype._mergeTrimWhitespaceCharChange = function (result, originalLineNumber, originalStartColumn, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedEndColumn) {
+            var len = result.length;
+            if (len === 0) {
+                return false;
+            }
+            var prevChange = result[len - 1];
+            if (prevChange.originalEndLineNumber === 0 || prevChange.modifiedEndLineNumber === 0) {
+                // Don't merge with inserts/deletes
+                return false;
+            }
+            if (prevChange.originalEndLineNumber + 1 === originalLineNumber && prevChange.modifiedEndLineNumber + 1 === modifiedLineNumber) {
+                prevChange.originalEndLineNumber = originalLineNumber;
+                prevChange.modifiedEndLineNumber = modifiedLineNumber;
+                if (this.shouldComputeCharChanges && prevChange.charChanges) {
+                    prevChange.charChanges.push(new CharChange(originalLineNumber, originalStartColumn, originalLineNumber, originalEndColumn, modifiedLineNumber, modifiedStartColumn, modifiedLineNumber, modifiedEndColumn));
+                }
+                return true;
+            }
+            return false;
+        };
+        return DiffComputer;
+    }());
+    function getFirstNonBlankColumn(txt, defaultValue) {
+        var r = firstNonWhitespaceIndex(txt);
+        if (r === -1) {
+            return defaultValue;
+        }
+        return r + 1;
+    }
+    function getLastNonBlankColumn(txt, defaultValue) {
+        var r = lastNonWhitespaceIndex(txt);
+        if (r === -1) {
+            return defaultValue;
+        }
+        return r + 2;
+    }
+    function createContinueProcessingPredicate(maximumRuntime) {
+        if (maximumRuntime === 0) {
+            return function () { return true; };
+        }
+        var startTime = Date.now();
+        return function () {
+            return Date.now() - startTime < maximumRuntime;
+        };
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    function toUint8(v) {
+        if (v < 0) {
+            return 0;
+        }
+        if (v > 255 /* MAX_UINT_8 */) {
+            return 255 /* MAX_UINT_8 */;
+        }
+        return v | 0;
+    }
+    function toUint32(v) {
+        if (v < 0) {
+            return 0;
+        }
+        if (v > 4294967295 /* MAX_UINT_32 */) {
+            return 4294967295 /* MAX_UINT_32 */;
+        }
+        return v | 0;
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var PrefixSumIndexOfResult = /** @class */ (function () {
+        function PrefixSumIndexOfResult(index, remainder) {
+            this.index = index;
+            this.remainder = remainder;
+        }
+        return PrefixSumIndexOfResult;
+    }());
+    var PrefixSumComputer = /** @class */ (function () {
+        function PrefixSumComputer(values) {
+            this.values = values;
+            this.prefixSum = new Uint32Array(values.length);
+            this.prefixSumValidIndex = new Int32Array(1);
+            this.prefixSumValidIndex[0] = -1;
+        }
+        PrefixSumComputer.prototype.insertValues = function (insertIndex, insertValues) {
+            insertIndex = toUint32(insertIndex);
+            var oldValues = this.values;
+            var oldPrefixSum = this.prefixSum;
+            var insertValuesLen = insertValues.length;
+            if (insertValuesLen === 0) {
+                return false;
+            }
+            this.values = new Uint32Array(oldValues.length + insertValuesLen);
+            this.values.set(oldValues.subarray(0, insertIndex), 0);
+            this.values.set(oldValues.subarray(insertIndex), insertIndex + insertValuesLen);
+            this.values.set(insertValues, insertIndex);
+            if (insertIndex - 1 < this.prefixSumValidIndex[0]) {
+                this.prefixSumValidIndex[0] = insertIndex - 1;
+            }
+            this.prefixSum = new Uint32Array(this.values.length);
+            if (this.prefixSumValidIndex[0] >= 0) {
+                this.prefixSum.set(oldPrefixSum.subarray(0, this.prefixSumValidIndex[0] + 1));
+            }
+            return true;
+        };
+        PrefixSumComputer.prototype.changeValue = function (index, value) {
+            index = toUint32(index);
+            value = toUint32(value);
+            if (this.values[index] === value) {
+                return false;
+            }
+            this.values[index] = value;
+            if (index - 1 < this.prefixSumValidIndex[0]) {
+                this.prefixSumValidIndex[0] = index - 1;
+            }
+            return true;
+        };
+        PrefixSumComputer.prototype.removeValues = function (startIndex, cnt) {
+            startIndex = toUint32(startIndex);
+            cnt = toUint32(cnt);
+            var oldValues = this.values;
+            var oldPrefixSum = this.prefixSum;
+            if (startIndex >= oldValues.length) {
+                return false;
+            }
+            var maxCnt = oldValues.length - startIndex;
+            if (cnt >= maxCnt) {
+                cnt = maxCnt;
+            }
+            if (cnt === 0) {
+                return false;
+            }
+            this.values = new Uint32Array(oldValues.length - cnt);
+            this.values.set(oldValues.subarray(0, startIndex), 0);
+            this.values.set(oldValues.subarray(startIndex + cnt), startIndex);
+            this.prefixSum = new Uint32Array(this.values.length);
+            if (startIndex - 1 < this.prefixSumValidIndex[0]) {
+                this.prefixSumValidIndex[0] = startIndex - 1;
+            }
+            if (this.prefixSumValidIndex[0] >= 0) {
+                this.prefixSum.set(oldPrefixSum.subarray(0, this.prefixSumValidIndex[0] + 1));
+            }
+            return true;
+        };
+        PrefixSumComputer.prototype.getTotalValue = function () {
+            if (this.values.length === 0) {
+                return 0;
+            }
+            return this._getAccumulatedValue(this.values.length - 1);
+        };
+        PrefixSumComputer.prototype.getAccumulatedValue = function (index) {
+            if (index < 0) {
+                return 0;
+            }
+            index = toUint32(index);
+            return this._getAccumulatedValue(index);
+        };
+        PrefixSumComputer.prototype._getAccumulatedValue = function (index) {
+            if (index <= this.prefixSumValidIndex[0]) {
+                return this.prefixSum[index];
+            }
+            var startIndex = this.prefixSumValidIndex[0] + 1;
+            if (startIndex === 0) {
+                this.prefixSum[0] = this.values[0];
+                startIndex++;
+            }
+            if (index >= this.values.length) {
+                index = this.values.length - 1;
+            }
+            for (var i = startIndex; i <= index; i++) {
+                this.prefixSum[i] = this.prefixSum[i - 1] + this.values[i];
+            }
+            this.prefixSumValidIndex[0] = Math.max(this.prefixSumValidIndex[0], index);
+            return this.prefixSum[index];
+        };
+        PrefixSumComputer.prototype.getIndexOf = function (accumulatedValue) {
+            accumulatedValue = Math.floor(accumulatedValue); //@perf
+            // Compute all sums (to get a fully valid prefixSum)
+            this.getTotalValue();
+            var low = 0;
+            var high = this.values.length - 1;
+            var mid = 0;
+            var midStop = 0;
+            var midStart = 0;
+            while (low <= high) {
+                mid = low + ((high - low) / 2) | 0;
+                midStop = this.prefixSum[mid];
+                midStart = midStop - this.values[mid];
+                if (accumulatedValue < midStart) {
+                    high = mid - 1;
+                }
+                else if (accumulatedValue >= midStop) {
+                    low = mid + 1;
+                }
+                else {
+                    break;
+                }
+            }
+            return new PrefixSumIndexOfResult(mid, accumulatedValue - midStart);
+        };
+        return PrefixSumComputer;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var MirrorTextModel = /** @class */ (function () {
+        function MirrorTextModel(uri, lines, eol, versionId) {
+            this._uri = uri;
+            this._lines = lines;
+            this._eol = eol;
+            this._versionId = versionId;
+            this._lineStarts = null;
+        }
+        MirrorTextModel.prototype.dispose = function () {
+            this._lines.length = 0;
+        };
+        MirrorTextModel.prototype.getText = function () {
+            return this._lines.join(this._eol);
+        };
+        MirrorTextModel.prototype.onEvents = function (e) {
+            if (e.eol && e.eol !== this._eol) {
+                this._eol = e.eol;
+                this._lineStarts = null;
+            }
+            // Update my lines
+            var changes = e.changes;
+            for (var _i = 0, changes_1 = changes; _i < changes_1.length; _i++) {
+                var change = changes_1[_i];
+                this._acceptDeleteRange(change.range);
+                this._acceptInsertText(new Position(change.range.startLineNumber, change.range.startColumn), change.text);
+            }
+            this._versionId = e.versionId;
+        };
+        MirrorTextModel.prototype._ensureLineStarts = function () {
+            if (!this._lineStarts) {
+                var eolLength = this._eol.length;
+                var linesLength = this._lines.length;
+                var lineStartValues = new Uint32Array(linesLength);
+                for (var i = 0; i < linesLength; i++) {
+                    lineStartValues[i] = this._lines[i].length + eolLength;
+                }
+                this._lineStarts = new PrefixSumComputer(lineStartValues);
+            }
+        };
+        /**
+         * All changes to a line's text go through this method
+         */
+        MirrorTextModel.prototype._setLineText = function (lineIndex, newValue) {
+            this._lines[lineIndex] = newValue;
+            if (this._lineStarts) {
+                // update prefix sum
+                this._lineStarts.changeValue(lineIndex, this._lines[lineIndex].length + this._eol.length);
+            }
+        };
+        MirrorTextModel.prototype._acceptDeleteRange = function (range) {
+            if (range.startLineNumber === range.endLineNumber) {
+                if (range.startColumn === range.endColumn) {
+                    // Nothing to delete
+                    return;
+                }
+                // Delete text on the affected line
+                this._setLineText(range.startLineNumber - 1, this._lines[range.startLineNumber - 1].substring(0, range.startColumn - 1)
+                    + this._lines[range.startLineNumber - 1].substring(range.endColumn - 1));
+                return;
+            }
+            // Take remaining text on last line and append it to remaining text on first line
+            this._setLineText(range.startLineNumber - 1, this._lines[range.startLineNumber - 1].substring(0, range.startColumn - 1)
+                + this._lines[range.endLineNumber - 1].substring(range.endColumn - 1));
+            // Delete middle lines
+            this._lines.splice(range.startLineNumber, range.endLineNumber - range.startLineNumber);
+            if (this._lineStarts) {
+                // update prefix sum
+                this._lineStarts.removeValues(range.startLineNumber, range.endLineNumber - range.startLineNumber);
+            }
+        };
+        MirrorTextModel.prototype._acceptInsertText = function (position, insertText) {
+            if (insertText.length === 0) {
+                // Nothing to insert
+                return;
+            }
+            var insertLines = insertText.split(/\r\n|\r|\n/);
+            if (insertLines.length === 1) {
+                // Inserting text on one line
+                this._setLineText(position.lineNumber - 1, this._lines[position.lineNumber - 1].substring(0, position.column - 1)
+                    + insertLines[0]
+                    + this._lines[position.lineNumber - 1].substring(position.column - 1));
+                return;
+            }
+            // Append overflowing text from first line to the end of text to insert
+            insertLines[insertLines.length - 1] += this._lines[position.lineNumber - 1].substring(position.column - 1);
+            // Delete overflowing text from first line and insert text on first line
+            this._setLineText(position.lineNumber - 1, this._lines[position.lineNumber - 1].substring(0, position.column - 1)
+                + insertLines[0]);
+            // Insert new lines & store lengths
+            var newLengths = new Uint32Array(insertLines.length - 1);
+            for (var i = 1; i < insertLines.length; i++) {
+                this._lines.splice(position.lineNumber + i - 1, 0, insertLines[i]);
+                newLengths[i - 1] = insertLines[i].length + this._eol.length;
+            }
+            if (this._lineStarts) {
+                // update prefix sum
+                this._lineStarts.insertValues(position.lineNumber, newLengths);
+            }
+        };
+        return MirrorTextModel;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var USUAL_WORD_SEPARATORS = '`~!@#$%^&*()-=+[{]}\\|;:\'",.<>/?';
+    /**
+     * Create a word definition regular expression based on default word separators.
+     * Optionally provide allowed separators that should be included in words.
+     *
+     * The default would look like this:
+     * /(-?\d*\.\d\w*)|([^\`\~\!\@\#\$\%\^\&\*\(\)\-\=\+\[\{\]\}\\\|\;\:\'\"\,\.\<\>\/\?\s]+)/g
+     */
+    function createWordRegExp(allowInWords) {
+        if (allowInWords === void 0) { allowInWords = ''; }
+        var source = '(-?\\d*\\.\\d\\w*)|([^';
+        for (var _i = 0, USUAL_WORD_SEPARATORS_1 = USUAL_WORD_SEPARATORS; _i < USUAL_WORD_SEPARATORS_1.length; _i++) {
+            var sep = USUAL_WORD_SEPARATORS_1[_i];
+            if (allowInWords.indexOf(sep) >= 0) {
+                continue;
+            }
+            source += '\\' + sep;
+        }
+        source += '\\s]+)';
+        return new RegExp(source, 'g');
+    }
+    // catches numbers (including floating numbers) in the first group, and alphanum in the second
+    var DEFAULT_WORD_REGEXP = createWordRegExp();
+    function ensureValidWordDefinition(wordDefinition) {
+        var result = DEFAULT_WORD_REGEXP;
+        if (wordDefinition && (wordDefinition instanceof RegExp)) {
+            if (!wordDefinition.global) {
+                var flags = 'g';
+                if (wordDefinition.ignoreCase) {
+                    flags += 'i';
+                }
+                if (wordDefinition.multiline) {
+                    flags += 'm';
+                }
+                if (wordDefinition.unicode) {
+                    flags += 'u';
+                }
+                result = new RegExp(wordDefinition.source, flags);
+            }
+            else {
+                result = wordDefinition;
+            }
+        }
+        result.lastIndex = 0;
+        return result;
+    }
+    function getWordAtPosFast(column, wordDefinition, text, textOffset) {
+        // find whitespace enclosed text around column and match from there
+        var pos = column - 1 - textOffset;
+        var start = text.lastIndexOf(' ', pos - 1) + 1;
+        wordDefinition.lastIndex = start;
+        var match;
+        while (match = wordDefinition.exec(text)) {
+            var matchIndex = match.index || 0;
+            if (matchIndex <= pos && wordDefinition.lastIndex >= pos) {
+                return {
+                    word: match[0],
+                    startColumn: textOffset + 1 + matchIndex,
+                    endColumn: textOffset + 1 + wordDefinition.lastIndex
+                };
+            }
+        }
+        return null;
+    }
+    function getWordAtPosSlow(column, wordDefinition, text, textOffset) {
+        // matches all words starting at the beginning
+        // of the input until it finds a match that encloses
+        // the desired column. slow but correct
+        var pos = column - 1 - textOffset;
+        wordDefinition.lastIndex = 0;
+        var match;
+        while (match = wordDefinition.exec(text)) {
+            var matchIndex = match.index || 0;
+            if (matchIndex > pos) {
+                // |nW -> matched only after the pos
+                return null;
+            }
+            else if (wordDefinition.lastIndex >= pos) {
+                // W|W -> match encloses pos
+                return {
+                    word: match[0],
+                    startColumn: textOffset + 1 + matchIndex,
+                    endColumn: textOffset + 1 + wordDefinition.lastIndex
+                };
+            }
+        }
+        return null;
+    }
+    function getWordAtText(column, wordDefinition, text, textOffset) {
+        // if `words` can contain whitespace character we have to use the slow variant
+        // otherwise we use the fast variant of finding a word
+        wordDefinition.lastIndex = 0;
+        var match = wordDefinition.exec(text);
+        if (!match) {
+            return null;
+        }
+        // todo@joh the `match` could already be the (first) word
+        var ret = match[0].indexOf(' ') >= 0
+            // did match a word which contains a space character -> use slow word find
+            ? getWordAtPosSlow(column, wordDefinition, text, textOffset)
+            // sane word definition -> use fast word find
+            : getWordAtPosFast(column, wordDefinition, text, textOffset);
+        // both (getWordAtPosFast and getWordAtPosSlow) leave the wordDefinition-RegExp
+        // in an undefined state and to not confuse other users of the wordDefinition
+        // we reset the lastIndex
+        wordDefinition.lastIndex = 0;
+        return ret;
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    /**
+     * A fast character classifier that uses a compact array for ASCII values.
+     */
+    var CharacterClassifier = /** @class */ (function () {
+        function CharacterClassifier(_defaultValue) {
+            var defaultValue = toUint8(_defaultValue);
+            this._defaultValue = defaultValue;
+            this._asciiMap = CharacterClassifier._createAsciiMap(defaultValue);
+            this._map = new Map();
+        }
+        CharacterClassifier._createAsciiMap = function (defaultValue) {
+            var asciiMap = new Uint8Array(256);
+            for (var i = 0; i < 256; i++) {
+                asciiMap[i] = defaultValue;
+            }
+            return asciiMap;
+        };
+        CharacterClassifier.prototype.set = function (charCode, _value) {
+            var value = toUint8(_value);
+            if (charCode >= 0 && charCode < 256) {
+                this._asciiMap[charCode] = value;
+            }
+            else {
+                this._map.set(charCode, value);
+            }
+        };
+        CharacterClassifier.prototype.get = function (charCode) {
+            if (charCode >= 0 && charCode < 256) {
+                return this._asciiMap[charCode];
+            }
+            else {
+                return (this._map.get(charCode) || this._defaultValue);
+            }
+        };
+        return CharacterClassifier;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var Uint8Matrix = /** @class */ (function () {
+        function Uint8Matrix(rows, cols, defaultValue) {
+            var data = new Uint8Array(rows * cols);
+            for (var i = 0, len = rows * cols; i < len; i++) {
+                data[i] = defaultValue;
+            }
+            this._data = data;
+            this.rows = rows;
+            this.cols = cols;
+        }
+        Uint8Matrix.prototype.get = function (row, col) {
+            return this._data[row * this.cols + col];
+        };
+        Uint8Matrix.prototype.set = function (row, col, value) {
+            this._data[row * this.cols + col] = value;
+        };
+        return Uint8Matrix;
+    }());
+    var StateMachine = /** @class */ (function () {
+        function StateMachine(edges) {
+            var maxCharCode = 0;
+            var maxState = 0 /* Invalid */;
+            for (var i = 0, len = edges.length; i < len; i++) {
+                var _a = edges[i], from = _a[0], chCode = _a[1], to = _a[2];
+                if (chCode > maxCharCode) {
+                    maxCharCode = chCode;
+                }
+                if (from > maxState) {
+                    maxState = from;
+                }
+                if (to > maxState) {
+                    maxState = to;
+                }
+            }
+            maxCharCode++;
+            maxState++;
+            var states = new Uint8Matrix(maxState, maxCharCode, 0 /* Invalid */);
+            for (var i = 0, len = edges.length; i < len; i++) {
+                var _b = edges[i], from = _b[0], chCode = _b[1], to = _b[2];
+                states.set(from, chCode, to);
+            }
+            this._states = states;
+            this._maxCharCode = maxCharCode;
+        }
+        StateMachine.prototype.nextState = function (currentState, chCode) {
+            if (chCode < 0 || chCode >= this._maxCharCode) {
+                return 0 /* Invalid */;
+            }
+            return this._states.get(currentState, chCode);
+        };
+        return StateMachine;
+    }());
+    // State machine for http:// or https:// or file://
+    var _stateMachine = null;
+    function getStateMachine() {
+        if (_stateMachine === null) {
+            _stateMachine = new StateMachine([
+                [1 /* Start */, 104 /* h */, 2 /* H */],
+                [1 /* Start */, 72 /* H */, 2 /* H */],
+                [1 /* Start */, 102 /* f */, 6 /* F */],
+                [1 /* Start */, 70 /* F */, 6 /* F */],
+                [2 /* H */, 116 /* t */, 3 /* HT */],
+                [2 /* H */, 84 /* T */, 3 /* HT */],
+                [3 /* HT */, 116 /* t */, 4 /* HTT */],
+                [3 /* HT */, 84 /* T */, 4 /* HTT */],
+                [4 /* HTT */, 112 /* p */, 5 /* HTTP */],
+                [4 /* HTT */, 80 /* P */, 5 /* HTTP */],
+                [5 /* HTTP */, 115 /* s */, 9 /* BeforeColon */],
+                [5 /* HTTP */, 83 /* S */, 9 /* BeforeColon */],
+                [5 /* HTTP */, 58 /* Colon */, 10 /* AfterColon */],
+                [6 /* F */, 105 /* i */, 7 /* FI */],
+                [6 /* F */, 73 /* I */, 7 /* FI */],
+                [7 /* FI */, 108 /* l */, 8 /* FIL */],
+                [7 /* FI */, 76 /* L */, 8 /* FIL */],
+                [8 /* FIL */, 101 /* e */, 9 /* BeforeColon */],
+                [8 /* FIL */, 69 /* E */, 9 /* BeforeColon */],
+                [9 /* BeforeColon */, 58 /* Colon */, 10 /* AfterColon */],
+                [10 /* AfterColon */, 47 /* Slash */, 11 /* AlmostThere */],
+                [11 /* AlmostThere */, 47 /* Slash */, 12 /* End */],
+            ]);
+        }
+        return _stateMachine;
+    }
+    var _classifier = null;
+    function getClassifier() {
+        if (_classifier === null) {
+            _classifier = new CharacterClassifier(0 /* None */);
+            var FORCE_TERMINATION_CHARACTERS = ' \t<>\'\"、。｡､，．：；？！＠＃＄％＆＊‘“〈《「『【〔（［｛｢｣｝］）〕】』」》〉”’｀～…';
+            for (var i = 0; i < FORCE_TERMINATION_CHARACTERS.length; i++) {
+                _classifier.set(FORCE_TERMINATION_CHARACTERS.charCodeAt(i), 1 /* ForceTermination */);
+            }
+            var CANNOT_END_WITH_CHARACTERS = '.,;';
+            for (var i = 0; i < CANNOT_END_WITH_CHARACTERS.length; i++) {
+                _classifier.set(CANNOT_END_WITH_CHARACTERS.charCodeAt(i), 2 /* CannotEndIn */);
+            }
+        }
+        return _classifier;
+    }
+    var LinkComputer = /** @class */ (function () {
+        function LinkComputer() {
+        }
+        LinkComputer._createLink = function (classifier, line, lineNumber, linkBeginIndex, linkEndIndex) {
+            // Do not allow to end link in certain characters...
+            var lastIncludedCharIndex = linkEndIndex - 1;
+            do {
+                var chCode = line.charCodeAt(lastIncludedCharIndex);
+                var chClass = classifier.get(chCode);
+                if (chClass !== 2 /* CannotEndIn */) {
+                    break;
+                }
+                lastIncludedCharIndex--;
+            } while (lastIncludedCharIndex > linkBeginIndex);
+            // Handle links enclosed in parens, square brackets and curlys.
+            if (linkBeginIndex > 0) {
+                var charCodeBeforeLink = line.charCodeAt(linkBeginIndex - 1);
+                var lastCharCodeInLink = line.charCodeAt(lastIncludedCharIndex);
+                if ((charCodeBeforeLink === 40 /* OpenParen */ && lastCharCodeInLink === 41 /* CloseParen */)
+                    || (charCodeBeforeLink === 91 /* OpenSquareBracket */ && lastCharCodeInLink === 93 /* CloseSquareBracket */)
+                    || (charCodeBeforeLink === 123 /* OpenCurlyBrace */ && lastCharCodeInLink === 125 /* CloseCurlyBrace */)) {
+                    // Do not end in ) if ( is before the link start
+                    // Do not end in ] if [ is before the link start
+                    // Do not end in } if { is before the link start
+                    lastIncludedCharIndex--;
+                }
+            }
+            return {
+                range: {
+                    startLineNumber: lineNumber,
+                    startColumn: linkBeginIndex + 1,
+                    endLineNumber: lineNumber,
+                    endColumn: lastIncludedCharIndex + 2
+                },
+                url: line.substring(linkBeginIndex, lastIncludedCharIndex + 1)
+            };
+        };
+        LinkComputer.computeLinks = function (model, stateMachine) {
+            if (stateMachine === void 0) { stateMachine = getStateMachine(); }
+            var classifier = getClassifier();
+            var result = [];
+            for (var i = 1, lineCount = model.getLineCount(); i <= lineCount; i++) {
+                var line = model.getLineContent(i);
+                var len = line.length;
+                var j = 0;
+                var linkBeginIndex = 0;
+                var linkBeginChCode = 0;
+                var state = 1 /* Start */;
+                var hasOpenParens = false;
+                var hasOpenSquareBracket = false;
+                var hasOpenCurlyBracket = false;
+                while (j < len) {
+                    var resetStateMachine = false;
+                    var chCode = line.charCodeAt(j);
+                    if (state === 13 /* Accept */) {
+                        var chClass = void 0;
+                        switch (chCode) {
+                            case 40 /* OpenParen */:
+                                hasOpenParens = true;
+                                chClass = 0 /* None */;
+                                break;
+                            case 41 /* CloseParen */:
+                                chClass = (hasOpenParens ? 0 /* None */ : 1 /* ForceTermination */);
+                                break;
+                            case 91 /* OpenSquareBracket */:
+                                hasOpenSquareBracket = true;
+                                chClass = 0 /* None */;
+                                break;
+                            case 93 /* CloseSquareBracket */:
+                                chClass = (hasOpenSquareBracket ? 0 /* None */ : 1 /* ForceTermination */);
+                                break;
+                            case 123 /* OpenCurlyBrace */:
+                                hasOpenCurlyBracket = true;
+                                chClass = 0 /* None */;
+                                break;
+                            case 125 /* CloseCurlyBrace */:
+                                chClass = (hasOpenCurlyBracket ? 0 /* None */ : 1 /* ForceTermination */);
+                                break;
+                            /* The following three rules make it that ' or " or ` are allowed inside links if the link began with a different one */
+                            case 39 /* SingleQuote */:
+                                chClass = (linkBeginChCode === 34 /* DoubleQuote */ || linkBeginChCode === 96 /* BackTick */) ? 0 /* None */ : 1 /* ForceTermination */;
+                                break;
+                            case 34 /* DoubleQuote */:
+                                chClass = (linkBeginChCode === 39 /* SingleQuote */ || linkBeginChCode === 96 /* BackTick */) ? 0 /* None */ : 1 /* ForceTermination */;
+                                break;
+                            case 96 /* BackTick */:
+                                chClass = (linkBeginChCode === 39 /* SingleQuote */ || linkBeginChCode === 34 /* DoubleQuote */) ? 0 /* None */ : 1 /* ForceTermination */;
+                                break;
+                            case 42 /* Asterisk */:
+                                // `*` terminates a link if the link began with `*`
+                                chClass = (linkBeginChCode === 42 /* Asterisk */) ? 1 /* ForceTermination */ : 0 /* None */;
+                                break;
+                            case 124 /* Pipe */:
+                                // `|` terminates a link if the link began with `|`
+                                chClass = (linkBeginChCode === 124 /* Pipe */) ? 1 /* ForceTermination */ : 0 /* None */;
+                                break;
+                            default:
+                                chClass = classifier.get(chCode);
+                        }
+                        // Check if character terminates link
+                        if (chClass === 1 /* ForceTermination */) {
+                            result.push(LinkComputer._createLink(classifier, line, i, linkBeginIndex, j));
+                            resetStateMachine = true;
+                        }
+                    }
+                    else if (state === 12 /* End */) {
+                        var chClass = void 0;
+                        if (chCode === 91 /* OpenSquareBracket */) {
+                            // Allow for the authority part to contain ipv6 addresses which contain [ and ]
+                            hasOpenSquareBracket = true;
+                            chClass = 0 /* None */;
+                        }
+                        else {
+                            chClass = classifier.get(chCode);
+                        }
+                        // Check if character terminates link
+                        if (chClass === 1 /* ForceTermination */) {
+                            resetStateMachine = true;
+                        }
+                        else {
+                            state = 13 /* Accept */;
+                        }
+                    }
+                    else {
+                        state = stateMachine.nextState(state, chCode);
+                        if (state === 0 /* Invalid */) {
+                            resetStateMachine = true;
+                        }
+                    }
+                    if (resetStateMachine) {
+                        state = 1 /* Start */;
+                        hasOpenParens = false;
+                        hasOpenSquareBracket = false;
+                        hasOpenCurlyBracket = false;
+                        // Record where the link started
+                        linkBeginIndex = j + 1;
+                        linkBeginChCode = chCode;
+                    }
+                    j++;
+                }
+                if (state === 13 /* Accept */) {
+                    result.push(LinkComputer._createLink(classifier, line, i, linkBeginIndex, len));
+                }
+            }
+            return result;
+        };
+        return LinkComputer;
+    }());
+    /**
+     * Returns an array of all links contains in the provided
+     * document. *Note* that this operation is computational
+     * expensive and should not run in the UI thread.
+     */
+    function computeLinks(model) {
+        if (!model || typeof model.getLineCount !== 'function' || typeof model.getLineContent !== 'function') {
+            // Unknown caller!
+            return [];
+        }
+        return LinkComputer.computeLinks(model);
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var BasicInplaceReplace = /** @class */ (function () {
+        function BasicInplaceReplace() {
+            this._defaultValueSet = [
+                ['true', 'false'],
+                ['True', 'False'],
+                ['Private', 'Public', 'Friend', 'ReadOnly', 'Partial', 'Protected', 'WriteOnly'],
+                ['public', 'protected', 'private'],
+            ];
+        }
+        BasicInplaceReplace.prototype.navigateValueSet = function (range1, text1, range2, text2, up) {
+            if (range1 && text1) {
+                var result = this.doNavigateValueSet(text1, up);
+                if (result) {
+                    return {
+                        range: range1,
+                        value: result
+                    };
+                }
+            }
+            if (range2 && text2) {
+                var result = this.doNavigateValueSet(text2, up);
+                if (result) {
+                    return {
+                        range: range2,
+                        value: result
+                    };
+                }
+            }
+            return null;
+        };
+        BasicInplaceReplace.prototype.doNavigateValueSet = function (text, up) {
+            var numberResult = this.numberReplace(text, up);
+            if (numberResult !== null) {
+                return numberResult;
+            }
+            return this.textReplace(text, up);
+        };
+        BasicInplaceReplace.prototype.numberReplace = function (value, up) {
+            var precision = Math.pow(10, value.length - (value.lastIndexOf('.') + 1));
+            var n1 = Number(value);
+            var n2 = parseFloat(value);
+            if (!isNaN(n1) && !isNaN(n2) && n1 === n2) {
+                if (n1 === 0 && !up) {
+                    return null; // don't do negative
+                    //			} else if(n1 === 9 && up) {
+                    //				return null; // don't insert 10 into a number
+                }
+                else {
+                    n1 = Math.floor(n1 * precision);
+                    n1 += up ? precision : -precision;
+                    return String(n1 / precision);
+                }
+            }
+            return null;
+        };
+        BasicInplaceReplace.prototype.textReplace = function (value, up) {
+            return this.valueSetsReplace(this._defaultValueSet, value, up);
+        };
+        BasicInplaceReplace.prototype.valueSetsReplace = function (valueSets, value, up) {
+            var result = null;
+            for (var i = 0, len = valueSets.length; result === null && i < len; i++) {
+                result = this.valueSetReplace(valueSets[i], value, up);
+            }
+            return result;
+        };
+        BasicInplaceReplace.prototype.valueSetReplace = function (valueSet, value, up) {
+            var idx = valueSet.indexOf(value);
+            if (idx >= 0) {
+                idx += up ? +1 : -1;
+                if (idx < 0) {
+                    idx = valueSet.length - 1;
+                }
+                else {
+                    idx %= valueSet.length;
+                }
+                return valueSet[idx];
+            }
+            return null;
+        };
+        BasicInplaceReplace.INSTANCE = new BasicInplaceReplace();
+        return BasicInplaceReplace;
+    }());
+
+    /*!
+    Copyright (c) 2014 Taylor Hakes
+    Copyright (c) 2014 Forbes Lindesay
+     */
+    (function (global, factory) {
+    	typeof exports === 'object' && typeof module !== 'undefined' ? factory() :
+    		typeof define === 'function' && define.amd ? define(factory) :
+    			(factory());
+    }(undefined, (function () {
+
+    	/**
+    	 * @this {Promise}
+    	 */
+    	function finallyConstructor(callback) {
+    		var constructor = this.constructor;
+    		return this.then(
+    			function (value) {
+    				return constructor.resolve(callback()).then(function () {
+    					return value;
+    				});
+    			},
+    			function (reason) {
+    				return constructor.resolve(callback()).then(function () {
+    					return constructor.reject(reason);
+    				});
+    			}
+    		);
+    	}
+
+    	// Store setTimeout reference so promise-polyfill will be unaffected by
+    	// other code modifying setTimeout (like sinon.useFakeTimers())
+    	var setTimeoutFunc = setTimeout;
+
+    	function noop() { }
+
+    	// Polyfill for Function.prototype.bind
+    	function bind(fn, thisArg) {
+    		return function () {
+    			fn.apply(thisArg, arguments);
+    		};
+    	}
+
+    	/**
+    	 * @constructor
+    	 * @param {Function} fn
+    	 */
+    	function Promise(fn) {
+    		if (!(this instanceof Promise))
+    			throw new TypeError('Promises must be constructed via new');
+    		if (typeof fn !== 'function') throw new TypeError('not a function');
+    		/** @type {!number} */
+    		this._state = 0;
+    		/** @type {!boolean} */
+    		this._handled = false;
+    		/** @type {Promise|undefined} */
+    		this._value = undefined;
+    		/** @type {!Array<!Function>} */
+    		this._deferreds = [];
+
+    		doResolve(fn, this);
+    	}
+
+    	function handle(self, deferred) {
+    		while (self._state === 3) {
+    			self = self._value;
+    		}
+    		if (self._state === 0) {
+    			self._deferreds.push(deferred);
+    			return;
+    		}
+    		self._handled = true;
+    		Promise._immediateFn(function () {
+    			var cb = self._state === 1 ? deferred.onFulfilled : deferred.onRejected;
+    			if (cb === null) {
+    				(self._state === 1 ? resolve : reject)(deferred.promise, self._value);
+    				return;
+    			}
+    			var ret;
+    			try {
+    				ret = cb(self._value);
+    			} catch (e) {
+    				reject(deferred.promise, e);
+    				return;
+    			}
+    			resolve(deferred.promise, ret);
+    		});
+    	}
+
+    	function resolve(self, newValue) {
+    		try {
+    			// Promise Resolution Procedure: https://github.com/promises-aplus/promises-spec#the-promise-resolution-procedure
+    			if (newValue === self)
+    				throw new TypeError('A promise cannot be resolved with itself.');
+    			if (
+    				newValue &&
+    				(typeof newValue === 'object' || typeof newValue === 'function')
+    			) {
+    				var then = newValue.then;
+    				if (newValue instanceof Promise) {
+    					self._state = 3;
+    					self._value = newValue;
+    					finale(self);
+    					return;
+    				} else if (typeof then === 'function') {
+    					doResolve(bind(then, newValue), self);
+    					return;
+    				}
+    			}
+    			self._state = 1;
+    			self._value = newValue;
+    			finale(self);
+    		} catch (e) {
+    			reject(self, e);
+    		}
+    	}
+
+    	function reject(self, newValue) {
+    		self._state = 2;
+    		self._value = newValue;
+    		finale(self);
+    	}
+
+    	function finale(self) {
+    		if (self._state === 2 && self._deferreds.length === 0) {
+    			Promise._immediateFn(function () {
+    				if (!self._handled) {
+    					Promise._unhandledRejectionFn(self._value);
+    				}
+    			});
+    		}
+
+    		for (var i = 0, len = self._deferreds.length; i < len; i++) {
+    			handle(self, self._deferreds[i]);
+    		}
+    		self._deferreds = null;
+    	}
+
+    	/**
+    	 * @constructor
+    	 */
+    	function Handler(onFulfilled, onRejected, promise) {
+    		this.onFulfilled = typeof onFulfilled === 'function' ? onFulfilled : null;
+    		this.onRejected = typeof onRejected === 'function' ? onRejected : null;
+    		this.promise = promise;
+    	}
+
+    	/**
+    	 * Take a potentially misbehaving resolver function and make sure
+    	 * onFulfilled and onRejected are only called once.
+    	 *
+    	 * Makes no guarantees about asynchrony.
+    	 */
+    	function doResolve(fn, self) {
+    		var done = false;
+    		try {
+    			fn(
+    				function (value) {
+    					if (done) return;
+    					done = true;
+    					resolve(self, value);
+    				},
+    				function (reason) {
+    					if (done) return;
+    					done = true;
+    					reject(self, reason);
+    				}
+    			);
+    		} catch (ex) {
+    			if (done) return;
+    			done = true;
+    			reject(self, ex);
+    		}
+    	}
+
+    	Promise.prototype['catch'] = function (onRejected) {
+    		return this.then(null, onRejected);
+    	};
+
+    	Promise.prototype.then = function (onFulfilled, onRejected) {
+    		// @ts-ignore
+    		var prom = new this.constructor(noop);
+
+    		handle(this, new Handler(onFulfilled, onRejected, prom));
+    		return prom;
+    	};
+
+    	Promise.prototype['finally'] = finallyConstructor;
+
+    	Promise.all = function (arr) {
+    		return new Promise(function (resolve, reject) {
+    			if (!arr || typeof arr.length === 'undefined')
+    				throw new TypeError('Promise.all accepts an array');
+    			var args = Array.prototype.slice.call(arr);
+    			if (args.length === 0) return resolve([]);
+    			var remaining = args.length;
+
+    			function res(i, val) {
+    				try {
+    					if (val && (typeof val === 'object' || typeof val === 'function')) {
+    						var then = val.then;
+    						if (typeof then === 'function') {
+    							then.call(
+    								val,
+    								function (val) {
+    									res(i, val);
+    								},
+    								reject
+    							);
+    							return;
+    						}
+    					}
+    					args[i] = val;
+    					if (--remaining === 0) {
+    						resolve(args);
+    					}
+    				} catch (ex) {
+    					reject(ex);
+    				}
+    			}
+
+    			for (var i = 0; i < args.length; i++) {
+    				res(i, args[i]);
+    			}
+    		});
+    	};
+
+    	Promise.resolve = function (value) {
+    		if (value && typeof value === 'object' && value.constructor === Promise) {
+    			return value;
+    		}
+
+    		return new Promise(function (resolve) {
+    			resolve(value);
+    		});
+    	};
+
+    	Promise.reject = function (value) {
+    		return new Promise(function (resolve, reject) {
+    			reject(value);
+    		});
+    	};
+
+    	Promise.race = function (values) {
+    		return new Promise(function (resolve, reject) {
+    			for (var i = 0, len = values.length; i < len; i++) {
+    				values[i].then(resolve, reject);
+    			}
+    		});
+    	};
+
+    	// Use polyfill for setImmediate for performance gains
+    	Promise._immediateFn =
+    		(typeof setImmediate === 'function' &&
+    			function (fn) {
+    				setImmediate(fn);
+    			}) ||
+    		function (fn) {
+    			setTimeoutFunc(fn, 0);
+    		};
+
+    	Promise._unhandledRejectionFn = function _unhandledRejectionFn(err) {
+    		if (typeof console !== 'undefined' && console) {
+    			console.warn('Possible Unhandled Promise Rejection:', err); // eslint-disable-line no-console
+    		}
+    	};
+
+    	/** @suppress {undefinedVars} */
+    	var globalNS = (function () {
+    		// the only reliable means to get the global object is
+    		// `Function('return this')()`
+    		// However, this causes CSP violations in Chrome apps.
+    		if (typeof self !== 'undefined') {
+    			return self;
+    		}
+    		if (typeof window !== 'undefined') {
+    			return window;
+    		}
+    		if (typeof global !== 'undefined') {
+    			return global;
+    		}
+    		throw new Error('unable to locate global object');
+    	})();
+
+    	if (!('Promise' in globalNS)) {
+    		globalNS['Promise'] = Promise;
+    	} else if (!globalNS.Promise.prototype['finally']) {
+    		globalNS.Promise.prototype['finally'] = finallyConstructor;
+    	}
+
+    })));
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    function once(fn) {
+        var _this = this;
+        var didCall = false;
+        var result;
+        return function () {
+            if (didCall) {
+                return result;
+            }
+            didCall = true;
+            result = fn.apply(_this, arguments);
+            return result;
+        };
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var Node = /** @class */ (function () {
+        function Node(element) {
+            this.element = element;
+            this.next = Node.Undefined;
+            this.prev = Node.Undefined;
+        }
+        Node.Undefined = new Node(undefined);
+        return Node;
+    }());
+    var LinkedList = /** @class */ (function () {
+        function LinkedList() {
+            this._first = Node.Undefined;
+            this._last = Node.Undefined;
+            this._size = 0;
+        }
+        Object.defineProperty(LinkedList.prototype, "size", {
+            get: function () {
+                return this._size;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        LinkedList.prototype.isEmpty = function () {
+            return this._first === Node.Undefined;
+        };
+        LinkedList.prototype.clear = function () {
+            this._first = Node.Undefined;
+            this._last = Node.Undefined;
+            this._size = 0;
+        };
+        LinkedList.prototype.unshift = function (element) {
+            return this._insert(element, false);
+        };
+        LinkedList.prototype.push = function (element) {
+            return this._insert(element, true);
+        };
+        LinkedList.prototype._insert = function (element, atTheEnd) {
+            var _this = this;
+            var newNode = new Node(element);
+            if (this._first === Node.Undefined) {
+                this._first = newNode;
+                this._last = newNode;
+            }
+            else if (atTheEnd) {
+                // push
+                var oldLast = this._last;
+                this._last = newNode;
+                newNode.prev = oldLast;
+                oldLast.next = newNode;
+            }
+            else {
+                // unshift
+                var oldFirst = this._first;
+                this._first = newNode;
+                newNode.next = oldFirst;
+                oldFirst.prev = newNode;
+            }
+            this._size += 1;
+            var didRemove = false;
+            return function () {
+                if (!didRemove) {
+                    didRemove = true;
+                    _this._remove(newNode);
+                }
+            };
+        };
+        LinkedList.prototype.shift = function () {
+            if (this._first === Node.Undefined) {
+                return undefined;
+            }
+            else {
+                var res = this._first.element;
+                this._remove(this._first);
+                return res;
+            }
+        };
+        LinkedList.prototype.pop = function () {
+            if (this._last === Node.Undefined) {
+                return undefined;
+            }
+            else {
+                var res = this._last.element;
+                this._remove(this._last);
+                return res;
+            }
+        };
+        LinkedList.prototype._remove = function (node) {
+            if (node.prev !== Node.Undefined && node.next !== Node.Undefined) {
+                // middle
+                var anchor = node.prev;
+                anchor.next = node.next;
+                node.next.prev = anchor;
+            }
+            else if (node.prev === Node.Undefined && node.next === Node.Undefined) {
+                // only node
+                this._first = Node.Undefined;
+                this._last = Node.Undefined;
+            }
+            else if (node.next === Node.Undefined) {
+                // last
+                this._last = this._last.prev;
+                this._last.next = Node.Undefined;
+            }
+            else if (node.prev === Node.Undefined) {
+                // first
+                this._first = this._first.next;
+                this._first.prev = Node.Undefined;
+            }
+            // done
+            this._size -= 1;
+        };
+        LinkedList.prototype.iterator = function () {
+            var element;
+            var node = this._first;
+            return {
+                next: function () {
+                    if (node === Node.Undefined) {
+                        return FIN;
+                    }
+                    if (!element) {
+                        element = { done: false, value: node.element };
+                    }
+                    else {
+                        element.value = node.element;
+                    }
+                    node = node.next;
+                    return element;
+                }
+            };
+        };
+        LinkedList.prototype.toArray = function () {
+            var result = [];
+            for (var node = this._first; node !== Node.Undefined; node = node.next) {
+                result.push(node.element);
+            }
+            return result;
+        };
+        return LinkedList;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var __extends$3 = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var Event;
+    (function (Event) {
+        Event.None = function () { return Disposable.None; };
+        /**
+         * Given an event, returns another event which only fires once.
+         */
+        function once(event) {
+            return function (listener, thisArgs, disposables) {
+                if (thisArgs === void 0) { thisArgs = null; }
+                // we need this, in case the event fires during the listener call
+                var didFire = false;
+                var result;
+                result = event(function (e) {
+                    if (didFire) {
+                        return;
+                    }
+                    else if (result) {
+                        result.dispose();
+                    }
+                    else {
+                        didFire = true;
+                    }
+                    return listener.call(thisArgs, e);
+                }, null, disposables);
+                if (didFire) {
+                    result.dispose();
+                }
+                return result;
+            };
+        }
+        Event.once = once;
+        /**
+         * Given an event and a `map` function, returns another event which maps each element
+         * through the mapping function.
+         */
+        function map(event, map) {
+            return snapshot(function (listener, thisArgs, disposables) {
+                if (thisArgs === void 0) { thisArgs = null; }
+                return event(function (i) { return listener.call(thisArgs, map(i)); }, null, disposables);
+            });
+        }
+        Event.map = map;
+        /**
+         * Given an event and an `each` function, returns another identical event and calls
+         * the `each` function per each element.
+         */
+        function forEach(event, each) {
+            return snapshot(function (listener, thisArgs, disposables) {
+                if (thisArgs === void 0) { thisArgs = null; }
+                return event(function (i) { each(i); listener.call(thisArgs, i); }, null, disposables);
+            });
+        }
+        Event.forEach = forEach;
+        function filter(event, filter) {
+            return snapshot(function (listener, thisArgs, disposables) {
+                if (thisArgs === void 0) { thisArgs = null; }
+                return event(function (e) { return filter(e) && listener.call(thisArgs, e); }, null, disposables);
+            });
+        }
+        Event.filter = filter;
+        /**
+         * Given an event, returns the same event but typed as `Event<void>`.
+         */
+        function signal(event) {
+            return event;
+        }
+        Event.signal = signal;
+        /**
+         * Given a collection of events, returns a single event which emits
+         * whenever any of the provided events emit.
+         */
+        function any() {
+            var events = [];
+            for (var _i = 0; _i < arguments.length; _i++) {
+                events[_i] = arguments[_i];
+            }
+            return function (listener, thisArgs, disposables) {
+                if (thisArgs === void 0) { thisArgs = null; }
+                return combinedDisposable.apply(void 0, events.map(function (event) { return event(function (e) { return listener.call(thisArgs, e); }, null, disposables); }));
+            };
+        }
+        Event.any = any;
+        /**
+         * Given an event and a `merge` function, returns another event which maps each element
+         * and the cumulative result through the `merge` function. Similar to `map`, but with memory.
+         */
+        function reduce(event, merge, initial) {
+            var output = initial;
+            return map(event, function (e) {
+                output = merge(output, e);
+                return output;
+            });
+        }
+        Event.reduce = reduce;
+        /**
+         * Given a chain of event processing functions (filter, map, etc), each
+         * function will be invoked per event & per listener. Snapshotting an event
+         * chain allows each function to be invoked just once per event.
+         */
+        function snapshot(event) {
+            var listener;
+            var emitter = new Emitter({
+                onFirstListenerAdd: function () {
+                    listener = event(emitter.fire, emitter);
+                },
+                onLastListenerRemove: function () {
+                    listener.dispose();
+                }
+            });
+            return emitter.event;
+        }
+        Event.snapshot = snapshot;
+        function debounce(event, merge, delay, leading, leakWarningThreshold) {
+            if (delay === void 0) { delay = 100; }
+            if (leading === void 0) { leading = false; }
+            var subscription;
+            var output = undefined;
+            var handle = undefined;
+            var numDebouncedCalls = 0;
+            var emitter = new Emitter({
+                leakWarningThreshold: leakWarningThreshold,
+                onFirstListenerAdd: function () {
+                    subscription = event(function (cur) {
+                        numDebouncedCalls++;
+                        output = merge(output, cur);
+                        if (leading && !handle) {
+                            emitter.fire(output);
+                            output = undefined;
+                        }
+                        clearTimeout(handle);
+                        handle = setTimeout(function () {
+                            var _output = output;
+                            output = undefined;
+                            handle = undefined;
+                            if (!leading || numDebouncedCalls > 1) {
+                                emitter.fire(_output);
+                            }
+                            numDebouncedCalls = 0;
+                        }, delay);
+                    });
+                },
+                onLastListenerRemove: function () {
+                    subscription.dispose();
+                }
+            });
+            return emitter.event;
+        }
+        Event.debounce = debounce;
+        /**
+         * Given an event, it returns another event which fires only once and as soon as
+         * the input event emits. The event data is the number of millis it took for the
+         * event to fire.
+         */
+        function stopwatch(event) {
+            var start = new Date().getTime();
+            return map(once(event), function (_) { return new Date().getTime() - start; });
+        }
+        Event.stopwatch = stopwatch;
+        /**
+         * Given an event, it returns another event which fires only when the event
+         * element changes.
+         */
+        function latch(event) {
+            var firstCall = true;
+            var cache;
+            return filter(event, function (value) {
+                var shouldEmit = firstCall || value !== cache;
+                firstCall = false;
+                cache = value;
+                return shouldEmit;
+            });
+        }
+        Event.latch = latch;
+        /**
+         * Buffers the provided event until a first listener comes
+         * along, at which point fire all the events at once and
+         * pipe the event from then on.
+         *
+         * ```typescript
+         * const emitter = new Emitter<number>();
+         * const event = emitter.event;
+         * const bufferedEvent = buffer(event);
+         *
+         * emitter.fire(1);
+         * emitter.fire(2);
+         * emitter.fire(3);
+         * // nothing...
+         *
+         * const listener = bufferedEvent(num => console.log(num));
+         * // 1, 2, 3
+         *
+         * emitter.fire(4);
+         * // 4
+         * ```
+         */
+        function buffer(event, nextTick, _buffer) {
+            if (nextTick === void 0) { nextTick = false; }
+            if (_buffer === void 0) { _buffer = []; }
+            var buffer = _buffer.slice();
+            var listener = event(function (e) {
+                if (buffer) {
+                    buffer.push(e);
+                }
+                else {
+                    emitter.fire(e);
+                }
+            });
+            var flush = function () {
+                if (buffer) {
+                    buffer.forEach(function (e) { return emitter.fire(e); });
+                }
+                buffer = null;
+            };
+            var emitter = new Emitter({
+                onFirstListenerAdd: function () {
+                    if (!listener) {
+                        listener = event(function (e) { return emitter.fire(e); });
+                    }
+                },
+                onFirstListenerDidAdd: function () {
+                    if (buffer) {
+                        if (nextTick) {
+                            setTimeout(flush);
+                        }
+                        else {
+                            flush();
+                        }
+                    }
+                },
+                onLastListenerRemove: function () {
+                    if (listener) {
+                        listener.dispose();
+                    }
+                    listener = null;
+                }
+            });
+            return emitter.event;
+        }
+        Event.buffer = buffer;
+        var ChainableEvent = /** @class */ (function () {
+            function ChainableEvent(event) {
+                this.event = event;
+            }
+            ChainableEvent.prototype.map = function (fn) {
+                return new ChainableEvent(map(this.event, fn));
+            };
+            ChainableEvent.prototype.forEach = function (fn) {
+                return new ChainableEvent(forEach(this.event, fn));
+            };
+            ChainableEvent.prototype.filter = function (fn) {
+                return new ChainableEvent(filter(this.event, fn));
+            };
+            ChainableEvent.prototype.reduce = function (merge, initial) {
+                return new ChainableEvent(reduce(this.event, merge, initial));
+            };
+            ChainableEvent.prototype.latch = function () {
+                return new ChainableEvent(latch(this.event));
+            };
+            ChainableEvent.prototype.debounce = function (merge, delay, leading, leakWarningThreshold) {
+                if (delay === void 0) { delay = 100; }
+                if (leading === void 0) { leading = false; }
+                return new ChainableEvent(debounce(this.event, merge, delay, leading, leakWarningThreshold));
+            };
+            ChainableEvent.prototype.on = function (listener, thisArgs, disposables) {
+                return this.event(listener, thisArgs, disposables);
+            };
+            ChainableEvent.prototype.once = function (listener, thisArgs, disposables) {
+                return once(this.event)(listener, thisArgs, disposables);
+            };
+            return ChainableEvent;
+        }());
+        function chain(event) {
+            return new ChainableEvent(event);
+        }
+        Event.chain = chain;
+        function fromNodeEventEmitter(emitter, eventName, map) {
+            if (map === void 0) { map = function (id) { return id; }; }
+            var fn = function () {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
+                return result.fire(map.apply(void 0, args));
+            };
+            var onFirstListenerAdd = function () { return emitter.on(eventName, fn); };
+            var onLastListenerRemove = function () { return emitter.removeListener(eventName, fn); };
+            var result = new Emitter({ onFirstListenerAdd: onFirstListenerAdd, onLastListenerRemove: onLastListenerRemove });
+            return result.event;
+        }
+        Event.fromNodeEventEmitter = fromNodeEventEmitter;
+        function fromDOMEventEmitter(emitter, eventName, map) {
+            if (map === void 0) { map = function (id) { return id; }; }
+            var fn = function () {
+                var args = [];
+                for (var _i = 0; _i < arguments.length; _i++) {
+                    args[_i] = arguments[_i];
+                }
+                return result.fire(map.apply(void 0, args));
+            };
+            var onFirstListenerAdd = function () { return emitter.addEventListener(eventName, fn); };
+            var onLastListenerRemove = function () { return emitter.removeEventListener(eventName, fn); };
+            var result = new Emitter({ onFirstListenerAdd: onFirstListenerAdd, onLastListenerRemove: onLastListenerRemove });
+            return result.event;
+        }
+        Event.fromDOMEventEmitter = fromDOMEventEmitter;
+        function fromPromise(promise) {
+            var emitter = new Emitter();
+            var shouldEmit = false;
+            promise
+                .then(undefined, function () { return null; })
+                .then(function () {
+                if (!shouldEmit) {
+                    setTimeout(function () { return emitter.fire(undefined); }, 0);
+                }
+                else {
+                    emitter.fire(undefined);
+                }
+            });
+            shouldEmit = true;
+            return emitter.event;
+        }
+        Event.fromPromise = fromPromise;
+        function toPromise(event) {
+            return new Promise(function (c) { return once(event)(c); });
+        }
+        Event.toPromise = toPromise;
+    })(Event || (Event = {}));
+    /**
+     * The Emitter can be used to expose an Event to the public
+     * to fire it from the insides.
+     * Sample:
+        class Document {
+
+            private readonly _onDidChange = new Emitter<(value:string)=>any>();
+
+            public onDidChange = this._onDidChange.event;
+
+            // getter-style
+            // get onDidChange(): Event<(value:string)=>any> {
+            // 	return this._onDidChange.event;
+            // }
+
+            private _doIt() {
+                //...
+                this._onDidChange.fire(value);
+            }
+        }
+     */
+    var Emitter = /** @class */ (function () {
+        function Emitter(options) {
+            this._disposed = false;
+            this._options = options;
+            this._leakageMon =  undefined;
+        }
+        Object.defineProperty(Emitter.prototype, "event", {
+            /**
+             * For the public to allow to subscribe
+             * to events from this Emitter
+             */
+            get: function () {
+                var _this = this;
+                if (!this._event) {
+                    this._event = function (listener, thisArgs, disposables) {
+                        if (!_this._listeners) {
+                            _this._listeners = new LinkedList();
+                        }
+                        var firstListener = _this._listeners.isEmpty();
+                        if (firstListener && _this._options && _this._options.onFirstListenerAdd) {
+                            _this._options.onFirstListenerAdd(_this);
+                        }
+                        var remove = _this._listeners.push(!thisArgs ? listener : [listener, thisArgs]);
+                        if (firstListener && _this._options && _this._options.onFirstListenerDidAdd) {
+                            _this._options.onFirstListenerDidAdd(_this);
+                        }
+                        if (_this._options && _this._options.onListenerDidAdd) {
+                            _this._options.onListenerDidAdd(_this, listener, thisArgs);
+                        }
+                        // check and record this emitter for potential leakage
+                        var removeMonitor;
+                        if (_this._leakageMon) {
+                            removeMonitor = _this._leakageMon.check(_this._listeners.size);
+                        }
+                        var result;
+                        result = {
+                            dispose: function () {
+                                if (removeMonitor) {
+                                    removeMonitor();
+                                }
+                                result.dispose = Emitter._noop;
+                                if (!_this._disposed) {
+                                    remove();
+                                    if (_this._options && _this._options.onLastListenerRemove) {
+                                        var hasListeners = (_this._listeners && !_this._listeners.isEmpty());
+                                        if (!hasListeners) {
+                                            _this._options.onLastListenerRemove(_this);
+                                        }
+                                    }
+                                }
+                            }
+                        };
+                        if (disposables instanceof DisposableStore) {
+                            disposables.add(result);
+                        }
+                        else if (Array.isArray(disposables)) {
+                            disposables.push(result);
+                        }
+                        return result;
+                    };
+                }
+                return this._event;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        /**
+         * To be kept private to fire an event to
+         * subscribers
+         */
+        Emitter.prototype.fire = function (event) {
+            if (this._listeners) {
+                // put all [listener,event]-pairs into delivery queue
+                // then emit all event. an inner/nested event might be
+                // the driver of this
+                if (!this._deliveryQueue) {
+                    this._deliveryQueue = new LinkedList();
+                }
+                for (var iter = this._listeners.iterator(), e = iter.next(); !e.done; e = iter.next()) {
+                    this._deliveryQueue.push([e.value, event]);
+                }
+                while (this._deliveryQueue.size > 0) {
+                    var _a = this._deliveryQueue.shift(), listener = _a[0], event_1 = _a[1];
+                    try {
+                        if (typeof listener === 'function') {
+                            listener.call(undefined, event_1);
+                        }
+                        else {
+                            listener[0].call(listener[1], event_1);
+                        }
+                    }
+                    catch (e) {
+                        onUnexpectedError(e);
+                    }
+                }
+            }
+        };
+        Emitter.prototype.dispose = function () {
+            if (this._listeners) {
+                this._listeners.clear();
+            }
+            if (this._deliveryQueue) {
+                this._deliveryQueue.clear();
+            }
+            if (this._leakageMon) {
+                this._leakageMon.dispose();
+            }
+            this._disposed = true;
+        };
+        Emitter._noop = function () { };
+        return Emitter;
+    }());
+    var PauseableEmitter = /** @class */ (function (_super) {
+        __extends$3(PauseableEmitter, _super);
+        function PauseableEmitter(options) {
+            var _this = _super.call(this, options) || this;
+            _this._isPaused = 0;
+            _this._eventQueue = new LinkedList();
+            _this._mergeFn = options && options.merge;
+            return _this;
+        }
+        PauseableEmitter.prototype.pause = function () {
+            this._isPaused++;
+        };
+        PauseableEmitter.prototype.resume = function () {
+            if (this._isPaused !== 0 && --this._isPaused === 0) {
+                if (this._mergeFn) {
+                    // use the merge function to create a single composite
+                    // event. make a copy in case firing pauses this emitter
+                    var events = this._eventQueue.toArray();
+                    this._eventQueue.clear();
+                    _super.prototype.fire.call(this, this._mergeFn(events));
+                }
+                else {
+                    // no merging, fire each event individually and test
+                    // that this emitter isn't paused halfway through
+                    while (!this._isPaused && this._eventQueue.size !== 0) {
+                        _super.prototype.fire.call(this, this._eventQueue.shift());
+                    }
+                }
+            }
+        };
+        PauseableEmitter.prototype.fire = function (event) {
+            if (this._listeners) {
+                if (this._isPaused !== 0) {
+                    this._eventQueue.push(event);
+                }
+                else {
+                    _super.prototype.fire.call(this, event);
+                }
+            }
+        };
+        return PauseableEmitter;
+    }(Emitter));
+    var EventMultiplexer = /** @class */ (function () {
+        function EventMultiplexer() {
+            var _this = this;
+            this.hasListeners = false;
+            this.events = [];
+            this.emitter = new Emitter({
+                onFirstListenerAdd: function () { return _this.onFirstListenerAdd(); },
+                onLastListenerRemove: function () { return _this.onLastListenerRemove(); }
+            });
+        }
+        Object.defineProperty(EventMultiplexer.prototype, "event", {
+            get: function () {
+                return this.emitter.event;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        EventMultiplexer.prototype.add = function (event) {
+            var _this = this;
+            var e = { event: event, listener: null };
+            this.events.push(e);
+            if (this.hasListeners) {
+                this.hook(e);
+            }
+            var dispose = function () {
+                if (_this.hasListeners) {
+                    _this.unhook(e);
+                }
+                var idx = _this.events.indexOf(e);
+                _this.events.splice(idx, 1);
+            };
+            return toDisposable(once(dispose));
+        };
+        EventMultiplexer.prototype.onFirstListenerAdd = function () {
+            var _this = this;
+            this.hasListeners = true;
+            this.events.forEach(function (e) { return _this.hook(e); });
+        };
+        EventMultiplexer.prototype.onLastListenerRemove = function () {
+            var _this = this;
+            this.hasListeners = false;
+            this.events.forEach(function (e) { return _this.unhook(e); });
+        };
+        EventMultiplexer.prototype.hook = function (e) {
+            var _this = this;
+            e.listener = e.event(function (r) { return _this.emitter.fire(r); });
+        };
+        EventMultiplexer.prototype.unhook = function (e) {
+            if (e.listener) {
+                e.listener.dispose();
+            }
+            e.listener = null;
+        };
+        EventMultiplexer.prototype.dispose = function () {
+            this.emitter.dispose();
+        };
+        return EventMultiplexer;
+    }());
+    /**
+     * A Relay is an event forwarder which functions as a replugabble event pipe.
+     * Once created, you can connect an input event to it and it will simply forward
+     * events from that input event through its own `event` property. The `input`
+     * can be changed at any point in time.
+     */
+    var Relay = /** @class */ (function () {
+        function Relay() {
+            var _this = this;
+            this.listening = false;
+            this.inputEvent = Event.None;
+            this.inputEventListener = Disposable.None;
+            this.emitter = new Emitter({
+                onFirstListenerDidAdd: function () {
+                    _this.listening = true;
+                    _this.inputEventListener = _this.inputEvent(_this.emitter.fire, _this.emitter);
+                },
+                onLastListenerRemove: function () {
+                    _this.listening = false;
+                    _this.inputEventListener.dispose();
+                }
+            });
+            this.event = this.emitter.event;
+        }
+        Object.defineProperty(Relay.prototype, "input", {
+            set: function (event) {
+                this.inputEvent = event;
+                if (this.listening) {
+                    this.inputEventListener.dispose();
+                    this.inputEventListener = event(this.emitter.fire, this.emitter);
+                }
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Relay.prototype.dispose = function () {
+            this.inputEventListener.dispose();
+            this.emitter.dispose();
+        };
+        return Relay;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var shortcutEvent = Object.freeze(function (callback, context) {
+        var handle = setTimeout(callback.bind(context), 0);
+        return { dispose: function () { clearTimeout(handle); } };
+    });
+    var CancellationToken;
+    (function (CancellationToken) {
+        function isCancellationToken(thing) {
+            if (thing === CancellationToken.None || thing === CancellationToken.Cancelled) {
+                return true;
+            }
+            if (thing instanceof MutableToken) {
+                return true;
+            }
+            if (!thing || typeof thing !== 'object') {
+                return false;
+            }
+            return typeof thing.isCancellationRequested === 'boolean'
+                && typeof thing.onCancellationRequested === 'function';
+        }
+        CancellationToken.isCancellationToken = isCancellationToken;
+        CancellationToken.None = Object.freeze({
+            isCancellationRequested: false,
+            onCancellationRequested: Event.None
+        });
+        CancellationToken.Cancelled = Object.freeze({
+            isCancellationRequested: true,
+            onCancellationRequested: shortcutEvent
+        });
+    })(CancellationToken || (CancellationToken = {}));
+    var MutableToken = /** @class */ (function () {
+        function MutableToken() {
+            this._isCancelled = false;
+            this._emitter = null;
+        }
+        MutableToken.prototype.cancel = function () {
+            if (!this._isCancelled) {
+                this._isCancelled = true;
+                if (this._emitter) {
+                    this._emitter.fire(undefined);
+                    this.dispose();
+                }
+            }
+        };
+        Object.defineProperty(MutableToken.prototype, "isCancellationRequested", {
+            get: function () {
+                return this._isCancelled;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(MutableToken.prototype, "onCancellationRequested", {
+            get: function () {
+                if (this._isCancelled) {
+                    return shortcutEvent;
+                }
+                if (!this._emitter) {
+                    this._emitter = new Emitter();
+                }
+                return this._emitter.event;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        MutableToken.prototype.dispose = function () {
+            if (this._emitter) {
+                this._emitter.dispose();
+                this._emitter = null;
+            }
+        };
+        return MutableToken;
+    }());
+    var CancellationTokenSource = /** @class */ (function () {
+        function CancellationTokenSource(parent) {
+            this._token = undefined;
+            this._parentListener = undefined;
+            this._parentListener = parent && parent.onCancellationRequested(this.cancel, this);
+        }
+        Object.defineProperty(CancellationTokenSource.prototype, "token", {
+            get: function () {
+                if (!this._token) {
+                    // be lazy and create the token only when
+                    // actually needed
+                    this._token = new MutableToken();
+                }
+                return this._token;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        CancellationTokenSource.prototype.cancel = function () {
+            if (!this._token) {
+                // save an object by returning the default
+                // cancelled token when cancellation happens
+                // before someone asks for the token
+                this._token = CancellationToken.Cancelled;
+            }
+            else if (this._token instanceof MutableToken) {
+                // actually cancel
+                this._token.cancel();
+            }
+        };
+        CancellationTokenSource.prototype.dispose = function (cancel) {
+            if (cancel === void 0) { cancel = false; }
+            if (cancel) {
+                this.cancel();
+            }
+            if (this._parentListener) {
+                this._parentListener.dispose();
+            }
+            if (!this._token) {
+                // ensure to initialize with an empty token if we had none
+                this._token = CancellationToken.None;
+            }
+            else if (this._token instanceof MutableToken) {
+                // actually dispose
+                this._token.dispose();
+            }
+        };
+        return CancellationTokenSource;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var KeyCodeStrMap = /** @class */ (function () {
+        function KeyCodeStrMap() {
+            this._keyCodeToStr = [];
+            this._strToKeyCode = Object.create(null);
+        }
+        KeyCodeStrMap.prototype.define = function (keyCode, str) {
+            this._keyCodeToStr[keyCode] = str;
+            this._strToKeyCode[str.toLowerCase()] = keyCode;
+        };
+        KeyCodeStrMap.prototype.keyCodeToStr = function (keyCode) {
+            return this._keyCodeToStr[keyCode];
+        };
+        KeyCodeStrMap.prototype.strToKeyCode = function (str) {
+            return this._strToKeyCode[str.toLowerCase()] || 0 /* Unknown */;
+        };
+        return KeyCodeStrMap;
+    }());
+    var uiMap = new KeyCodeStrMap();
+    var userSettingsUSMap = new KeyCodeStrMap();
+    var userSettingsGeneralMap = new KeyCodeStrMap();
+    (function () {
+        function define(keyCode, uiLabel, usUserSettingsLabel, generalUserSettingsLabel) {
+            if (usUserSettingsLabel === void 0) { usUserSettingsLabel = uiLabel; }
+            if (generalUserSettingsLabel === void 0) { generalUserSettingsLabel = usUserSettingsLabel; }
+            uiMap.define(keyCode, uiLabel);
+            userSettingsUSMap.define(keyCode, usUserSettingsLabel);
+            userSettingsGeneralMap.define(keyCode, generalUserSettingsLabel);
+        }
+        define(0 /* Unknown */, 'unknown');
+        define(1 /* Backspace */, 'Backspace');
+        define(2 /* Tab */, 'Tab');
+        define(3 /* Enter */, 'Enter');
+        define(4 /* Shift */, 'Shift');
+        define(5 /* Ctrl */, 'Ctrl');
+        define(6 /* Alt */, 'Alt');
+        define(7 /* PauseBreak */, 'PauseBreak');
+        define(8 /* CapsLock */, 'CapsLock');
+        define(9 /* Escape */, 'Escape');
+        define(10 /* Space */, 'Space');
+        define(11 /* PageUp */, 'PageUp');
+        define(12 /* PageDown */, 'PageDown');
+        define(13 /* End */, 'End');
+        define(14 /* Home */, 'Home');
+        define(15 /* LeftArrow */, 'LeftArrow', 'Left');
+        define(16 /* UpArrow */, 'UpArrow', 'Up');
+        define(17 /* RightArrow */, 'RightArrow', 'Right');
+        define(18 /* DownArrow */, 'DownArrow', 'Down');
+        define(19 /* Insert */, 'Insert');
+        define(20 /* Delete */, 'Delete');
+        define(21 /* KEY_0 */, '0');
+        define(22 /* KEY_1 */, '1');
+        define(23 /* KEY_2 */, '2');
+        define(24 /* KEY_3 */, '3');
+        define(25 /* KEY_4 */, '4');
+        define(26 /* KEY_5 */, '5');
+        define(27 /* KEY_6 */, '6');
+        define(28 /* KEY_7 */, '7');
+        define(29 /* KEY_8 */, '8');
+        define(30 /* KEY_9 */, '9');
+        define(31 /* KEY_A */, 'A');
+        define(32 /* KEY_B */, 'B');
+        define(33 /* KEY_C */, 'C');
+        define(34 /* KEY_D */, 'D');
+        define(35 /* KEY_E */, 'E');
+        define(36 /* KEY_F */, 'F');
+        define(37 /* KEY_G */, 'G');
+        define(38 /* KEY_H */, 'H');
+        define(39 /* KEY_I */, 'I');
+        define(40 /* KEY_J */, 'J');
+        define(41 /* KEY_K */, 'K');
+        define(42 /* KEY_L */, 'L');
+        define(43 /* KEY_M */, 'M');
+        define(44 /* KEY_N */, 'N');
+        define(45 /* KEY_O */, 'O');
+        define(46 /* KEY_P */, 'P');
+        define(47 /* KEY_Q */, 'Q');
+        define(48 /* KEY_R */, 'R');
+        define(49 /* KEY_S */, 'S');
+        define(50 /* KEY_T */, 'T');
+        define(51 /* KEY_U */, 'U');
+        define(52 /* KEY_V */, 'V');
+        define(53 /* KEY_W */, 'W');
+        define(54 /* KEY_X */, 'X');
+        define(55 /* KEY_Y */, 'Y');
+        define(56 /* KEY_Z */, 'Z');
+        define(57 /* Meta */, 'Meta');
+        define(58 /* ContextMenu */, 'ContextMenu');
+        define(59 /* F1 */, 'F1');
+        define(60 /* F2 */, 'F2');
+        define(61 /* F3 */, 'F3');
+        define(62 /* F4 */, 'F4');
+        define(63 /* F5 */, 'F5');
+        define(64 /* F6 */, 'F6');
+        define(65 /* F7 */, 'F7');
+        define(66 /* F8 */, 'F8');
+        define(67 /* F9 */, 'F9');
+        define(68 /* F10 */, 'F10');
+        define(69 /* F11 */, 'F11');
+        define(70 /* F12 */, 'F12');
+        define(71 /* F13 */, 'F13');
+        define(72 /* F14 */, 'F14');
+        define(73 /* F15 */, 'F15');
+        define(74 /* F16 */, 'F16');
+        define(75 /* F17 */, 'F17');
+        define(76 /* F18 */, 'F18');
+        define(77 /* F19 */, 'F19');
+        define(78 /* NumLock */, 'NumLock');
+        define(79 /* ScrollLock */, 'ScrollLock');
+        define(80 /* US_SEMICOLON */, ';', ';', 'OEM_1');
+        define(81 /* US_EQUAL */, '=', '=', 'OEM_PLUS');
+        define(82 /* US_COMMA */, ',', ',', 'OEM_COMMA');
+        define(83 /* US_MINUS */, '-', '-', 'OEM_MINUS');
+        define(84 /* US_DOT */, '.', '.', 'OEM_PERIOD');
+        define(85 /* US_SLASH */, '/', '/', 'OEM_2');
+        define(86 /* US_BACKTICK */, '`', '`', 'OEM_3');
+        define(110 /* ABNT_C1 */, 'ABNT_C1');
+        define(111 /* ABNT_C2 */, 'ABNT_C2');
+        define(87 /* US_OPEN_SQUARE_BRACKET */, '[', '[', 'OEM_4');
+        define(88 /* US_BACKSLASH */, '\\', '\\', 'OEM_5');
+        define(89 /* US_CLOSE_SQUARE_BRACKET */, ']', ']', 'OEM_6');
+        define(90 /* US_QUOTE */, '\'', '\'', 'OEM_7');
+        define(91 /* OEM_8 */, 'OEM_8');
+        define(92 /* OEM_102 */, 'OEM_102');
+        define(93 /* NUMPAD_0 */, 'NumPad0');
+        define(94 /* NUMPAD_1 */, 'NumPad1');
+        define(95 /* NUMPAD_2 */, 'NumPad2');
+        define(96 /* NUMPAD_3 */, 'NumPad3');
+        define(97 /* NUMPAD_4 */, 'NumPad4');
+        define(98 /* NUMPAD_5 */, 'NumPad5');
+        define(99 /* NUMPAD_6 */, 'NumPad6');
+        define(100 /* NUMPAD_7 */, 'NumPad7');
+        define(101 /* NUMPAD_8 */, 'NumPad8');
+        define(102 /* NUMPAD_9 */, 'NumPad9');
+        define(103 /* NUMPAD_MULTIPLY */, 'NumPad_Multiply');
+        define(104 /* NUMPAD_ADD */, 'NumPad_Add');
+        define(105 /* NUMPAD_SEPARATOR */, 'NumPad_Separator');
+        define(106 /* NUMPAD_SUBTRACT */, 'NumPad_Subtract');
+        define(107 /* NUMPAD_DECIMAL */, 'NumPad_Decimal');
+        define(108 /* NUMPAD_DIVIDE */, 'NumPad_Divide');
+    })();
+    var KeyCodeUtils;
+    (function (KeyCodeUtils) {
+        function toString(keyCode) {
+            return uiMap.keyCodeToStr(keyCode);
+        }
+        KeyCodeUtils.toString = toString;
+        function fromString(key) {
+            return uiMap.strToKeyCode(key);
+        }
+        KeyCodeUtils.fromString = fromString;
+        function toUserSettingsUS(keyCode) {
+            return userSettingsUSMap.keyCodeToStr(keyCode);
+        }
+        KeyCodeUtils.toUserSettingsUS = toUserSettingsUS;
+        function toUserSettingsGeneral(keyCode) {
+            return userSettingsGeneralMap.keyCodeToStr(keyCode);
+        }
+        KeyCodeUtils.toUserSettingsGeneral = toUserSettingsGeneral;
+        function fromUserSettings(key) {
+            return userSettingsUSMap.strToKeyCode(key) || userSettingsGeneralMap.strToKeyCode(key);
+        }
+        KeyCodeUtils.fromUserSettings = fromUserSettings;
+    })(KeyCodeUtils || (KeyCodeUtils = {}));
+    function KeyChord(firstPart, secondPart) {
+        var chordPart = ((secondPart & 0x0000FFFF) << 16) >>> 0;
+        return (firstPart | chordPart) >>> 0;
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var __extends$4 = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    /**
+     * A selection in the editor.
+     * The selection is a range that has an orientation.
+     */
+    var Selection = /** @class */ (function (_super) {
+        __extends$4(Selection, _super);
+        function Selection(selectionStartLineNumber, selectionStartColumn, positionLineNumber, positionColumn) {
+            var _this = _super.call(this, selectionStartLineNumber, selectionStartColumn, positionLineNumber, positionColumn) || this;
+            _this.selectionStartLineNumber = selectionStartLineNumber;
+            _this.selectionStartColumn = selectionStartColumn;
+            _this.positionLineNumber = positionLineNumber;
+            _this.positionColumn = positionColumn;
+            return _this;
+        }
+        /**
+         * Transform to a human-readable representation.
+         */
+        Selection.prototype.toString = function () {
+            return '[' + this.selectionStartLineNumber + ',' + this.selectionStartColumn + ' -> ' + this.positionLineNumber + ',' + this.positionColumn + ']';
+        };
+        /**
+         * Test if equals other selection.
+         */
+        Selection.prototype.equalsSelection = function (other) {
+            return (Selection.selectionsEqual(this, other));
+        };
+        /**
+         * Test if the two selections are equal.
+         */
+        Selection.selectionsEqual = function (a, b) {
+            return (a.selectionStartLineNumber === b.selectionStartLineNumber &&
+                a.selectionStartColumn === b.selectionStartColumn &&
+                a.positionLineNumber === b.positionLineNumber &&
+                a.positionColumn === b.positionColumn);
+        };
+        /**
+         * Get directions (LTR or RTL).
+         */
+        Selection.prototype.getDirection = function () {
+            if (this.selectionStartLineNumber === this.startLineNumber && this.selectionStartColumn === this.startColumn) {
+                return 0 /* LTR */;
+            }
+            return 1 /* RTL */;
+        };
+        /**
+         * Create a new selection with a different `positionLineNumber` and `positionColumn`.
+         */
+        Selection.prototype.setEndPosition = function (endLineNumber, endColumn) {
+            if (this.getDirection() === 0 /* LTR */) {
+                return new Selection(this.startLineNumber, this.startColumn, endLineNumber, endColumn);
+            }
+            return new Selection(endLineNumber, endColumn, this.startLineNumber, this.startColumn);
+        };
+        /**
+         * Get the position at `positionLineNumber` and `positionColumn`.
+         */
+        Selection.prototype.getPosition = function () {
+            return new Position(this.positionLineNumber, this.positionColumn);
+        };
+        /**
+         * Create a new selection with a different `selectionStartLineNumber` and `selectionStartColumn`.
+         */
+        Selection.prototype.setStartPosition = function (startLineNumber, startColumn) {
+            if (this.getDirection() === 0 /* LTR */) {
+                return new Selection(startLineNumber, startColumn, this.endLineNumber, this.endColumn);
+            }
+            return new Selection(this.endLineNumber, this.endColumn, startLineNumber, startColumn);
+        };
+        // ----
+        /**
+         * Create a `Selection` from one or two positions
+         */
+        Selection.fromPositions = function (start, end) {
+            if (end === void 0) { end = start; }
+            return new Selection(start.lineNumber, start.column, end.lineNumber, end.column);
+        };
+        /**
+         * Create a `Selection` from an `ISelection`.
+         */
+        Selection.liftSelection = function (sel) {
+            return new Selection(sel.selectionStartLineNumber, sel.selectionStartColumn, sel.positionLineNumber, sel.positionColumn);
+        };
+        /**
+         * `a` equals `b`.
+         */
+        Selection.selectionsArrEqual = function (a, b) {
+            if (a && !b || !a && b) {
+                return false;
+            }
+            if (!a && !b) {
+                return true;
+            }
+            if (a.length !== b.length) {
+                return false;
+            }
+            for (var i = 0, len = a.length; i < len; i++) {
+                if (!this.selectionsEqual(a[i], b[i])) {
+                    return false;
+                }
+            }
+            return true;
+        };
+        /**
+         * Test if `obj` is an `ISelection`.
+         */
+        Selection.isISelection = function (obj) {
+            return (obj
+                && (typeof obj.selectionStartLineNumber === 'number')
+                && (typeof obj.selectionStartColumn === 'number')
+                && (typeof obj.positionLineNumber === 'number')
+                && (typeof obj.positionColumn === 'number'));
+        };
+        /**
+         * Create with a direction.
+         */
+        Selection.createWithDirection = function (startLineNumber, startColumn, endLineNumber, endColumn, direction) {
+            if (direction === 0 /* LTR */) {
+                return new Selection(startLineNumber, startColumn, endLineNumber, endColumn);
+            }
+            return new Selection(endLineNumber, endColumn, startLineNumber, startColumn);
+        };
+        return Selection;
+    }(Range));
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var Token = /** @class */ (function () {
+        function Token(offset, type, language) {
+            this.offset = offset | 0; // @perf
+            this.type = type;
+            this.language = language;
+        }
+        Token.prototype.toString = function () {
+            return '(' + this.offset + ', ' + this.type + ')';
+        };
+        return Token;
+    }());
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    // THIS IS A GENERATED FILE. DO NOT EDIT DIRECTLY.
+    var AccessibilitySupport;
+    (function (AccessibilitySupport) {
+        /**
+         * This should be the browser case where it is not known if a screen reader is attached or no.
+         */
+        AccessibilitySupport[AccessibilitySupport["Unknown"] = 0] = "Unknown";
+        AccessibilitySupport[AccessibilitySupport["Disabled"] = 1] = "Disabled";
+        AccessibilitySupport[AccessibilitySupport["Enabled"] = 2] = "Enabled";
+    })(AccessibilitySupport || (AccessibilitySupport = {}));
+    var CompletionItemInsertTextRule;
+    (function (CompletionItemInsertTextRule) {
+        /**
+         * Adjust whitespace/indentation of multiline insert texts to
+         * match the current line indentation.
+         */
+        CompletionItemInsertTextRule[CompletionItemInsertTextRule["KeepWhitespace"] = 1] = "KeepWhitespace";
+        /**
+         * `insertText` is a snippet.
+         */
+        CompletionItemInsertTextRule[CompletionItemInsertTextRule["InsertAsSnippet"] = 4] = "InsertAsSnippet";
+    })(CompletionItemInsertTextRule || (CompletionItemInsertTextRule = {}));
+    var CompletionItemKind;
+    (function (CompletionItemKind) {
+        CompletionItemKind[CompletionItemKind["Method"] = 0] = "Method";
+        CompletionItemKind[CompletionItemKind["Function"] = 1] = "Function";
+        CompletionItemKind[CompletionItemKind["Constructor"] = 2] = "Constructor";
+        CompletionItemKind[CompletionItemKind["Field"] = 3] = "Field";
+        CompletionItemKind[CompletionItemKind["Variable"] = 4] = "Variable";
+        CompletionItemKind[CompletionItemKind["Class"] = 5] = "Class";
+        CompletionItemKind[CompletionItemKind["Struct"] = 6] = "Struct";
+        CompletionItemKind[CompletionItemKind["Interface"] = 7] = "Interface";
+        CompletionItemKind[CompletionItemKind["Module"] = 8] = "Module";
+        CompletionItemKind[CompletionItemKind["Property"] = 9] = "Property";
+        CompletionItemKind[CompletionItemKind["Event"] = 10] = "Event";
+        CompletionItemKind[CompletionItemKind["Operator"] = 11] = "Operator";
+        CompletionItemKind[CompletionItemKind["Unit"] = 12] = "Unit";
+        CompletionItemKind[CompletionItemKind["Value"] = 13] = "Value";
+        CompletionItemKind[CompletionItemKind["Constant"] = 14] = "Constant";
+        CompletionItemKind[CompletionItemKind["Enum"] = 15] = "Enum";
+        CompletionItemKind[CompletionItemKind["EnumMember"] = 16] = "EnumMember";
+        CompletionItemKind[CompletionItemKind["Keyword"] = 17] = "Keyword";
+        CompletionItemKind[CompletionItemKind["Text"] = 18] = "Text";
+        CompletionItemKind[CompletionItemKind["Color"] = 19] = "Color";
+        CompletionItemKind[CompletionItemKind["File"] = 20] = "File";
+        CompletionItemKind[CompletionItemKind["Reference"] = 21] = "Reference";
+        CompletionItemKind[CompletionItemKind["Customcolor"] = 22] = "Customcolor";
+        CompletionItemKind[CompletionItemKind["Folder"] = 23] = "Folder";
+        CompletionItemKind[CompletionItemKind["TypeParameter"] = 24] = "TypeParameter";
+        CompletionItemKind[CompletionItemKind["Snippet"] = 25] = "Snippet";
+    })(CompletionItemKind || (CompletionItemKind = {}));
+    var CompletionItemTag;
+    (function (CompletionItemTag) {
+        CompletionItemTag[CompletionItemTag["Deprecated"] = 1] = "Deprecated";
+    })(CompletionItemTag || (CompletionItemTag = {}));
+    /**
+     * How a suggest provider was triggered.
+     */
+    var CompletionTriggerKind;
+    (function (CompletionTriggerKind) {
+        CompletionTriggerKind[CompletionTriggerKind["Invoke"] = 0] = "Invoke";
+        CompletionTriggerKind[CompletionTriggerKind["TriggerCharacter"] = 1] = "TriggerCharacter";
+        CompletionTriggerKind[CompletionTriggerKind["TriggerForIncompleteCompletions"] = 2] = "TriggerForIncompleteCompletions";
+    })(CompletionTriggerKind || (CompletionTriggerKind = {}));
+    /**
+     * A positioning preference for rendering content widgets.
+     */
+    var ContentWidgetPositionPreference;
+    (function (ContentWidgetPositionPreference) {
+        /**
+         * Place the content widget exactly at a position
+         */
+        ContentWidgetPositionPreference[ContentWidgetPositionPreference["EXACT"] = 0] = "EXACT";
+        /**
+         * Place the content widget above a position
+         */
+        ContentWidgetPositionPreference[ContentWidgetPositionPreference["ABOVE"] = 1] = "ABOVE";
+        /**
+         * Place the content widget below a position
+         */
+        ContentWidgetPositionPreference[ContentWidgetPositionPreference["BELOW"] = 2] = "BELOW";
+    })(ContentWidgetPositionPreference || (ContentWidgetPositionPreference = {}));
+    /**
+     * Describes the reason the cursor has changed its position.
+     */
+    var CursorChangeReason;
+    (function (CursorChangeReason) {
+        /**
+         * Unknown or not set.
+         */
+        CursorChangeReason[CursorChangeReason["NotSet"] = 0] = "NotSet";
+        /**
+         * A `model.setValue()` was called.
+         */
+        CursorChangeReason[CursorChangeReason["ContentFlush"] = 1] = "ContentFlush";
+        /**
+         * The `model` has been changed outside of this cursor and the cursor recovers its position from associated markers.
+         */
+        CursorChangeReason[CursorChangeReason["RecoverFromMarkers"] = 2] = "RecoverFromMarkers";
+        /**
+         * There was an explicit user gesture.
+         */
+        CursorChangeReason[CursorChangeReason["Explicit"] = 3] = "Explicit";
+        /**
+         * There was a Paste.
+         */
+        CursorChangeReason[CursorChangeReason["Paste"] = 4] = "Paste";
+        /**
+         * There was an Undo.
+         */
+        CursorChangeReason[CursorChangeReason["Undo"] = 5] = "Undo";
+        /**
+         * There was a Redo.
+         */
+        CursorChangeReason[CursorChangeReason["Redo"] = 6] = "Redo";
+    })(CursorChangeReason || (CursorChangeReason = {}));
+    /**
+     * The default end of line to use when instantiating models.
+     */
+    var DefaultEndOfLine;
+    (function (DefaultEndOfLine) {
+        /**
+         * Use line feed (\n) as the end of line character.
+         */
+        DefaultEndOfLine[DefaultEndOfLine["LF"] = 1] = "LF";
+        /**
+         * Use carriage return and line feed (\r\n) as the end of line character.
+         */
+        DefaultEndOfLine[DefaultEndOfLine["CRLF"] = 2] = "CRLF";
+    })(DefaultEndOfLine || (DefaultEndOfLine = {}));
+    /**
+     * A document highlight kind.
+     */
+    var DocumentHighlightKind;
+    (function (DocumentHighlightKind) {
+        /**
+         * A textual occurrence.
+         */
+        DocumentHighlightKind[DocumentHighlightKind["Text"] = 0] = "Text";
+        /**
+         * Read-access of a symbol, like reading a variable.
+         */
+        DocumentHighlightKind[DocumentHighlightKind["Read"] = 1] = "Read";
+        /**
+         * Write-access of a symbol, like writing to a variable.
+         */
+        DocumentHighlightKind[DocumentHighlightKind["Write"] = 2] = "Write";
+    })(DocumentHighlightKind || (DocumentHighlightKind = {}));
+    /**
+     * Configuration options for auto indentation in the editor
+     */
+    var EditorAutoIndentStrategy;
+    (function (EditorAutoIndentStrategy) {
+        EditorAutoIndentStrategy[EditorAutoIndentStrategy["None"] = 0] = "None";
+        EditorAutoIndentStrategy[EditorAutoIndentStrategy["Keep"] = 1] = "Keep";
+        EditorAutoIndentStrategy[EditorAutoIndentStrategy["Brackets"] = 2] = "Brackets";
+        EditorAutoIndentStrategy[EditorAutoIndentStrategy["Advanced"] = 3] = "Advanced";
+        EditorAutoIndentStrategy[EditorAutoIndentStrategy["Full"] = 4] = "Full";
+    })(EditorAutoIndentStrategy || (EditorAutoIndentStrategy = {}));
+    var EditorOption;
+    (function (EditorOption) {
+        EditorOption[EditorOption["acceptSuggestionOnCommitCharacter"] = 0] = "acceptSuggestionOnCommitCharacter";
+        EditorOption[EditorOption["acceptSuggestionOnEnter"] = 1] = "acceptSuggestionOnEnter";
+        EditorOption[EditorOption["accessibilitySupport"] = 2] = "accessibilitySupport";
+        EditorOption[EditorOption["accessibilityPageSize"] = 3] = "accessibilityPageSize";
+        EditorOption[EditorOption["ariaLabel"] = 4] = "ariaLabel";
+        EditorOption[EditorOption["autoClosingBrackets"] = 5] = "autoClosingBrackets";
+        EditorOption[EditorOption["autoClosingOvertype"] = 6] = "autoClosingOvertype";
+        EditorOption[EditorOption["autoClosingQuotes"] = 7] = "autoClosingQuotes";
+        EditorOption[EditorOption["autoIndent"] = 8] = "autoIndent";
+        EditorOption[EditorOption["automaticLayout"] = 9] = "automaticLayout";
+        EditorOption[EditorOption["autoSurround"] = 10] = "autoSurround";
+        EditorOption[EditorOption["codeLens"] = 11] = "codeLens";
+        EditorOption[EditorOption["colorDecorators"] = 12] = "colorDecorators";
+        EditorOption[EditorOption["comments"] = 13] = "comments";
+        EditorOption[EditorOption["contextmenu"] = 14] = "contextmenu";
+        EditorOption[EditorOption["copyWithSyntaxHighlighting"] = 15] = "copyWithSyntaxHighlighting";
+        EditorOption[EditorOption["cursorBlinking"] = 16] = "cursorBlinking";
+        EditorOption[EditorOption["cursorSmoothCaretAnimation"] = 17] = "cursorSmoothCaretAnimation";
+        EditorOption[EditorOption["cursorStyle"] = 18] = "cursorStyle";
+        EditorOption[EditorOption["cursorSurroundingLines"] = 19] = "cursorSurroundingLines";
+        EditorOption[EditorOption["cursorSurroundingLinesStyle"] = 20] = "cursorSurroundingLinesStyle";
+        EditorOption[EditorOption["cursorWidth"] = 21] = "cursorWidth";
+        EditorOption[EditorOption["disableLayerHinting"] = 22] = "disableLayerHinting";
+        EditorOption[EditorOption["disableMonospaceOptimizations"] = 23] = "disableMonospaceOptimizations";
+        EditorOption[EditorOption["dragAndDrop"] = 24] = "dragAndDrop";
+        EditorOption[EditorOption["emptySelectionClipboard"] = 25] = "emptySelectionClipboard";
+        EditorOption[EditorOption["extraEditorClassName"] = 26] = "extraEditorClassName";
+        EditorOption[EditorOption["fastScrollSensitivity"] = 27] = "fastScrollSensitivity";
+        EditorOption[EditorOption["find"] = 28] = "find";
+        EditorOption[EditorOption["fixedOverflowWidgets"] = 29] = "fixedOverflowWidgets";
+        EditorOption[EditorOption["folding"] = 30] = "folding";
+        EditorOption[EditorOption["foldingStrategy"] = 31] = "foldingStrategy";
+        EditorOption[EditorOption["foldingHighlight"] = 32] = "foldingHighlight";
+        EditorOption[EditorOption["fontFamily"] = 33] = "fontFamily";
+        EditorOption[EditorOption["fontInfo"] = 34] = "fontInfo";
+        EditorOption[EditorOption["fontLigatures"] = 35] = "fontLigatures";
+        EditorOption[EditorOption["fontSize"] = 36] = "fontSize";
+        EditorOption[EditorOption["fontWeight"] = 37] = "fontWeight";
+        EditorOption[EditorOption["formatOnPaste"] = 38] = "formatOnPaste";
+        EditorOption[EditorOption["formatOnType"] = 39] = "formatOnType";
+        EditorOption[EditorOption["glyphMargin"] = 40] = "glyphMargin";
+        EditorOption[EditorOption["gotoLocation"] = 41] = "gotoLocation";
+        EditorOption[EditorOption["hideCursorInOverviewRuler"] = 42] = "hideCursorInOverviewRuler";
+        EditorOption[EditorOption["highlightActiveIndentGuide"] = 43] = "highlightActiveIndentGuide";
+        EditorOption[EditorOption["hover"] = 44] = "hover";
+        EditorOption[EditorOption["inDiffEditor"] = 45] = "inDiffEditor";
+        EditorOption[EditorOption["letterSpacing"] = 46] = "letterSpacing";
+        EditorOption[EditorOption["lightbulb"] = 47] = "lightbulb";
+        EditorOption[EditorOption["lineDecorationsWidth"] = 48] = "lineDecorationsWidth";
+        EditorOption[EditorOption["lineHeight"] = 49] = "lineHeight";
+        EditorOption[EditorOption["lineNumbers"] = 50] = "lineNumbers";
+        EditorOption[EditorOption["lineNumbersMinChars"] = 51] = "lineNumbersMinChars";
+        EditorOption[EditorOption["links"] = 52] = "links";
+        EditorOption[EditorOption["matchBrackets"] = 53] = "matchBrackets";
+        EditorOption[EditorOption["minimap"] = 54] = "minimap";
+        EditorOption[EditorOption["mouseStyle"] = 55] = "mouseStyle";
+        EditorOption[EditorOption["mouseWheelScrollSensitivity"] = 56] = "mouseWheelScrollSensitivity";
+        EditorOption[EditorOption["mouseWheelZoom"] = 57] = "mouseWheelZoom";
+        EditorOption[EditorOption["multiCursorMergeOverlapping"] = 58] = "multiCursorMergeOverlapping";
+        EditorOption[EditorOption["multiCursorModifier"] = 59] = "multiCursorModifier";
+        EditorOption[EditorOption["multiCursorPaste"] = 60] = "multiCursorPaste";
+        EditorOption[EditorOption["occurrencesHighlight"] = 61] = "occurrencesHighlight";
+        EditorOption[EditorOption["overviewRulerBorder"] = 62] = "overviewRulerBorder";
+        EditorOption[EditorOption["overviewRulerLanes"] = 63] = "overviewRulerLanes";
+        EditorOption[EditorOption["parameterHints"] = 64] = "parameterHints";
+        EditorOption[EditorOption["peekWidgetDefaultFocus"] = 65] = "peekWidgetDefaultFocus";
+        EditorOption[EditorOption["quickSuggestions"] = 66] = "quickSuggestions";
+        EditorOption[EditorOption["quickSuggestionsDelay"] = 67] = "quickSuggestionsDelay";
+        EditorOption[EditorOption["readOnly"] = 68] = "readOnly";
+        EditorOption[EditorOption["renderControlCharacters"] = 69] = "renderControlCharacters";
+        EditorOption[EditorOption["renderIndentGuides"] = 70] = "renderIndentGuides";
+        EditorOption[EditorOption["renderFinalNewline"] = 71] = "renderFinalNewline";
+        EditorOption[EditorOption["renderLineHighlight"] = 72] = "renderLineHighlight";
+        EditorOption[EditorOption["renderValidationDecorations"] = 73] = "renderValidationDecorations";
+        EditorOption[EditorOption["renderWhitespace"] = 74] = "renderWhitespace";
+        EditorOption[EditorOption["revealHorizontalRightPadding"] = 75] = "revealHorizontalRightPadding";
+        EditorOption[EditorOption["roundedSelection"] = 76] = "roundedSelection";
+        EditorOption[EditorOption["rulers"] = 77] = "rulers";
+        EditorOption[EditorOption["scrollbar"] = 78] = "scrollbar";
+        EditorOption[EditorOption["scrollBeyondLastColumn"] = 79] = "scrollBeyondLastColumn";
+        EditorOption[EditorOption["scrollBeyondLastLine"] = 80] = "scrollBeyondLastLine";
+        EditorOption[EditorOption["selectionClipboard"] = 81] = "selectionClipboard";
+        EditorOption[EditorOption["selectionHighlight"] = 82] = "selectionHighlight";
+        EditorOption[EditorOption["selectOnLineNumbers"] = 83] = "selectOnLineNumbers";
+        EditorOption[EditorOption["showFoldingControls"] = 84] = "showFoldingControls";
+        EditorOption[EditorOption["showUnused"] = 85] = "showUnused";
+        EditorOption[EditorOption["snippetSuggestions"] = 86] = "snippetSuggestions";
+        EditorOption[EditorOption["smoothScrolling"] = 87] = "smoothScrolling";
+        EditorOption[EditorOption["stopRenderingLineAfter"] = 88] = "stopRenderingLineAfter";
+        EditorOption[EditorOption["suggest"] = 89] = "suggest";
+        EditorOption[EditorOption["suggestFontSize"] = 90] = "suggestFontSize";
+        EditorOption[EditorOption["suggestLineHeight"] = 91] = "suggestLineHeight";
+        EditorOption[EditorOption["suggestOnTriggerCharacters"] = 92] = "suggestOnTriggerCharacters";
+        EditorOption[EditorOption["suggestSelection"] = 93] = "suggestSelection";
+        EditorOption[EditorOption["tabCompletion"] = 94] = "tabCompletion";
+        EditorOption[EditorOption["useTabStops"] = 95] = "useTabStops";
+        EditorOption[EditorOption["wordSeparators"] = 96] = "wordSeparators";
+        EditorOption[EditorOption["wordWrap"] = 97] = "wordWrap";
+        EditorOption[EditorOption["wordWrapBreakAfterCharacters"] = 98] = "wordWrapBreakAfterCharacters";
+        EditorOption[EditorOption["wordWrapBreakBeforeCharacters"] = 99] = "wordWrapBreakBeforeCharacters";
+        EditorOption[EditorOption["wordWrapColumn"] = 100] = "wordWrapColumn";
+        EditorOption[EditorOption["wordWrapMinified"] = 101] = "wordWrapMinified";
+        EditorOption[EditorOption["wrappingIndent"] = 102] = "wrappingIndent";
+        EditorOption[EditorOption["wrappingStrategy"] = 103] = "wrappingStrategy";
+        EditorOption[EditorOption["editorClassName"] = 104] = "editorClassName";
+        EditorOption[EditorOption["pixelRatio"] = 105] = "pixelRatio";
+        EditorOption[EditorOption["tabFocusMode"] = 106] = "tabFocusMode";
+        EditorOption[EditorOption["layoutInfo"] = 107] = "layoutInfo";
+        EditorOption[EditorOption["wrappingInfo"] = 108] = "wrappingInfo";
+    })(EditorOption || (EditorOption = {}));
+    /**
+     * End of line character preference.
+     */
+    var EndOfLinePreference;
+    (function (EndOfLinePreference) {
+        /**
+         * Use the end of line character identified in the text buffer.
+         */
+        EndOfLinePreference[EndOfLinePreference["TextDefined"] = 0] = "TextDefined";
+        /**
+         * Use line feed (\n) as the end of line character.
+         */
+        EndOfLinePreference[EndOfLinePreference["LF"] = 1] = "LF";
+        /**
+         * Use carriage return and line feed (\r\n) as the end of line character.
+         */
+        EndOfLinePreference[EndOfLinePreference["CRLF"] = 2] = "CRLF";
+    })(EndOfLinePreference || (EndOfLinePreference = {}));
+    /**
+     * End of line character preference.
+     */
+    var EndOfLineSequence;
+    (function (EndOfLineSequence) {
+        /**
+         * Use line feed (\n) as the end of line character.
+         */
+        EndOfLineSequence[EndOfLineSequence["LF"] = 0] = "LF";
+        /**
+         * Use carriage return and line feed (\r\n) as the end of line character.
+         */
+        EndOfLineSequence[EndOfLineSequence["CRLF"] = 1] = "CRLF";
+    })(EndOfLineSequence || (EndOfLineSequence = {}));
+    /**
+     * Describes what to do with the indentation when pressing Enter.
+     */
+    var IndentAction;
+    (function (IndentAction) {
+        /**
+         * Insert new line and copy the previous line's indentation.
+         */
+        IndentAction[IndentAction["None"] = 0] = "None";
+        /**
+         * Insert new line and indent once (relative to the previous line's indentation).
+         */
+        IndentAction[IndentAction["Indent"] = 1] = "Indent";
+        /**
+         * Insert two new lines:
+         *  - the first one indented which will hold the cursor
+         *  - the second one at the same indentation level
+         */
+        IndentAction[IndentAction["IndentOutdent"] = 2] = "IndentOutdent";
+        /**
+         * Insert new line and outdent once (relative to the previous line's indentation).
+         */
+        IndentAction[IndentAction["Outdent"] = 3] = "Outdent";
+    })(IndentAction || (IndentAction = {}));
+    /**
+     * Virtual Key Codes, the value does not hold any inherent meaning.
+     * Inspired somewhat from https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
+     * But these are "more general", as they should work across browsers & OS`s.
+     */
+    var KeyCode;
+    (function (KeyCode) {
+        /**
+         * Placed first to cover the 0 value of the enum.
+         */
+        KeyCode[KeyCode["Unknown"] = 0] = "Unknown";
+        KeyCode[KeyCode["Backspace"] = 1] = "Backspace";
+        KeyCode[KeyCode["Tab"] = 2] = "Tab";
+        KeyCode[KeyCode["Enter"] = 3] = "Enter";
+        KeyCode[KeyCode["Shift"] = 4] = "Shift";
+        KeyCode[KeyCode["Ctrl"] = 5] = "Ctrl";
+        KeyCode[KeyCode["Alt"] = 6] = "Alt";
+        KeyCode[KeyCode["PauseBreak"] = 7] = "PauseBreak";
+        KeyCode[KeyCode["CapsLock"] = 8] = "CapsLock";
+        KeyCode[KeyCode["Escape"] = 9] = "Escape";
+        KeyCode[KeyCode["Space"] = 10] = "Space";
+        KeyCode[KeyCode["PageUp"] = 11] = "PageUp";
+        KeyCode[KeyCode["PageDown"] = 12] = "PageDown";
+        KeyCode[KeyCode["End"] = 13] = "End";
+        KeyCode[KeyCode["Home"] = 14] = "Home";
+        KeyCode[KeyCode["LeftArrow"] = 15] = "LeftArrow";
+        KeyCode[KeyCode["UpArrow"] = 16] = "UpArrow";
+        KeyCode[KeyCode["RightArrow"] = 17] = "RightArrow";
+        KeyCode[KeyCode["DownArrow"] = 18] = "DownArrow";
+        KeyCode[KeyCode["Insert"] = 19] = "Insert";
+        KeyCode[KeyCode["Delete"] = 20] = "Delete";
+        KeyCode[KeyCode["KEY_0"] = 21] = "KEY_0";
+        KeyCode[KeyCode["KEY_1"] = 22] = "KEY_1";
+        KeyCode[KeyCode["KEY_2"] = 23] = "KEY_2";
+        KeyCode[KeyCode["KEY_3"] = 24] = "KEY_3";
+        KeyCode[KeyCode["KEY_4"] = 25] = "KEY_4";
+        KeyCode[KeyCode["KEY_5"] = 26] = "KEY_5";
+        KeyCode[KeyCode["KEY_6"] = 27] = "KEY_6";
+        KeyCode[KeyCode["KEY_7"] = 28] = "KEY_7";
+        KeyCode[KeyCode["KEY_8"] = 29] = "KEY_8";
+        KeyCode[KeyCode["KEY_9"] = 30] = "KEY_9";
+        KeyCode[KeyCode["KEY_A"] = 31] = "KEY_A";
+        KeyCode[KeyCode["KEY_B"] = 32] = "KEY_B";
+        KeyCode[KeyCode["KEY_C"] = 33] = "KEY_C";
+        KeyCode[KeyCode["KEY_D"] = 34] = "KEY_D";
+        KeyCode[KeyCode["KEY_E"] = 35] = "KEY_E";
+        KeyCode[KeyCode["KEY_F"] = 36] = "KEY_F";
+        KeyCode[KeyCode["KEY_G"] = 37] = "KEY_G";
+        KeyCode[KeyCode["KEY_H"] = 38] = "KEY_H";
+        KeyCode[KeyCode["KEY_I"] = 39] = "KEY_I";
+        KeyCode[KeyCode["KEY_J"] = 40] = "KEY_J";
+        KeyCode[KeyCode["KEY_K"] = 41] = "KEY_K";
+        KeyCode[KeyCode["KEY_L"] = 42] = "KEY_L";
+        KeyCode[KeyCode["KEY_M"] = 43] = "KEY_M";
+        KeyCode[KeyCode["KEY_N"] = 44] = "KEY_N";
+        KeyCode[KeyCode["KEY_O"] = 45] = "KEY_O";
+        KeyCode[KeyCode["KEY_P"] = 46] = "KEY_P";
+        KeyCode[KeyCode["KEY_Q"] = 47] = "KEY_Q";
+        KeyCode[KeyCode["KEY_R"] = 48] = "KEY_R";
+        KeyCode[KeyCode["KEY_S"] = 49] = "KEY_S";
+        KeyCode[KeyCode["KEY_T"] = 50] = "KEY_T";
+        KeyCode[KeyCode["KEY_U"] = 51] = "KEY_U";
+        KeyCode[KeyCode["KEY_V"] = 52] = "KEY_V";
+        KeyCode[KeyCode["KEY_W"] = 53] = "KEY_W";
+        KeyCode[KeyCode["KEY_X"] = 54] = "KEY_X";
+        KeyCode[KeyCode["KEY_Y"] = 55] = "KEY_Y";
+        KeyCode[KeyCode["KEY_Z"] = 56] = "KEY_Z";
+        KeyCode[KeyCode["Meta"] = 57] = "Meta";
+        KeyCode[KeyCode["ContextMenu"] = 58] = "ContextMenu";
+        KeyCode[KeyCode["F1"] = 59] = "F1";
+        KeyCode[KeyCode["F2"] = 60] = "F2";
+        KeyCode[KeyCode["F3"] = 61] = "F3";
+        KeyCode[KeyCode["F4"] = 62] = "F4";
+        KeyCode[KeyCode["F5"] = 63] = "F5";
+        KeyCode[KeyCode["F6"] = 64] = "F6";
+        KeyCode[KeyCode["F7"] = 65] = "F7";
+        KeyCode[KeyCode["F8"] = 66] = "F8";
+        KeyCode[KeyCode["F9"] = 67] = "F9";
+        KeyCode[KeyCode["F10"] = 68] = "F10";
+        KeyCode[KeyCode["F11"] = 69] = "F11";
+        KeyCode[KeyCode["F12"] = 70] = "F12";
+        KeyCode[KeyCode["F13"] = 71] = "F13";
+        KeyCode[KeyCode["F14"] = 72] = "F14";
+        KeyCode[KeyCode["F15"] = 73] = "F15";
+        KeyCode[KeyCode["F16"] = 74] = "F16";
+        KeyCode[KeyCode["F17"] = 75] = "F17";
+        KeyCode[KeyCode["F18"] = 76] = "F18";
+        KeyCode[KeyCode["F19"] = 77] = "F19";
+        KeyCode[KeyCode["NumLock"] = 78] = "NumLock";
+        KeyCode[KeyCode["ScrollLock"] = 79] = "ScrollLock";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the ';:' key
+         */
+        KeyCode[KeyCode["US_SEMICOLON"] = 80] = "US_SEMICOLON";
+        /**
+         * For any country/region, the '+' key
+         * For the US standard keyboard, the '=+' key
+         */
+        KeyCode[KeyCode["US_EQUAL"] = 81] = "US_EQUAL";
+        /**
+         * For any country/region, the ',' key
+         * For the US standard keyboard, the ',<' key
+         */
+        KeyCode[KeyCode["US_COMMA"] = 82] = "US_COMMA";
+        /**
+         * For any country/region, the '-' key
+         * For the US standard keyboard, the '-_' key
+         */
+        KeyCode[KeyCode["US_MINUS"] = 83] = "US_MINUS";
+        /**
+         * For any country/region, the '.' key
+         * For the US standard keyboard, the '.>' key
+         */
+        KeyCode[KeyCode["US_DOT"] = 84] = "US_DOT";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the '/?' key
+         */
+        KeyCode[KeyCode["US_SLASH"] = 85] = "US_SLASH";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the '`~' key
+         */
+        KeyCode[KeyCode["US_BACKTICK"] = 86] = "US_BACKTICK";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the '[{' key
+         */
+        KeyCode[KeyCode["US_OPEN_SQUARE_BRACKET"] = 87] = "US_OPEN_SQUARE_BRACKET";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the '\|' key
+         */
+        KeyCode[KeyCode["US_BACKSLASH"] = 88] = "US_BACKSLASH";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the ']}' key
+         */
+        KeyCode[KeyCode["US_CLOSE_SQUARE_BRACKET"] = 89] = "US_CLOSE_SQUARE_BRACKET";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         * For the US standard keyboard, the ''"' key
+         */
+        KeyCode[KeyCode["US_QUOTE"] = 90] = "US_QUOTE";
+        /**
+         * Used for miscellaneous characters; it can vary by keyboard.
+         */
+        KeyCode[KeyCode["OEM_8"] = 91] = "OEM_8";
+        /**
+         * Either the angle bracket key or the backslash key on the RT 102-key keyboard.
+         */
+        KeyCode[KeyCode["OEM_102"] = 92] = "OEM_102";
+        KeyCode[KeyCode["NUMPAD_0"] = 93] = "NUMPAD_0";
+        KeyCode[KeyCode["NUMPAD_1"] = 94] = "NUMPAD_1";
+        KeyCode[KeyCode["NUMPAD_2"] = 95] = "NUMPAD_2";
+        KeyCode[KeyCode["NUMPAD_3"] = 96] = "NUMPAD_3";
+        KeyCode[KeyCode["NUMPAD_4"] = 97] = "NUMPAD_4";
+        KeyCode[KeyCode["NUMPAD_5"] = 98] = "NUMPAD_5";
+        KeyCode[KeyCode["NUMPAD_6"] = 99] = "NUMPAD_6";
+        KeyCode[KeyCode["NUMPAD_7"] = 100] = "NUMPAD_7";
+        KeyCode[KeyCode["NUMPAD_8"] = 101] = "NUMPAD_8";
+        KeyCode[KeyCode["NUMPAD_9"] = 102] = "NUMPAD_9";
+        KeyCode[KeyCode["NUMPAD_MULTIPLY"] = 103] = "NUMPAD_MULTIPLY";
+        KeyCode[KeyCode["NUMPAD_ADD"] = 104] = "NUMPAD_ADD";
+        KeyCode[KeyCode["NUMPAD_SEPARATOR"] = 105] = "NUMPAD_SEPARATOR";
+        KeyCode[KeyCode["NUMPAD_SUBTRACT"] = 106] = "NUMPAD_SUBTRACT";
+        KeyCode[KeyCode["NUMPAD_DECIMAL"] = 107] = "NUMPAD_DECIMAL";
+        KeyCode[KeyCode["NUMPAD_DIVIDE"] = 108] = "NUMPAD_DIVIDE";
+        /**
+         * Cover all key codes when IME is processing input.
+         */
+        KeyCode[KeyCode["KEY_IN_COMPOSITION"] = 109] = "KEY_IN_COMPOSITION";
+        KeyCode[KeyCode["ABNT_C1"] = 110] = "ABNT_C1";
+        KeyCode[KeyCode["ABNT_C2"] = 111] = "ABNT_C2";
+        /**
+         * Placed last to cover the length of the enum.
+         * Please do not depend on this value!
+         */
+        KeyCode[KeyCode["MAX_VALUE"] = 112] = "MAX_VALUE";
+    })(KeyCode || (KeyCode = {}));
+    var MarkerSeverity;
+    (function (MarkerSeverity) {
+        MarkerSeverity[MarkerSeverity["Hint"] = 1] = "Hint";
+        MarkerSeverity[MarkerSeverity["Info"] = 2] = "Info";
+        MarkerSeverity[MarkerSeverity["Warning"] = 4] = "Warning";
+        MarkerSeverity[MarkerSeverity["Error"] = 8] = "Error";
+    })(MarkerSeverity || (MarkerSeverity = {}));
+    var MarkerTag;
+    (function (MarkerTag) {
+        MarkerTag[MarkerTag["Unnecessary"] = 1] = "Unnecessary";
+        MarkerTag[MarkerTag["Deprecated"] = 2] = "Deprecated";
+    })(MarkerTag || (MarkerTag = {}));
+    /**
+     * Position in the minimap to render the decoration.
+     */
+    var MinimapPosition;
+    (function (MinimapPosition) {
+        MinimapPosition[MinimapPosition["Inline"] = 1] = "Inline";
+        MinimapPosition[MinimapPosition["Gutter"] = 2] = "Gutter";
+    })(MinimapPosition || (MinimapPosition = {}));
+    /**
+     * Type of hit element with the mouse in the editor.
+     */
+    var MouseTargetType;
+    (function (MouseTargetType) {
+        /**
+         * Mouse is on top of an unknown element.
+         */
+        MouseTargetType[MouseTargetType["UNKNOWN"] = 0] = "UNKNOWN";
+        /**
+         * Mouse is on top of the textarea used for input.
+         */
+        MouseTargetType[MouseTargetType["TEXTAREA"] = 1] = "TEXTAREA";
+        /**
+         * Mouse is on top of the glyph margin
+         */
+        MouseTargetType[MouseTargetType["GUTTER_GLYPH_MARGIN"] = 2] = "GUTTER_GLYPH_MARGIN";
+        /**
+         * Mouse is on top of the line numbers
+         */
+        MouseTargetType[MouseTargetType["GUTTER_LINE_NUMBERS"] = 3] = "GUTTER_LINE_NUMBERS";
+        /**
+         * Mouse is on top of the line decorations
+         */
+        MouseTargetType[MouseTargetType["GUTTER_LINE_DECORATIONS"] = 4] = "GUTTER_LINE_DECORATIONS";
+        /**
+         * Mouse is on top of the whitespace left in the gutter by a view zone.
+         */
+        MouseTargetType[MouseTargetType["GUTTER_VIEW_ZONE"] = 5] = "GUTTER_VIEW_ZONE";
+        /**
+         * Mouse is on top of text in the content.
+         */
+        MouseTargetType[MouseTargetType["CONTENT_TEXT"] = 6] = "CONTENT_TEXT";
+        /**
+         * Mouse is on top of empty space in the content (e.g. after line text or below last line)
+         */
+        MouseTargetType[MouseTargetType["CONTENT_EMPTY"] = 7] = "CONTENT_EMPTY";
+        /**
+         * Mouse is on top of a view zone in the content.
+         */
+        MouseTargetType[MouseTargetType["CONTENT_VIEW_ZONE"] = 8] = "CONTENT_VIEW_ZONE";
+        /**
+         * Mouse is on top of a content widget.
+         */
+        MouseTargetType[MouseTargetType["CONTENT_WIDGET"] = 9] = "CONTENT_WIDGET";
+        /**
+         * Mouse is on top of the decorations overview ruler.
+         */
+        MouseTargetType[MouseTargetType["OVERVIEW_RULER"] = 10] = "OVERVIEW_RULER";
+        /**
+         * Mouse is on top of a scrollbar.
+         */
+        MouseTargetType[MouseTargetType["SCROLLBAR"] = 11] = "SCROLLBAR";
+        /**
+         * Mouse is on top of an overlay widget.
+         */
+        MouseTargetType[MouseTargetType["OVERLAY_WIDGET"] = 12] = "OVERLAY_WIDGET";
+        /**
+         * Mouse is outside of the editor.
+         */
+        MouseTargetType[MouseTargetType["OUTSIDE_EDITOR"] = 13] = "OUTSIDE_EDITOR";
+    })(MouseTargetType || (MouseTargetType = {}));
+    /**
+     * A positioning preference for rendering overlay widgets.
+     */
+    var OverlayWidgetPositionPreference;
+    (function (OverlayWidgetPositionPreference) {
+        /**
+         * Position the overlay widget in the top right corner
+         */
+        OverlayWidgetPositionPreference[OverlayWidgetPositionPreference["TOP_RIGHT_CORNER"] = 0] = "TOP_RIGHT_CORNER";
+        /**
+         * Position the overlay widget in the bottom right corner
+         */
+        OverlayWidgetPositionPreference[OverlayWidgetPositionPreference["BOTTOM_RIGHT_CORNER"] = 1] = "BOTTOM_RIGHT_CORNER";
+        /**
+         * Position the overlay widget in the top center
+         */
+        OverlayWidgetPositionPreference[OverlayWidgetPositionPreference["TOP_CENTER"] = 2] = "TOP_CENTER";
+    })(OverlayWidgetPositionPreference || (OverlayWidgetPositionPreference = {}));
+    /**
+     * Vertical Lane in the overview ruler of the editor.
+     */
+    var OverviewRulerLane;
+    (function (OverviewRulerLane) {
+        OverviewRulerLane[OverviewRulerLane["Left"] = 1] = "Left";
+        OverviewRulerLane[OverviewRulerLane["Center"] = 2] = "Center";
+        OverviewRulerLane[OverviewRulerLane["Right"] = 4] = "Right";
+        OverviewRulerLane[OverviewRulerLane["Full"] = 7] = "Full";
+    })(OverviewRulerLane || (OverviewRulerLane = {}));
+    var RenderLineNumbersType;
+    (function (RenderLineNumbersType) {
+        RenderLineNumbersType[RenderLineNumbersType["Off"] = 0] = "Off";
+        RenderLineNumbersType[RenderLineNumbersType["On"] = 1] = "On";
+        RenderLineNumbersType[RenderLineNumbersType["Relative"] = 2] = "Relative";
+        RenderLineNumbersType[RenderLineNumbersType["Interval"] = 3] = "Interval";
+        RenderLineNumbersType[RenderLineNumbersType["Custom"] = 4] = "Custom";
+    })(RenderLineNumbersType || (RenderLineNumbersType = {}));
+    var RenderMinimap;
+    (function (RenderMinimap) {
+        RenderMinimap[RenderMinimap["None"] = 0] = "None";
+        RenderMinimap[RenderMinimap["Text"] = 1] = "Text";
+        RenderMinimap[RenderMinimap["Blocks"] = 2] = "Blocks";
+    })(RenderMinimap || (RenderMinimap = {}));
+    var ScrollType;
+    (function (ScrollType) {
+        ScrollType[ScrollType["Smooth"] = 0] = "Smooth";
+        ScrollType[ScrollType["Immediate"] = 1] = "Immediate";
+    })(ScrollType || (ScrollType = {}));
+    var ScrollbarVisibility;
+    (function (ScrollbarVisibility) {
+        ScrollbarVisibility[ScrollbarVisibility["Auto"] = 1] = "Auto";
+        ScrollbarVisibility[ScrollbarVisibility["Hidden"] = 2] = "Hidden";
+        ScrollbarVisibility[ScrollbarVisibility["Visible"] = 3] = "Visible";
+    })(ScrollbarVisibility || (ScrollbarVisibility = {}));
+    /**
+     * The direction of a selection.
+     */
+    var SelectionDirection;
+    (function (SelectionDirection) {
+        /**
+         * The selection starts above where it ends.
+         */
+        SelectionDirection[SelectionDirection["LTR"] = 0] = "LTR";
+        /**
+         * The selection starts below where it ends.
+         */
+        SelectionDirection[SelectionDirection["RTL"] = 1] = "RTL";
+    })(SelectionDirection || (SelectionDirection = {}));
+    var SignatureHelpTriggerKind;
+    (function (SignatureHelpTriggerKind) {
+        SignatureHelpTriggerKind[SignatureHelpTriggerKind["Invoke"] = 1] = "Invoke";
+        SignatureHelpTriggerKind[SignatureHelpTriggerKind["TriggerCharacter"] = 2] = "TriggerCharacter";
+        SignatureHelpTriggerKind[SignatureHelpTriggerKind["ContentChange"] = 3] = "ContentChange";
+    })(SignatureHelpTriggerKind || (SignatureHelpTriggerKind = {}));
+    /**
+     * A symbol kind.
+     */
+    var SymbolKind;
+    (function (SymbolKind) {
+        SymbolKind[SymbolKind["File"] = 0] = "File";
+        SymbolKind[SymbolKind["Module"] = 1] = "Module";
+        SymbolKind[SymbolKind["Namespace"] = 2] = "Namespace";
+        SymbolKind[SymbolKind["Package"] = 3] = "Package";
+        SymbolKind[SymbolKind["Class"] = 4] = "Class";
+        SymbolKind[SymbolKind["Method"] = 5] = "Method";
+        SymbolKind[SymbolKind["Property"] = 6] = "Property";
+        SymbolKind[SymbolKind["Field"] = 7] = "Field";
+        SymbolKind[SymbolKind["Constructor"] = 8] = "Constructor";
+        SymbolKind[SymbolKind["Enum"] = 9] = "Enum";
+        SymbolKind[SymbolKind["Interface"] = 10] = "Interface";
+        SymbolKind[SymbolKind["Function"] = 11] = "Function";
+        SymbolKind[SymbolKind["Variable"] = 12] = "Variable";
+        SymbolKind[SymbolKind["Constant"] = 13] = "Constant";
+        SymbolKind[SymbolKind["String"] = 14] = "String";
+        SymbolKind[SymbolKind["Number"] = 15] = "Number";
+        SymbolKind[SymbolKind["Boolean"] = 16] = "Boolean";
+        SymbolKind[SymbolKind["Array"] = 17] = "Array";
+        SymbolKind[SymbolKind["Object"] = 18] = "Object";
+        SymbolKind[SymbolKind["Key"] = 19] = "Key";
+        SymbolKind[SymbolKind["Null"] = 20] = "Null";
+        SymbolKind[SymbolKind["EnumMember"] = 21] = "EnumMember";
+        SymbolKind[SymbolKind["Struct"] = 22] = "Struct";
+        SymbolKind[SymbolKind["Event"] = 23] = "Event";
+        SymbolKind[SymbolKind["Operator"] = 24] = "Operator";
+        SymbolKind[SymbolKind["TypeParameter"] = 25] = "TypeParameter";
+    })(SymbolKind || (SymbolKind = {}));
+    var SymbolTag;
+    (function (SymbolTag) {
+        SymbolTag[SymbolTag["Deprecated"] = 1] = "Deprecated";
+    })(SymbolTag || (SymbolTag = {}));
+    /**
+     * The kind of animation in which the editor's cursor should be rendered.
+     */
+    var TextEditorCursorBlinkingStyle;
+    (function (TextEditorCursorBlinkingStyle) {
+        /**
+         * Hidden
+         */
+        TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle["Hidden"] = 0] = "Hidden";
+        /**
+         * Blinking
+         */
+        TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle["Blink"] = 1] = "Blink";
+        /**
+         * Blinking with smooth fading
+         */
+        TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle["Smooth"] = 2] = "Smooth";
+        /**
+         * Blinking with prolonged filled state and smooth fading
+         */
+        TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle["Phase"] = 3] = "Phase";
+        /**
+         * Expand collapse animation on the y axis
+         */
+        TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle["Expand"] = 4] = "Expand";
+        /**
+         * No-Blinking
+         */
+        TextEditorCursorBlinkingStyle[TextEditorCursorBlinkingStyle["Solid"] = 5] = "Solid";
+    })(TextEditorCursorBlinkingStyle || (TextEditorCursorBlinkingStyle = {}));
+    /**
+     * The style in which the editor's cursor should be rendered.
+     */
+    var TextEditorCursorStyle;
+    (function (TextEditorCursorStyle) {
+        /**
+         * As a vertical line (sitting between two characters).
+         */
+        TextEditorCursorStyle[TextEditorCursorStyle["Line"] = 1] = "Line";
+        /**
+         * As a block (sitting on top of a character).
+         */
+        TextEditorCursorStyle[TextEditorCursorStyle["Block"] = 2] = "Block";
+        /**
+         * As a horizontal line (sitting under a character).
+         */
+        TextEditorCursorStyle[TextEditorCursorStyle["Underline"] = 3] = "Underline";
+        /**
+         * As a thin vertical line (sitting between two characters).
+         */
+        TextEditorCursorStyle[TextEditorCursorStyle["LineThin"] = 4] = "LineThin";
+        /**
+         * As an outlined block (sitting on top of a character).
+         */
+        TextEditorCursorStyle[TextEditorCursorStyle["BlockOutline"] = 5] = "BlockOutline";
+        /**
+         * As a thin horizontal line (sitting under a character).
+         */
+        TextEditorCursorStyle[TextEditorCursorStyle["UnderlineThin"] = 6] = "UnderlineThin";
+    })(TextEditorCursorStyle || (TextEditorCursorStyle = {}));
+    /**
+     * Describes the behavior of decorations when typing/editing near their edges.
+     * Note: Please do not edit the values, as they very carefully match `DecorationRangeBehavior`
+     */
+    var TrackedRangeStickiness;
+    (function (TrackedRangeStickiness) {
+        TrackedRangeStickiness[TrackedRangeStickiness["AlwaysGrowsWhenTypingAtEdges"] = 0] = "AlwaysGrowsWhenTypingAtEdges";
+        TrackedRangeStickiness[TrackedRangeStickiness["NeverGrowsWhenTypingAtEdges"] = 1] = "NeverGrowsWhenTypingAtEdges";
+        TrackedRangeStickiness[TrackedRangeStickiness["GrowsOnlyWhenTypingBefore"] = 2] = "GrowsOnlyWhenTypingBefore";
+        TrackedRangeStickiness[TrackedRangeStickiness["GrowsOnlyWhenTypingAfter"] = 3] = "GrowsOnlyWhenTypingAfter";
+    })(TrackedRangeStickiness || (TrackedRangeStickiness = {}));
+    /**
+     * Describes how to indent wrapped lines.
+     */
+    var WrappingIndent;
+    (function (WrappingIndent) {
+        /**
+         * No indentation => wrapped lines begin at column 1.
+         */
+        WrappingIndent[WrappingIndent["None"] = 0] = "None";
+        /**
+         * Same => wrapped lines get the same indentation as the parent.
+         */
+        WrappingIndent[WrappingIndent["Same"] = 1] = "Same";
+        /**
+         * Indent => wrapped lines get +1 indentation toward the parent.
+         */
+        WrappingIndent[WrappingIndent["Indent"] = 2] = "Indent";
+        /**
+         * DeepIndent => wrapped lines get +2 indentation toward the parent.
+         */
+        WrappingIndent[WrappingIndent["DeepIndent"] = 3] = "DeepIndent";
+    })(WrappingIndent || (WrappingIndent = {}));
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var KeyMod = /** @class */ (function () {
+        function KeyMod() {
+        }
+        KeyMod.chord = function (firstPart, secondPart) {
+            return KeyChord(firstPart, secondPart);
+        };
+        KeyMod.CtrlCmd = 2048 /* CtrlCmd */;
+        KeyMod.Shift = 1024 /* Shift */;
+        KeyMod.Alt = 512 /* Alt */;
+        KeyMod.WinCtrl = 256 /* WinCtrl */;
+        return KeyMod;
+    }());
+    function createMonacoBaseAPI() {
+        return {
+            editor: undefined,
+            languages: undefined,
+            CancellationTokenSource: CancellationTokenSource,
+            Emitter: Emitter,
+            KeyCode: KeyCode,
+            KeyMod: KeyMod,
+            Position: Position,
+            Range: Range,
+            Selection: Selection,
+            SelectionDirection: SelectionDirection,
+            MarkerSeverity: MarkerSeverity,
+            MarkerTag: MarkerTag,
+            Uri: URI,
+            Token: Token
+        };
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var __extends$5 = (undefined && undefined.__extends) || (function () {
+        var extendStatics = function (d, b) {
+            extendStatics = Object.setPrototypeOf ||
+                ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+                function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            return extendStatics(d, b);
+        };
+        return function (d, b) {
+            extendStatics(d, b);
+            function __() { this.constructor = d; }
+            d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+        };
+    })();
+    var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
+        function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+        return new (P || (P = Promise))(function (resolve, reject) {
+            function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+            function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+            function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+            step((generator = generator.apply(thisArg, _arguments || [])).next());
+        });
+    };
+    var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
+        var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
+        return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+        function verb(n) { return function (v) { return step([n, v]); }; }
+        function step(op) {
+            if (f) throw new TypeError("Generator is already executing.");
+            while (_) try {
+                if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
+                if (y = 0, t) op = [op[0] & 2, t.value];
+                switch (op[0]) {
+                    case 0: case 1: t = op; break;
+                    case 4: _.label++; return { value: op[1], done: false };
+                    case 5: _.label++; y = op[1]; op = [0]; continue;
+                    case 7: op = _.ops.pop(); _.trys.pop(); continue;
+                    default:
+                        if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
+                        if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
+                        if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
+                        if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
+                        if (t[2]) _.ops.pop();
+                        _.trys.pop(); continue;
+                }
+                op = body.call(thisArg, _);
+            } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
+            if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
+        }
+    };
+    /**
+     * @internal
+     */
+    var MirrorModel = /** @class */ (function (_super) {
+        __extends$5(MirrorModel, _super);
+        function MirrorModel() {
+            return _super !== null && _super.apply(this, arguments) || this;
+        }
+        Object.defineProperty(MirrorModel.prototype, "uri", {
+            get: function () {
+                return this._uri;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(MirrorModel.prototype, "version", {
+            get: function () {
+                return this._versionId;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(MirrorModel.prototype, "eol", {
+            get: function () {
+                return this._eol;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        MirrorModel.prototype.getValue = function () {
+            return this.getText();
+        };
+        MirrorModel.prototype.getLinesContent = function () {
+            return this._lines.slice(0);
+        };
+        MirrorModel.prototype.getLineCount = function () {
+            return this._lines.length;
+        };
+        MirrorModel.prototype.getLineContent = function (lineNumber) {
+            return this._lines[lineNumber - 1];
+        };
+        MirrorModel.prototype.getWordAtPosition = function (position, wordDefinition) {
+            var wordAtText = getWordAtText(position.column, ensureValidWordDefinition(wordDefinition), this._lines[position.lineNumber - 1], 0);
+            if (wordAtText) {
+                return new Range(position.lineNumber, wordAtText.startColumn, position.lineNumber, wordAtText.endColumn);
+            }
+            return null;
+        };
+        MirrorModel.prototype.createWordIterator = function (wordDefinition) {
+            var _this = this;
+            var obj;
+            var lineNumber = 0;
+            var lineText;
+            var wordRangesIdx = 0;
+            var wordRanges = [];
+            var next = function () {
+                if (wordRangesIdx < wordRanges.length) {
+                    var value = lineText.substring(wordRanges[wordRangesIdx].start, wordRanges[wordRangesIdx].end);
+                    wordRangesIdx += 1;
+                    if (!obj) {
+                        obj = { done: false, value: value };
+                    }
+                    else {
+                        obj.value = value;
+                    }
+                    return obj;
+                }
+                else if (lineNumber >= _this._lines.length) {
+                    return FIN;
+                }
+                else {
+                    lineText = _this._lines[lineNumber];
+                    wordRanges = _this._wordenize(lineText, wordDefinition);
+                    wordRangesIdx = 0;
+                    lineNumber += 1;
+                    return next();
+                }
+            };
+            return { next: next };
+        };
+        MirrorModel.prototype.getLineWords = function (lineNumber, wordDefinition) {
+            var content = this._lines[lineNumber - 1];
+            var ranges = this._wordenize(content, wordDefinition);
+            var words = [];
+            for (var _i = 0, ranges_1 = ranges; _i < ranges_1.length; _i++) {
+                var range = ranges_1[_i];
+                words.push({
+                    word: content.substring(range.start, range.end),
+                    startColumn: range.start + 1,
+                    endColumn: range.end + 1
+                });
+            }
+            return words;
+        };
+        MirrorModel.prototype._wordenize = function (content, wordDefinition) {
+            var result = [];
+            var match;
+            wordDefinition.lastIndex = 0; // reset lastIndex just to be sure
+            while (match = wordDefinition.exec(content)) {
+                if (match[0].length === 0) {
+                    // it did match the empty string
+                    break;
+                }
+                result.push({ start: match.index, end: match.index + match[0].length });
+            }
+            return result;
+        };
+        MirrorModel.prototype.getValueInRange = function (range) {
+            range = this._validateRange(range);
+            if (range.startLineNumber === range.endLineNumber) {
+                return this._lines[range.startLineNumber - 1].substring(range.startColumn - 1, range.endColumn - 1);
+            }
+            var lineEnding = this._eol;
+            var startLineIndex = range.startLineNumber - 1;
+            var endLineIndex = range.endLineNumber - 1;
+            var resultLines = [];
+            resultLines.push(this._lines[startLineIndex].substring(range.startColumn - 1));
+            for (var i = startLineIndex + 1; i < endLineIndex; i++) {
+                resultLines.push(this._lines[i]);
+            }
+            resultLines.push(this._lines[endLineIndex].substring(0, range.endColumn - 1));
+            return resultLines.join(lineEnding);
+        };
+        MirrorModel.prototype.offsetAt = function (position) {
+            position = this._validatePosition(position);
+            this._ensureLineStarts();
+            return this._lineStarts.getAccumulatedValue(position.lineNumber - 2) + (position.column - 1);
+        };
+        MirrorModel.prototype.positionAt = function (offset) {
+            offset = Math.floor(offset);
+            offset = Math.max(0, offset);
+            this._ensureLineStarts();
+            var out = this._lineStarts.getIndexOf(offset);
+            var lineLength = this._lines[out.index].length;
+            // Ensure we return a valid position
+            return {
+                lineNumber: 1 + out.index,
+                column: 1 + Math.min(out.remainder, lineLength)
+            };
+        };
+        MirrorModel.prototype._validateRange = function (range) {
+            var start = this._validatePosition({ lineNumber: range.startLineNumber, column: range.startColumn });
+            var end = this._validatePosition({ lineNumber: range.endLineNumber, column: range.endColumn });
+            if (start.lineNumber !== range.startLineNumber
+                || start.column !== range.startColumn
+                || end.lineNumber !== range.endLineNumber
+                || end.column !== range.endColumn) {
+                return {
+                    startLineNumber: start.lineNumber,
+                    startColumn: start.column,
+                    endLineNumber: end.lineNumber,
+                    endColumn: end.column
+                };
+            }
+            return range;
+        };
+        MirrorModel.prototype._validatePosition = function (position) {
+            if (!Position.isIPosition(position)) {
+                throw new Error('bad position');
+            }
+            var lineNumber = position.lineNumber, column = position.column;
+            var hasChanged = false;
+            if (lineNumber < 1) {
+                lineNumber = 1;
+                column = 1;
+                hasChanged = true;
+            }
+            else if (lineNumber > this._lines.length) {
+                lineNumber = this._lines.length;
+                column = this._lines[lineNumber - 1].length + 1;
+                hasChanged = true;
+            }
+            else {
+                var maxCharacter = this._lines[lineNumber - 1].length + 1;
+                if (column < 1) {
+                    column = 1;
+                    hasChanged = true;
+                }
+                else if (column > maxCharacter) {
+                    column = maxCharacter;
+                    hasChanged = true;
+                }
+            }
+            if (!hasChanged) {
+                return position;
+            }
+            else {
+                return { lineNumber: lineNumber, column: column };
+            }
+        };
+        return MirrorModel;
+    }(MirrorTextModel));
+    /**
+     * @internal
+     */
+    var EditorSimpleWorker = /** @class */ (function () {
+        function EditorSimpleWorker(host, foreignModuleFactory) {
+            this._host = host;
+            this._models = Object.create(null);
+            this._foreignModuleFactory = foreignModuleFactory;
+            this._foreignModule = null;
+        }
+        EditorSimpleWorker.prototype.dispose = function () {
+            this._models = Object.create(null);
+        };
+        EditorSimpleWorker.prototype._getModel = function (uri) {
+            return this._models[uri];
+        };
+        EditorSimpleWorker.prototype._getModels = function () {
+            var _this = this;
+            var all = [];
+            Object.keys(this._models).forEach(function (key) { return all.push(_this._models[key]); });
+            return all;
+        };
+        EditorSimpleWorker.prototype.acceptNewModel = function (data) {
+            this._models[data.url] = new MirrorModel(URI.parse(data.url), data.lines, data.EOL, data.versionId);
+        };
+        EditorSimpleWorker.prototype.acceptModelChanged = function (strURL, e) {
+            if (!this._models[strURL]) {
+                return;
+            }
+            var model = this._models[strURL];
+            model.onEvents(e);
+        };
+        EditorSimpleWorker.prototype.acceptRemovedModel = function (strURL) {
+            if (!this._models[strURL]) {
+                return;
+            }
+            delete this._models[strURL];
+        };
+        // ---- BEGIN diff --------------------------------------------------------------------------
+        EditorSimpleWorker.prototype.computeDiff = function (originalUrl, modifiedUrl, ignoreTrimWhitespace, maxComputationTime) {
+            return __awaiter(this, void 0, void 0, function () {
+                var original, modified, originalLines, modifiedLines, diffComputer, diffResult, identical;
+                return __generator(this, function (_a) {
+                    original = this._getModel(originalUrl);
+                    modified = this._getModel(modifiedUrl);
+                    if (!original || !modified) {
+                        return [2 /*return*/, null];
+                    }
+                    originalLines = original.getLinesContent();
+                    modifiedLines = modified.getLinesContent();
+                    diffComputer = new DiffComputer(originalLines, modifiedLines, {
+                        shouldComputeCharChanges: true,
+                        shouldPostProcessCharChanges: true,
+                        shouldIgnoreTrimWhitespace: ignoreTrimWhitespace,
+                        shouldMakePrettyDiff: true,
+                        maxComputationTime: maxComputationTime
+                    });
+                    diffResult = diffComputer.computeDiff();
+                    identical = (diffResult.changes.length > 0 ? false : this._modelsAreIdentical(original, modified));
+                    return [2 /*return*/, {
+                            quitEarly: diffResult.quitEarly,
+                            identical: identical,
+                            changes: diffResult.changes
+                        }];
+                });
+            });
+        };
+        EditorSimpleWorker.prototype._modelsAreIdentical = function (original, modified) {
+            var originalLineCount = original.getLineCount();
+            var modifiedLineCount = modified.getLineCount();
+            if (originalLineCount !== modifiedLineCount) {
+                return false;
+            }
+            for (var line = 1; line <= originalLineCount; line++) {
+                var originalLine = original.getLineContent(line);
+                var modifiedLine = modified.getLineContent(line);
+                if (originalLine !== modifiedLine) {
+                    return false;
+                }
+            }
+            return true;
+        };
+        EditorSimpleWorker.prototype.computeMoreMinimalEdits = function (modelUrl, edits) {
+            return __awaiter(this, void 0, void 0, function () {
+                var model, result, lastEol, _i, edits_1, _a, range, text, eol, original, changes, editOffset, _b, changes_1, change, start, end, newEdit;
+                return __generator(this, function (_c) {
+                    model = this._getModel(modelUrl);
+                    if (!model) {
+                        return [2 /*return*/, edits];
+                    }
+                    result = [];
+                    lastEol = undefined;
+                    edits = mergeSort(edits, function (a, b) {
+                        if (a.range && b.range) {
+                            return Range.compareRangesUsingStarts(a.range, b.range);
+                        }
+                        // eol only changes should go to the end
+                        var aRng = a.range ? 0 : 1;
+                        var bRng = b.range ? 0 : 1;
+                        return aRng - bRng;
+                    });
+                    for (_i = 0, edits_1 = edits; _i < edits_1.length; _i++) {
+                        _a = edits_1[_i], range = _a.range, text = _a.text, eol = _a.eol;
+                        if (typeof eol === 'number') {
+                            lastEol = eol;
+                        }
+                        if (Range.isEmpty(range) && !text) {
+                            // empty change
+                            continue;
+                        }
+                        original = model.getValueInRange(range);
+                        text = text.replace(/\r\n|\n|\r/g, model.eol);
+                        if (original === text) {
+                            // noop
+                            continue;
+                        }
+                        // make sure diff won't take too long
+                        if (Math.max(text.length, original.length) > EditorSimpleWorker._diffLimit) {
+                            result.push({ range: range, text: text });
+                            continue;
+                        }
+                        changes = stringDiff(original, text, false);
+                        editOffset = model.offsetAt(Range.lift(range).getStartPosition());
+                        for (_b = 0, changes_1 = changes; _b < changes_1.length; _b++) {
+                            change = changes_1[_b];
+                            start = model.positionAt(editOffset + change.originalStart);
+                            end = model.positionAt(editOffset + change.originalStart + change.originalLength);
+                            newEdit = {
+                                text: text.substr(change.modifiedStart, change.modifiedLength),
+                                range: { startLineNumber: start.lineNumber, startColumn: start.column, endLineNumber: end.lineNumber, endColumn: end.column }
+                            };
+                            if (model.getValueInRange(newEdit.range) !== newEdit.text) {
+                                result.push(newEdit);
+                            }
+                        }
+                    }
+                    if (typeof lastEol === 'number') {
+                        result.push({ eol: lastEol, text: '', range: { startLineNumber: 0, startColumn: 0, endLineNumber: 0, endColumn: 0 } });
+                    }
+                    return [2 /*return*/, result];
+                });
+            });
+        };
+        // ---- END minimal edits ---------------------------------------------------------------
+        EditorSimpleWorker.prototype.computeLinks = function (modelUrl) {
+            return __awaiter(this, void 0, void 0, function () {
+                var model;
+                return __generator(this, function (_a) {
+                    model = this._getModel(modelUrl);
+                    if (!model) {
+                        return [2 /*return*/, null];
+                    }
+                    return [2 /*return*/, computeLinks(model)];
+                });
+            });
+        };
+        EditorSimpleWorker.prototype.textualSuggest = function (modelUrl, position, wordDef, wordDefFlags) {
+            return __awaiter(this, void 0, void 0, function () {
+                var model, words, seen, wordDefRegExp, wordAt, iter, e, word;
+                return __generator(this, function (_a) {
+                    model = this._getModel(modelUrl);
+                    if (!model) {
+                        return [2 /*return*/, null];
+                    }
+                    words = [];
+                    seen = new Set();
+                    wordDefRegExp = new RegExp(wordDef, wordDefFlags);
+                    wordAt = model.getWordAtPosition(position, wordDefRegExp);
+                    if (wordAt) {
+                        seen.add(model.getValueInRange(wordAt));
+                    }
+                    for (iter = model.createWordIterator(wordDefRegExp), e = iter.next(); !e.done && seen.size <= EditorSimpleWorker._suggestionsLimit; e = iter.next()) {
+                        word = e.value;
+                        if (seen.has(word)) {
+                            continue;
+                        }
+                        seen.add(word);
+                        if (!isNaN(Number(word))) {
+                            continue;
+                        }
+                        words.push(word);
+                    }
+                    return [2 /*return*/, words];
+                });
+            });
+        };
+        // ---- END suggest --------------------------------------------------------------------------
+        //#region -- word ranges --
+        EditorSimpleWorker.prototype.computeWordRanges = function (modelUrl, range, wordDef, wordDefFlags) {
+            return __awaiter(this, void 0, void 0, function () {
+                var model, wordDefRegExp, result, line, words, _i, words_1, word, array;
+                return __generator(this, function (_a) {
+                    model = this._getModel(modelUrl);
+                    if (!model) {
+                        return [2 /*return*/, Object.create(null)];
+                    }
+                    wordDefRegExp = new RegExp(wordDef, wordDefFlags);
+                    result = Object.create(null);
+                    for (line = range.startLineNumber; line < range.endLineNumber; line++) {
+                        words = model.getLineWords(line, wordDefRegExp);
+                        for (_i = 0, words_1 = words; _i < words_1.length; _i++) {
+                            word = words_1[_i];
+                            if (!isNaN(Number(word.word))) {
+                                continue;
+                            }
+                            array = result[word.word];
+                            if (!array) {
+                                array = [];
+                                result[word.word] = array;
+                            }
+                            array.push({
+                                startLineNumber: line,
+                                startColumn: word.startColumn,
+                                endLineNumber: line,
+                                endColumn: word.endColumn
+                            });
+                        }
+                    }
+                    return [2 /*return*/, result];
+                });
+            });
+        };
+        //#endregion
+        EditorSimpleWorker.prototype.navigateValueSet = function (modelUrl, range, up, wordDef, wordDefFlags) {
+            return __awaiter(this, void 0, void 0, function () {
+                var model, wordDefRegExp, selectionText, wordRange, word, result;
+                return __generator(this, function (_a) {
+                    model = this._getModel(modelUrl);
+                    if (!model) {
+                        return [2 /*return*/, null];
+                    }
+                    wordDefRegExp = new RegExp(wordDef, wordDefFlags);
+                    if (range.startColumn === range.endColumn) {
+                        range = {
+                            startLineNumber: range.startLineNumber,
+                            startColumn: range.startColumn,
+                            endLineNumber: range.endLineNumber,
+                            endColumn: range.endColumn + 1
+                        };
+                    }
+                    selectionText = model.getValueInRange(range);
+                    wordRange = model.getWordAtPosition({ lineNumber: range.startLineNumber, column: range.startColumn }, wordDefRegExp);
+                    if (!wordRange) {
+                        return [2 /*return*/, null];
+                    }
+                    word = model.getValueInRange(wordRange);
+                    result = BasicInplaceReplace.INSTANCE.navigateValueSet(range, selectionText, wordRange, word, up);
+                    return [2 /*return*/, result];
+                });
+            });
+        };
+        // ---- BEGIN foreign module support --------------------------------------------------------------------------
+        EditorSimpleWorker.prototype.loadForeignModule = function (moduleId, createData, foreignHostMethods) {
+            var _this = this;
+            var proxyMethodRequest = function (method, args) {
+                return _this._host.fhr(method, args);
+            };
+            var foreignHost = createProxyObject(foreignHostMethods, proxyMethodRequest);
+            var ctx = {
+                host: foreignHost,
+                getMirrorModels: function () {
+                    return _this._getModels();
+                }
+            };
+            if (this._foreignModuleFactory) {
+                this._foreignModule = this._foreignModuleFactory(ctx, createData);
+                // static foreing module
+                return Promise.resolve(getAllMethodNames(this._foreignModule));
+            }
+            // ESM-comment-begin
+            // 		return new Promise<any>((resolve, reject) => {
+            // 			require([moduleId], (foreignModule: { create: IForeignModuleFactory }) => {
+            // 				this._foreignModule = foreignModule.create(ctx, createData);
+            // 
+            // 				resolve(types.getAllMethodNames(this._foreignModule));
+            // 
+            // 			}, reject);
+            // 		});
+            // ESM-comment-end
+            // ESM-uncomment-begin
+            return Promise.reject(new Error("Unexpected usage"));
+            // ESM-uncomment-end
+        };
+        // foreign method request
+        EditorSimpleWorker.prototype.fmr = function (method, args) {
+            if (!this._foreignModule || typeof this._foreignModule[method] !== 'function') {
+                return Promise.reject(new Error('Missing requestHandler or method: ' + method));
+            }
+            try {
+                return Promise.resolve(this._foreignModule[method].apply(this._foreignModule, args));
+            }
+            catch (e) {
+                return Promise.reject(e);
+            }
+        };
+        // ---- END diff --------------------------------------------------------------------------
+        // ---- BEGIN minimal edits ---------------------------------------------------------------
+        EditorSimpleWorker._diffLimit = 100000;
+        // ---- BEGIN suggest --------------------------------------------------------------------------
+        EditorSimpleWorker._suggestionsLimit = 10000;
+        return EditorSimpleWorker;
+    }());
+    if (typeof importScripts === 'function') {
+        // Running in a web worker
+        globals.monaco = createMonacoBaseAPI();
+    }
+
+    /*---------------------------------------------------------------------------------------------
+     *  Copyright (c) Microsoft Corporation. All rights reserved.
+     *  Licensed under the MIT License. See License.txt in the project root for license information.
+     *--------------------------------------------------------------------------------------------*/
+    var initialized = false;
+    function initialize(foreignModule) {
+        if (initialized) {
+            return;
+        }
+        initialized = true;
+        var simpleWorker = new SimpleWorkerServer(function (msg) {
+            self.postMessage(msg);
+        }, function (host) { return new EditorSimpleWorker(host, foreignModule); });
+        self.onmessage = function (e) {
+            simpleWorker.onmessage(e.data);
+        };
+    }
+    self.onmessage = function (e) {
+        // Ignore first message in this case and initialize if not yet initialized
+        if (!initialized) {
+            initialize(null);
+        }
+    };
+
+    exports.initialize = initialize;
+
+    return exports;
+
+}({}));

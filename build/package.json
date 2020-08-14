@@ -1,17 +1,13 @@
 {
   "scripts": {
-    "build": "webpack"
+    "build": "rollup -c"
   },
   "dependencies": {
     "monaco-editor": "^0.20"
   },
   "devDependencies": {
-    "@purtuga/esm-webpack-plugin": "^1.2",
-    "css-loader": "^4.2",
-    "file-loader": "^6.0",
-    "monaco-editor-webpack-plugin": "^1.9",
-    "style-loader": "^1.2",
-    "webpack": "^4.44",
-    "webpack-cli": "^3.3"
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "rollup": "^2.25",
+    "rollup-plugin-styles": "^3.10.0"
   }
 }

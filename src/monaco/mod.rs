@@ -2,31 +2,11 @@ pub use environment::*;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
 
-macro_rules! object_get {
-    ($obj:ident.$key:ident) => {
-        ::js_sys::Reflect::get($obj.as_ref(), &JsValue::from(stringify!($key)))
-    };
-}
-
-macro_rules! object_set {
-    ($obj:ident.$key:ident = $value:expr) => {{
-        ::js_sys::Reflect::set(
-            $obj.as_ref(),
-            &JsValue::from(stringify!($key)),
-            &JsValue::from($value),
-        )
-        .expect("setting key on object must not fail");
-    }};
-}
-
 pub mod editor;
 mod environment;
 
-#[wasm_bindgen(module = "/js/monaco.js")]
+#[wasm_bindgen(module = "/js/editor.js")]
 extern "C" {
-    #[wasm_bindgen(js_name = "setEnvironment")]
-    pub fn set_environment(val: &Environment);
-
     pub static editor: editor::Editor;
 
     #[derive(Debug)]
