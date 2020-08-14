@@ -1,11 +1,9 @@
-pub use editor_construction_options::*;
-pub use editor_options::*;
+pub use interfaces::*;
 use js_sys::Object;
 use wasm_bindgen::prelude::*;
 use web_sys::HtmlElement;
 
-mod editor_construction_options;
-mod editor_options;
+mod interfaces;
 
 #[wasm_bindgen]
 extern "C" {

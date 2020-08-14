@@ -2,6 +2,9 @@ use js_sys::Object;
 use wasm_bindgen::{prelude::*, JsCast};
 use web_sys::Worker;
 
+pub type GetWorkerFn = dyn FnMut(String, String) -> Worker;
+pub type GetWorkerUrlFn = dyn FnMut(String, String) -> String;
+
 #[wasm_bindgen]
 extern "C" {
     #[derive(Clone, Debug, Eq, PartialEq)]
@@ -14,12 +17,12 @@ impl Environment {
         self
     }
 
-    pub fn get_worker(self, val: &Closure<dyn FnMut(String, String) -> Worker>) -> Self {
+    pub fn get_worker(self, val: &Closure<GetWorkerFn>) -> Self {
         object_set!(self.getWorker = val.as_ref());
         self
     }
 
-    pub fn get_worker_url(self, val: &Closure<dyn FnMut(String, String) -> String>) -> Self {
+    pub fn get_worker_url(self, val: &Closure<GetWorkerUrlFn>) -> Self {
         object_set!(self.getWorkerUrl = val.as_ref());
         self
     }

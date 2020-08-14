@@ -1,5 +1,3 @@
-pub use monaco::*;
-
 macro_rules! object_get {
     ($obj:ident.$key:ident) => {
         ::js_sys::Reflect::get(
@@ -20,7 +18,8 @@ macro_rules! object_set {
     }};
 }
 
-mod monaco;
+mod editor;
+pub mod sys;
 #[cfg(feature = "embed_workers")]
 mod workers;
 #[cfg(feature = "yew")]
