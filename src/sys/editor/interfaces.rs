@@ -29,7 +29,7 @@ impl IGlobalEditorOptions {
     define_property! {
         /// Lines above this length will not be tokenized for performance reasons.
         /// Defaults to 20000.
-        maxTokenizationLineLength: Option<u32>
+        maxTokenizationLineLength: Option<bool>
     }
 
     define_property! {
@@ -41,7 +41,7 @@ impl IGlobalEditorOptions {
     define_property! {
         /// The number of spaces a tab is equal to. This setting is overridden based
         /// on the file contents when detectIndentation is on. Defaults to 4.
-        tabSize: Option<u32>
+        tabSize: Option<f64>
     }
 
     define_property! {
@@ -64,47 +64,56 @@ impl IEditorOptions {
     define_property! {
         /// Accept suggestions on provider defined characters. Defaults to true.
         acceptSuggestionOnCommitCharacter: Option<bool>
+    }
+
+    define_property! {
         /// Accept suggestions on ENTER. Defaults to 'on'.
-        acceptSuggestionOnEnter: Option<AcceptSuggestionOnEnter>
+        enum acceptSuggestionOnEnter: Option<AcceptSuggestionOnEnter>
+    }
+
+    define_property! {
         /// Controls the number of lines in the editor that can be read out by a
         /// screen reader
         accessibilityPageSize: Option<f64>
+    }
+
+    define_property! {
         /// Configure the editor's accessibility support. Defaults to 'auto'. It is
         /// best to leave this to 'auto'.
-        accessibilitySupport: Option<AccessibilitySupport>
+        enum accessibilitySupport: Option<AccessibilitySupport>
     }
 
     define_property! {
         /// The aria label for the editor's textarea (when it is focused).
-        ariaLabel: Option<&str>
+        ariaLabel: Option<String>
     }
 
     define_property! {
         /// Options for auto closing brackets. Defaults to language defined
         /// behavior.
-        autoClosingBrackets: Option<AutoClosingStrategy>
+        enum autoClosingBrackets: Option<AutoClosingStrategy>
     }
 
     define_property! {
         /// Options for typing over closing quotes or brackets.
-        autoClosingOvertype: Option<AutoClosingOvertype>
+        enum autoClosingOvertype: Option<AutoClosingOvertype>
     }
 
     define_property! {
         /// Options for auto closing quotes. Defaults to language defined behavior.
-        autoClosingQuotes: Option<AutoClosingStrategy>
+        enum autoClosingQuotes: Option<AutoClosingStrategy>
     }
 
     define_property! {
         /// Controls whether the editor should automatically adjust the indentation
         /// when users type, paste, move or indent lines. Defaults to advanced.
-        autoIndent: Option<AutoIdent>
+        enum autoIndent: Option<AutoIdent>
     }
 
     define_property! {
         /// Options for auto surrounding. Defaults to always allowing auto
         /// surrounding.
-        autoSurround: Option<AutoSurroundStrategy>
+        enum autoSurround: Option<AutoSurroundStrategy>
     }
 
     define_property! {
@@ -116,7 +125,7 @@ impl IEditorOptions {
 
     define_property! {
         /// Timeout for running code actions on save.
-        codeActionsOnSaveTimeout: Option<u32>
+        codeActionsOnSaveTimeout: Option<f64>
     }
 
     define_property! {
@@ -131,7 +140,7 @@ impl IEditorOptions {
 
     define_property! {
         /// Control the behaviour of comments in the editor.
-        comments: Option<&IEditorCommentsOptions>
+        ref comments: Option<IEditorCommentsOptions>
     }
 
     define_property! {
@@ -147,7 +156,7 @@ impl IEditorOptions {
     define_property! {
         /// Control the cursor animation style, possible values are 'blink',
         /// 'smooth', 'phase', 'expand' and 'solid'. Defaults to 'blink'.
-        cursorBlinking: Option<CursorBlinkingStyle>
+        enum cursorBlinking: Option<CursorBlinkingStyle>
     }
 
     define_property! {
@@ -157,25 +166,25 @@ impl IEditorOptions {
 
     define_property! {
         /// Control the cursor style, either 'block' or 'line'. Defaults to 'line'.
-        cursorStyle: Option<CursorStyle>
+        enum cursorStyle: Option<CursorStyle>
     }
 
     define_property! {
         /// Controls the minimal number of visible leading and trailing lines
         /// surrounding the cursor. Defaults to 0.
-        cursorSurroundingLines: Option<u32>
+        cursorSurroundingLines: Option<f64>
     }
 
     define_property! {
         /// Controls when cursorSurroundingLines should be enforced Defaults to
         /// default, cursorSurroundingLines is not enforced when cursor position is
         /// changed by mouse.
-        cursorSurroundingLinesStyle: Option<CursorSurroundingLinesStyle>
+        enum cursorSurroundingLinesStyle: Option<CursorSurroundingLinesStyle>
     }
 
     define_property! {
         /// Control the width of the cursor when cursorStyle is set to 'line'
-        cursorWidth: Option<u32>
+        cursorWidth: Option<f64>
     }
 
     define_property! {
@@ -204,17 +213,17 @@ impl IEditorOptions {
 
     define_property! {
         /// Class name to be added to the editor.
-        extraEditorClassName: Option<&str>
+        extraEditorClassName: Option<String>
     }
 
     define_property! {
         /// FastScrolling mulitplier speed when pressing Alt Defaults to 5.
-        fastScrollSensitivity: Option<u32>
+        fastScrollSensitivity: Option<f64>
     }
 
     define_property! {
         /// Control the behavior of the find widget.
-        find: Option<&IEditorFindOptions>
+        ref find: Option<IEditorFindOptions>
     }
 
     define_property! {
@@ -236,12 +245,12 @@ impl IEditorOptions {
         /// Selects the folding strategy. 'auto' uses the strategies contributed for
         /// the current document, 'indentation' uses the indentation based folding
         /// strategy. Defaults to 'auto'.
-        foldingStrategy: Option<FoldingStrategy>
+        enum foldingStrategy: Option<FoldingStrategy>
     }
 
     define_property! {
         /// The font family
-        fontFamily: Option<&str>
+        fontFamily: Option<String>
     }
 
     define_property! {
@@ -252,12 +261,12 @@ impl IEditorOptions {
 
     define_property! {
         /// The font size
-        fontSize: Option<u32>
+        fontSize: Option<f64>
     }
 
     define_property! {
         /// The font weight
-        fontWeight: Option<&str>
+        fontWeight: Option<String>
     }
 
     define_property! {
@@ -278,7 +287,7 @@ impl IEditorOptions {
 
     define_property! {
         /// Optional hideCursorInOverviewRuler
-        gotoLocation: Option<&IGotoLocationOptions>
+        ref gotoLocation: Option<IGotoLocationOptions>
     }
 
     define_property! {
@@ -293,7 +302,7 @@ impl IEditorOptions {
 
     define_property! {
         /// Configure the editor's hover.
-        hover: Option<&IEditorHoverOptions>
+        ref hover: Option<IEditorHoverOptions>
     }
 
     define_property! {
@@ -303,12 +312,12 @@ impl IEditorOptions {
 
     define_property! {
         /// The letter spacing
-        letterSpacing: Option<u32>
+        letterSpacing: Option<f64>
     }
 
     define_property! {
         /// Control the behavior and rendering of the code action lightbulb.
-        lightbulb: Option<&IEditorLightbulbOptions>
+        ref lightbulb: Option<IEditorLightbulbOptions>
     }
 
     define_property! {
@@ -316,13 +325,13 @@ impl IEditorOptions {
         /// placed between line numbers and the editor content. You can pass in a
         /// string in the format floating point followed by "ch". e.g. 1.3ch.
         /// Defaults to 10.
-        // TODO special value: u32 | string
-        lineDecorationsWidth: Option<u32>
+        // TODO special value: f64 | string
+        lineDecorationsWidth: Option<f64>
     }
 
     define_property! {
         /// The line height
-        lineHeight: Option<u32>
+        lineHeight: Option<f64>
     }
 
     define_property! {
@@ -331,13 +340,13 @@ impl IEditorOptions {
         /// rendered. Otherwise, if it is a truey, line numbers will be rendered
         /// normally (equivalent of using an identity function). Otherwise, line
         /// numbers will not be rendered. Defaults to on.
-        lineNumbers: Option<LineNumbersType>
+        enum lineNumbers: Option<LineNumbersType>
     }
 
     define_property! {
         /// Control the width of line numbers, by reserving horizontal space for
         /// rendering at least an amount of digits. Defaults to 5.
-        lineNumbersMinChars: Option<u32>
+        lineNumbersMinChars: Option<f64>
     }
 
     define_property! {
@@ -347,24 +356,24 @@ impl IEditorOptions {
 
     define_property! {
         /// Enable highlighting of matching brackets. Defaults to 'always'.
-        matchBrackets: Option<MatchBrackets>
+        enum matchBrackets: Option<MatchBrackets>
     }
 
     define_property! {
         /// Control the behavior and rendering of the minimap.
-        minimap: Option<&IEditorMinimapOptions>
+        ref minimap: Option<IEditorMinimapOptions>
     }
 
     define_property! {
         /// Control the mouse pointer style, either 'text' or 'default' or 'copy'
         /// Defaults to 'text'.
-        mouseStyle: Option<MouseStyle>
+        enum mouseStyle: Option<MouseStyle>
     }
 
     define_property! {
         /// A multiplier to be used on the deltaX and deltaY of mouse wheel scroll
         /// events. Defaults to 1.
-        mouseWheelScrollSensitivity: Option<u32>
+        mouseWheelScrollSensitivity: Option<f64>
     }
 
     define_property! {
@@ -381,13 +390,13 @@ impl IEditorOptions {
     define_property! {
         /// The modifier to be used to add multiple cursors with the mouse. Defaults
         /// to 'alt'.
-        multiCursorModifier: Option<MultiCursorModifier>
+        enum multiCursorModifier: Option<MultiCursorModifier>
     }
 
     define_property! {
         /// Configure the behaviour when pasting a text with the line count equal to
         /// the cursor count. Defaults to 'spread'.
-        multiCursorPaste: Option<MultiCursorPaste>
+        enum multiCursorPaste: Option<MultiCursorPaste>
     }
 
     define_property! {
@@ -404,18 +413,18 @@ impl IEditorOptions {
     define_property! {
         /// The number of vertical lanes the overview ruler should render. Defaults
         /// to 3.
-        overviewRulerLanes: Option<u32>
+        overviewRulerLanes: Option<f64>
     }
 
     define_property! {
         /// Parameter hint options.
-        parameterHints: Option<&IEditorParameterHintOptions>
+        ref parameterHints: Option<IEditorParameterHintOptions>
     }
 
     define_property! {
         /// Controls whether to focus the inline editor in the peek widget by
         /// default. Defaults to false.
-        peekWidgetDefaultFocus: Option<PeekWidgetDefaultFocus>
+        enum peekWidgetDefaultFocus: Option<PeekWidgetDefaultFocus>
     }
 
     define_property! {
@@ -426,7 +435,7 @@ impl IEditorOptions {
 
     define_property! {
         /// Quick suggestions show delay (in ms) Defaults to 10 (ms)
-        quickSuggestionsDelay: Option<u32>
+        quickSuggestionsDelay: Option<f64>
     }
 
     define_property! {
@@ -452,17 +461,17 @@ impl IEditorOptions {
 
     define_property! {
         /// Enable rendering of current line highlight. Defaults to all.
-        renderLineHighlight: Option<RenderLineHighlight>
+        enum renderLineHighlight: Option<RenderLineHighlight>
     }
 
     define_property! {
         /// Should the editor render validation decorations. Defaults to editable.
-        renderValidationDecorations: Option<RenderValidationDecorations>
+        enum renderValidationDecorations: Option<RenderValidationDecorations>
     }
 
     define_property! {
         /// Enable rendering of whitespace. Defaults to none.
-        renderWhitespace: Option<RenderWhitespace>
+        enum renderWhitespace: Option<RenderWhitespace>
     }
 
     define_property! {
@@ -470,7 +479,7 @@ impl IEditorOptions {
         /// cursor, turning it into a rectangle. This virtual padding ensures that
         /// the cursor gets revealed before hitting the edge of the viewport.
         /// Defaults to 30 (px).
-        revealHorizontalRightPadding: Option<u32>
+        revealHorizontalRightPadding: Option<f64>
     }
 
     define_property! {
@@ -480,13 +489,13 @@ impl IEditorOptions {
 
     define_property! {
         /// Render vertical lines at the specified columns. Defaults to empty array.
-        rulers: Option<&Uint32Array>
+        ref rulers: Option<Uint32Array>
     }
 
     define_property! {
         /// Enable that scrolling can go beyond the last column by a number of
         /// columns. Defaults to 5.
-        scrollBeyondLastColumn: Option<u32>
+        scrollBeyondLastColumn: Option<f64>
     }
 
     define_property! {
@@ -497,7 +506,7 @@ impl IEditorOptions {
 
     define_property! {
         /// Control the behavior and rendering of the scrollbars.
-        scrollbar: Option<&IEditorScrollbarOptions>
+        ref scrollbar: Option<IEditorScrollbarOptions>
     }
 
     define_property! {
@@ -519,7 +528,7 @@ impl IEditorOptions {
     define_property! {
         /// Controls whether the fold actions in the gutter stay always visible or
         /// hide unless the mouse is over the gutter. Defaults to 'mouseover'.
-        showFoldingControls: Option<ShowFoldingControls>
+        enum showFoldingControls: Option<ShowFoldingControls>
     }
 
     define_property! {
@@ -535,29 +544,29 @@ impl IEditorOptions {
 
     define_property! {
         /// Enable snippet suggestions. Default to 'true'.
-        snippetSuggestions: Option<SnippetSuggestions>
+        enum snippetSuggestions: Option<SnippetSuggestions>
     }
 
     define_property! {
         /// Performance guard: Stop rendering a line after x characters. Defaults to
         /// 10000. Use -1 to never stop rendering
-        stopRenderingLineAfter: Option<u32>
+        stopRenderingLineAfter: Option<f64>
     }
 
     define_property! {
         /// Suggest options.
-        suggest: Option<&ISuggestOptions>
+        ref suggest: Option<ISuggestOptions>
     }
 
     define_property! {
         /// The font size for the suggest widget. Defaults to the editor font size.
-        suggestFontSize: Option<u32>
+        suggestFontSize: Option<f64>
     }
 
     define_property! {
         /// The line height for the suggest widget. Defaults to the editor line
         /// height.
-        suggestLineHeight: Option<u32>
+        suggestLineHeight: Option<f64>
     }
 
     define_property! {
@@ -568,12 +577,12 @@ impl IEditorOptions {
 
     define_property! {
         /// The history mode for suggestions.
-        suggestSelection: Option<SuggestSelection>
+        enum suggestSelection: Option<SuggestSelection>
     }
 
     define_property! {
         /// Enable tab completion.
-        tabCompletion: Option<TabCompletion>
+        enum tabCompletion: Option<TabCompletion>
     }
 
     define_property! {
@@ -584,7 +593,7 @@ impl IEditorOptions {
     define_property! {
         /// A string containing the word separators used when doing word navigation.
         /// Defaults to `~!@#$%^&*()-=+[{]}\|;:'",.<>/?
-        wordSeparators: Option<&str>
+        wordSeparators: Option<String>
     }
 
     define_property! {
@@ -593,7 +602,7 @@ impl IEditorOptions {
         /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
         /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
         /// min(viewport width, wordWrapColumn). Defaults to "off".
-        wordWrap: Option<WordWrap>
+        enum wordWrap: Option<WordWrap>
     }
 
     define_property! {
@@ -602,13 +611,13 @@ impl IEditorOptions {
         /// \t})]?|/&.,;¢°′″‰℃、。｡､￠，．：；？！％・･
         /// ゝゞヽヾーァィゥェォッャュョヮヵヶぁぃぅぇぉっゃゅょゎゕゖㇰㇱㇲㇳㇴㇵㇶㇷㇸㇹㇺㇻㇼㇽㇾㇿ々〻ｧｨｩｪｫｬｭｮｯｰ”〉》」』】〕）］｝｣'
         /// .
-        wordWrapBreakAfterCharacters: Option<&str>
+        wordWrapBreakAfterCharacters: Option<String>
     }
 
     define_property! {
         /// Configure word wrapping characters. A break will be introduced before
         /// these characters. Defaults to '([{‘“〈《「『【〔（［｛｢£¥＄￡￥+＋'.
-        wordWrapBreakBeforeCharacters: Option<&str>
+        wordWrapBreakBeforeCharacters: Option<String>
     }
 
     define_property! {
@@ -617,7 +626,7 @@ impl IEditorOptions {
         /// viewport width. When wordWrap = "wordWrapColumn", the lines will wrap at
         /// wordWrapColumn. When wordWrap = "bounded", the lines will wrap at
         /// min(viewport width, wordWrapColumn). Defaults to 80.
-        wordWrapColumn: Option<u32>
+        wordWrapColumn: Option<f64>
     }
 
     define_property! {
@@ -630,12 +639,12 @@ impl IEditorOptions {
         /// Control indentation of wrapped lines. Can be: 'none', 'same', 'indent'
         /// or 'deepIndent'. Defaults to 'same' in vscode and to 'none' in
         /// monaco-editor.
-        wrappingIndent: Option<WrappingIndent>
+        enum wrappingIndent: Option<WrappingIndent>
     }
 
     define_property! {
         /// Controls the wrapping strategy to use. Defaults to 'simple'.
-        wrappingStrategy: Option<WrappingStrategy>
+        enum wrappingStrategy: Option<WrappingStrategy>
     }
 }
 
@@ -648,7 +657,7 @@ define_object_interface! {
 impl IEditorConstructionOptions {
     define_property! {
         /// The initial editor dimension (to avoid measuring the container).
-        dimension: Option<&IDimension>
+        ref dimension: Option<IDimension>
     }
 }
 impl IEditorConstructionOptions {
@@ -665,12 +674,12 @@ define_object_interface! {
 impl IDimension {
     define_property! {
         /// Height in pixels
-        height: Option<u32>
+        height: Option<f64>
     }
 
     define_property! {
         /// Width in pixels
-        width: Option<u32>
+        width: Option<f64>
     }
 }
 
@@ -682,18 +691,18 @@ impl IStandaloneEditorConstructionOptions {
     define_property! {
         /// An URL to open when Ctrl+H (Windows and Linux) or Cmd+H (OSX) is pressed
         /// in the accessibility help dialog in the editor. Defaults to "https://go.microsoft.com/fwlink/?linkid=852450"
-        accessibilityHelpUrl: Option<&str>
+        accessibilityHelpUrl: Option<String>
     }
 
     define_property! {
         /// The initial language of the auto created model in the editor. To not
         /// create automatically a model, use model: null.
-        language: Option<&str>
+        language: Option<String>
     }
 
     define_property! {
         /// The initial model associated with this code editor.
-        model: Option<ITextModel>
+        ref model: Option<ITextModel>
     }
 
     define_property! {
@@ -702,13 +711,13 @@ impl IStandaloneEditorConstructionOptions {
         /// create custom themes via monaco.editor.defineTheme. To switch a theme,
         /// use monaco.editor.setTheme
         // TODO allow setting custom theme
-        theme: Option<BuiltinTheme>
+        enum theme: Option<BuiltinTheme>
     }
 
     define_property! {
         /// The initial value of the auto created model in the editor. To not create
         /// automatically a model, use model: null.
-        value: Option<&str>
+        value: Option<String>
     }
 
     /// Add the given `IEditorConstructionOptions`.
@@ -729,12 +738,12 @@ define_object_interface! {
 impl ITextModel {
     define_property! {
         /// Model id.
-        id: Option<&str>
+        id: Option<String>
     }
 
     define_property! {
         /// Gets the resource associated with this editor model.
-        uri: get: Option<Uri>, set: Option<&Uri>
+        ref uri: Option<Uri>
     }
 }
 
@@ -761,7 +770,7 @@ impl IEditorFindOptions {
 
     define_property! {
         /// Controls if Find in Selection flag is turned on in the editor.
-        autoFindInSelection: Option<AutoFindInSelection>
+        enum autoFindInSelection: Option<AutoFindInSelection>
     }
 
     define_property! {
@@ -777,7 +786,7 @@ define_object_interface! {
 impl IEditorHoverOptions {
     define_property! {
         /// Delay for showing the hover. Defaults to 300.
-        delay: Option<u32>
+        delay: Option<f64>
     }
 
     define_property! {
@@ -814,7 +823,7 @@ impl IEditorMinimapOptions {
 
     define_property! {
         /// Limit the width of the minimap to render at most a certain number of columns. Defaults to 120.
-        maxColumn: Option<u32>
+        maxColumn: Option<f64>
     }
 
     define_property! {
@@ -829,12 +838,12 @@ impl IEditorMinimapOptions {
 
     define_property! {
         /// Control the rendering of the minimap slider. Defaults to 'mouseover'.
-        showSlider: Option<MinimapShowSlider>
+        enum showSlider: Option<MinimapShowSlider>
     }
 
     define_property! {
         /// Control the side of the minimap in editor. Defaults to 'right'.
-        side: Option<MinimapSide>
+        enum side: Option<MinimapSide>
     }
 }
 
@@ -866,7 +875,7 @@ impl IEditorScrollbarOptions {
 
     define_property! {
         /// The size of arrows (if displayed). Defaults to 11.
-        arrowSize: Option<u32>
+        arrowSize: Option<f64>
     }
 
     define_property! {
@@ -876,7 +885,7 @@ impl IEditorScrollbarOptions {
 
     define_property! {
         /// Render horizontal scrollbar. Defaults to 'auto'.
-        horizontal: Option<ScrollbarVisible>
+        enum horizontal: Option<ScrollbarVisible>
     }
 
     define_property! {
@@ -886,12 +895,12 @@ impl IEditorScrollbarOptions {
 
     define_property! {
         /// Height in pixels for the horizontal scrollbar. Defaults to 10 (px).
-        horizontalScrollbarSize: Option<u32>
+        horizontalScrollbarSize: Option<f64>
     }
 
     define_property! {
         /// Height in pixels for the horizontal slider. Defaults to horizontalScrollbarSize.
-        horizontalSliderSize: Option<u32>
+        horizontalSliderSize: Option<f64>
     }
 
     define_property! {
@@ -901,7 +910,7 @@ impl IEditorScrollbarOptions {
 
     define_property! {
         /// Render vertical scrollbar. Defaults to 'auto'.
-        vertical: Option<ScrollbarVisible>
+        enum vertical: Option<ScrollbarVisible>
     }
 
     define_property! {
@@ -911,12 +920,12 @@ impl IEditorScrollbarOptions {
 
     define_property! {
         /// Width in pixels for the vertical scrollbar. Defaults to 10 (px).
-        verticalScrollbarSize: Option<u32>
+        verticalScrollbarSize: Option<f64>
     }
 
     define_property! {
         /// Width in pixels for the vertical slider. Defaults to verticalScrollbarSize.
-        verticalSliderSize: Option<u32>
+        verticalSliderSize: Option<f64>
     }
 }
 
@@ -927,57 +936,57 @@ define_object_interface! {
 impl IGotoLocationOptions {
     define_property! {
         /// Alternative declaration command
-        alternativeDeclarationCommand: Option<&str>
+        alternativeDeclarationCommand: Option<String>
     }
 
     define_property! {
         /// Alternative definition command
-        alternativeDefinitionCommand: Option<&str>
+        alternativeDefinitionCommand: Option<String>
     }
 
     define_property! {
         /// Alternative implementation command
-        alternativeImplementationCommand: Option<&str>
+        alternativeImplementationCommand: Option<String>
     }
 
     define_property! {
         /// Alternative reference command
-        alternativeReferenceCommand: Option<&str>
+        alternativeReferenceCommand: Option<String>
     }
 
     define_property! {
         /// Alternative type definition command
-        alternativeTypeDefinitionCommand: Option<&str>
+        alternativeTypeDefinitionCommand: Option<String>
     }
 
     define_property! {
         /// Multiple
-        multiple: Option<GoToLocationValues>
+        enum multiple: Option<GoToLocationValues>
     }
 
     define_property! {
         /// Multiple declarations
-        multipleDeclarations: Option<GoToLocationValues>
+        enum multipleDeclarations: Option<GoToLocationValues>
     }
 
     define_property! {
         /// Multiple definitions
-        multipleDefinitions: Option<GoToLocationValues>
+        enum multipleDefinitions: Option<GoToLocationValues>
     }
 
     define_property! {
         /// Multiple implementations
-        multipleImplementations: Option<GoToLocationValues>
+        enum multipleImplementations: Option<GoToLocationValues>
     }
 
     define_property! {
         /// Multiple references
-        multipleReferences: Option<GoToLocationValues>
+        enum multipleReferences: Option<GoToLocationValues>
     }
 
     define_property! {
         /// Multiple type definitions
-        multipleTypeDefinitions: Option<GoToLocationValues>
+        enum multipleTypeDefinitions: Option<GoToLocationValues>
     }
 }
 
@@ -1003,7 +1012,7 @@ impl ISuggestOptions {
 
     define_property! {
         /// Overwrite word ends on accept. Default to false.
-        insertMode: Option<SuggestInsertMode>
+        enum insertMode: Option<SuggestInsertMode>
     }
 
     define_property! {
@@ -1013,7 +1022,7 @@ impl ISuggestOptions {
 
     define_property! {
         /// Max suggestions to show in suggestions. Defaults to 12.
-        maxVisibleSuggestions: Option<u32>
+        maxVisibleSuggestions: Option<f64>
     }
 
     define_property! {

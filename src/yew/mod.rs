@@ -43,9 +43,9 @@ impl Component for CodeEditor {
     fn rendered(&mut self, first_render: bool) {
         if first_render {
             if let Some(el) = self.node_ref.cast::<HtmlElement>() {
-                let options = crate::sys::editor::IStandaloneEditorConstructionOptions::default()
-                    .language("rust")
-                    .theme(BuiltinTheme::VsDark);
+                let options = crate::sys::editor::IStandaloneEditorConstructionOptions::default();
+                options.set_language(Some("rust"));
+                options.set_theme(Some(BuiltinTheme::VsDark));
                 crate::sys::editor.create(&el, Some(&options));
             }
         }

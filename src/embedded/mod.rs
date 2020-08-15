@@ -48,7 +48,7 @@ pub fn set_environment() {
 /// Check if the Monaco environment is set.
 pub fn is_environment_set() -> bool {
     if let Some(window) = web_sys::window() {
-        if let Ok(value) = object_get!(window.MonacoEnvironment) {
+        if let Ok(value) = object_get!(try window.MonacoEnvironment) {
             return value.is_truthy();
         }
     }
