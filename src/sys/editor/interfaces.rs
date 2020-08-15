@@ -4,55 +4,66 @@ use js_sys::{Object, Uint32Array};
 use wasm_bindgen::{prelude::*, JsCast};
 
 define_object_interface! {
-    /// Options which apply for all editors.
-    type IGlobalEditorOptions;
+    /// Dimension with width and height
+    type IDimension;
 }
-impl IGlobalEditorOptions {
+impl IDimension {
     define_property! {
-        /// Controls whether tabSize and insertSpaces will be automatically detected
-        /// when a file is opened based on the file contents. Defaults to true.
-        detectIndentation: Option<bool>
+        /// Height in pixels
+        height: Option<f64>
     }
 
     define_property! {
-        /// Insert spaces when pressing Tab. This setting is overridden based on the
-        /// file contents when detectIndentation is on. Defaults to true.
-        insertSpaces: Option<bool>
+        /// Width in pixels
+        width: Option<f64>
+    }
+}
+
+define_object_interface! {
+    /// Configuration options for editor comments
+    type IEditorCommentsOptions;
+}
+impl IEditorCommentsOptions {
+    define_property! {
+        /// Insert a space after the line comment token and inside the block comments tokens. Defaults to true.
+        insertSpace: Option<bool>
+    }
+}
+
+define_object_interface! {
+    /// Options to create an editor
+    type IEditorConstructionOptions extends IEditorOptions;
+}
+impl IEditorConstructionOptions {
+    define_property! {
+        /// The initial editor dimension (to avoid measuring the container).
+        ref dimension: Option<IDimension>
+    }
+
+    /// Add the given `IEditorOptions`.
+    pub fn with_editor_options(self, val: &IEditorOptions) -> Self {
+        JsCast::unchecked_into(Object::assign(&self, val))
+    }
+}
+
+define_object_interface! {
+    /// Configuration options for editor find widget
+    type IEditorFindOptions;
+}
+impl IEditorFindOptions {
+    define_property! {
+        /// Add extra space on top.
+        addExtraSpaceOnTop: Option<bool>
     }
 
     define_property! {
-        /// Special handling for large files to disable certain memory intensive
-        /// features. Defaults to true.
-        largeFileOptimizations: Option<bool>
+        /// Controls if Find in Selection flag is turned on in the editor.
+        enum autoFindInSelection: Option<AutoFindInSelection>
     }
 
     define_property! {
-        /// Lines above this length will not be tokenized for performance reasons.
-        /// Defaults to 20000.
-        maxTokenizationLineLength: Option<bool>
-    }
-
-    define_property! {
-        /// Keep peek editors open even when double clicking their content or when
-        /// hitting Escape. Defaults to false.
-        stablePeek: Option<bool>
-    }
-
-    define_property! {
-        /// The number of spaces a tab is equal to. This setting is overridden based
-        /// on the file contents when detectIndentation is on. Defaults to 4.
-        tabSize: Option<f64>
-    }
-
-    define_property! {
-        /// Remove trailing auto inserted whitespace. Defaults to true.
-        trimAutoWhitespace: Option<bool>
-    }
-
-    define_property! {
-        /// Controls whether completions should be computed based on words in the
-        /// document. Defaults to true.
-        wordBasedSuggestions: Option<bool>
+        /// Controls if we seed search string in the Find Widget with editor selection.
+        seedSearchStringFromSelection: Option<bool>
     }
 }
 
@@ -648,137 +659,6 @@ impl IEditorOptions {
     }
 }
 
-// TODO: IDiffEditorOptions
-
-define_object_interface! {
-    /// Options to create an editor
-    type IEditorConstructionOptions extends IEditorOptions;
-}
-impl IEditorConstructionOptions {
-    define_property! {
-        /// The initial editor dimension (to avoid measuring the container).
-        ref dimension: Option<IDimension>
-    }
-}
-impl IEditorConstructionOptions {
-    /// Add the given `IEditorOptions`.
-    pub fn with_editor_options(self, val: &IEditorOptions) -> Self {
-        JsCast::unchecked_into(Object::assign(&self, val))
-    }
-}
-
-define_object_interface! {
-    /// Dimension with width and height
-    type IDimension;
-}
-impl IDimension {
-    define_property! {
-        /// Height in pixels
-        height: Option<f64>
-    }
-
-    define_property! {
-        /// Width in pixels
-        width: Option<f64>
-    }
-}
-
-define_object_interface! {
-    /// The options to create an editor
-    type IStandaloneEditorConstructionOptions extends IEditorConstructionOptions, IGlobalEditorOptions;
-}
-impl IStandaloneEditorConstructionOptions {
-    define_property! {
-        /// An URL to open when Ctrl+H (Windows and Linux) or Cmd+H (OSX) is pressed
-        /// in the accessibility help dialog in the editor. Defaults to "https://go.microsoft.com/fwlink/?linkid=852450"
-        accessibilityHelpUrl: Option<String>
-    }
-
-    define_property! {
-        /// The initial language of the auto created model in the editor. To not
-        /// create automatically a model, use model: null.
-        language: Option<String>
-    }
-
-    define_property! {
-        /// The initial model associated with this code editor.
-        ref model: Option<ITextModel>
-    }
-
-    define_property! {
-        /// Initial theme to be used for rendering. The current out-of-the-box
-        /// available themes are: 'vs' (default), 'vs-dark', 'hc-black'. You can
-        /// create custom themes via monaco.editor.defineTheme. To switch a theme,
-        /// use monaco.editor.setTheme
-        // TODO allow setting custom theme
-        enum theme: Option<BuiltinTheme>
-    }
-
-    define_property! {
-        /// The initial value of the auto created model in the editor. To not create
-        /// automatically a model, use model: null.
-        value: Option<String>
-    }
-
-    /// Add the given `IEditorConstructionOptions`.
-    pub fn with_editor_construction_options(self, val: &IEditorConstructionOptions) -> Self {
-        JsCast::unchecked_into(Object::assign(&self, val))
-    }
-
-    /// Add the options from `IGlobalEditorOptions`.
-    pub fn with_global_editor_options(self, val: &IGlobalEditorOptions) -> Self {
-        JsCast::unchecked_into(Object::assign(&self, val))
-    }
-}
-
-define_object_interface! {
-    /// A model.
-    type ITextModel;
-}
-impl ITextModel {
-    define_property! {
-        /// Model id.
-        id: Option<String>
-    }
-
-    define_property! {
-        /// Gets the resource associated with this editor model.
-        ref uri: Option<Uri>
-    }
-}
-
-define_object_interface! {
-    /// Configuration options for editor comments
-    type IEditorCommentsOptions;
-}
-impl IEditorCommentsOptions {
-    define_property! {
-        /// Insert a space after the line comment token and inside the block comments tokens. Defaults to true.
-        insertSpace: Option<bool>
-    }
-}
-
-define_object_interface! {
-    /// Configuration options for editor find widget
-    type IEditorFindOptions;
-}
-impl IEditorFindOptions {
-    define_property! {
-        /// Add extra space on top.
-        addExtraSpaceOnTop: Option<bool>
-    }
-
-    define_property! {
-        /// Controls if Find in Selection flag is turned on in the editor.
-        enum autoFindInSelection: Option<AutoFindInSelection>
-    }
-
-    define_property! {
-        /// Controls if we seed search string in the Find Widget with editor selection.
-        seedSearchStringFromSelection: Option<bool>
-    }
-}
-
 define_object_interface! {
     /// Configuration options for editor hover
     type IEditorHoverOptions;
@@ -930,6 +810,59 @@ impl IEditorScrollbarOptions {
 }
 
 define_object_interface! {
+    /// Options which apply for all editors.
+    type IGlobalEditorOptions;
+}
+impl IGlobalEditorOptions {
+    define_property! {
+        /// Controls whether tabSize and insertSpaces will be automatically detected
+        /// when a file is opened based on the file contents. Defaults to true.
+        detectIndentation: Option<bool>
+    }
+
+    define_property! {
+        /// Insert spaces when pressing Tab. This setting is overridden based on the
+        /// file contents when detectIndentation is on. Defaults to true.
+        insertSpaces: Option<bool>
+    }
+
+    define_property! {
+        /// Special handling for large files to disable certain memory intensive
+        /// features. Defaults to true.
+        largeFileOptimizations: Option<bool>
+    }
+
+    define_property! {
+        /// Lines above this length will not be tokenized for performance reasons.
+        /// Defaults to 20000.
+        maxTokenizationLineLength: Option<bool>
+    }
+
+    define_property! {
+        /// Keep peek editors open even when double clicking their content or when
+        /// hitting Escape. Defaults to false.
+        stablePeek: Option<bool>
+    }
+
+    define_property! {
+        /// The number of spaces a tab is equal to. This setting is overridden based
+        /// on the file contents when detectIndentation is on. Defaults to 4.
+        tabSize: Option<f64>
+    }
+
+    define_property! {
+        /// Remove trailing auto inserted whitespace. Defaults to true.
+        trimAutoWhitespace: Option<bool>
+    }
+
+    define_property! {
+        /// Controls whether completions should be computed based on words in the
+        /// document. Defaults to true.
+        wordBasedSuggestions: Option<bool>
+    }
+}
+
+define_object_interface! {
     /// Configuration options for go to location
     type IGotoLocationOptions;
 }
@@ -987,6 +920,54 @@ impl IGotoLocationOptions {
     define_property! {
         /// Multiple type definitions
         enum multipleTypeDefinitions: Option<GoToLocationValues>
+    }
+}
+
+define_object_interface! {
+    /// The options to create an editor
+    type IStandaloneEditorConstructionOptions extends IEditorConstructionOptions, IGlobalEditorOptions;
+}
+impl IStandaloneEditorConstructionOptions {
+    define_property! {
+        /// An URL to open when Ctrl+H (Windows and Linux) or Cmd+H (OSX) is pressed
+        /// in the accessibility help dialog in the editor. Defaults to "https://go.microsoft.com/fwlink/?linkid=852450"
+        accessibilityHelpUrl: Option<String>
+    }
+
+    define_property! {
+        /// The initial language of the auto created model in the editor. To not
+        /// create automatically a model, use model: null.
+        language: Option<String>
+    }
+
+    define_property! {
+        /// The initial model associated with this code editor.
+        ref model: Option<ITextModel>
+    }
+
+    define_property! {
+        /// Initial theme to be used for rendering. The current out-of-the-box
+        /// available themes are: 'vs' (default), 'vs-dark', 'hc-black'. You can
+        /// create custom themes via monaco.editor.defineTheme. To switch a theme,
+        /// use monaco.editor.setTheme
+        // TODO allow setting custom theme
+        enum theme: Option<BuiltinTheme>
+    }
+
+    define_property! {
+        /// The initial value of the auto created model in the editor. To not create
+        /// automatically a model, use model: null.
+        value: Option<String>
+    }
+
+    /// Add the given `IEditorConstructionOptions`.
+    pub fn with_editor_construction_options(self, val: &IEditorConstructionOptions) -> Self {
+        JsCast::unchecked_into(Object::assign(&self, val))
+    }
+
+    /// Add the options from `IGlobalEditorOptions`.
+    pub fn with_global_editor_options(self, val: &IGlobalEditorOptions) -> Self {
+        JsCast::unchecked_into(Object::assign(&self, val))
     }
 }
 
@@ -1163,5 +1144,21 @@ impl ISuggestOptions {
     define_property! {
         /// Prevent quick suggestions when a snippet is active. Defaults to true.
         snippetsPreventQuickSuggestions: Option<bool>
+    }
+}
+
+define_object_interface! {
+    /// A model.
+    type ITextModel;
+}
+impl ITextModel {
+    define_property! {
+        /// Model id.
+        id: Option<String>
+    }
+
+    define_property! {
+        /// Gets the resource associated with this editor model.
+        ref uri: Option<Uri>
     }
 }
