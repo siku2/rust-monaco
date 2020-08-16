@@ -21,6 +21,7 @@ extern "C" {
         this: &Editor,
         dom_element: &HtmlElement,
         options: Option<&IStandaloneEditorConstructionOptions>,
-        // overrides: Option<&EditorOverrideServices>,
+        // TODO maybe this should be a separate type?
+        overrides: Option<&Object>,
     ) -> JsValue;
 }

@@ -3,6 +3,7 @@ name = "monaco"
 version = "0.20.0"
 authors = ["Simon Berger <simon@siku2.io>"]
 edition = "2018"
+exclude = ["/build/"]
 
 [lib]
 crate-type = ["cdylib", "rlib"]

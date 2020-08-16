@@ -46,7 +46,7 @@ impl Component for CodeEditor {
                 let options = crate::sys::editor::IStandaloneEditorConstructionOptions::default();
                 options.set_language(Some("rust"));
                 options.set_theme(Some(BuiltinTheme::VsDark));
-                crate::sys::editor.create(&el, Some(&options));
+                crate::sys::editor.create(&el, Some(&options), None);
             }
         }
     }

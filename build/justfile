@@ -1,4 +1,5 @@
 @build:
+    rm dist/*
     npm run build
 
 @install:
