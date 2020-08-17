@@ -16,7 +16,7 @@ impl Default for Environment {
     }
 }
 
-// You're entering generated land, modify with care.
+// You're entering generated land, tread with care.
 
 #[wasm_bindgen(module = "/js/editor.js")]
 extern "C" {
