@@ -1,4 +1,4 @@
-/// Rust bindings for the Monaco text editor.
+//! Rust bindings for the Monaco text editor.
 #[macro_use]
 mod macros;
 mod editor;

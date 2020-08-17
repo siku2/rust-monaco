@@ -1,4 +1,4 @@
-use crate::sys::editor::BuiltinTheme;
+//! Monaco editor as a [Yew](https://yew.rs) component.
 use web_sys::HtmlElement;
 use yew::{html, Component, ComponentLink, Html, NodeRef, Properties, ShouldRender};
 
@@ -43,10 +43,7 @@ impl Component for CodeEditor {
     fn rendered(&mut self, first_render: bool) {
         if first_render {
             if let Some(el) = self.node_ref.cast::<HtmlElement>() {
-                let options = crate::sys::editor::IStandaloneEditorConstructionOptions::default();
-                options.set_language(Some("rust"));
-                options.set_theme(Some(BuiltinTheme::VsDark));
-                crate::sys::editor.create(&el, Some(&options), None);
+                crate::sys::editor::create(&el);
             }
         }
     }
