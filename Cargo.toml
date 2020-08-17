@@ -21,4 +21,12 @@ yew = { version = "0.17", optional = true }
 
 [dependencies.web-sys]
 version = "0.3"
-features = ["Blob", "HtmlElement", "Url", "Window", "Worker"]
+features = [
+    "Blob",
+    "HtmlElement",
+    "KeyboardEvent",
+    "MouseEvent",
+    "Url",
+    "Window",
+    "Worker"
+]

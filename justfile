@@ -8,6 +8,9 @@ clippy:
 fmt:
     cargo +nightly fmt
 
+doc *args:
+    cargo +nightly doc {{args}}
+
 @build_js:
     just build/build
     rm js/*

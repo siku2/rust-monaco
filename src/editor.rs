@@ -1,3 +1,4 @@
+//! Simplified interface.
 use crate::sys;
 use wasm_bindgen::JsValue;
 use web_sys::HtmlElement;
@@ -13,7 +14,8 @@ impl CodeEditor {
         #[cfg(feature = "embed_workers")]
         crate::embedded::ensure_environment_set();
 
-        let editor = sys::editor.create(element, None, None);
+        // let editor = sys::editor.create(element, None, None);
+        let editor = JsValue::null();
         Self { editor }
     }
 }

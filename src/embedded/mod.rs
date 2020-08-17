@@ -1,8 +1,8 @@
-/// Embedded javascript.
+//! Embedded javascript.
 use crate::sys::{Environment, GetWorkerFn};
 use js_sys::Array;
 use std::iter;
-use wasm_bindgen::{closure::Closure, JsValue};
+use wasm_bindgen::{closure::Closure, JsCast, JsValue};
 use web_sys::{Blob, Url, Worker};
 
 macro_rules! include_worker {
@@ -36,7 +36,8 @@ fn get_worker(_id: String, label: String) -> Worker {
 
 fn build_environment() -> Environment {
     let cb = Closure::wrap(Box::new(get_worker) as Box<GetWorkerFn>);
-    let env = Environment::default().get_worker(&cb);
+    let env = Environment::default();
+    env.set_get_worker(Some(cb.as_ref().unchecked_ref()));
     cb.forget();
     env
 }
