@@ -1,4 +1,4 @@
-from gen import JsNamespace
+from ts2rs import JsNamespace
 
 if __name__ == "__main__":
     with open("input.d.ts") as fp:

@@ -4,6 +4,7 @@ from .js_object import JsObject
 
 # TODO use copy type when appropriate (keep track of which idents resolve to enums)
 # TODO Add "_" to Rust idents which conflict with keywords
+#! TODO handle constructor
 #! TODO handle nested namespaces using js_namespace
 
 
