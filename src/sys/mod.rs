@@ -23,8 +23,8 @@ extern "C" {
     /// A helper that allows to emit and listen to typed events
     #[derive(Debug)]
     pub type Emitter;
-    #[wasm_bindgen(method, js_class = "Emitter", js_name = "constructor")]
-    pub fn constructor(this: &Emitter);
+    #[wasm_bindgen(constructor, js_class = "Emitter")]
+    pub fn new() -> Emitter;
     /// Type: `(listener: (e: any) => any, thisArg?: any) => IDisposable`
     #[wasm_bindgen(method, js_class = "Emitter", js_name = "event", getter = event)]
     pub fn event(this: &Emitter) -> Function;
@@ -35,8 +35,8 @@ extern "C" {
 
     #[derive(Debug)]
     pub type CancellationTokenSource;
-    #[wasm_bindgen(method, js_class = "CancellationTokenSource", js_name = "constructor")]
-    pub fn constructor(this: &CancellationTokenSource, parent: &CancellationToken);
+    #[wasm_bindgen(constructor, js_class = "CancellationTokenSource")]
+    pub fn new(parent: &CancellationToken) -> CancellationTokenSource;
     #[wasm_bindgen(method, js_class = "CancellationTokenSource", js_name = "token", getter = token)]
     pub fn token(this: &CancellationTokenSource) -> CancellationToken;
     #[wasm_bindgen(method, js_class = "CancellationTokenSource", js_name = "cancel")]
@@ -169,8 +169,8 @@ extern "C" {
     /// column (the first character in a line is between column 1 and column 2)
     #[wasm_bindgen(method, js_class = "Position", js_name = "column", getter = column)]
     pub fn column(this: &Position) -> f64;
-    #[wasm_bindgen(method, js_class = "Position", js_name = "constructor")]
-    pub fn constructor(this: &Position, line_number: f64, column: f64);
+    #[wasm_bindgen(constructor, js_class = "Position")]
+    pub fn new(line_number: f64, column: f64) -> Position;
     /// Create a new position from this position.
     ///
     /// @param newLineNumber new line number
@@ -238,14 +238,13 @@ extern "C" {
     /// Column on which the range ends in line `endLineNumber`.
     #[wasm_bindgen(method, js_class = "Range", js_name = "endColumn", getter = endColumn)]
     pub fn end_column(this: &Range) -> f64;
-    #[wasm_bindgen(method, js_class = "Range", js_name = "constructor")]
-    pub fn constructor(
-        this: &Range,
+    #[wasm_bindgen(constructor, js_class = "Range")]
+    pub fn new(
         start_line_number: f64,
         start_column: f64,
         end_line_number: f64,
         end_column: f64,
-    );
+    ) -> Range;
     /// Test if this range is empty.
     #[wasm_bindgen(method, js_class = "Range", js_name = "isEmpty")]
     pub fn is_empty(this: &Range) -> bool;
@@ -369,14 +368,13 @@ extern "C" {
     /// The column on `positionLineNumber` where the selection has ended.
     #[wasm_bindgen(method, js_class = "Selection", js_name = "positionColumn", getter = positionColumn)]
     pub fn position_column(this: &Selection) -> f64;
-    #[wasm_bindgen(method, js_class = "Selection", js_name = "constructor")]
-    pub fn constructor(
-        this: &Selection,
+    #[wasm_bindgen(constructor, js_class = "Selection")]
+    pub fn new(
         selection_start_line_number: f64,
         selection_start_column: f64,
         position_line_number: f64,
         position_column: f64,
-    );
+    ) -> Selection;
     /// Transform to a human-readable representation.
     #[wasm_bindgen(method, js_class = "Selection", js_name = "toString")]
     pub fn to_string(this: &Selection) -> String;
@@ -439,8 +437,8 @@ extern "C" {
     pub fn type_(this: &Token) -> String;
     #[wasm_bindgen(method, js_class = "Token", js_name = "language", getter = language)]
     pub fn language(this: &Token) -> String;
-    #[wasm_bindgen(method, js_class = "Token", js_name = "constructor")]
-    pub fn constructor(this: &Token, offset: f64, type_: &str, language: &str);
+    #[wasm_bindgen(constructor, js_class = "Token")]
+    pub fn new(offset: f64, type_: &str, language: &str) -> Token;
     #[wasm_bindgen(method, js_class = "Token", js_name = "toString")]
     pub fn to_string(this: &Token) -> String;
 }
