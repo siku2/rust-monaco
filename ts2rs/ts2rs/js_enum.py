@@ -2,14 +2,7 @@ import dataclasses
 import re
 from typing import List, Tuple
 
-from .helpers import (
-    add_indent,
-    consume_empty_lines,
-    consume_match,
-    join_nonempty_lines,
-    read_until_closing_bracket,
-    snake_to_camel_case,
-)
+from . import helpers, inflection
 from .models import Documented
 
 _PATTERN_VARIANT = re.compile(r"^ *(?P<ident>\w+) = (?P<value>.+?),\n")
@@ -23,8 +16,7 @@ class Variant(Documented):
     @classmethod
     def consume(cls, s: str) -> Tuple["Variant", str]:
         doc, s = Documented.consume(s)
-        match, s = consume_match(_PATTERN_VARIANT, s)
-        s = consume_empty_lines(s)
+        match, s = helpers.consume_match(_PATTERN_VARIANT, s)
 
         variant = cls(documentation=doc, ident=match["ident"], value=match["value"])
         return variant, s
@@ -38,8 +30,8 @@ class Variant(Documented):
         raise TypeError(f"can't infer value type for variant: {self}")
 
     def to_rust(self) -> str:
-        ident = snake_to_camel_case(self.ident)
-        return join_nonempty_lines(
+        ident = inflection.snake_to_camel_case(self.ident)
+        return helpers.join_nonempty_lines(
             (self.rust_documentation(), f"{ident} = {self.value},",)
         )
 
@@ -56,14 +48,12 @@ class JsEnum(Documented):
     @classmethod
     def consume(cls, s: str) -> Tuple["JsEnum", str]:
         doc, s = Documented.consume(s)
-        match, s = consume_match(_PATTERN_ENUM_OPEN, s)
-        s = consume_empty_lines(s)
+        match, s = helpers.consume_match(_PATTERN_ENUM_OPEN, s)
 
         variants = []
         enum = cls(documentation=doc, ident=match["ident"], variants=variants)
 
-        body, s = read_until_closing_bracket(s)
-        s = consume_empty_lines(s)
+        body, s = helpers.read_until_closing_bracket(s)
         while body:
             variant, body = Variant.consume(body)
             variants.append(variant)
@@ -88,5 +78,5 @@ class JsEnum(Documented):
 
     def to_rust(self) -> str:
         enum_body = "\n".join(variant.to_rust() for variant in self.variants)
-        macro_body = f"pub enum {self.ident} {{\n{add_indent(enum_body)}\n}}"
-        return f"{self.macro()} {{\n{add_indent(macro_body)}\n}}"
+        macro_body = f"pub enum {self.ident} {{\n{helpers.add_indent(enum_body)}\n}}"
+        return f"{self.macro()} {{\n{helpers.add_indent(macro_body)}\n}}"

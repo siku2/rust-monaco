@@ -1,4 +1,2 @@
 __pycache__/
-
-/input.d.ts
-/output.rs
+/*.rs

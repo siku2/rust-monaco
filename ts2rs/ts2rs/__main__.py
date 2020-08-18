@@ -1,8 +1,11 @@
-from ts2rs import JsNamespace
+from ts2rs.js_namespace import JsNamespace
 
 if __name__ == "__main__":
-    with open("input.d.ts") as fp:
-        s = fp.read()
+    with open("monaco.d.ts") as f:
+        s = f.read()
 
-    c, _ = JsNamespace.consume(s)
-    print(c.to_rust())
+    while s:
+        c, s = JsNamespace.consume(s)
+        with open(f"{c.name}.rs", "w+") as f:
+            f.write(c.to_rust())
+

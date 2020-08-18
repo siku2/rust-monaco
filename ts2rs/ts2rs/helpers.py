@@ -1,19 +1,7 @@
+import dataclasses
 import re
 import textwrap
-from typing import Optional, Iterable, List, Match, Pattern, Tuple, Union
-
-_PATTERN_UPPER_LOWER = re.compile(r"(.)([A-Z][a-z]+)")
-_PATTERN_LOWER_UPPER = re.compile(r"([a-z0-9])([A-Z])")
-
-
-def camel_to_snake_case(s: str) -> str:
-    s = _PATTERN_UPPER_LOWER.sub(r"\1_\2", s)
-    s = _PATTERN_LOWER_UPPER.sub(r"\1_\2", s)
-    return s.lower()
-
-
-def snake_to_camel_case(s: str) -> str:
-    return "".join(part.title() for part in s.split("_"))
+from typing import Optional, Iterable, List, Match, Pattern, Tuple, Type, TypeVar, Union
 
 
 def add_line_prefix(s: str, prefix: str, /, empty_lines=False) -> str:
@@ -62,8 +50,12 @@ def read_until_closing(s: str, open: str, close: str) -> Tuple[str, str, str]:
     return s[:start_pos], s[start_pos:end_pos], s[end_pos:]
 
 
-def read_until_closing_bracket(s: str) -> Tuple[str, str]:
+def read_until_closing_bracket(
+    s: str, *, skip_empty_lines_after=True
+) -> Tuple[str, str]:
     (a, _, b) = read_until_closing(s, r"\{", r"\}")
+    if skip_empty_lines_after:
+        b = consume_empty_lines(b)
     return a, b
 
 
@@ -90,16 +82,62 @@ def consume_empty_lines(s: str) -> str:
     return s
 
 
+@dataclasses.dataclass()
 class MatchError(Exception):
-    ...
+    s: str
+    pattern: Optional[Pattern] = None
+    info: Optional[str] = None
+
+    def __str__(self) -> str:
+        s = self.preview_s()
+        if info := self.info:
+            return f"failed to parse: {info}:\n{s}"
+        elif pattern := self.pattern:
+            return f"didn't match pattern: `{pattern.pattern}`:\n{s}"
+        else:
+            return "{s}"
+    
+    def preview_s(self) -> str:
+        lines = self.s.splitlines()
+        if len(lines) > 8:
+            lines = lines[:8]
+            lines.append("... TRUNCATED")
+        
+        s = "\n".join(lines)
+        hor_line = 80 * "="
+        return f"{hor_line}\n{s}\n{hor_line}"
 
 
-def consume_match(pattern: Pattern, s: str) -> Tuple[Match, str]:
+def consume_match(
+    pattern: Pattern, s: str, *, skip_empty_lines_after=True, info: str = None,
+) -> Tuple[Match, str]:
     if match := pattern.match(s):
         remainder = s[match.end() :]
+        if skip_empty_lines_after:
+            remainder = consume_empty_lines(remainder)
+
         return match, remainder
 
-    raise MatchError(f"{s[:50]!r} didn't match pattern: `{pattern.pattern}`")
+    raise MatchError(s=s, pattern=pattern, info=info)
+
+
+T = TypeVar("T")
+
+
+def consume_first(s: str, *consumers: Type[T]) -> Tuple[T, str]:
+    assert consumers, "need at least one consumer"
+
+    error = None
+    for consumer in consumers:
+        try:
+            return consumer.consume(s)
+        except MatchError as e:
+            e.__context__ = error
+            error = e
+
+    raise MatchError(
+        s=s, info=" | ".join(f"`{consumer.__qualname__}`" for consumer in consumers)
+    )
 
 
 class ModSet:

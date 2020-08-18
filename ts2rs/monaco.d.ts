@@ -797,7 +797,6 @@ declare namespace monaco {
     toString(): string;
   }
 }
-
 declare namespace monaco.editor {
   export interface IDiffNavigator {
     canNavigate(): boolean;
@@ -924,9 +923,7 @@ declare namespace monaco.editor {
    * Create a new web worker that has model syncing capabilities built in.
    * Specify an AMD module to load that will `create` an object that will be proxied.
    */
-  export function createWebWorker<T>(
-    opts: IWebWorkerOptions
-  ): MonacoWebWorker<T>;
+  export function createWebWorker(opts: IWebWorkerOptions): MonacoWebWorker;
 
   /**
    * Colorize the contents of `domNode` using attribute `data-lang`.
@@ -1001,7 +998,7 @@ declare namespace monaco.editor {
   /**
    * A web worker that can provide a proxy to an arbitrary file.
    */
-  export interface MonacoWebWorker<T> {
+  export interface MonacoWebWorker {
     /**
      * Terminate the web worker, thus invalidating the returned proxy.
      */
@@ -1009,12 +1006,12 @@ declare namespace monaco.editor {
     /**
      * Get a proxy to the arbitrary loaded code.
      */
-    getProxy(): Promise<T>;
+    getProxy(): Promise<any>;
     /**
      * Synchronize (send) the models at `resources` to the web worker,
      * making them available in the monaco.worker.getMirrorModels().
      */
-    withSyncedResources(resources: Uri[]): Promise<T>;
+    withSyncedResources(resources: Uri[]): Promise<any>;
   }
 
   export interface IWebWorkerOptions {
@@ -1191,7 +1188,7 @@ declare namespace monaco.editor {
       handler: ICommandHandler,
       context?: string
     ): string | null;
-    createContextKey<T>(key: string, defaultValue: T): IContextKey<T>;
+    createContextKey(key: string, defaultValue: any): IContextKey;
     addAction(descriptor: IActionDescriptor): IDisposable;
   }
 
@@ -1201,7 +1198,7 @@ declare namespace monaco.editor {
       handler: ICommandHandler,
       context?: string
     ): string | null;
-    createContextKey<T>(key: string, defaultValue: T): IContextKey<T>;
+    createContextKey(key: string, defaultValue: any): IContextKey;
     addAction(descriptor: IActionDescriptor): IDisposable;
     getOriginalEditor(): IStandaloneCodeEditor;
     getModifiedEditor(): IStandaloneCodeEditor;
@@ -1210,10 +1207,10 @@ declare namespace monaco.editor {
     (...args: any[]): void;
   }
 
-  export interface IContextKey<T> {
-    set(value: T): void;
+  export interface IContextKey {
+    set(value: any): void;
     reset(): void;
-    get(): T | undefined;
+    get(): any;
   }
 
   export interface IEditorOverrideServices {
@@ -3234,7 +3231,7 @@ declare namespace monaco.editor {
    * All computed editor options.
    */
   export interface IComputedEditorOptions {
-    get<T extends EditorOption>(id: T): FindComputedEditorOptionValueById<T>;
+    get(id: any): FindComputedEditorOptionValueById;
   }
 
   export interface IEditorOption<K1 extends EditorOption, V> {
@@ -4249,7 +4246,7 @@ declare namespace monaco.editor {
   export type FindComputedEditorOptionValueById<
     T extends EditorOption
   > = NonNullable<
-    ComputedEditorOptionValue<EditorOptionsType[FindEditorOptionsKeyById<T>]>
+    ComputedEditorOptionValue<EditorOptionsType[FindEditorOptionsKeyById]>
   >;
 
   /**
@@ -4719,7 +4716,7 @@ declare namespace monaco.editor {
      * @id Unique identifier of the contribution.
      * @return The contribution or null if contribution not found.
      */
-    getContribution<T extends IEditorContribution>(id: string): T;
+    getContribution(id: string): any;
     /**
      * Type the getModel() of IEditor.
      */
@@ -4740,9 +4737,7 @@ declare namespace monaco.editor {
     /**
      * Gets a specific editor option.
      */
-    getOption<T extends EditorOption>(
-      id: T
-    ): FindComputedEditorOptionValueById<T>;
+    getOption(id: any): FindComputedEditorOptionValueById;
     /**
      * Returns the editor's configuration (without any validation or defaults).
      */

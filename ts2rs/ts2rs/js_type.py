@@ -1,5 +1,6 @@
 from typing import List, Optional
-from .helpers import split_trim
+
+from . import helpers
 
 
 class TypeWithDocumentation(str):
@@ -19,7 +20,7 @@ JS2RUST_TYPE = {
 
 class JsType(str):
     def split_union(self) -> List["JsType"]:
-        return list(map(self.__class__, split_trim(self, "|")))
+        return list(map(self.__class__, helpers.split_trim(self, "|")))
 
     def is_none(self) -> bool:
         return self == "null" or self == "undefined"

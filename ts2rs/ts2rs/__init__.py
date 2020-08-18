@@ -1,6 +1,3 @@
-from .js_enum import JsEnum
-from .js_namespace import JsNamespace
-from .js_object import JsObject
 
 #! FIXME handle constructor
 #! FIXME handle nested namespaces using js_namespace
