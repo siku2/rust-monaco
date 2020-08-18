@@ -1,3 +1,5 @@
+
+#! FIXME: extends = Object should come last for deref chain
 #! FIXME: some things aren't marked as copy types like string enums
 #! FIXME handle nested namespaces using js_namespace
 #! FIXME handle constructor
