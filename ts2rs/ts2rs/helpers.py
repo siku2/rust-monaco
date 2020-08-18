@@ -51,23 +51,38 @@ def read_until_closing(s: str, open: str, close: str) -> Tuple[str, str, str]:
 
 
 def read_until_closing_bracket(
-    s: str, *, skip_empty_lines_after=True
+    s: str, *, skip_non_content_after=True
 ) -> Tuple[str, str]:
     (a, _, b) = read_until_closing(s, r"\{", r"\}")
-    if skip_empty_lines_after:
-        b = consume_empty_lines(b)
+    if skip_non_content_after:
+        b = skip_non_content(b)
     return a, b
 
 
-def build_wasm_bindgen_attr(*args: str, **kwargs: Union[str, Iterable[str]]) -> str:
+def build_wasm_bindgen_attr(
+    *args: Union[str, None], **kwargs: Union[str, Iterable[str], None]
+) -> str:
     args = list(args)
     for key, value in kwargs.items():
+        if not value:
+            continue
+
         if isinstance(value, str):
             args.append(f"{key} = {value}")
         else:
             args.extend(f"{key} = {v}" for v in value)
 
-    return f"#[wasm_bindgen({', '.join(args)})]"
+    return f"#[wasm_bindgen({', '.join(filter(None, args))})]"
+
+
+_PATTERN_COMMENT = re.compile(r"^ *\/\/.*\n")
+
+
+def consume_comments(s: str) -> str:
+    while match := _PATTERN_COMMENT.match(s):
+        s = s[match.end() :]
+
+    return s
 
 
 _PATTERN_EMPTY_LINES = re.compile(r"^ *(?:\n|$)")
@@ -78,6 +93,17 @@ def consume_empty_lines(s: str) -> str:
         s = s[match.end() :]
         if not s:
             break
+
+    return s
+
+
+def skip_non_content(s: str) -> str:
+    while True:
+        new = consume_comments(consume_empty_lines(s))
+        if new == s:
+            break
+
+        s = new
 
     return s
 
@@ -96,25 +122,25 @@ class MatchError(Exception):
             return f"didn't match pattern: `{pattern.pattern}`:\n{s}"
         else:
             return "{s}"
-    
+
     def preview_s(self) -> str:
         lines = self.s.splitlines()
         if len(lines) > 8:
             lines = lines[:8]
             lines.append("... TRUNCATED")
-        
+
         s = "\n".join(lines)
         hor_line = 80 * "="
         return f"{hor_line}\n{s}\n{hor_line}"
 
 
 def consume_match(
-    pattern: Pattern, s: str, *, skip_empty_lines_after=True, info: str = None,
+    pattern: Pattern, s: str, *, skip_non_content_after=True, info: str = None,
 ) -> Tuple[Match, str]:
     if match := pattern.match(s):
         remainder = s[match.end() :]
-        if skip_empty_lines_after:
-            remainder = consume_empty_lines(remainder)
+        if skip_non_content_after:
+            remainder = skip_non_content(remainder)
 
         return match, remainder
 
@@ -124,20 +150,23 @@ def consume_match(
 T = TypeVar("T")
 
 
-def consume_first(s: str, *consumers: Type[T]) -> Tuple[T, str]:
+def consume_first(s: str, *consumers: Type[T], args=None) -> Tuple[T, str]:
     assert consumers, "need at least one consumer"
+
+    if args is None:
+        args = ()
 
     error = None
     for consumer in consumers:
         try:
-            return consumer.consume(s)
+            return consumer.consume(s, *args)
         except MatchError as e:
             e.__context__ = error
             error = e
 
     raise MatchError(
         s=s, info=" | ".join(f"`{consumer.__qualname__}`" for consumer in consumers)
-    )
+    ) from error
 
 
 class ModSet:

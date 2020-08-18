@@ -1,28 +1,26 @@
+import abc
 import dataclasses
 import re
 from typing import List, Optional, Tuple
 
 from . import helpers, inflection
 from .helpers import MatchError, ModSet
-from .js_function import JsFunction
-from .js_type import JsType
-from .models import Documented
+from .js_function import JsFunction, RustParam
+from .js_type import JsType, TypeWithDocumentation
+from .models import Context, Documented, ToRust
 
 
 @dataclasses.dataclass()
-class JsMember(Documented):
+class JsMember(Documented, ToRust, abc.ABC):
     class_: str
     ident: str
 
     @staticmethod
     def consume(s: str, class_: str) -> Tuple["JsMember", str]:
-        try:
-            return JsMethod.consume(s, class_)
-        except MatchError:
-            return JsProperty.consume(s, class_)
+        return helpers.consume_first(s, JsMethod, JsProperty, args=(class_,))
 
-    def this_parameter(self) -> str:
-        return f"this: &{self.class_}"
+    def this_parameter(self) -> RustParam:
+        return RustParam(ident="this", ty=f"&{self.class_}")
 
     def build_wasm_bindgen_attr(self, *args: str, **kwargs: str) -> str:
         return helpers.build_wasm_bindgen_attr(
@@ -66,50 +64,57 @@ class JsProperty(JsMember):
         )
         return method, s
 
-    def rust_type(self, owned: bool) -> str:
-        ty = self.type_.to_rust(owned)
-        return f"Option<{ty}>" if self.optional else ty
+    def type_to_rust(self, ctx: Context, owned: bool) -> TypeWithDocumentation:
+        ty = self.type_.to_rust(ctx, owned, create_helpers=owned)
+        return (
+            ty.to_option()
+            if self.optional
+            else ty
+        )
 
-    def type_documentation(self) -> Optional[str]:
-        if doc := self.type_.to_rust(True).documentation:
+    def type_documentation(self, ty: TypeWithDocumentation) -> Optional[str]:
+        if doc := ty.documentation:
             raw = f"\nType: {doc}"
             doc = helpers.add_line_prefix(raw, "/// ", empty_lines=True)
         return doc
 
-    def rust_documentation(self) -> str:
+    def rust_documentation(self, ty: TypeWithDocumentation) -> str:
         doc = super().rust_documentation()
-        return helpers.join_nonempty_lines((doc, self.type_documentation()))
+        return helpers.join_nonempty_lines((doc, self.type_documentation(ty)))
 
-    def this_parameter(self) -> str:
+    def this_parameter(self) -> Optional[RustParam]:
         if not self.static:
             return super().this_parameter()
 
-        return ""
+        return None
 
-    def getter_signature(self) -> str:
-        return f"pub fn {inflection.camel_to_snake_case(self.ident)}({self.this_parameter()}) -> {self.rust_type(True)}"
-
-    def setter_signature(self) -> str:
-        return f"pub fn set_{inflection.camel_to_snake_case(self.ident)}({self.this_parameter()}, val: {self.rust_type(False)})"
-
-    def to_rust(self) -> str:
+    def to_rust(self, ctx: Context) -> str:
         method = f"static_method_of = {self.class_}" if self.static else "method"
+        getter_ident = f"{inflection.camel_to_snake_case(self.ident)}"
+        ctx = ctx.push(getter_ident)
 
+        if this_param := self.this_parameter():
+            this_param = str(this_param)
+        else:
+            this_param = ""
+
+        ty = self.type_to_rust(ctx, True)
         code = helpers.join_nonempty_lines(
             (
-                self.rust_documentation(),
+                self.rust_documentation(ty),
                 self.build_wasm_bindgen_attr(method, getter=self.ident),
-                f"{self.getter_signature()};",
+                f"pub fn {getter_ident}({this_param}) -> {ty};",
             )
         )
 
         if not self.readonly:
+            ty = self.type_to_rust(ctx, False)
             code = helpers.join_nonempty_lines(
                 (
                     code,
                     f"/// Set the `{self.ident}` property.",
-                    self.build_wasm_bindgen_attr("method", setter=self.ident),
-                    f"{self.setter_signature()};",
+                    self.build_wasm_bindgen_attr(method, setter=self.ident),
+                    f"pub fn set_{getter_ident}({this_param}, val: {ty});",
                 )
             )
 
@@ -160,8 +165,8 @@ class JsMethod(JsMember, JsFunction):
             ident = f"set_{ident}"
         return ident
 
-    def params_to_rust(self) -> List[str]:
-        params = super().params_to_rust()
+    def params_to_rust(self, ctx: Context) -> List[RustParam]:
+        params = super().params_to_rust(ctx)
         if not self.is_static:
             params.insert(0, self.this_parameter())
 
@@ -189,7 +194,7 @@ _PATTERN_OBJECT_OPEN = re.compile(
 
 
 @dataclasses.dataclass()
-class JsObject(Documented):
+class JsObject(Documented, ToRust):
     ident: str
     members: List[JsMember]
     extends: List[str]
@@ -226,7 +231,7 @@ class JsObject(Documented):
 
         return obj, s
 
-    def wasm_bindgen_attr(self, /, extends: List[str] = None) -> str:
+    def wasm_bindgen_attr(self, *, extends: List[str] = None) -> str:
         if extends is None:
             extends = []
 
@@ -239,14 +244,15 @@ class JsObject(Documented):
 
         return ""
 
-    def to_rust(self) -> str:
+    def to_rust(self, ctx: Context) -> str:
+        ctx = ctx.push(self.ident)
         return helpers.join_nonempty_lines(
             (
                 self.rust_documentation(),
                 f"#[derive(Debug)]",
                 self.wasm_bindgen_attr(),
                 f"pub type {self.ident};",
-                *(member.to_rust() for member in self.members),
+                *(member.to_rust(ctx) for member in self.members),
             )
         )
 

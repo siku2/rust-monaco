@@ -3,7 +3,7 @@
     just clippy
 
 clippy:
-    cargo clippy --bins --examples --tests --benches --all-targets
+    cargo clippy --all-targets
 
 fmt:
     cargo +nightly fmt

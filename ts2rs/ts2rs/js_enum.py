@@ -3,7 +3,7 @@ import re
 from typing import List, Tuple
 
 from . import helpers, inflection
-from .models import Documented
+from .models import Context, Documented, ToRust
 
 _PATTERN_VARIANT = re.compile(r"^ *(?P<ident>\w+) = (?P<value>.+?),\n")
 
@@ -41,7 +41,7 @@ _TYPE2MACRO = {int: "int_enum!", str: "str_enum!"}
 
 
 @dataclasses.dataclass()
-class JsEnum(Documented):
+class JsEnum(Documented, ToRust):
     ident: str
     variants: List[Variant]
 
@@ -76,7 +76,7 @@ class JsEnum(Documented):
         ty = self.get_value_type()
         return _TYPE2MACRO[ty]
 
-    def to_rust(self) -> str:
+    def to_rust(self, ctx: Context) -> str:
         enum_body = "\n".join(variant.to_rust() for variant in self.variants)
         macro_body = f"pub enum {self.ident} {{\n{helpers.add_indent(enum_body)}\n}}"
         return f"{self.macro()} {{\n{helpers.add_indent(macro_body)}\n}}"

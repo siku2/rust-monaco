@@ -26,8 +26,9 @@ macro_rules! object_set {
     };
 }
 
-macro_rules! int_enum {
+macro_rules! _lit_enum {
     (
+        $lit_ty:ty;
         $(#[$meta:meta])*
         $vis:vis enum $name:ident {
             $(
@@ -47,7 +48,7 @@ macro_rules! int_enum {
             impl $name {
                 /// Get the variant for the value.
                 /// Returns `None` if the value isn't part of the enum.
-                pub fn from_value(val: usize) -> Option<Self> {
+                pub fn from_value(val: $lit_ty) -> Option<Self> {
                     match val {
                         $(
                             $variant_value => Some(Self::$variant_name),
@@ -57,7 +58,7 @@ macro_rules! int_enum {
                 }
 
                 /// Get the value of the variant.
-                pub fn value(&self) -> usize {
+                pub fn value(&self) -> $lit_ty {
                     match self {
                         $(
                             Self::$variant_name => $variant_value
@@ -67,20 +68,65 @@ macro_rules! int_enum {
             }
             impl ::wasm_bindgen::describe::WasmDescribe for $name {
                 fn describe() {
-                    <usize as ::wasm_bindgen::describe::WasmDescribe>::describe()
+                    <$lit_ty as ::wasm_bindgen::describe::WasmDescribe>::describe()
                 }
             }
             impl ::wasm_bindgen::convert::IntoWasmAbi for $name {
-                type Abi = <usize as ::wasm_bindgen::convert::IntoWasmAbi>::Abi;
+                type Abi = <$lit_ty as ::wasm_bindgen::convert::IntoWasmAbi>::Abi;
                 fn into_abi(self) -> Self::Abi {
-                    <usize as ::wasm_bindgen::convert::IntoWasmAbi>::into_abi(self.value())
+                    <$lit_ty as ::wasm_bindgen::convert::IntoWasmAbi>::into_abi(self.value())
                 }
             }
             impl ::wasm_bindgen::convert::FromWasmAbi for $name {
-                type Abi = <usize as ::wasm_bindgen::convert::FromWasmAbi>::Abi;
+                type Abi = <$lit_ty as ::wasm_bindgen::convert::FromWasmAbi>::Abi;
                 unsafe fn from_abi(js: Self::Abi) -> Self {
-                    Self::from_value(<usize as ::wasm_bindgen::convert::FromWasmAbi>::from_abi(js)).expect("received value outside of enum")
+                    Self::from_value(<$lit_ty as ::wasm_bindgen::convert::FromWasmAbi>::from_abi(js)).expect("received value outside of enum")
                 }
             }
         };
+}
+
+macro_rules! int_enum {
+    (
+        $(#[$meta:meta])*
+        $vis:vis enum $name:ident {
+            $(
+                $(#[$variant_meta:meta])*
+                $variant_name:ident = $variant_value:literal,
+            )*
+        }
+    ) => {
+        _lit_enum! {
+            usize;
+            $(#[$meta])*
+            $vis enum $name {
+                $(
+                    $(#[$variant_meta])*
+                    $variant_name = $variant_value,
+                )*
+            }
+        }
+    };
+}
+macro_rules! str_enum {
+    (
+        $(#[$meta:meta])*
+        $vis:vis enum $name:ident {
+            $(
+                $(#[$variant_meta:meta])*
+                $variant_name:ident = $variant_value:literal,
+            )*
+        }
+    ) => {
+        _lit_enum! {
+            String;
+            $(#[$meta])*
+            $vis enum $name {
+                $(
+                    $(#[$variant_meta])*
+                    $variant_name = $variant_value,
+                )*
+            }
+        }
+    };
 }
