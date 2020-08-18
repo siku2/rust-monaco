@@ -2,7 +2,8 @@ import dataclasses
 import re
 from typing import Tuple
 
-from .helpers import MatchError, consume_match, remove_indent
+from . import helpers
+from .helpers import MatchError
 
 
 # Matches multiline documentation in the form of
@@ -19,11 +20,13 @@ class Documented:
     @staticmethod
     def consume(s: str) -> Tuple[str, str]:
         try:
-            match, s = consume_match(_PATTERN_DOC, s)
+            match, s = helpers.consume_match(
+                _PATTERN_DOC, s, skip_empty_lines_after=False
+            )
         except MatchError:
             return "", s
 
-        lines = remove_indent(match[0]).splitlines()
+        lines = helpers.remove_indent(match[0]).splitlines()
         doc = "\n".join(line[3:] for line in lines[1:-1])
         return doc, s
 

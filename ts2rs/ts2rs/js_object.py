@@ -2,18 +2,9 @@ import dataclasses
 import re
 from typing import List, Optional, Tuple
 
-from .helpers import (
-    MatchError,
-    ModSet,
-    add_line_prefix,
-    build_wasm_bindgen_attr,
-    camel_to_snake_case,
-    consume_empty_lines,
-    consume_match,
-    join_nonempty_lines,
-    read_until_closing_bracket,
-    split_trim,
-)
+from . import helpers, inflection
+from .helpers import MatchError, ModSet
+from .js_function import JsFunction
 from .js_type import JsType
 from .models import Documented
 
@@ -34,7 +25,7 @@ class JsMember(Documented):
         return f"this: &{self.class_}"
 
     def build_wasm_bindgen_attr(self, *args: str, **kwargs: str) -> str:
-        return build_wasm_bindgen_attr(
+        return helpers.build_wasm_bindgen_attr(
             *args, js_class=f'"{self.class_}"', js_name=f'"{self.ident}"', **kwargs
         )
 
@@ -55,8 +46,7 @@ class JsProperty(JsMember):
     @classmethod
     def consume(cls, s: str, class_: str) -> Tuple["JsProperty", str]:
         doc, s = Documented.consume(s)
-        match, s = consume_match(_PATTERN_PROPERTY, s)
-        s = consume_empty_lines(s)
+        match, s = helpers.consume_match(_PATTERN_PROPERTY, s)
 
         mods = ModSet.create(match["mods"])
         static = mods.pop("static")
@@ -83,12 +73,12 @@ class JsProperty(JsMember):
     def type_documentation(self) -> Optional[str]:
         if doc := self.type_.to_rust(True).documentation:
             raw = f"\nType: {doc}"
-            doc = add_line_prefix(raw, "/// ", empty_lines=True)
+            doc = helpers.add_line_prefix(raw, "/// ", empty_lines=True)
         return doc
 
     def rust_documentation(self) -> str:
         doc = super().rust_documentation()
-        return join_nonempty_lines((doc, self.type_documentation()))
+        return helpers.join_nonempty_lines((doc, self.type_documentation()))
 
     def this_parameter(self) -> str:
         if not self.static:
@@ -97,15 +87,15 @@ class JsProperty(JsMember):
         return ""
 
     def getter_signature(self) -> str:
-        return f"pub fn {camel_to_snake_case(self.ident)}({self.this_parameter()}) -> {self.rust_type(True)}"
+        return f"pub fn {inflection.camel_to_snake_case(self.ident)}({self.this_parameter()}) -> {self.rust_type(True)}"
 
     def setter_signature(self) -> str:
-        return f"pub fn set_{camel_to_snake_case(self.ident)}({self.this_parameter()}, val: {self.rust_type(False)})"
+        return f"pub fn set_{inflection.camel_to_snake_case(self.ident)}({self.this_parameter()}, val: {self.rust_type(False)})"
 
     def to_rust(self) -> str:
         method = f"static_method_of = {self.class_}" if self.static else "method"
 
-        code = join_nonempty_lines(
+        code = helpers.join_nonempty_lines(
             (
                 self.rust_documentation(),
                 self.build_wasm_bindgen_attr(method, getter=self.ident),
@@ -114,7 +104,7 @@ class JsProperty(JsMember):
         )
 
         if not self.readonly:
-            code = join_nonempty_lines(
+            code = helpers.join_nonempty_lines(
                 (
                     code,
                     f"/// Set the `{self.ident}` property.",
@@ -126,57 +116,14 @@ class JsProperty(JsMember):
         return code
 
 
-_PATTERN_PARAM = re.compile(
-    r"^\s*(?P<ident>\w+)(?P<optional>\??): (?P<type>.+?)(?:,\s*|\s*$)", re.DOTALL
-)
-
-
-@dataclasses.dataclass()
-class JsParameter:
-    ident: str
-    type_: JsType
-    optional: bool
-
-    @classmethod
-    def consume(cls, s: str) -> Tuple["JsParameter", str]:
-        match, s = consume_match(_PATTERN_PARAM, s)
-        optional = bool(match["optional"])
-        param = cls(
-            ident=match["ident"], type_=JsType(match["type"]), optional=optional,
-        )
-        return param, s
-
-    @classmethod
-    def parse_multiple(cls, s: str) -> List["JsParameter"]:
-        params = []
-        while s:
-            param, s = cls.consume(s)
-            params.append(param)
-
-        return params
-
-    def type_documentation(self) -> Optional[str]:
-        type_doc = self.type_.to_rust(True).documentation
-        if type_doc:
-            return f"* `{camel_to_snake_case(self.ident)}` - {type_doc}"
-
-        return None
-
-    def to_rust(self) -> str:
-        rust_ident = camel_to_snake_case(self.ident)
-        return f"{rust_ident}: {self.type_.to_rust(False)}"
-
-
 _PATTERN_METHOD = re.compile(
-    r"^ *(?P<mods>(?:get |set |static )*)(?P<ident>\w+)(?P<optional>\??)\((?P<params>.*?)\)(?:: (?P<res>.+?))?;\n",
+    r"^ *(?P<mods>(?:get |set |static )*)(?P<ident>\w+)(?P<optional>\??)\((?P<params>.*?)\)(?:: (?P<ret>.+?))?;\n",
     re.DOTALL,
 )
 
 
 @dataclasses.dataclass()
-class JsMethod(JsMember):
-    params: List[JsParameter]
-    return_type: Optional[JsType]
+class JsMethod(JsMember, JsFunction):
     is_static: bool
     is_getter: bool
     is_setter: bool
@@ -184,8 +131,7 @@ class JsMethod(JsMember):
     @classmethod
     def consume(cls, s: str, class_: str) -> Tuple["JsMethod", str]:
         doc, s = Documented.consume(s)
-        match, s = consume_match(_PATTERN_METHOD, s)
-        s = consume_empty_lines(s)
+        match, s = helpers.consume_match(_PATTERN_METHOD, s)
 
         if match["optional"]:
             raise ValueError("can't handle optional functions right now")
@@ -196,48 +142,30 @@ class JsMethod(JsMember):
         is_setter = mods.pop("set")
         mods.assert_empty()
 
-        params = JsParameter.parse_multiple(match["params"])
-
-        if return_type := match["res"]:
-            if return_type == "void":
-                return_type = None
-            else:
-                return_type = JsType(return_type)
-
-        method = cls(
+        method = cls.from_match(
             documentation=doc,
-            class_=class_,
             ident=match["ident"],
-            params=params,
-            return_type=return_type,
+            params=match["params"],
+            ret=match["ret"],
+            class_=class_,
             is_static=is_static,
             is_getter=is_getter,
             is_setter=is_setter,
         )
         return method, s
 
-    def argument_documentation(self) -> Optional[str]:
-        args = list(filter(None, (param.type_documentation() for param in self.params)))
-        if not args:
-            return None
-        raw = "\n".join(("", "# Arguments", "", *args,))
-        return add_line_prefix(raw, "/// ", empty_lines=True)
-
-    def rust_documentation(self) -> str:
-        doc = super().rust_documentation()
-        return join_nonempty_lines((doc, self.argument_documentation()))
+    def ident_to_rust(self) -> str:
+        ident = super().ident_to_rust()
+        if self.is_setter:
+            ident = f"set_{ident}"
+        return ident
 
     def params_to_rust(self) -> List[str]:
-        params = [param.to_rust() for param in self.params]
+        params = super().params_to_rust()
         if not self.is_static:
             params.insert(0, self.this_parameter())
 
         return params
-
-    def return_type_to_rust(self) -> Optional[str]:
-        if ty := self.return_type:
-            return ty.to_rust(True)
-        return None
 
     def wasm_bindgen_attr(self) -> str:
         args = []
@@ -253,26 +181,6 @@ class JsMethod(JsMember):
             kwargs["setter"] = self.ident
 
         return self.build_wasm_bindgen_attr(*args, **kwargs)
-
-    def to_rust_signature(self) -> str:
-        params = ", ".join(self.params_to_rust())
-        ident = camel_to_snake_case(self.ident)
-        if self.is_setter:
-            ident = f"set_{ident}"
-
-        signature = f"pub fn {ident}({params})"
-
-        ret_type = self.return_type_to_rust()
-        if ret_type:
-            signature += f" -> {ret_type}"
-
-        return signature
-
-    def to_rust(self) -> str:
-        signature = self.to_rust_signature()
-        return join_nonempty_lines(
-            (self.rust_documentation(), self.wasm_bindgen_attr(), f"{signature};",)
-        )
 
 
 _PATTERN_OBJECT_OPEN = re.compile(
@@ -290,16 +198,15 @@ class JsObject(Documented):
     @staticmethod
     def consume(s: str) -> Tuple["JsObject", str]:
         doc, s = Documented.consume(s)
-        match, s = consume_match(_PATTERN_OBJECT_OPEN, s)
-        s = consume_empty_lines(s)
+        match, s = helpers.consume_match(_PATTERN_OBJECT_OPEN, s)
 
         ident = match["ident"]
 
         if extends := match["extends"]:
-            extends = split_trim(extends, ",")
+            extends = helpers.split_trim(extends, ",")
 
         if implements := match["implements"]:
-            implements = split_trim(implements, ",")
+            implements = helpers.split_trim(implements, ",")
 
         cls = JsClass if match["type"] == "class" else JsInterface
 
@@ -312,8 +219,7 @@ class JsObject(Documented):
             implements=implements,
         )
 
-        body, s = read_until_closing_bracket(s)
-        s = consume_empty_lines(s)
+        body, s = helpers.read_until_closing_bracket(s)
         while body:
             member, body = JsMember.consume(body, ident)
             members.append(member)
@@ -329,18 +235,18 @@ class JsObject(Documented):
         if v := self.implements:
             extends.extend(v)
         if extends:
-            return build_wasm_bindgen_attr(extends=extends)
+            return helpers.build_wasm_bindgen_attr(extends=extends)
 
         return ""
 
     def to_rust(self) -> str:
-        return join_nonempty_lines(
+        return helpers.join_nonempty_lines(
             (
                 self.rust_documentation(),
                 f"#[derive(Debug)]",
                 self.wasm_bindgen_attr(),
                 f"pub type {self.ident};",
-                join_nonempty_lines(member.to_rust() for member in self.members),
+                *(member.to_rust() for member in self.members),
             )
         )
 
