@@ -931,7 +931,7 @@ extern "C" {
 extern "C" {
     /// The options to create an editor.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IEditorConstructionOptions, extends = IGlobalEditorOptions)]
+    #[wasm_bindgen(extends = IEditorConstructionOptions, extends = IGlobalEditorOptions, extends = Object)]
     pub type IStandaloneEditorConstructionOptions;
     /// The initial model associated with this code editor.
     #[wasm_bindgen(method, js_class = "IStandaloneEditorConstructionOptions", js_name = "model", getter = model)]
@@ -981,7 +981,7 @@ extern "C" {
 extern "C" {
     /// The options to create a diff editor.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IDiffEditorOptions)]
+    #[wasm_bindgen(extends = IDiffEditorOptions, extends = Object)]
     pub type IDiffEditorConstructionOptions;
     /// Initial theme to be used for rendering.
     /// The current out-of-the-box available themes are: 'vs' (default),
@@ -998,7 +998,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = ICodeEditor)]
+    #[wasm_bindgen(extends = ICodeEditor, extends = Object)]
     pub type IStandaloneCodeEditor;
     #[wasm_bindgen(method, js_class = "IStandaloneCodeEditor", js_name = "updateOptions")]
     pub fn update_options_editor(this: &IStandaloneCodeEditor, new_options: &IEditorOptions);
@@ -1031,7 +1031,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IDiffEditor)]
+    #[wasm_bindgen(extends = IDiffEditor, extends = Object)]
     pub type IStandaloneDiffEditor;
     /// # Arguments
     ///
@@ -1265,7 +1265,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IColorizerOptions)]
+    #[wasm_bindgen(extends = IColorizerOptions, extends = Object)]
     pub type IColorizerElementOptions;
     #[wasm_bindgen(method, js_class = "IColorizerElementOptions", js_name = "theme", getter = theme)]
     pub fn theme(this: &IColorizerElementOptions) -> Option<String>;
@@ -1320,7 +1320,7 @@ extern "C" {
 extern "C" {
     /// Options for rendering a model decoration in the overview ruler.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IDecorationOptions)]
+    #[wasm_bindgen(extends = IDecorationOptions, extends = Object)]
     pub type IModelDecorationOverviewRulerOptions;
     /// The position in the overview ruler.
     #[wasm_bindgen(method, js_class = "IModelDecorationOverviewRulerOptions", js_name = "position", getter = position)]
@@ -1334,7 +1334,7 @@ extern "C" {
 extern "C" {
     /// Options for rendering a model decoration in the overview ruler.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IDecorationOptions)]
+    #[wasm_bindgen(extends = IDecorationOptions, extends = Object)]
     pub type IModelDecorationMinimapOptions;
     /// The position in the overview ruler.
     #[wasm_bindgen(method, js_class = "IModelDecorationMinimapOptions", js_name = "position", getter = position)]
@@ -2300,7 +2300,7 @@ extern "C" {
 extern "C" {
     /// A character level change.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IChange)]
+    #[wasm_bindgen(extends = IChange, extends = Object)]
     pub type ICharChange;
     #[wasm_bindgen(method, js_class = "ICharChange", js_name = "originalStartColumn", getter = originalStartColumn)]
     pub fn original_start_column(this: &ICharChange) -> f64;
@@ -2316,7 +2316,7 @@ extern "C" {
 extern "C" {
     /// A line change
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IChange)]
+    #[wasm_bindgen(extends = IChange, extends = Object)]
     pub type ILineChange;
     /// Type: `ICharChange[]`
     #[wasm_bindgen(method, js_class = "ILineChange", js_name = "charChanges", getter = charChanges)]
@@ -3633,7 +3633,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IEditorOptions)]
+    #[wasm_bindgen(extends = IEditorOptions, extends = Object)]
     pub type IEditorConstructionOptions;
     /// The initial editor dimension (to avoid measuring the container).
     #[wasm_bindgen(method, js_class = "IEditorConstructionOptions", js_name = "dimension", getter = dimension)]
@@ -3647,7 +3647,7 @@ extern "C" {
 extern "C" {
     /// Configuration options for the diff editor.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IEditorOptions)]
+    #[wasm_bindgen(extends = IEditorOptions, extends = Object)]
     pub type IDiffEditorOptions;
     /// Allow the user to resize the diff editor split view.
     /// Defaults to true.
@@ -4697,7 +4697,7 @@ extern "C" {
 extern "C" {
     /// A rich code editor.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IEditor)]
+    #[wasm_bindgen(extends = IEditor, extends = Object)]
     pub type ICodeEditor;
     /// An event emitted when the content of the current model has changed.
     /// @event
@@ -5185,7 +5185,7 @@ extern "C" {
 extern "C" {
     /// A rich diff editor.
     #[derive(Debug)]
-    #[wasm_bindgen(extends = Object, extends = IEditor)]
+    #[wasm_bindgen(extends = IEditor, extends = Object)]
     pub type IDiffEditor;
     /// @see ICodeEditor.getDomNode
     #[wasm_bindgen(method, js_class = "IDiffEditor", js_name = "getDomNode")]
