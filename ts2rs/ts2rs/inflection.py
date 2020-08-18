@@ -10,6 +10,15 @@ def camel_to_snake_case(s: str) -> str:
     return s.lower()
 
 
+_PATTERN_NON_ALPHANUM = re.compile(r"(?:[^a-zA-Z0-9]+)")
+
+
+def any_to_camel_case(s: str) -> str:
+    s = camel_to_snake_case(s)
+    parts = _PATTERN_NON_ALPHANUM.split(s)
+    return "".join(part.title() for part in parts if part)
+
+
 def snake_to_camel_case(s: str) -> str:
     return "".join(part.title() for part in s.split("_"))
 
