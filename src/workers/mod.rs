@@ -59,7 +59,7 @@ pub fn is_environment_set() -> bool {
 }
 
 /// Set up the environment if it's not already set up.
-pub(crate) fn ensure_environment_set() {
+pub fn ensure_environment_set() {
     if !is_environment_set() {
         set_environment();
     }

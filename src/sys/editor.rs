@@ -12,8 +12,14 @@ use super::{
     Uri,
 };
 use js_sys::{Array, Function, Object, Promise};
-use wasm_bindgen::prelude::*;
+use wasm_bindgen::{prelude::*, JsCast};
 use web_sys::HtmlElement;
+
+impl Default for IStandaloneEditorConstructionOptions {
+    fn default() -> Self {
+        Object::new().unchecked_into()
+    }
+}
 
 // DANGER: Generated code ahead. Keep out!
 

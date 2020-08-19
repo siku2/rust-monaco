@@ -1,14 +1,28 @@
-use monaco::yew::CodeEditor;
+use monaco::{api::CodeEditorOptions, sys::editor::BuiltinTheme, yew::CodeEditor};
+use std::rc::Rc;
 use wasm_bindgen::prelude::*;
 use yew::{html, Component, ComponentLink, Html, ShouldRender};
 
-struct App;
+const CONTENT: &str = include_str!("lib.rs");
+
+fn get_options() -> CodeEditorOptions {
+    CodeEditorOptions::default()
+        .with_language("rust".to_owned())
+        .with_value(CONTENT.to_owned())
+        .with_builtin_theme(BuiltinTheme::VsDark)
+}
+
+struct App {
+    options: Rc<CodeEditorOptions>,
+}
 impl Component for App {
     type Message = ();
     type Properties = ();
 
     fn create(_props: Self::Properties, _link: ComponentLink<Self>) -> Self {
-        Self
+        Self {
+            options: Rc::new(get_options()),
+        }
     }
 
     fn update(&mut self, _msg: Self::Message) -> ShouldRender {
@@ -21,7 +35,7 @@ impl Component for App {
 
     fn view(&self) -> Html {
         html! {
-            <CodeEditor />
+            <CodeEditor options=self.options.clone() />
         }
     }
 }

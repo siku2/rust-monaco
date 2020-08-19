@@ -1,9 +1,26 @@
+# Build an example and start a web server for it.
+# Uses `simple-http-server` which can be installed through "cargo install".
+@run example:
+    just build "{{example}}"
+    simple-http-server --index --nocache -- "{{example}}/www"
+
+# Build an example.
+# Uses `wasm-pack` which can be installed through "cargo install".
 @build example:
     #!/usr/bin/env sh
     cd "{{example}}"
     wasm-pack build --no-typescript --out-dir "www" --target web
     cp static/* www
 
-@run example:
-    just build "{{example}}"
-    simple-http-server --index --nocache -- "{{example}}/www"
+# Format and run Clippy on all examples
+@chores:
+    just fmt
+    just clippy
+
+# Run clippy on all examples
+clippy:
+    cargo clippy --all-targets --all-features
+
+# Format the code for all examples
+fmt:
+    cargo fmt
