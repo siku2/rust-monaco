@@ -1,3 +1,4 @@
+use super::TextModel;
 use crate::sys::editor::{
     self,
     BuiltinTheme,
@@ -54,7 +55,7 @@ impl Into<IStandaloneEditorConstructionOptions> for &CodeEditorOptions {
 #[must_use = "editor is disposed when dropped"]
 #[derive(Debug)]
 pub struct CodeEditor {
-    editor: IStandaloneCodeEditor,
+    js_editor: IStandaloneCodeEditor,
 }
 impl CodeEditor {
     pub fn create<OPT>(element: &HtmlElement, options: Option<OPT>) -> Self
@@ -65,12 +66,27 @@ impl CodeEditor {
         crate::workers::ensure_environment_set();
 
         let options = options.as_ref().map(Borrow::borrow).map(Into::into);
-        let editor = editor::create(element, options.as_ref(), None);
-        Self { editor }
+        let js_editor = editor::create(element, options.as_ref(), None);
+        Self::from(js_editor)
+    }
+
+    pub fn get_model(&self) -> Option<TextModel> {
+        self.js_editor.get_model().map(TextModel::from)
     }
 }
 impl Drop for CodeEditor {
     fn drop(&mut self) {
-        self.editor.dispose();
+        self.js_editor.dispose();
+    }
+}
+
+impl AsRef<IStandaloneCodeEditor> for CodeEditor {
+    fn as_ref(&self) -> &IStandaloneCodeEditor {
+        &self.js_editor
+    }
+}
+impl From<IStandaloneCodeEditor> for CodeEditor {
+    fn from(js_editor: IStandaloneCodeEditor) -> Self {
+        Self { js_editor }
     }
 }

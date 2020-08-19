@@ -5,7 +5,7 @@
 
 # Run clippy on the code
 clippy:
-    cargo clippy --all-targets --all-features
+    cargo +nightly clippy --all-targets --all-features
 
 # Format the code.
 # Requires the nightly Rustfmt because it uses unstable features.

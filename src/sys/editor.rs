@@ -2672,6 +2672,7 @@ extern "C" {
     #[wasm_bindgen(method, js_class = "IEditor", js_name = "trigger")]
     pub fn trigger(this: &IEditor, source: &str, handler_id: &str, payload: &JsValue);
     /// Gets the current model attached to this editor.
+    /// Type: `ITextModel | IDiffEditorModel`
     #[wasm_bindgen(method, js_class = "IEditor", js_name = "getModel")]
     pub fn get_model(this: &IEditor) -> Option<Object>;
     /// Sets the current model attached to this editor.
