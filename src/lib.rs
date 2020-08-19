@@ -1,9 +1,10 @@
 //! Rust bindings for the Monaco text editor.
 #[macro_use]
 mod macros;
-mod editor;
-#[cfg(feature = "embed_workers")]
-pub mod embedded;
+#[cfg(feature = "api")]
+pub mod api;
 pub mod sys;
-#[cfg(feature = "yew")]
+#[cfg(feature = "workers")]
+pub mod workers;
+#[cfg(feature = "yew-components")]
 pub mod yew;

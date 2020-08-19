@@ -1,6 +1,8 @@
+# Build the Monaco Javascript files
 @build:
     rm dist/*
     npm run build
 
+# Install the node dependencies
 @install:
     npm install
