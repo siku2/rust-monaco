@@ -20,15 +20,25 @@ macro_rules! object_get {
 }
 
 macro_rules! object_set {
-    ($obj:ident.$key:ident = $value:expr) => {
+    (try $obj:ident.$key:ident = $value:expr) => {
         ::js_sys::Reflect::set($obj.as_ref(), &stringify!($key).into(), &Into::into($value))
-            .expect("setting key on object must not fail");
+    };
+    ($obj:ident.$key:ident = $value:expr) => {
+        object_set!(try $obj.$key = $value).expect("setting key on object must not fail");
     };
 }
 
-macro_rules! _lit_enum {
+pub mod exports {
+    pub use wasm_bindgen::{
+        convert::{FromWasmAbi, IntoWasmAbi, OptionFromWasmAbi, OptionIntoWasmAbi},
+        describe::WasmDescribe,
+        JsValue,
+    };
+}
+
+macro_rules! _lit_enum_commons {
     (
-        $lit_ty:ty;
+        $from_ty:ty, $to_ty:ty;
         $(#[$meta:meta])*
         $vis:vis enum $name:ident {
             $(
@@ -48,7 +58,7 @@ macro_rules! _lit_enum {
             impl $name {
                 /// Get the variant for the value.
                 /// Returns `None` if the value isn't part of the enum.
-                pub fn from_value(val: $lit_ty) -> Option<Self> {
+                pub fn from_value(val: $from_ty) -> Option<Self> {
                     match val {
                         $(
                             $variant_value => Some(Self::$variant_name),
@@ -58,7 +68,7 @@ macro_rules! _lit_enum {
                 }
 
                 /// Get the value of the variant.
-                pub fn value(&self) -> $lit_ty {
+                pub fn to_value(&self) -> $to_ty {
                     match self {
                         $(
                             Self::$variant_name => $variant_value
@@ -66,21 +76,22 @@ macro_rules! _lit_enum {
                     }
                 }
             }
-            impl ::wasm_bindgen::describe::WasmDescribe for $name {
+            impl $crate::macros::exports::WasmDescribe for $name {
                 fn describe() {
-                    <$lit_ty as ::wasm_bindgen::describe::WasmDescribe>::describe()
+                    <$crate::macros::exports::JsValue as $crate::macros::exports::WasmDescribe>::describe()
                 }
             }
-            impl ::wasm_bindgen::convert::IntoWasmAbi for $name {
-                type Abi = <$lit_ty as ::wasm_bindgen::convert::IntoWasmAbi>::Abi;
-                fn into_abi(self) -> Self::Abi {
-                    <$lit_ty as ::wasm_bindgen::convert::IntoWasmAbi>::into_abi(self.value())
+            impl $crate::macros::exports::OptionFromWasmAbi for $name {
+                fn is_none(abi: &Self::Abi) -> bool {
+                    // SAFETY: this isn't any more unsafe than the FromWasmAbi implementation is in the first place.
+                    let js_value = unsafe { <$crate::macros::exports::JsValue as $crate::macros::exports::FromWasmAbi>::from_abi(*abi) };
+                    js_value.is_null() || js_value.is_undefined()
                 }
             }
-            impl ::wasm_bindgen::convert::FromWasmAbi for $name {
-                type Abi = <$lit_ty as ::wasm_bindgen::convert::FromWasmAbi>::Abi;
-                unsafe fn from_abi(js: Self::Abi) -> Self {
-                    Self::from_value(<$lit_ty as ::wasm_bindgen::convert::FromWasmAbi>::from_abi(js)).expect("received value outside of enum")
+            impl $crate::macros::exports::OptionIntoWasmAbi for $name {
+                fn none() -> Self::Abi {
+                    let value = $crate::macros::exports::JsValue::undefined();
+                    <$crate::macros::exports::JsValue as $crate::macros::exports::IntoWasmAbi>::into_abi(value)
                 }
             }
         };
@@ -96,14 +107,31 @@ macro_rules! int_enum {
             )*
         }
     ) => {
-        _lit_enum! {
-            usize;
+        _lit_enum_commons! {
+            u32, u32;
             $(#[$meta])*
             $vis enum $name {
                 $(
                     $(#[$variant_meta])*
                     $variant_name = $variant_value,
                 )*
+            }
+        }
+        impl $crate::macros::exports::FromWasmAbi for $name {
+            type Abi = <$crate::macros::exports::JsValue as $crate::macros::exports::FromWasmAbi>::Abi;
+
+            unsafe fn from_abi(abi: Self::Abi) -> Self {
+                let js_value = <$crate::macros::exports::JsValue as $crate::macros::exports::FromWasmAbi>::from_abi(abi);
+                let value = js_value.as_f64().expect("received non-number") as u32;
+                Self::from_value(value).expect("received value outside of enum")
+            }
+        }
+        impl ::wasm_bindgen::convert::IntoWasmAbi for $name {
+            type Abi = <$crate::macros::exports::JsValue as $crate::macros::exports::IntoWasmAbi>::Abi;
+
+            fn into_abi(self) -> Self::Abi {
+                let value = Into::<$crate::macros::exports::JsValue>::into(self.to_value());
+                <$crate::macros::exports::JsValue as $crate::macros::exports::IntoWasmAbi>::into_abi(value)
             }
         }
     };
@@ -118,14 +146,31 @@ macro_rules! str_enum {
             )*
         }
     ) => {
-        _lit_enum! {
-            String;
+        _lit_enum_commons! {
+            &str, &'static str;
             $(#[$meta])*
             $vis enum $name {
                 $(
                     $(#[$variant_meta])*
                     $variant_name = $variant_value,
                 )*
+            }
+        }
+        impl $crate::macros::exports::FromWasmAbi for $name {
+            type Abi = <$crate::macros::exports::JsValue as $crate::macros::exports::FromWasmAbi>::Abi;
+
+            unsafe fn from_abi(abi: Self::Abi) -> Self {
+                let js_value = <$crate::macros::exports::JsValue as $crate::macros::exports::FromWasmAbi>::from_abi(abi);
+                let value = js_value.as_string().expect("received non-string");
+                Self::from_value(&value).expect("received value outside of enum")
+            }
+        }
+        impl ::wasm_bindgen::convert::IntoWasmAbi for $name {
+            type Abi = <$crate::macros::exports::JsValue as $crate::macros::exports::IntoWasmAbi>::Abi;
+
+            fn into_abi(self) -> Self::Abi {
+                let value = Into::<$crate::macros::exports::JsValue>::into(self.to_value());
+                <$crate::macros::exports::JsValue as $crate::macros::exports::IntoWasmAbi>::into_abi(value)
             }
         }
     };
