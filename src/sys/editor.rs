@@ -18,7 +18,6 @@ use web_sys::HtmlElement;
 // DANGER: Generated code ahead. Keep out!
 
 #[wasm_bindgen(module = "/js/editor.js")]
-#[wasm_bindgen]
 extern "C" {
     /// Create a new editor under `domElement`.
     /// `domElement` should be empty (not contain other dom nodes).
@@ -1168,7 +1167,7 @@ extern "C" {
     pub fn severity(this: &IMarkerData) -> MarkerSeverity;
     /// Set the `severity` property.
     #[wasm_bindgen(method, js_class = "IMarkerData", js_name = "severity", setter = severity)]
-    pub fn set_severity(this: &IMarkerData, val: &MarkerSeverity);
+    pub fn set_severity(this: &IMarkerData, val: MarkerSeverity);
     #[wasm_bindgen(method, js_class = "IMarkerData", js_name = "message", getter = message)]
     pub fn message(this: &IMarkerData) -> String;
     /// Set the `message` property.
@@ -2883,7 +2882,7 @@ extern "C" {
     pub fn line_numbers(this: &IEditorOptions) -> Option<LineNumbersType>;
     /// Set the `lineNumbers` property.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "lineNumbers", setter = lineNumbers)]
-    pub fn set_line_numbers(this: &IEditorOptions, val: Option<&LineNumbersType>);
+    pub fn set_line_numbers(this: &IEditorOptions, val: Option<LineNumbersType>);
     /// Controls the minimal number of visible leading and trailing lines
     /// surrounding the cursor. Defaults to 0.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "cursorSurroundingLines", getter = cursorSurroundingLines)]
@@ -3324,17 +3323,14 @@ extern "C" {
     pub fn auto_closing_brackets(this: &IEditorOptions) -> Option<EditorAutoClosingStrategy>;
     /// Set the `autoClosingBrackets` property.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoClosingBrackets", setter = autoClosingBrackets)]
-    pub fn set_auto_closing_brackets(
-        this: &IEditorOptions,
-        val: Option<&EditorAutoClosingStrategy>,
-    );
+    pub fn set_auto_closing_brackets(this: &IEditorOptions, val: Option<EditorAutoClosingStrategy>);
     /// Options for auto closing quotes.
     /// Defaults to language defined behavior.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoClosingQuotes", getter = autoClosingQuotes)]
     pub fn auto_closing_quotes(this: &IEditorOptions) -> Option<EditorAutoClosingStrategy>;
     /// Set the `autoClosingQuotes` property.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoClosingQuotes", setter = autoClosingQuotes)]
-    pub fn set_auto_closing_quotes(this: &IEditorOptions, val: Option<&EditorAutoClosingStrategy>);
+    pub fn set_auto_closing_quotes(this: &IEditorOptions, val: Option<EditorAutoClosingStrategy>);
     /// Options for typing over closing quotes or brackets.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoClosingOvertype", getter = autoClosingOvertype)]
     pub fn auto_closing_overtype(
@@ -3344,7 +3340,7 @@ extern "C" {
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoClosingOvertype", setter = autoClosingOvertype)]
     pub fn set_auto_closing_overtype(
         this: &IEditorOptions,
-        val: Option<&EditorAutoClosingOvertypeStrategy>,
+        val: Option<EditorAutoClosingOvertypeStrategy>,
     );
     /// Options for auto surrounding.
     /// Defaults to always allowing auto surrounding.
@@ -3352,7 +3348,7 @@ extern "C" {
     pub fn auto_surround(this: &IEditorOptions) -> Option<EditorAutoSurroundStrategy>;
     /// Set the `autoSurround` property.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoSurround", setter = autoSurround)]
-    pub fn set_auto_surround(this: &IEditorOptions, val: Option<&EditorAutoSurroundStrategy>);
+    pub fn set_auto_surround(this: &IEditorOptions, val: Option<EditorAutoSurroundStrategy>);
     /// Controls whether the editor should automatically adjust the indentation
     /// when users type, paste, move or indent lines. Defaults to advanced.
     #[wasm_bindgen(method, js_class = "IEditorOptions", js_name = "autoIndent", getter = autoIndent)]
@@ -3775,38 +3771,38 @@ extern "C" {
     pub fn multiple(this: &IGotoLocationOptions) -> Option<GoToLocationValues>;
     /// Set the `multiple` property.
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multiple", setter = multiple)]
-    pub fn set_multiple(this: &IGotoLocationOptions, val: Option<&GoToLocationValues>);
+    pub fn set_multiple(this: &IGotoLocationOptions, val: Option<GoToLocationValues>);
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleDefinitions", getter = multipleDefinitions)]
     pub fn multiple_definitions(this: &IGotoLocationOptions) -> Option<GoToLocationValues>;
     /// Set the `multipleDefinitions` property.
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleDefinitions", setter = multipleDefinitions)]
-    pub fn set_multiple_definitions(this: &IGotoLocationOptions, val: Option<&GoToLocationValues>);
+    pub fn set_multiple_definitions(this: &IGotoLocationOptions, val: Option<GoToLocationValues>);
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleTypeDefinitions", getter = multipleTypeDefinitions)]
     pub fn multiple_type_definitions(this: &IGotoLocationOptions) -> Option<GoToLocationValues>;
     /// Set the `multipleTypeDefinitions` property.
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleTypeDefinitions", setter = multipleTypeDefinitions)]
     pub fn set_multiple_type_definitions(
         this: &IGotoLocationOptions,
-        val: Option<&GoToLocationValues>,
+        val: Option<GoToLocationValues>,
     );
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleDeclarations", getter = multipleDeclarations)]
     pub fn multiple_declarations(this: &IGotoLocationOptions) -> Option<GoToLocationValues>;
     /// Set the `multipleDeclarations` property.
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleDeclarations", setter = multipleDeclarations)]
-    pub fn set_multiple_declarations(this: &IGotoLocationOptions, val: Option<&GoToLocationValues>);
+    pub fn set_multiple_declarations(this: &IGotoLocationOptions, val: Option<GoToLocationValues>);
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleImplementations", getter = multipleImplementations)]
     pub fn multiple_implementations(this: &IGotoLocationOptions) -> Option<GoToLocationValues>;
     /// Set the `multipleImplementations` property.
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleImplementations", setter = multipleImplementations)]
     pub fn set_multiple_implementations(
         this: &IGotoLocationOptions,
-        val: Option<&GoToLocationValues>,
+        val: Option<GoToLocationValues>,
     );
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleReferences", getter = multipleReferences)]
     pub fn multiple_references(this: &IGotoLocationOptions) -> Option<GoToLocationValues>;
     /// Set the `multipleReferences` property.
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "multipleReferences", setter = multipleReferences)]
-    pub fn set_multiple_references(this: &IGotoLocationOptions, val: Option<&GoToLocationValues>);
+    pub fn set_multiple_references(this: &IGotoLocationOptions, val: Option<GoToLocationValues>);
     #[wasm_bindgen(method, js_class = "IGotoLocationOptions", js_name = "alternativeDefinitionCommand", getter = alternativeDefinitionCommand)]
     pub fn alternative_definition_command(this: &IGotoLocationOptions) -> Option<String>;
     /// Set the `alternativeDefinitionCommand` property.
