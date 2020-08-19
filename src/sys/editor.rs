@@ -12,7 +12,7 @@ use super::{
     Uri,
 };
 use js_sys::{Array, Function, Object, Promise};
-use wasm_bindgen::{prelude::*, JsCast};
+use wasm_bindgen::prelude::*;
 use web_sys::HtmlElement;
 
 // DANGER: Generated code ahead. Keep out!
@@ -26,7 +26,7 @@ extern "C" {
     /// # Arguments
     ///
     /// * `override` - `{ [index: string]: any }`
-    #[wasm_bindgen(js_name = "create")]
+    #[wasm_bindgen(js_name = "create", js_namespace = editor)]
     pub fn create(
         dom_element: &HtmlElement,
         options: Option<&IStandaloneEditorConstructionOptions>,
@@ -40,7 +40,7 @@ extern "C" {
     /// # Arguments
     ///
     /// * `listener` - `(codeEditor: ICodeEditor) => void`
-    #[wasm_bindgen(js_name = "onDidCreateEditor")]
+    #[wasm_bindgen(js_name = "onDidCreateEditor", js_namespace = editor)]
     pub fn on_did_create_editor(listener: &Function) -> IDisposable;
 
     /// Create a new diff editor under `domElement`.
@@ -50,14 +50,14 @@ extern "C" {
     /// # Arguments
     ///
     /// * `override` - `{ [index: string]: any }`
-    #[wasm_bindgen(js_name = "createDiffEditor")]
+    #[wasm_bindgen(js_name = "createDiffEditor", js_namespace = editor)]
     pub fn create_diff_editor(
         dom_element: &HtmlElement,
         options: Option<&IDiffEditorConstructionOptions>,
         override_: Option<&Object>,
     ) -> IStandaloneDiffEditor;
 
-    #[wasm_bindgen(js_name = "createDiffNavigator")]
+    #[wasm_bindgen(js_name = "createDiffNavigator", js_namespace = editor)]
     pub fn create_diff_navigator(
         diff_editor: &IStandaloneDiffEditor,
         opts: Option<&IDiffNavigatorOptions>,
@@ -66,11 +66,11 @@ extern "C" {
     /// Create a new editor model.
     /// You can specify the language that should be set for this model or let
     /// the language be inferred from the `uri`.
-    #[wasm_bindgen(js_name = "createModel")]
+    #[wasm_bindgen(js_name = "createModel", js_namespace = editor)]
     pub fn create_model(value: &str, language: Option<&str>, uri: Option<&Uri>) -> ITextModel;
 
     /// Change the language for a model.
-    #[wasm_bindgen(js_name = "setModelLanguage")]
+    #[wasm_bindgen(js_name = "setModelLanguage", js_namespace = editor)]
     pub fn set_model_language(model: &ITextModel, language_id: &str);
 
     /// Set the markers for a model.
@@ -78,7 +78,7 @@ extern "C" {
     /// # Arguments
     ///
     /// * `markers` - `IMarkerData[]`
-    #[wasm_bindgen(js_name = "setModelMarkers")]
+    #[wasm_bindgen(js_name = "setModelMarkers", js_namespace = editor)]
     pub fn set_model_markers(model: &ITextModel, owner: &str, markers: &Array);
 
     /// Get markers for owner and/or resource
@@ -92,11 +92,11 @@ extern "C" {
     /// # Returns
     ///
     /// `IMarker[]`
-    #[wasm_bindgen(js_name = "getModelMarkers")]
+    #[wasm_bindgen(js_name = "getModelMarkers", js_namespace = editor)]
     pub fn get_model_markers(filter: &Object) -> Array;
 
     /// Get the model that has `uri` if it exists.
-    #[wasm_bindgen(js_name = "getModel")]
+    #[wasm_bindgen(js_name = "getModel", js_namespace = editor)]
     pub fn get_model(uri: &Uri) -> Option<ITextModel>;
 
     /// Get all the created models.
@@ -104,7 +104,7 @@ extern "C" {
     /// # Returns
     ///
     /// `ITextModel[]`
-    #[wasm_bindgen(js_name = "getModels")]
+    #[wasm_bindgen(js_name = "getModels", js_namespace = editor)]
     pub fn get_models() -> Array;
 
     /// Emitted when a model is created.
@@ -113,7 +113,7 @@ extern "C" {
     /// # Arguments
     ///
     /// * `listener` - `(model: ITextModel) => void`
-    #[wasm_bindgen(js_name = "onDidCreateModel")]
+    #[wasm_bindgen(js_name = "onDidCreateModel", js_namespace = editor)]
     pub fn on_did_create_model(listener: &Function) -> IDisposable;
 
     /// Emitted right before a model is disposed.
@@ -122,7 +122,7 @@ extern "C" {
     /// # Arguments
     ///
     /// * `listener` - `(model: ITextModel) => void`
-    #[wasm_bindgen(js_name = "onWillDisposeModel")]
+    #[wasm_bindgen(js_name = "onWillDisposeModel", js_namespace = editor)]
     pub fn on_will_dispose_model(listener: &Function) -> IDisposable;
 
     /// Emitted when a different language is set to a model.
@@ -132,25 +132,25 @@ extern "C" {
     ///
     /// * `listener` - `(e: { readonly model: ITextModel; readonly oldLanguage:
     ///   string; }) => void`
-    #[wasm_bindgen(js_name = "onDidChangeModelLanguage")]
+    #[wasm_bindgen(js_name = "onDidChangeModelLanguage", js_namespace = editor)]
     pub fn on_did_change_model_language(listener: &Function) -> IDisposable;
 
     /// Create a new web worker that has model syncing capabilities built in.
     /// Specify an AMD module to load that will `create` an object that will be
     /// proxied.
-    #[wasm_bindgen(js_name = "createWebWorker")]
+    #[wasm_bindgen(js_name = "createWebWorker", js_namespace = editor)]
     pub fn create_web_worker(opts: &IWebWorkerOptions) -> MonacoWebWorker;
 
     /// Colorize the contents of `domNode` using attribute `data-lang`.
-    #[wasm_bindgen(js_name = "colorizeElement")]
+    #[wasm_bindgen(js_name = "colorizeElement", js_namespace = editor)]
     pub fn colorize_element(dom_node: &HtmlElement, options: &IColorizerElementOptions) -> Promise;
 
     /// Colorize `text` using language `languageId`.
-    #[wasm_bindgen(js_name = "colorize")]
+    #[wasm_bindgen(js_name = "colorize", js_namespace = editor)]
     pub fn colorize(text: &str, language_id: &str, options: &IColorizerOptions) -> Promise;
 
     /// Colorize a line in a model.
-    #[wasm_bindgen(js_name = "colorizeModelLine")]
+    #[wasm_bindgen(js_name = "colorizeModelLine", js_namespace = editor)]
     pub fn colorize_model_line(
         model: &ITextModel,
         line_number: f64,
@@ -162,22 +162,23 @@ extern "C" {
     /// # Returns
     ///
     /// `Token[][]`
-    #[wasm_bindgen(js_name = "tokenize")]
+    #[wasm_bindgen(js_name = "tokenize", js_namespace = editor)]
     pub fn tokenize(text: &str, language_id: &str) -> Array;
 
     /// Define a new theme or update an existing theme.
-    #[wasm_bindgen(js_name = "defineTheme")]
+    #[wasm_bindgen(js_name = "defineTheme", js_namespace = editor)]
     pub fn define_theme(theme_name: &str, theme_data: &IStandaloneThemeData);
 
     /// Switches to a theme.
-    #[wasm_bindgen(js_name = "setTheme")]
+    #[wasm_bindgen(js_name = "setTheme", js_namespace = editor)]
     pub fn set_theme(theme_name: &str);
 
     /// Clears all cached font measurements and triggers re-measurement.
-    #[wasm_bindgen(js_name = "remeasureFonts")]
+    #[wasm_bindgen(js_name = "remeasureFonts", js_namespace = editor)]
     pub fn remeasure_fonts();
 
     #[derive(Debug)]
+    #[wasm_bindgen(js_namespace = editor)]
     pub type TextModelResolvedOptions;
     #[wasm_bindgen(method, js_class = "TextModelResolvedOptions", js_name = "_textModelResolvedOptionsBrand", getter = _textModelResolvedOptionsBrand)]
     pub fn _text_model_resolved_options_brand(this: &TextModelResolvedOptions);
@@ -193,6 +194,7 @@ extern "C" {
     pub fn trim_auto_whitespace(this: &TextModelResolvedOptions) -> bool;
 
     #[derive(Debug)]
+    #[wasm_bindgen(js_namespace = editor)]
     pub type FindMatch;
     #[wasm_bindgen(method, js_class = "FindMatch", js_name = "_findMatchBrand", getter = _findMatchBrand)]
     pub fn _find_match_brand(this: &FindMatch);
@@ -204,12 +206,13 @@ extern "C" {
 
     /// An event describing that the configuration of the editor has changed.
     #[derive(Debug)]
+    #[wasm_bindgen(js_namespace = editor)]
     pub type ConfigurationChangedEvent;
     #[wasm_bindgen(method, js_class = "ConfigurationChangedEvent", js_name = "hasChanged")]
     pub fn has_changed(this: &ConfigurationChangedEvent, id: EditorOption) -> bool;
 
     #[derive(Debug)]
-    #[wasm_bindgen(extends = BareFontInfo)]
+    #[wasm_bindgen(extends = BareFontInfo, js_namespace = editor)]
     pub type FontInfo;
     #[wasm_bindgen(method, js_class = "FontInfo", js_name = "_editorStylingBrand", getter = _editorStylingBrand)]
     pub fn _editor_styling_brand(this: &FontInfo);
@@ -231,6 +234,7 @@ extern "C" {
     pub fn max_digit_width(this: &FontInfo) -> f64;
 
     #[derive(Debug)]
+    #[wasm_bindgen(js_namespace = editor)]
     pub type BareFontInfo;
     #[wasm_bindgen(method, js_class = "BareFontInfo", js_name = "_bareFontInfoBrand", getter = _bareFontInfoBrand)]
     pub fn _bare_font_info_brand(this: &BareFontInfo);
@@ -249,6 +253,7 @@ extern "C" {
     #[wasm_bindgen(method, js_class = "BareFontInfo", js_name = "letterSpacing", getter = letterSpacing)]
     pub fn letter_spacing(this: &BareFontInfo) -> f64;
 }
+
 str_enum! {
     pub enum BuiltinTheme {
         Vs = "vs",
