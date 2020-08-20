@@ -49,6 +49,7 @@ extern "C" {
     /// (http://tools.ietf.org/html/rfc3986#section-3) with minimal validation
     /// and encoding.
     ///
+    /// ```text
     ///       foo://example.com:8042/over/there?name=ferret#nose
     ///       \_/   \______________/\_________/ \_________/ \__/
     ///        |           |            |            |        |
@@ -56,6 +57,7 @@ extern "C" {
     ///        |   _____________________|__
     ///       / \ /                        \
     ///       urn:example:animal:ferret:nose
+    /// ```
     #[derive(Debug)]
     #[wasm_bindgen(extends = UriComponents)]
     pub type Uri;

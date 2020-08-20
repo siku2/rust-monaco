@@ -1,5 +1,8 @@
 //! Simplified API.
-//! Requires the `api` feature.
+//! Requires the "api" feature (enabled by default).
+//!
+//! Most of the types here are simply wrappers around the Javascript types and
+//! implement [`AsRef`] for them.
 use crate::sys::IDisposable;
 pub use editor::*;
 pub use model::*;
@@ -29,5 +32,11 @@ impl<T: ?Sized> DisposableClosure<T> {
 impl<T: ?Sized> Drop for DisposableClosure<T> {
     fn drop(&mut self) {
         self.js_disposable.dispose();
+    }
+}
+
+impl<T> AsRef<IDisposable> for DisposableClosure<T> {
+    fn as_ref(&self) -> &IDisposable {
+        &self.js_disposable
     }
 }

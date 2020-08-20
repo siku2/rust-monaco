@@ -10,7 +10,7 @@ use crate::sys::{
 };
 use wasm_bindgen::{JsCast, JsValue};
 
-#[derive(Debug)]
+#[derive(Clone, Debug, Eq, PartialEq)]
 pub struct TextModel {
     js_model: ITextModel,
 }
@@ -58,6 +58,11 @@ impl TextModel {
     /// Gets the resource associated with this editor model.
     pub fn uri(&self) -> Uri {
         self.js_model.uri()
+    }
+
+    /// Get the language for this model.
+    pub fn get_language(&self) -> String {
+        self.js_model.get_mode_id()
     }
 
     /// Change the language for this model.

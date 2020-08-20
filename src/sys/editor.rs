@@ -15,11 +15,38 @@ use js_sys::{Array, Function, Object, Promise};
 use wasm_bindgen::{prelude::*, JsCast};
 use web_sys::HtmlElement;
 
-impl Default for IStandaloneEditorConstructionOptions {
-    fn default() -> Self {
-        Object::new().unchecked_into()
+impl IDimension {
+    /// Create a new dimension with the specified width and height
+    pub fn new(width: impl Into<f64>, height: impl Into<f64>) -> Self {
+        let dim: Self = Object::new().unchecked_into();
+        dim.set_width(width.into());
+        dim.set_height(height.into());
+        dim
     }
 }
+
+macro_rules! impl_default_empty_obj {
+    ($($ty:ty,)*) => {
+        $(
+            impl Default for $ty {
+                fn default() -> Self {
+                    Object::new().unchecked_into()
+                }
+            }
+        )*
+    };
+}
+
+impl_default_empty_obj![
+    IColorizerElementOptions,
+    IColorizerOptions,
+    IDiffEditorConstructionOptions,
+    IDiffNavigatorOptions,
+    IGlobalEditorOptions,
+    IModelDecorationOptions,
+    ISuggestOptions,
+    IStandaloneEditorConstructionOptions,
+];
 
 // DANGER: Generated code ahead. Keep out!
 
@@ -1624,7 +1651,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     /// A model.
-    #[derive(Debug)]
+    #[derive(Clone, Debug, Eq, PartialEq)]
     #[wasm_bindgen(extends = Object)]
     pub type ITextModel;
     /// Gets the resource associated with this editor model.
@@ -2279,7 +2306,7 @@ extern "C" {
 
 #[wasm_bindgen]
 extern "C" {
-    #[derive(Debug)]
+    #[derive(Clone, Debug, Eq, PartialEq)]
     #[wasm_bindgen(extends = Object)]
     pub type IDimension;
     #[wasm_bindgen(method, js_class = "IDimension", js_name = "width", getter = width)]

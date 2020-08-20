@@ -1,4 +1,5 @@
-//! Embedded javascript.
+//! Embedded Javascript code for Monaco's language Web Workers.
+//! Requires the "workers" feature (enabled by default).
 use crate::sys::{Environment, GetWorkerFn};
 use js_sys::Array;
 use std::iter;

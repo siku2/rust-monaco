@@ -8,6 +8,7 @@ use crate::sys::{
         IContentSizeChangedEvent,
         ICursorPositionChangedEvent,
         ICursorSelectionChangedEvent,
+        IDimension,
         IEditorMouseEvent,
         IModelChangedEvent,
         IModelContentChangedEvent,
@@ -20,35 +21,84 @@ use crate::sys::{
     IKeyboardEvent,
     IScrollEvent,
 };
-use serde::Serialize;
 use std::borrow::Borrow;
-use wasm_bindgen::{JsCast, JsValue};
+use wasm_bindgen::JsValue;
 use web_sys::HtmlElement;
 
-#[derive(Clone, Debug, Default, Eq, PartialEq, Serialize)]
-#[serde(rename_all = "camelCase")]
+/// Switches to a theme.
+pub fn set_global_theme(theme: &str) {
+    editor::set_theme(theme);
+}
+
+/// Switches to a built-in theme.
+pub fn set_global_builtin_theme(theme: BuiltinTheme) {
+    set_global_theme(theme.to_value())
+}
+
+macro_rules! simple_setters {
+    ($target:ident => $($key:ident,)+) => {
+        $(
+            ::paste::paste! {
+                $target.[<set_ $key>]($key.as_ref().map(|v| v.as_ref()));
+            }
+        )*
+    };
+}
+
+/// Options for creating a new editor. This represents a simplified version of
+/// [`IStandaloneEditorConstructionOptions`].
+///
+/// If you need an option that isn't present you can use
+/// [`to_sys_options`](Self::to_sys_options) to
+/// build the [`IStandaloneEditorConstructionOptions`] object and expand it.
+#[derive(Clone, Debug, Default, Eq, PartialEq)]
 pub struct CodeEditorOptions {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub value: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub language: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
+    pub dimension: Option<IDimension>,
     pub theme: Option<String>,
+    pub model: Option<TextModel>,
+    pub language: Option<String>,
+    pub value: Option<String>,
 }
 impl CodeEditorOptions {
     builder_methods! {
-        pub with value(String);
-        pub with language(String);
+        pub with dimension(IDimension);
         pub with theme(String);
+        pub with model(TextModel);
+        pub with language(String);
+        pub with value(String);
     }
 
     pub fn with_builtin_theme(self, theme: BuiltinTheme) -> Self {
         self.with_theme(theme.to_value().to_owned())
     }
-}
-impl Into<IStandaloneEditorConstructionOptions> for &CodeEditorOptions {
-    fn into(self) -> IStandaloneEditorConstructionOptions {
-        JsValue::from_serde(self).unwrap().unchecked_into()
+
+    pub fn with_new_dimension(self, width: impl Into<f64>, height: impl Into<f64>) -> Self {
+        self.with_dimension(IDimension::new(width, height))
+    }
+
+    /// Convert into [`IStandaloneEditorConstructionOptions`].
+    pub fn to_sys_options(&self) -> IStandaloneEditorConstructionOptions {
+        let options = IStandaloneEditorConstructionOptions::default();
+
+        // this helps ensure we don't miss any members
+        let CodeEditorOptions {
+            dimension,
+            theme,
+            model,
+            language,
+            value,
+        } = self;
+
+        simple_setters! {
+            options =>
+                language,
+                dimension,
+                theme,
+                model,
+                value,
+        }
+
+        options
     }
 }
 
@@ -111,24 +161,62 @@ impl CodeEditor {
         pub on_mouse_up(FnMut(IEditorMouseEvent));
     }
 
-    /// Create a new editor under `domElement`.
-    /// `domElement` should be empty (not contain other dom nodes).
-    /// The editor will read the size of `domElement`.
+    /// Create a new editor under `element`.
+    /// `element` should be empty (not contain other dom nodes).
+    /// The editor will read the size of `element`.
+    ///
+    /// Use [`create_with_sys_options`](Self::create_with_sys_options) if you
+    /// need more flexibility than provided by [`CodeEditorOptions`].
     pub fn create<OPT>(element: &HtmlElement, options: Option<OPT>) -> Self
     where
         OPT: Borrow<CodeEditorOptions>,
     {
+        Self::create_with_sys_options(
+            element,
+            options
+                .as_ref()
+                .map(Borrow::borrow)
+                .map(CodeEditorOptions::to_sys_options),
+        )
+    }
+
+    /// Create a new editor under `element`.
+    /// `element` should be empty (not contain other dom nodes).
+    /// The editor will read the size of `element`.
+    pub fn create_with_sys_options<OPT>(element: &HtmlElement, options: Option<OPT>) -> Self
+    where
+        OPT: Borrow<IStandaloneEditorConstructionOptions>,
+    {
         #[cfg(feature = "workers")]
         crate::workers::ensure_environment_set();
 
-        let options = options.as_ref().map(Borrow::borrow).map(Into::into);
-        let js_editor = editor::create(element, options.as_ref(), None);
+        let options = options.as_ref().map(Borrow::borrow);
+        let js_editor = editor::create(element, options, None);
         Self::from(js_editor)
     }
 
     /// Gets the current model attached to this editor.
     pub fn get_model(&self) -> Option<TextModel> {
         self.js_editor.get_model().map(TextModel::from)
+    }
+
+    /// Sets the current model attached to this editor.
+    /// If the previous model was created by the editor via the `value` key in
+    /// the options, it will be destroyed. Otherwise, if the previous model was
+    /// set via this method, or the `model` key in the options, the
+    /// previous model will not be destroyed.
+    pub fn set_model(&self, model: &TextModel) {
+        self.js_editor.set_model(Some(model.as_ref()))
+    }
+
+    /// Detaches the current model from the editor and returns it.
+    /// The handling of the model is the same as described in
+    /// [`set_model`](Self::set_model). This operation acts like
+    /// `setModel(null)` in the Javascript API.
+    pub fn detach_model(&self) -> Option<TextModel> {
+        let model = self.get_model();
+        self.js_editor.set_model(None);
+        model
     }
 }
 impl Drop for CodeEditor {

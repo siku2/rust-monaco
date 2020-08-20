@@ -1,5 +1,5 @@
 //! Monaco editor as a [Yew](https://yew.rs) component.
-//! Requires the `yew` feature.
+//! Requires the "yew" feature.
 use crate::api::{CodeEditor as CodeEditorModel, CodeEditorOptions, TextModel};
 use std::{cell::RefCell, fmt::Write, rc::Rc};
 use web_sys::HtmlElement;
