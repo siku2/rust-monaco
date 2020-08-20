@@ -13,7 +13,7 @@ pub struct CodeEditorProps {
     #[prop_or_default]
     pub options: Option<Rc<CodeEditorOptions>>,
     #[prop_or_default]
-    pub model: Option<Rc<TextModel>>,
+    pub model: Option<TextModel>,
     /// This could be called multiple times if the `options` field changes.
     /// You can use this to initialise the editor
     #[prop_or_default]
