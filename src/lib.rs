@@ -1,4 +1,4 @@
-//! Rust bindings for the Monaco text editor.
+//! Rust WASM bindings for the Monaco Editor.
 #[macro_use]
 mod macros;
 #[cfg(feature = "api")]

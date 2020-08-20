@@ -2,15 +2,22 @@
 
 ## General Requirements
 
-More specific requirements will be listed in the subdirectories
+More specific requirements will be listed in the subdirectories.
 
-- `just`: task runner
-- `wasm-pack`: builds the examples
+This project is built for the stable Rust toolchain but it requires the nightly versions of rustfmt and clippy.
 
-Install both of them:
+Run the following command to install the nightly toolchain:
 
 ```bash
-cargo install just wasm-pack
+rustup toolchain install nightly
+```
+
+To make your life easier you should also install [`just`](https://github.com/casey/just) which is used to perform various tasks.
+
+You can run the following command to install it:
+
+```bash
+cargo install just
 ```
 
 ## Structure
