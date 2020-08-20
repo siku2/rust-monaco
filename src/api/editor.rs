@@ -102,6 +102,12 @@ impl CodeEditorOptions {
     }
 }
 
+/// Monaco code editor.
+///
+/// This struct should be the sole owner of the underlying
+/// [`IStandaloneCodeEditor`] because it will call
+/// [`dispose`](IStandaloneCodeEditor::dispose) when dropped.
+/// This is only an issue when using the [`From`] trait.
 #[must_use = "editor is disposed when dropped"]
 #[derive(Debug)]
 pub struct CodeEditor {

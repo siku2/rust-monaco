@@ -10,6 +10,10 @@ use crate::sys::{
 };
 use wasm_bindgen::{JsCast, JsValue};
 
+/// Models are a more abstract representation of files that can be "opened"
+/// (attached) to an editor.
+///
+/// Cloning this type is cheap to clone.
 #[derive(Clone, Debug, Eq, PartialEq)]
 pub struct TextModel {
     js_model: ITextModel,
