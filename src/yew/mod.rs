@@ -129,8 +129,18 @@ impl Component for CodeEditor {
             .node_ref
             .cast::<HtmlElement>()
             .expect("failed to resolve editor element");
-        let model = CodeEditorModel::create(&el, self.props.options.as_deref());
-        self.editor = Some(model);
+
+        let props = &self.props;
+        let editor = CodeEditorModel::create(&el, props.options.as_deref());
+
+        if let Some(model) = &props.model {
+            // initially we only update the model if it was actually given as a prop.
+            // this way a value or model can be given in the options and it won't be
+            // detached immediately
+            editor.set_model(model)
+        }
+
+        self.editor = Some(editor);
         self.emit_editor_created();
     }
 }
