@@ -75,6 +75,7 @@ impl Component for CodeEditor {
 
     fn rendered(&mut self, first_render: bool) {
         debug_assert!(first_render, "component should never render more than once");
+
         let el = self
             .node_ref
             .cast::<HtmlElement>()
@@ -101,20 +102,20 @@ impl CodeEditorLink {
             .flatten()
     }
 
-    fn with_editor<T>(&self, f: impl FnOnce(&CodeEditorModel) -> T) -> Option<T> {
+    /// Get access to the underlying [`CodeEditor`].
+    /// The return value is `None` if the link isn't connected.
+    pub fn with_editor<T>(&self, f: impl FnOnce(&CodeEditorModel) -> T) -> Option<T> {
         self.with_component(|comp| comp.editor.as_ref().map(f))
             .flatten()
     }
 
-    fn with_model<T>(&self, f: impl FnOnce(&TextModel) -> T) -> Option<T> {
-        self.with_editor(|editor| editor.get_model().as_ref().map(f))
-            .flatten()
+    fn get_model(&self) -> Option<TextModel> {
+        self.with_editor(|editor| editor.get_model()).flatten()
     }
 
-    /// Get the value of the current
+    /// Get the value of the current model.
     pub fn get_value(&self) -> Option<String> {
-        // TODO get_value should be reimplemented on `TextModel`
-        self.with_model(|model| model.as_ref().get_value(None, None))
+        self.get_model().map(|model| model.get_value())
     }
 }
 impl PartialEq for CodeEditorLink {

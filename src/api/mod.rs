@@ -16,7 +16,7 @@ pub struct DisposableClosure<T: ?Sized> {
     js_disposable: IDisposable,
 }
 impl<T: ?Sized> DisposableClosure<T> {
-    fn new(closure: Closure<T>, js_disposable: IDisposable) -> Self {
+    pub fn new(closure: Closure<T>, js_disposable: IDisposable) -> Self {
         Self {
             closure,
             js_disposable,

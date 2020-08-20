@@ -35,7 +35,7 @@ impl Component for App {
 
     fn view(&self) -> Html {
         html! {
-            <CodeEditor options=self.options.clone() />
+            <CodeEditor options=Rc::clone(&self.options) height="100vh" />
         }
     }
 }
