@@ -5,6 +5,9 @@ pub use editor::*;
 pub use model::*;
 use wasm_bindgen::closure::Closure;
 
+#[macro_use]
+mod macros;
+
 mod editor;
 mod model;
 

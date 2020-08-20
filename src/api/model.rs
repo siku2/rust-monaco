@@ -1,4 +1,3 @@
-use super::DisposableClosure;
 use crate::sys::{
     editor::{
         self,
@@ -9,32 +8,8 @@ use crate::sys::{
     },
     Uri,
 };
-use wasm_bindgen::{closure::Closure, JsCast, JsValue};
+use wasm_bindgen::{JsCast, JsValue};
 
-macro_rules! event_methods {
-    (
-        $(
-            $(#[$meta:meta])*
-            $vis:vis $ident:ident($($ty:tt)*);
-        )*
-    ) => {
-        $(
-            $(#[$meta])*
-            $vis fn $ident(
-                &self,
-                listener: impl $($ty)* + 'static,
-            ) -> DisposableClosure<dyn $($ty)*> {
-                let cb = Closure::wrap(Box::new(listener) as Box<dyn $($ty)*>);
-                let js_disposable = self
-                    .as_ref()
-                    .$ident(cb.as_ref().unchecked_ref());
-                DisposableClosure::new(cb, js_disposable)
-            }
-        )*
-    };
-}
-
-#[must_use = "model is disposed when dropped"]
 #[derive(Debug)]
 pub struct TextModel {
     js_model: ITextModel,
@@ -61,14 +36,43 @@ impl TextModel {
         Self::from(js_model)
     }
 
+    /// Get the model that has `uri` if it exists.
+    pub fn get(uri: &Uri) -> Option<Self> {
+        editor::get_model(uri).map(Self::from)
+    }
+
+    /// Get all the created models.
+    pub fn get_all() -> Vec<Self> {
+        editor::get_models()
+            .iter()
+            .map(JsCast::unchecked_into::<ITextModel>)
+            .map(Self::from)
+            .collect()
+    }
+
+    /// A unique identifier associated with this model.
+    pub fn id(&self) -> String {
+        self.js_model.id()
+    }
+
+    /// Gets the resource associated with this editor model.
+    pub fn uri(&self) -> Uri {
+        self.js_model.uri()
+    }
+
+    /// Change the language for this model.
+    pub fn set_language(&self, language_id: &str) {
+        editor::set_model_language(self.as_ref(), language_id);
+    }
+
     /// Get the text stored in this model.
     pub fn get_value(&self) -> String {
         self.js_model.get_value(None, None)
     }
-}
-impl Drop for TextModel {
-    fn drop(&mut self) {
-        self.js_model.dispose();
+
+    /// Replace the entire text buffer value contained in this model.
+    pub fn set_value(&self, value: &str) {
+        self.js_model.set_value(value)
     }
 }
 

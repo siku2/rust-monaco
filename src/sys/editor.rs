@@ -1742,8 +1742,12 @@ extern "C" {
     ///
     /// If the offset is such that the new position would be in the middle of a
     /// multi-byte line terminator, throws an exception.
-    #[wasm_bindgen(method, js_class = "ITextModel", js_name = "modifyPosition")]
-    pub fn modify_position(this: &ITextModel, position: &IPosition, offset: f64) -> Position;
+    #[wasm_bindgen(catch, method, js_class = "ITextModel", js_name = "modifyPosition")]
+    pub fn modify_position(
+        this: &ITextModel,
+        position: &IPosition,
+        offset: f64,
+    ) -> Result<Position, JsValue>;
     /// Create a valid range.
     #[wasm_bindgen(method, js_class = "ITextModel", js_name = "validateRange")]
     pub fn validate_range(this: &ITextModel, range: &IRange) -> Range;
