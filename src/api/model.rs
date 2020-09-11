@@ -35,14 +35,27 @@ impl TextModel {
     }
 
     /// Create a new model.
-    pub fn create(value: &str, language: Option<&str>, uri: Option<&Uri>) -> Self {
-        let js_model = editor::create_model(value, language, uri);
-        Self::from(js_model)
+    pub fn create(value: &str, language: Option<&str>, uri: Option<&Uri>) -> Result<Self, JsValue> {
+        editor::create_model(value, language, uri).map(Self::from)
     }
 
     /// Get the model that has `uri` if it exists.
     pub fn get(uri: &Uri) -> Option<Self> {
         editor::get_model(uri).map(Self::from)
+    }
+
+    /// Get the model that has `uri` if it exists or create a new one.
+    /// If the model exists the given `value` and `language` will be set on it.
+    pub fn get_or_create(uri: &Uri, value: &str, language: Option<&str>) -> Result<Self, JsValue> {
+        if let Some(model) = Self::get(uri) {
+            model.set_value(value);
+            if let Some(language) = language {
+                model.set_language(language);
+            }
+            Ok(model)
+        } else {
+            Self::create(value, language, Some(uri))
+        }
     }
 
     /// Get all the created models.

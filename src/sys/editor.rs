@@ -99,8 +99,8 @@ extern "C" {
     /// Create a new editor model.
     /// You can specify the language that should be set for this model or let
     /// the language be inferred from the `uri`.
-    #[wasm_bindgen(js_name = "createModel", js_namespace = editor)]
-    pub fn create_model(value: &str, language: Option<&str>, uri: Option<&Uri>) -> ITextModel;
+    #[wasm_bindgen(js_name = "createModel", js_namespace = editor, catch)]
+    pub fn create_model(value: &str, language: Option<&str>, uri: Option<&Uri>) -> Result<ITextModel, JsValue>;
 
     /// Change the language for a model.
     #[wasm_bindgen(js_name = "setModelLanguage", js_namespace = editor)]
