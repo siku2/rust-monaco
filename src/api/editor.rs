@@ -36,12 +36,18 @@ pub fn set_global_builtin_theme(theme: BuiltinTheme) {
 }
 
 macro_rules! simple_setters {
-    ($target:ident => $($key:ident,)+) => {
-        $(
-            ::paste::paste! {
-                $target.[<set_ $key>]($key.as_ref().map(|v| v.as_ref()));
-            }
-        )*
+    ($target:ident => ) => {};
+    ($target:ident => ref $key:ident, $($tail:tt)*) => {
+        ::paste::paste! {
+            $target.[<set_ $key>]($key.as_ref().map(|v| v.as_ref()));
+        }
+        simple_setters!($target => $($tail)*);
+    };
+    ($target:ident => $key:ident, $($tail:tt)*) => {
+        ::paste::paste! {
+            $target.[<set_ $key>](*$key);
+        }
+        simple_setters!($target => $($tail)*);
     };
 }
 
@@ -58,6 +64,7 @@ pub struct CodeEditorOptions {
     pub model: Option<TextModel>,
     pub language: Option<String>,
     pub value: Option<String>,
+    pub scroll_beyond_last_line: Option<bool>,
 }
 impl CodeEditorOptions {
     builder_methods! {
@@ -66,6 +73,7 @@ impl CodeEditorOptions {
         pub with model(TextModel);
         pub with language(String);
         pub with value(String);
+        pub with scroll_beyond_last_line(bool);
     }
 
     pub fn with_builtin_theme(self, theme: BuiltinTheme) -> Self {
@@ -87,15 +95,17 @@ impl CodeEditorOptions {
             model,
             language,
             value,
+            scroll_beyond_last_line,
         } = self;
 
         simple_setters! {
             options =>
-                language,
-                dimension,
-                theme,
-                model,
-                value,
+                ref language,
+                ref dimension,
+                ref theme,
+                ref model,
+                ref value,
+                scroll_beyond_last_line,
         }
 
         options
