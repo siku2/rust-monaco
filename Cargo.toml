@@ -11,6 +11,9 @@ keywords = ["monaco", "wasm-bindgen"]
 categories = ["api-bindings", "text-editors", "web-programming", "wasm"]
 exclude = ["/build/", "/ts2rs/"]
 
+[package.metadata.docs.rs]
+all-features = true
+
 [lib]
 crate-type = ["cdylib", "rlib"]
 
