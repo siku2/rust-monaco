@@ -478,13 +478,79 @@ int_enum! {
     }
 }
 
-str_enum! {
-    pub enum LineNumbersType {
-        On = "on",
-        Off = "off",
-        Relative = "relative",
-        Interval = "interval",
-        LineNumberNumberString = "(lineNumber: number) => string",
+pub enum LineNumbersType {
+    On,
+    Off,
+    Relative,
+    Interval,
+
+    /// Custom function with signature `(lineNumber: number) => string`
+    Custom(js_sys::Function),
+}
+impl LineNumbersType {
+    /// Get the variant for the value.
+    /// Returns `None` if the value isn't part of the enum.
+    pub fn from_value(val: &str) -> Option<Self> {
+        match val {
+            "on" => Some(LineNumbersType::On),
+            "off" => Some(LineNumbersType::Off),
+            "relative" => Some(LineNumbersType::Relative),
+            "interval" => Some(LineNumbersType::Interval),
+            _ => None,
+        }
+    }
+}
+impl LineNumbersType {
+    /// Get the value of the variant.
+    pub fn to_value(&self) -> &'static str {
+        match self {
+            LineNumbersType::On => "on",
+            LineNumbersType::Off => "off",
+            LineNumbersType::Relative => "relative",
+            LineNumbersType::Interval => "interval",
+            LineNumbersType::Custom(_) => panic!("This variant is not representable by string"),
+        }
+    }
+}
+impl crate::macros::exports::WasmDescribe for LineNumbersType {
+    fn describe() {
+        <JsValue as crate::macros::exports::WasmDescribe>::describe()
+    }
+}
+impl crate::macros::exports::OptionFromWasmAbi for LineNumbersType {
+    fn is_none(abi: &Self::Abi) -> bool {
+        // SAFETY: this isn't any more unsafe than the FromWasmAbi implementation is in the first place.
+        let js_value = unsafe { <JsValue as wasm_bindgen::convert::FromWasmAbi>::from_abi(*abi) };
+        js_value.is_null() || js_value.is_undefined()
+    }
+}
+impl crate::macros::exports::OptionIntoWasmAbi for LineNumbersType {
+    fn none() -> Self::Abi {
+        let value = JsValue::undefined();
+        <JsValue as wasm_bindgen::convert::IntoWasmAbi>::into_abi(value)
+    }
+}
+impl wasm_bindgen::convert::FromWasmAbi for LineNumbersType {
+    type Abi = <crate::macros::exports::JsValue as wasm_bindgen::convert::FromWasmAbi>::Abi;
+
+    unsafe fn from_abi(abi: Self::Abi) -> Self {
+        let js_value = <JsValue as crate::macros::exports::FromWasmAbi>::from_abi(abi);
+        if let Some(value) = js_value.as_string() {
+            Self::from_value(&value).expect("received value outside of enum")
+        } else {
+            Self::Custom(js_value.into())
+        }
+    }
+}
+impl wasm_bindgen::convert::IntoWasmAbi for LineNumbersType {
+    type Abi = <JsValue as wasm_bindgen::convert::IntoWasmAbi>::Abi;
+
+    fn into_abi(self) -> Self::Abi {
+        let value: JsValue = match self {
+            Self::On | Self::Off | Self::Relative | Self::Interval => self.to_value().into(),
+            Self::Custom(value) => value.into(),
+        };
+        <JsValue as wasm_bindgen::convert::IntoWasmAbi>::into_abi(value)
     }
 }
 
