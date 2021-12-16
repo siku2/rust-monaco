@@ -3,7 +3,8 @@
 use crate::api::{CodeEditor as CodeEditorModel, CodeEditorOptions, TextModel};
 use std::{cell::RefCell, mem, rc::Rc};
 use web_sys::HtmlElement;
-use yew::{html, Callback, Component, ComponentLink, Html, NodeRef, Properties, ShouldRender};
+use yew::{html, Callback, Component, Html, NodeRef, Properties, Context};
+use yew::html::Scope;
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct CodeEditorProps {
@@ -27,21 +28,20 @@ pub struct CodeEditorProps {
 #[derive(Debug)]
 pub struct CodeEditor {
     props: CodeEditorProps,
-    link: ComponentLink<Self>,
     node_ref: NodeRef,
     editor: Option<CodeEditorModel>,
 }
 impl CodeEditor {
-    fn emit_editor_created(&self) {
+    fn emit_editor_created(&self, ctx:&Context<Self>) {
         let CodeEditorProps {
             link,
             on_editor_created,
             ..
-        } = &self.props;
+        } = &ctx.props();
         // reuse the link we were given or create a new one
         let link = link
             .clone()
-            .unwrap_or_else(|| CodeEditorLink::new_connected(self.link.clone()));
+            .unwrap_or_else(|| CodeEditorLink::new_connected(ctx.link().clone()));
 
         on_editor_created.emit(link);
     }
@@ -50,38 +50,33 @@ impl Component for CodeEditor {
     type Message = ();
     type Properties = CodeEditorProps;
 
-    fn create(props: Self::Properties, link: ComponentLink<Self>) -> Self {
-        if let Some(editor_link) = &props.link {
-            editor_link.connect(link.clone());
+    fn create(ctx:&Context<Self>) -> Self {
+        if let Some(editor_link) = &ctx.props().link {
+            editor_link.connect(ctx.link().clone());
         }
 
         Self {
-            props,
-            link,
+            props: ctx.props().clone(),
             node_ref: NodeRef::default(),
             editor: None,
         }
     }
 
-    fn update(&mut self, _msg: Self::Message) -> ShouldRender {
-        false
-    }
-
-    fn change(&mut self, props: Self::Properties) -> ShouldRender {
-        let old_props = mem::replace(&mut self.props, props);
+    fn changed(&mut self, ctx:&Context<Self>) -> bool {
+        let old_props = mem::replace(&mut self.props, ctx.props().clone());
         // these are the new values
         let CodeEditorProps {
             link,
             options,
             model,
             on_editor_created: _,
-        } = &self.props;
+        } = &ctx.props();
 
         let mut should_render = false;
         if link != &old_props.link {
             // make sure to connect the new link to this component
             if let Some(link) = &link {
-                link.connect(self.link.clone());
+                link.connect(ctx.link().clone());
             }
         }
         // changing options requires re-create
@@ -109,7 +104,7 @@ impl Component for CodeEditor {
         should_render
     }
 
-    fn view(&self) -> Html {
+    fn view(&self, _ctx:&Context<Self>) -> Html {
         let Self {
             node_ref, editor, ..
         } = self;
@@ -120,17 +115,17 @@ impl Component for CodeEditor {
         );
 
         html! {
-            <div ref=node_ref.clone() style="width: 100%; height: 100%;" />
+            <div ref={node_ref.clone()} style="width: 100%; height: 100%;" />
         }
     }
 
-    fn rendered(&mut self, _first_render: bool) {
+    fn rendered(&mut self, ctx:&Context<Self>, _first_render: bool) {
         let el = self
             .node_ref
             .cast::<HtmlElement>()
             .expect("failed to resolve editor element");
 
-        let props = &self.props;
+        let props = ctx.props();
         let editor = CodeEditorModel::create(&el, props.options.as_deref());
 
         if let Some(model) = &props.model {
@@ -141,23 +136,23 @@ impl Component for CodeEditor {
         }
 
         self.editor = Some(editor);
-        self.emit_editor_created();
+        self.emit_editor_created(ctx);
     }
 }
 
 /// Link to control a [`CodeEditor`].
 #[derive(Clone, Debug, Default)]
-pub struct CodeEditorLink(Rc<RefCell<Option<ComponentLink<CodeEditor>>>>);
+pub struct CodeEditorLink(Rc<RefCell<Option<Scope<CodeEditor>>>>);
 impl CodeEditorLink {
-    fn new_connected(link: ComponentLink<CodeEditor>) -> Self {
+    fn new_connected(link: Scope<CodeEditor>) -> Self {
         Self(Rc::new(RefCell::new(Some(link))))
     }
 
-    fn connect(&self, link: ComponentLink<CodeEditor>) {
+    fn connect(&self, link: Scope<CodeEditor>) {
         self.0.borrow_mut().replace(link);
     }
 
-    fn with_link<T>(&self, f: impl FnOnce(&ComponentLink<CodeEditor>) -> T) -> Option<T> {
+    fn with_link<T>(&self, f: impl FnOnce(&Scope<CodeEditor>) -> T) -> Option<T> {
         (*self.0.borrow()).as_ref().map(f)
     }
 
