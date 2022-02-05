@@ -3,12 +3,12 @@
     "build": "rollup -c"
   },
   "dependencies": {
-    "monaco-editor": "^0.20"
+    "monaco-editor": "^0.32"
   },
   "devDependencies": {
-    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-node-resolve": "^13.0.0",
     "rollup": "^2.26.2",
-    "rollup-plugin-styles": "^3.10.0",
+    "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-terser": "^7.0.0"
   }
 }
