@@ -45,6 +45,9 @@ impl_default_empty_obj![
     IGlobalEditorOptions,
     IModelDecorationOptions,
     ISuggestOptions,
+    IEditorScrollbarOptions,
+    IEditorFindOptions,
+    IEditorMinimapOptions,
     IStandaloneEditorConstructionOptions,
 ];
 
