@@ -103,7 +103,11 @@ extern "C" {
     /// You can specify the language that should be set for this model or let
     /// the language be inferred from the `uri`.
     #[wasm_bindgen(js_name = "createModel", js_namespace = editor, catch)]
-    pub fn create_model(value: &str, language: Option<&str>, uri: Option<&Uri>) -> Result<ITextModel, JsValue>;
+    pub fn create_model(
+        value: &str,
+        language: Option<&str>,
+        uri: Option<&Uri>,
+    ) -> Result<ITextModel, JsValue>;
 
     /// Change the language for a model.
     #[wasm_bindgen(js_name = "setModelLanguage", js_namespace = editor)]
@@ -522,7 +526,8 @@ impl crate::macros::exports::WasmDescribe for LineNumbersType {
 }
 impl crate::macros::exports::OptionFromWasmAbi for LineNumbersType {
     fn is_none(abi: &Self::Abi) -> bool {
-        // SAFETY: this isn't any more unsafe than the FromWasmAbi implementation is in the first place.
+        // SAFETY: this isn't any more unsafe than the FromWasmAbi implementation is in
+        // the first place.
         let js_value = unsafe { <JsValue as wasm_bindgen::convert::FromWasmAbi>::from_abi(*abi) };
         js_value.is_null() || js_value.is_undefined()
     }

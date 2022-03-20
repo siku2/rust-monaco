@@ -3,8 +3,7 @@
 use crate::api::{CodeEditor as CodeEditorModel, CodeEditorOptions, TextModel};
 use std::{cell::RefCell, mem, rc::Rc};
 use web_sys::HtmlElement;
-use yew::{html, Callback, Component, Html, NodeRef, Properties, Context};
-use yew::html::Scope;
+use yew::{html, html::Scope, Callback, Component, Context, Html, NodeRef, Properties};
 
 #[derive(Clone, Debug, PartialEq, Properties)]
 pub struct CodeEditorProps {
@@ -32,7 +31,7 @@ pub struct CodeEditor {
     editor: Option<CodeEditorModel>,
 }
 impl CodeEditor {
-    fn emit_editor_created(&self, ctx:&Context<Self>) {
+    fn emit_editor_created(&self, ctx: &Context<Self>) {
         let CodeEditorProps {
             link,
             on_editor_created,
@@ -50,7 +49,7 @@ impl Component for CodeEditor {
     type Message = ();
     type Properties = CodeEditorProps;
 
-    fn create(ctx:&Context<Self>) -> Self {
+    fn create(ctx: &Context<Self>) -> Self {
         if let Some(editor_link) = &ctx.props().link {
             editor_link.connect(ctx.link().clone());
         }
@@ -62,7 +61,7 @@ impl Component for CodeEditor {
         }
     }
 
-    fn changed(&mut self, ctx:&Context<Self>) -> bool {
+    fn changed(&mut self, ctx: &Context<Self>) -> bool {
         let old_props = mem::replace(&mut self.props, ctx.props().clone());
         // these are the new values
         let CodeEditorProps {
@@ -104,7 +103,7 @@ impl Component for CodeEditor {
         should_render
     }
 
-    fn view(&self, _ctx:&Context<Self>) -> Html {
+    fn view(&self, _ctx: &Context<Self>) -> Html {
         let Self {
             node_ref, editor, ..
         } = self;
@@ -119,7 +118,7 @@ impl Component for CodeEditor {
         }
     }
 
-    fn rendered(&mut self, ctx:&Context<Self>, _first_render: bool) {
+    fn rendered(&mut self, ctx: &Context<Self>, _first_render: bool) {
         let el = self
             .node_ref
             .cast::<HtmlElement>()
