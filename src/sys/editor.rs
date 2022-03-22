@@ -53,7 +53,8 @@ impl_default_empty_obj![
 
 // DANGER: Generated code ahead. Keep out!
 
-#[wasm_bindgen(module = "/js/editor.js")]
+#[cfg_attr(debug_assertions, wasm_bindgen(module = "/js-debug/editor.js"))]
+#[cfg_attr(not(debug_assertions), wasm_bindgen(module = "/js-prod/editor.js"))]
 extern "C" {
     /// Create a new editor under `domElement`.
     /// `domElement` should be empty (not contain other dom nodes).

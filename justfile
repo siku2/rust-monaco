@@ -19,5 +19,7 @@ doc *args:
 # Build the Javascript code
 @build_js:
     just build/build
-    rm js/*
-    cp build/dist/*.js js
+    -rm js-debug/*
+    -rm js-prod/*
+    cp build/dist-debug/*.js js-debug
+    cp build/dist-prod/*.js js-prod

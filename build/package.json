@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "build": "rollup -c"
+    "build-prod": "rollup -c",
+    "build-debug": "rollup -c --configDebug"
   },
   "dependencies": {
     "monaco-editor": "^0.32"
