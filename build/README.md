@@ -18,5 +18,5 @@ just install
 just build
 ```
 
-> **NOTE:** This will output the files to the `dist/` directory.
+> **NOTE:** This will output the files to the `dist-debug/` and `dist-prod/` directories.
 > Use `just build_js` in the root directory to update the files used by the library.

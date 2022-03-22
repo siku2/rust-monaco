@@ -6,9 +6,17 @@ use std::iter;
 use wasm_bindgen::{closure::Closure, JsCast, JsValue};
 use web_sys::{Blob, Url, Worker};
 
+#[cfg(debug_assertions)]
 macro_rules! include_worker {
     ($name: literal) => {
-        include_str!(concat!("../../js/", $name))
+        include_str!(concat!("../../js-debug/", $name))
+    };
+}
+
+#[cfg(not(debug_assertions))]
+macro_rules! include_worker {
+    ($name: literal) => {
+        include_str!(concat!("../../js-prod/", $name))
     };
 }
 

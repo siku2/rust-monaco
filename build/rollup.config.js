@@ -2,8 +2,6 @@ import { nodeResolve } from "@rollup/plugin-node-resolve";
 import styles from "rollup-plugin-styles";
 import { terser } from "rollup-plugin-terser";
 
-const commonPlugins = [nodeResolve(), terser()];
-
 const workers = [
   {
     name: "editor.worker",
@@ -19,25 +17,31 @@ const workers = [
     input: "language/html/html.worker",
   },
 ];
-const workerConfigs = workers.map((worker) => ({
-  input: `monaco-editor/esm/vs/${worker.input}`,
-  output: {
-    format: "iife",
-    file: `dist/${worker.name}.js`,
-    inlineDynamicImports: true,
-  },
-  plugins: [...commonPlugins],
-}));
 
-export default [
-  {
-    input: "monaco-editor",
+export default args => {
+  const commonPlugins = args.configDebug ? [nodeResolve()] : [nodeResolve(), terser()];
+  const dist = args.configDebug ? "dist-debug" : "dist-prod";
+
+  const workerConfigs = workers.map((worker) => ({
+    input: `monaco-editor/esm/vs/${worker.input}`,
     output: {
-      format: "es",
-      file: "dist/editor.js",
+      format: "iife",
+      file: `${dist}/${worker.name}.js`,
       inlineDynamicImports: true,
     },
-    plugins: [styles(), ...commonPlugins],
-  },
-  ...workerConfigs,
-];
+    plugins: [...commonPlugins],
+  }));
+
+  return [
+    {
+      input: "monaco-editor",
+      output: {
+        format: "es",
+        file: `${dist}/editor.js`,
+        inlineDynamicImports: true,
+      },
+      plugins: [styles(), ...commonPlugins],
+    },
+    ...workerConfigs,
+  ];
+}
