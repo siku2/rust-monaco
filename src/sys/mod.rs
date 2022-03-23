@@ -18,8 +18,8 @@ impl Default for Environment {
 
 // You're entering generated land, tread with care.
 
-#[cfg_attr(debug_assertions, wasm_bindgen(module = "/js-debug/editor.js"))]
-#[cfg_attr(not(debug_assertions), wasm_bindgen(module = "/js-prod/editor.js"))]
+#[cfg_attr(debug_assertions, wasm_bindgen(module = "/js/debug/editor.js"))]
+#[cfg_attr(not(debug_assertions), wasm_bindgen(module = "/js/release/editor.js"))]
 extern "C" {
     /// A helper that allows to emit and listen to typed events
     #[derive(Debug)]

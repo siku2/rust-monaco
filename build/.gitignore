@@ -1,5 +1,5 @@
 /dist-debug/
-/dist-prod/
+/dist-release/
 /node_modules/
 
 package-lock.json

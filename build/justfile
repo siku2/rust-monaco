@@ -1,9 +1,9 @@
 # Build the Monaco Javascript files
-@build: build-debug build-prod
+@build: build-debug build-release
 
-@build-prod:
-    -rm dist-prod/*
-    npm run build-prod
+@build-release:
+    -rm dist-release/*
+    npm run build-release
 
 @build-debug:
     -rm dist-debug/*
