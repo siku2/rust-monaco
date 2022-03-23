@@ -21,6 +21,7 @@ const workers = [
 export default args => {
   const commonPlugins = args.configDebug ? [nodeResolve()] : [nodeResolve(), terser()];
   const dist = args.configDebug ? "dist-debug" : "dist-release";
+  const sourcemap = args.configDebug ? "inline" : false;
 
   const workerConfigs = workers.map((worker) => ({
     input: `monaco-editor/esm/vs/${worker.input}`,
@@ -28,6 +29,7 @@ export default args => {
       format: "iife",
       file: `${dist}/${worker.name}.js`,
       inlineDynamicImports: true,
+      sourcemap: sourcemap,
     },
     plugins: [...commonPlugins],
   }));
@@ -39,6 +41,7 @@ export default args => {
         format: "es",
         file: `${dist}/editor.js`,
         inlineDynamicImports: true,
+        sourcemap: sourcemap,
       },
       plugins: [styles(), ...commonPlugins],
     },
