@@ -20,7 +20,7 @@ const workers = [
 
 export default args => {
   const commonPlugins = args.configDebug ? [nodeResolve()] : [nodeResolve(), terser()];
-  const dist = args.configDebug ? "dist-debug" : "dist-prod";
+  const dist = args.configDebug ? "dist-debug" : "dist-release";
 
   const workerConfigs = workers.map((worker) => ({
     input: `monaco-editor/esm/vs/${worker.input}`,

@@ -9,14 +9,14 @@ use web_sys::{Blob, Url, Worker};
 #[cfg(debug_assertions)]
 macro_rules! include_worker {
     ($name: literal) => {
-        include_str!(concat!("../../js-debug/", $name))
+        include_str!(concat!("../../js/debug/", $name))
     };
 }
 
 #[cfg(not(debug_assertions))]
 macro_rules! include_worker {
     ($name: literal) => {
-        include_str!(concat!("../../js-prod/", $name))
+        include_str!(concat!("../../js/release/", $name))
     };
 }
 

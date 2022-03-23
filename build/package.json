@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "build-prod": "rollup -c",
+    "build-release": "rollup -c",
     "build-debug": "rollup -c --configDebug"
   },
   "dependencies": {
