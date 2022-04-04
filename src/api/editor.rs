@@ -112,6 +112,12 @@ impl CodeEditorOptions {
     }
 }
 
+impl From<CodeEditorOptions> for IStandaloneEditorConstructionOptions {
+    fn from(options: CodeEditorOptions) -> Self {
+        options.to_sys_options()
+    }
+}
+
 /// Monaco code editor.
 ///
 /// This struct should be the sole owner of the underlying
@@ -180,35 +186,28 @@ impl CodeEditor {
     /// Create a new editor under `element`.
     /// `element` should be empty (not contain other dom nodes).
     /// The editor will read the size of `element`.
-    ///
-    /// Use [`create_with_sys_options`](Self::create_with_sys_options) if you
-    /// need more flexibility than provided by [`CodeEditorOptions`].
     pub fn create<OPT>(element: &HtmlElement, options: Option<OPT>) -> Self
     where
-        OPT: Borrow<CodeEditorOptions>,
+        OPT: Into<IStandaloneEditorConstructionOptions>,
     {
-        Self::create_with_sys_options(
-            element,
-            options
-                .as_ref()
-                .map(Borrow::borrow)
-                .map(CodeEditorOptions::to_sys_options),
-        )
+        #[cfg(feature = "workers")]
+        crate::workers::ensure_environment_set();
+
+        let ioptions = options.map(|x| x.into());
+        let options = ioptions.as_ref().map(Borrow::borrow);
+        let js_editor = editor::create(element, options, None);
+        Self::from(js_editor)
     }
 
     /// Create a new editor under `element`.
     /// `element` should be empty (not contain other dom nodes).
     /// The editor will read the size of `element`.
-    pub fn create_with_sys_options<OPT>(element: &HtmlElement, options: Option<OPT>) -> Self
-    where
-        OPT: Borrow<IStandaloneEditorConstructionOptions>,
-    {
-        #[cfg(feature = "workers")]
-        crate::workers::ensure_environment_set();
-
-        let options = options.as_ref().map(Borrow::borrow);
-        let js_editor = editor::create(element, options, None);
-        Self::from(js_editor)
+    #[deprecated(since = "0.3.0", note = "Use `create` instead")]
+    pub fn create_with_sys_options(
+        element: &HtmlElement,
+        options: Option<IStandaloneEditorConstructionOptions>,
+    ) -> Self {
+        Self::create(element, options)
     }
 
     /// Gets the current model attached to this editor.

@@ -1,17 +1,20 @@
 //! Monaco editor as a [Yew](https://yew.rs) component.
 //! Requires the "yew" feature.
-use crate::api::{CodeEditor as CodeEditorModel, CodeEditorOptions, TextModel};
+use crate::{
+    api::{CodeEditor as CodeEditorModel, TextModel},
+    sys::editor::IStandaloneEditorConstructionOptions,
+};
 use std::{cell::RefCell, mem, rc::Rc};
 use web_sys::HtmlElement;
 use yew::{html, html::Scope, Callback, Component, Context, Html, NodeRef, Properties};
 
 #[derive(Clone, Debug, PartialEq, Properties)]
-pub struct CodeEditorProps {
+pub struct CodeEditorProps<OPT: std::cmp::PartialEq + Clone + Into<IStandaloneEditorConstructionOptions> = IStandaloneEditorConstructionOptions> {
     #[prop_or_default]
     pub link: Option<CodeEditorLink>,
     /// Changing the options will cause the editor to be re-created.
     #[prop_or_default]
-    pub options: Option<Rc<CodeEditorOptions>>,
+    pub options: Option<OPT>,
     #[prop_or_default]
     pub model: Option<TextModel>,
     /// This could be called multiple times if the `options` field changes.
@@ -125,7 +128,7 @@ impl Component for CodeEditor {
             .expect("failed to resolve editor element");
 
         let props = ctx.props();
-        let editor = CodeEditorModel::create(&el, props.options.as_deref());
+        let editor = CodeEditorModel::create(&el, props.options.clone());
 
         if let Some(model) = &props.model {
             // initially we only update the model if it was actually given as a prop.
