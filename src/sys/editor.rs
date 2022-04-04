@@ -1042,7 +1042,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     /// The options to create an editor.
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Clone)]
     #[wasm_bindgen(extends = IEditorConstructionOptions, extends = IGlobalEditorOptions, extends = Object)]
     pub type IStandaloneEditorConstructionOptions;
     /// The initial model associated with this code editor.
@@ -2954,7 +2954,7 @@ extern "C" {
 #[wasm_bindgen]
 extern "C" {
     /// Configuration options for the editor.
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Clone)]
     #[wasm_bindgen(extends = Object)]
     pub type IEditorOptions;
     /// This editor is used inside a diff editor.
@@ -3746,7 +3746,7 @@ extern "C" {
 
 #[wasm_bindgen]
 extern "C" {
-    #[derive(Debug)]
+    #[derive(Debug, PartialEq, Clone)]
     #[wasm_bindgen(extends = IEditorOptions, extends = Object)]
     pub type IEditorConstructionOptions;
     /// The initial editor dimension (to avoid measuring the container).
