@@ -4,6 +4,7 @@ use wasm_bindgen::{prelude::*, JsCast};
 use web_sys::{HtmlElement, KeyboardEvent, MouseEvent, Worker};
 
 pub mod editor;
+pub mod languages;
 
 /// Signature of the closure used by [`Environment::get_worker`]
 pub type GetWorkerFn = dyn FnMut(String, String) -> Worker;

@@ -18,13 +18,13 @@ mod model;
 #[must_use = "immediately disposed when dropped"]
 #[derive(Debug)]
 pub struct DisposableClosure<T: ?Sized> {
-    closure: Closure<T>,
+    _closure: Closure<T>,
     js_disposable: IDisposable,
 }
 impl<T: ?Sized> DisposableClosure<T> {
     pub fn new(closure: Closure<T>, js_disposable: IDisposable) -> Self {
         Self {
-            closure,
+            _closure: closure,
             js_disposable,
         }
     }
