@@ -1,9 +1,8 @@
 use monaco::{api::CodeEditorOptions, sys::editor::BuiltinTheme, yew::CodeEditor};
 use std::rc::Rc;
-use wasm_bindgen::prelude::*;
-use yew::{html, Component, Html, Context};
+use yew::{html, Component, Context, Html};
 
-const CONTENT: &str = include_str!("lib.rs");
+const CONTENT: &str = include_str!("main.rs");
 
 fn get_options() -> CodeEditorOptions {
     CodeEditorOptions::default()
@@ -31,12 +30,11 @@ impl Component for App {
 
     fn view(&self, _context: &Context<Self>) -> Html {
         html! {
-            <CodeEditor options={ Rc::clone(&self.options) } />
+            <CodeEditor options={ self.options.to_sys_options() } />
         }
     }
 }
 
-#[wasm_bindgen(start)]
-pub fn start_app() {
+fn main() {
     yew::start_app::<App>();
 }

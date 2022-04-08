@@ -1,16 +1,7 @@
 # Examples
 
 This directory contains examples.
-Use `just run <EXAMPLE>` to run one.
 
-## Requirements
+The examples use [Trunk](https://trunkrs.dev), you can install it using `cargo install trunk`.
 
-- `just`: task runner
-- `simple-http-server`: serves the build artefacts
-- `wasm-pack`: builds the examples
-
-Run the following command to install all of them:
-
-```bash
-cargo install just simple-http-server wasm-pack
-```
+Change into an example's directory (`cd <EXAMPLE>`) and run `trunk serve` to run it.
