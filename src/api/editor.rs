@@ -65,6 +65,7 @@ pub struct CodeEditorOptions {
     pub language: Option<String>,
     pub value: Option<String>,
     pub scroll_beyond_last_line: Option<bool>,
+    pub automatic_layout: Option<bool>,
 }
 impl CodeEditorOptions {
     builder_methods! {
@@ -74,6 +75,7 @@ impl CodeEditorOptions {
         pub with language(String);
         pub with value(String);
         pub with scroll_beyond_last_line(bool);
+        pub with automatic_layout(bool);
     }
 
     pub fn with_builtin_theme(self, theme: BuiltinTheme) -> Self {
@@ -96,6 +98,7 @@ impl CodeEditorOptions {
             language,
             value,
             scroll_beyond_last_line,
+            automatic_layout,
         } = self;
 
         simple_setters! {
@@ -106,6 +109,7 @@ impl CodeEditorOptions {
                 ref model,
                 ref value,
                 scroll_beyond_last_line,
+                automatic_layout,
         }
 
         options
