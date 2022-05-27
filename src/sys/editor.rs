@@ -207,8 +207,9 @@ extern "C" {
     pub fn tokenize(text: &str, language_id: &str) -> Array;
 
     /// Define a new theme or update an existing theme.
-    #[wasm_bindgen(js_name = "defineTheme", js_namespace = editor)]
-    pub fn define_theme(theme_name: &str, theme_data: &IStandaloneThemeData);
+    #[wasm_bindgen(js_name = "defineTheme", js_namespace = editor, catch)]
+    pub fn define_theme(theme_name: &str, theme_data: &IStandaloneThemeData)
+        -> Result<(), JsValue>;
 
     /// Switches to a theme.
     #[wasm_bindgen(js_name = "setTheme", js_namespace = editor)]
