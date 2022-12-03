@@ -4,7 +4,7 @@ use crate::{
     api::{CodeEditor as CodeEditorModel, TextModel},
     sys::editor::IStandaloneEditorConstructionOptions,
 };
-use std::{cell::RefCell, mem, rc::Rc};
+use std::{cell::RefCell, rc::Rc};
 use web_sys::HtmlElement;
 use yew::{html, html::Scope, Callback, Classes, Component, Context, Html, NodeRef, Properties};
 
@@ -31,7 +31,6 @@ pub struct CodeEditorProps<OPT: std::cmp::PartialEq + Clone + Into<IStandaloneEd
 /// access the [`CodeEditor`](CodeEditorModel).
 #[derive(Debug)]
 pub struct CodeEditor {
-    props: CodeEditorProps,
     node_ref: NodeRef,
     editor: Option<CodeEditorModel>,
 }
@@ -60,14 +59,12 @@ impl Component for CodeEditor {
         }
 
         Self {
-            props: ctx.props().clone(),
             node_ref: NodeRef::default(),
             editor: None,
         }
     }
 
-    fn changed(&mut self, ctx: &Context<Self>) -> bool {
-        let old_props = mem::replace(&mut self.props, ctx.props().clone());
+    fn changed(&mut self, ctx: &Context<Self>, old_props: &Self::Properties) -> bool {
         // these are the new values
         let CodeEditorProps {
             link,
