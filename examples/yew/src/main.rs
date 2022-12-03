@@ -9,6 +9,7 @@ fn get_options() -> CodeEditorOptions {
         .with_language("rust".to_owned())
         .with_value(CONTENT.to_owned())
         .with_builtin_theme(BuiltinTheme::VsDark)
+        .with_automatic_layout(true)
 }
 
 struct App {
@@ -24,17 +25,17 @@ impl Component for App {
         }
     }
 
-    fn changed(&mut self, _context: &Context<Self>) -> bool {
+    fn changed(&mut self, _context: &Context<Self>, _old_props: &Self::Properties) -> bool {
         false
     }
 
     fn view(&self, _context: &Context<Self>) -> Html {
         html! {
-            <CodeEditor options={ self.options.to_sys_options() } />
+            <CodeEditor classes={"full-height"} options={ self.options.to_sys_options() } />
         }
     }
 }
 
 fn main() {
-    yew::start_app::<App>();
+    yew::Renderer::<App>::new().render();
 }

@@ -7,4 +7,4 @@ edition = "2018"
 [dependencies]
 monaco = { path = "../..", features = ["yew-components"] }
 wasm-bindgen = "0.2"
-yew = "0.19"
+yew = { version = "0.20", features = ["csr"] }
