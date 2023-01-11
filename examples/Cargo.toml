@@ -1,2 +1,2 @@
 [workspace]
-members = ["yew"]
+members = ["yew", "yew_events_external", "yew_events_keymapping"]
