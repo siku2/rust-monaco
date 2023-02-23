@@ -1,5 +1,5 @@
 [package]
-name = "yew_events"
+name = "yew_events_keymapping"
 version = "0.1.0"
 edition = "2018"
 
