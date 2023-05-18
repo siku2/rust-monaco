@@ -44,7 +44,8 @@ fn app() -> Html {
     let code = String::from("This is just a normal line.\nThis is an error.\nThis line is highlighted.\nHover over this line to see a secret message.");
 
     // We need to create a new text model, so we can pass it to Monaco.
-    // We use use_state_eq, as this allows us to only use it when it changes.
+    // We use use_mut_ref, as this allows us to only use it 
+    // when it changes and for us to call the same text model between the two callbacks.
     let text_model = use_mut_ref(|| TextModel::create(&code, Some("rust"), None).unwrap());
 
     // Setup the arrays that would store decorations applied to the text model.
@@ -75,7 +76,7 @@ fn app() -> Html {
                 // in the parameters of the message, the severity, and the range of the error itself.
                 // It's important to note that the line-number/column index for Monaco starts at 1, and
                 // the values have to be in f64 vs. number in JavaScript. 
-                // With columns, the end index of a line one plus the last character on that line.
+                // With columns, the end index of a line is the last character on that line plus one.
                 // Once we have that setup, push the marker onto a JsArray.
                 let error_marker: IMarkerData = new_object().into();
                 error_marker.set_message("This is the error's message.");
@@ -94,7 +95,7 @@ fn app() -> Html {
                 // This requires some basic styling which can be seen in this example's index.html.
                 // This uses the IModelDeltaDecoration type, which is versatile for a lot of the
                 // features you could implement like line & in-line decorations.
-                // NOTE: delta_decorations has been replaced by createDecorationsCollection as version 0.37.
+                // NOTE: delta_decorations has been replaced by createDecorationsCollection as of version 0.37.
                 // Since rust-monaco is based on version 0.32, this is the primary function for applying decorations.
                 
                 // Setting up the options/parameters which will highlight the third line in the example code.
@@ -130,7 +131,7 @@ fn app() -> Html {
                 hover_opts.set_is_whole_line(true.into());
                 // Since we do not have a server to request for information, we will use the 
                 // Reflect.set() function to set the message for the hover provider as a JsValue 
-                // and to hand it a message. Take note of the use of unwrap() to get the resulting JsValue.
+                // and to store a message in it. Take note of the use of unwrap() to get the resulting JsValue.
                 let hover_message: IMarkdownString = new_object().into();
                 js_sys::Reflect::set(
                     &hover_message,
@@ -157,7 +158,7 @@ fn app() -> Html {
                 *old_decor_jsarray = temp_decor_array;
 
                 // After the decorations are applied to the editor, we remove the decorations from the arrays.
-                // However, it does not mean that they are removed from the editor since we did not call delta_decorations.
+                // However, it does not mean that they are removed from the editor since we did not call set_model_markers and delta_decorations.
                 new_decor_jsarray.set_length(0);
                 marker_jsarray.pop();
             },
