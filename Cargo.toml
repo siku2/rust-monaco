@@ -1,6 +1,6 @@
 [package]
 name = "monaco"
-version = "0.3.0"
+version = "0.4.0"
 authors = ["Simon Berger <simon@siku2.io>"]
 edition = "2018"
 description = "Rust WASM bindings for the Monaco Editor"
@@ -39,5 +39,5 @@ features = [
     "MouseEvent",
     "Url",
     "Window",
-    "Worker"
+    "Worker",
 ]
