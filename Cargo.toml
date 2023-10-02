@@ -1,6 +1,6 @@
 [package]
 name = "monaco"
-version = "0.4.0"
+version = "0.5.0"
 authors = ["Simon Berger <simon@siku2.io>"]
 edition = "2018"
 description = "Rust WASM bindings for the Monaco Editor"
@@ -28,7 +28,7 @@ yew-components = ["api", "yew"]
 js-sys = "0.3"
 paste = "1.0"
 wasm-bindgen = "0.2"
-yew = { version = "0.20", features = ["csr"], optional = true }
+yew = { version = "0.21", features = ["csr"], optional = true }
 
 [dependencies.web-sys]
 version = "0.3"
