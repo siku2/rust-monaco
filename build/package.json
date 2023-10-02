@@ -4,7 +4,7 @@
     "build-debug": "rollup -c --configDebug"
   },
   "dependencies": {
-    "monaco-editor": "^0.32"
+    "monaco-editor": "^0.41"
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.0",
