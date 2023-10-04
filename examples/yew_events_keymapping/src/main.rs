@@ -70,6 +70,7 @@ fn app() -> Html {
         // Here we define our callback, we use use_callback as we want to re-render when dependencies change.
         // See https://yew.rs/docs/concepts/function-components/state#general-view-of-how-to-store-state
         use_callback(
+            text_model,
             move |editor_link: CodeEditorLink, _text_model| {
                 editor_link.with_editor(|editor| {
                     // Registers Ctrl/Cmd + Enter hotkey
@@ -83,8 +84,7 @@ fn app() -> Html {
                         None,
                     );
                 });
-            },
-            text_model,
+            }
         )
     };
     html! {

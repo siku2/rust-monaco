@@ -64,6 +64,7 @@ fn app() -> Html {
         let new_decor_jsarray = new_decor_jsarray.clone();
 
         use_callback(
+            text_model,
             move |_, text_model| {
                 let text_model = text_model.borrow_mut();
                 let mut old_decor_jsarray = old_decor_jsarray.borrow_mut();
@@ -161,8 +162,7 @@ fn app() -> Html {
                 // However, it does not mean that they are removed from the editor since we did not call set_model_markers and delta_decorations.
                 new_decor_jsarray.set_length(0);
                 marker_jsarray.pop();
-            },
-            text_model,
+            }
         )
     };
 
@@ -174,6 +174,7 @@ fn app() -> Html {
         let new_decor_jsarray = new_decor_jsarray.clone();
 
         use_callback(
+            text_model,
             move |_, text_model| {
                 let text_model = text_model.borrow_mut();
                 let curr_model = text_model.as_ref();
@@ -182,8 +183,7 @@ fn app() -> Html {
                 monaco::sys::editor::set_model_markers(curr_model, "owner", &marker_jsarray);
 
                 curr_model.delta_decorations(&old_decor_jsarray, &new_decor_jsarray, None);
-            },
-            text_model,
+            }
         )
     };
 
