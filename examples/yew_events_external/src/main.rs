@@ -57,14 +57,14 @@ fn app() -> Html {
     let on_run_clicked = {
         let text_model = text_model.clone();
         use_callback(
+            text_model,
             move |_, text_model| {
                 let s: String = random_string();
                 // Here we have full access to the text model. We can do whatever we want with
                 // it. For this example, we'll just set the value to a random
                 // string.
                 text_model.set_value(&s);
-            },
-            text_model,
+            }
         )
     };
 
