@@ -9,19 +9,21 @@ fn expand_name(name: &TsEntityName) -> String {
     }
 }
 
+pub fn make_optional(name: String, optional: bool) -> String {
+    if optional && (name != "JsValue" && name != "ProviderResult") {
+        format!("Option<{name}>")
+    } else {
+        // JsValue is optional
+        name
+    }
+}
+
 pub fn as_ret(ann: &TsTypeAnn, optional: bool) -> Option<String> {
     let name = type_ann_name(ann);
     if name == "()" {
         None
-    } else if optional {
-        if name != "JsValue" {
-            // JsValue is optional
-            Some(format!("Option<{name}>"))
-        } else {
-            Some(name)
-        }
     } else {
-        Some(name)
+        Some(make_optional(name, optional))
     }
 }
 
@@ -51,9 +53,37 @@ pub fn type_name(t: &TsType) -> String {
         }
     }
 
-    result
+    fixes(result)
 }
 
 pub fn type_ann_name(ann: &TsTypeAnn) -> String {
     type_name(ann.type_ann.as_ref())
+}
+
+/// Apply some fixes which seem to end up with.
+fn fixes(mut name: String) -> String {
+    // fix enum literal as type
+    name = fix_enum_literal(name);
+    // fix type argument
+    name = fix_type_argument(name);
+    // done
+    name
+}
+
+fn fix_enum_literal(name: String) -> String {
+    if let Some((first, second)) = name.rsplit_once("::") {
+        if second.chars().all(|c| c.is_uppercase() || c == '_') {
+            return first.to_string();
+        }
+    }
+
+    name
+}
+
+fn fix_type_argument(name: String) -> String {
+    if name.len() == 1 && name.chars().all(char::is_uppercase) {
+        "JsValue".to_string()
+    } else {
+        name
+    }
 }

@@ -8,10 +8,7 @@ mod visit;
 use crate::visit::{namespace::NamespaceVisitor, ModuleContext};
 use std::{fs::File, path::PathBuf, rc::Rc, sync::Arc};
 use swc_common::{
-    comments::SingleThreadedComments,
-    input::StringInput,
-    FilePathMapping,
-    SourceMap,
+    comments::SingleThreadedComments, input::StringInput, FilePathMapping, SourceMap,
 };
 use swc_ecma_ast::EsVersion;
 use swc_ecma_parser::{lexer::Lexer, Parser, Syntax, TsConfig};

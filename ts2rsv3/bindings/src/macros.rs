@@ -108,7 +108,7 @@ macro_rules! int_enum {
         }
     ) => {
         _lit_enum_commons! {
-            u32, u32;
+            i32, i32;
             $(#[$meta])*
             $vis enum $name {
                 $(
@@ -122,7 +122,7 @@ macro_rules! int_enum {
 
             unsafe fn from_abi(abi: Self::Abi) -> Self {
                 let js_value = <$crate::macros::exports::JsValue as $crate::macros::exports::FromWasmAbi>::from_abi(abi);
-                let value = js_value.as_f64().expect("received non-number") as u32;
+                let value = js_value.as_f64().expect("received non-number") as i32;
                 Self::from_value(value).expect("received value outside of enum")
             }
         }

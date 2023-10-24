@@ -1,3 +1,4 @@
+use crate::types::make_optional;
 use crate::{ident::ident, types};
 use std::{collections::HashMap, io::Write};
 use swc_ecma_ast::*;
@@ -25,9 +26,7 @@ pub fn function_parameters(w: &mut dyn Write, params: &[Param]) {
                     r#type = types::type_ann_name(&ann);
                 }
 
-                if id.optional {
-                    r#type = format!("Option<{type}>");
-                }
+                r#type = make_optional(r#type, id.optional);
 
                 write!(w, "{}: {type}, ", ident(id.as_ref())).unwrap();
             }
@@ -47,9 +46,7 @@ pub fn function_parameters_ts(w: &mut dyn Write, params: &[TsFnParam]) {
                     r#type = types::type_ann_name(&ann);
                 }
 
-                if id.optional {
-                    r#type = format!("Option<{type}>");
-                }
+                r#type = make_optional(r#type, id.optional);
 
                 write!(w, "{}: {type}, ", ident(id.as_ref())).unwrap();
             }

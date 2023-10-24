@@ -50,7 +50,16 @@ use js_sys::*;
 #[allow(unused)]
 use super::*;
 
+#[allow(unused)]
 pub type HTMLElement = HtmlElement;
+#[allow(unused)]
+pub type ReadonlyArray = Array;
+#[allow(unused)]
+pub type NonNullable = JsValue;
+#[allow(unused)]
+pub type Record = JsValue;
+#[allow(unused)]
+pub type PromiseLike = JsValue;
 
 "#
             )?;
