@@ -25,6 +25,7 @@ const EDITOR_WORKER: &str = include_worker!("editor.worker.js");
 const CSS_WORKER: &str = include_worker!("css.worker.js");
 const HTML_WORKER: &str = include_worker!("html.worker.js");
 const JSON_WORKER: &str = include_worker!("json.worker.js");
+const YAML_WORKER: &str = include_worker!("yaml.worker.js");
 
 fn create_worker(source: &str) -> Result<Worker, JsValue> {
     let array: Array = iter::once(JsValue::from_str(source)).collect();
@@ -38,6 +39,7 @@ fn get_worker(_id: String, label: String) -> Worker {
         "css" => CSS_WORKER,
         "html" => HTML_WORKER,
         "json" => JSON_WORKER,
+        "yaml" => YAML_WORKER,
         _ => EDITOR_WORKER,
     };
     create_worker(worker).expect("failed to create worker")
