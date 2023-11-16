@@ -3,7 +3,7 @@
 //!
 //! Most of the types here are simply wrappers around the Javascript types and
 //! implement [`AsRef`] for them.
-use crate::sys::IDisposable;
+use crate::sys::monaco::IDisposable;
 pub use editor::*;
 pub use model::*;
 use wasm_bindgen::closure::Closure;

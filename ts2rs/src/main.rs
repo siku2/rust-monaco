@@ -44,7 +44,7 @@ fn main() -> anyhow::Result<()> {
     NamespaceVisitor::new(&mut context).visit_module(&module);
 
     {
-        let mut out = File::create("bindings/src/monaco.rs")?;
+        let mut out = File::create("../src/sys/gen.rs")?;
         context.flush(&mut out)?;
     }
 

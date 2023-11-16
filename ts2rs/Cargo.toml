@@ -1,5 +1,5 @@
 [package]
-name = "ts2rsv3"
+name = "ts2rs"
 version = "0.1.0"
 edition = "2021"
 

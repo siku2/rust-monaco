@@ -2,7 +2,7 @@
 //! Requires the "yew" feature.
 use crate::{
     api::{CodeEditor as CodeEditorModel, TextModel},
-    sys::editor::IStandaloneEditorConstructionOptions,
+    sys::monaco::editor::IStandaloneEditorConstructionOptions,
 };
 use std::{cell::RefCell, rc::Rc};
 use web_sys::HtmlElement;
