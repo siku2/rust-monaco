@@ -1,6 +1,9 @@
+use crate::gen::function_parameters_ts;
+use crate::ident::ident;
 use crate::{
     comments::insert_comments,
     eval::eval_const,
+    types,
     types::type_name,
     visit::{class::*, interface::InterfaceVisitor, r#enum::EnumVisitor, ModuleContext},
 };
@@ -33,6 +36,39 @@ impl<'a> Visit for TranslateVisitor<'a> {
         .unwrap();
 
         writeln!(self.context, r#";"#).unwrap();
+    }
+
+    fn visit_fn_decl(&mut self, n: &FnDecl) {
+        let name = n.ident.as_ref();
+        let fn_name = ident(name);
+
+        let comments = self
+            .context
+            .comments
+            .get_leading(n.function.span.comment_range().lo);
+        insert_comments(self.context.deref_mut(), comments);
+
+        let attrs = vec![format!("js_name = \"{name}\"")];
+
+        write!(
+            self.context,
+            r#"
+#[wasm_bindgen]
+extern "C" {{
+    // FIXME: proper declaration
+    #[wasm_bindgen({attrs})]
+    pub fn {fn_name}("#,
+            attrs = attrs.join(", ")
+        )
+        .unwrap();
+
+        writeln!(
+            self.context,
+            r#");
+}}
+"#
+        )
+        .unwrap();
     }
 
     fn visit_ts_enum_decl(&mut self, n: &TsEnumDecl) {

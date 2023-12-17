@@ -1441,6 +1441,54 @@ extern "C" {
 
 #[wasm_bindgen]
 extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "create")]
+    pub fn create();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onDidCreateEditor")]
+    pub fn on_did_create_editor();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onDidCreateDiffEditor")]
+    pub fn on_did_create_diff_editor();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getEditors")]
+    pub fn get_editors();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getDiffEditors")]
+    pub fn get_diff_editors();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "createDiffEditor")]
+    pub fn create_diff_editor();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
     #[derive(Debug)]
     #[wasm_bindgen(extends = js_sys::Object)]
     pub type IDiffNavigatorOptions;
@@ -1452,6 +1500,14 @@ extern "C" {
     #[wasm_bindgen(method, js_class = "IDiffNavigatorOptions", js_name = "alwaysRevealFirst", getter)]
     pub fn always_reveal_first(this: &IDiffNavigatorOptions) -> bool;
 
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "createDiffNavigator")]
+    pub fn create_diff_navigator();
 }
 
 
@@ -1480,6 +1536,22 @@ extern "C" {
     pub fn set_run(this: &ICommandDescriptor, run: ICommandHandler);
 
 
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "addCommand")]
+    pub fn add_command();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "addEditorAction")]
+    pub fn add_editor_action();
 }
 
 
@@ -1519,6 +1591,182 @@ extern "C" {
 
 #[wasm_bindgen]
 extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "addKeybindingRule")]
+    pub fn add_keybinding_rule();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "addKeybindingRules")]
+    pub fn add_keybinding_rules();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "createModel")]
+    pub fn create_model();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setModelLanguage")]
+    pub fn set_model_language();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setModelMarkers")]
+    pub fn set_model_markers();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "removeAllMarkers")]
+    pub fn remove_all_markers();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getModelMarkers")]
+    pub fn get_model_markers();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onDidChangeMarkers")]
+    pub fn on_did_change_markers();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getModel")]
+    pub fn get_model();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getModels")]
+    pub fn get_models();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onDidCreateModel")]
+    pub fn on_did_create_model();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onWillDisposeModel")]
+    pub fn on_will_dispose_model();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onDidChangeModelLanguage")]
+    pub fn on_did_change_model_language();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "createWebWorker")]
+    pub fn create_web_worker();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "colorizeElement")]
+    pub fn colorize_element();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "colorize")]
+    pub fn colorize();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "colorizeModelLine")]
+    pub fn colorize_model_line();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "tokenize")]
+    pub fn tokenize();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "defineTheme")]
+    pub fn define_theme();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setTheme")]
+    pub fn set_theme();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "remeasureFonts")]
+    pub fn remeasure_fonts();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerCommand")]
+    pub fn register_command();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
     #[derive(Debug)]
     #[wasm_bindgen(extends = js_sys::Object)]
     pub type ILinkOpener;
@@ -1527,6 +1775,14 @@ extern "C" {
     pub fn open(this: &ILinkOpener, resource: Uri, ) -> JsValue;
 
 
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerLinkOpener")]
+    pub fn register_link_opener();
 }
 
 
@@ -1547,6 +1803,14 @@ extern "C" {
     pub fn open_code_editor(this: &ICodeEditorOpener, source: ICodeEditor, resource: Uri, selection_or_position: JsValue, ) -> JsValue;
 
 
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerEditorOpener")]
+    pub fn register_editor_opener();
 }
 
 pub type BuiltinTheme = JsValue
@@ -10225,6 +10489,54 @@ extern "C" {
 
 #[wasm_bindgen]
 extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "register")]
+    pub fn register();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getLanguages")]
+    pub fn get_languages();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "getEncodedLanguageId")]
+    pub fn get_encoded_language_id();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onLanguage")]
+    pub fn on_language();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "onLanguageEncountered")]
+    pub fn on_language_encountered();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setLanguageConfiguration")]
+    pub fn set_language_configuration();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
     #[derive(Debug)]
     #[wasm_bindgen(extends = js_sys::Object)]
     pub type IToken;
@@ -10380,6 +10692,238 @@ extern "C" {
     pub fn tokenize(this: &EncodedTokensProvider, line: String, state: IState, ) -> Option<ILineTokens>;
 
 
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setColorMap")]
+    pub fn set_color_map();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerTokensProviderFactory")]
+    pub fn register_tokens_provider_factory();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setTokensProvider")]
+    pub fn set_tokens_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "setMonarchTokensProvider")]
+    pub fn set_monarch_tokens_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerReferenceProvider")]
+    pub fn register_reference_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerRenameProvider")]
+    pub fn register_rename_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerSignatureHelpProvider")]
+    pub fn register_signature_help_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerHoverProvider")]
+    pub fn register_hover_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDocumentSymbolProvider")]
+    pub fn register_document_symbol_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDocumentHighlightProvider")]
+    pub fn register_document_highlight_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerLinkedEditingRangeProvider")]
+    pub fn register_linked_editing_range_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDefinitionProvider")]
+    pub fn register_definition_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerImplementationProvider")]
+    pub fn register_implementation_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerTypeDefinitionProvider")]
+    pub fn register_type_definition_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerCodeLensProvider")]
+    pub fn register_code_lens_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerCodeActionProvider")]
+    pub fn register_code_action_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDocumentFormattingEditProvider")]
+    pub fn register_document_formatting_edit_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDocumentRangeFormattingEditProvider")]
+    pub fn register_document_range_formatting_edit_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerOnTypeFormattingEditProvider")]
+    pub fn register_on_type_formatting_edit_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerLinkProvider")]
+    pub fn register_link_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerCompletionItemProvider")]
+    pub fn register_completion_item_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerColorProvider")]
+    pub fn register_color_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerFoldingRangeProvider")]
+    pub fn register_folding_range_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDeclarationProvider")]
+    pub fn register_declaration_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerSelectionRangeProvider")]
+    pub fn register_selection_range_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDocumentSemanticTokensProvider")]
+    pub fn register_document_semantic_tokens_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerDocumentRangeSemanticTokensProvider")]
+    pub fn register_document_range_semantic_tokens_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerInlineCompletionsProvider")]
+    pub fn register_inline_completions_provider();
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerInlayHintsProvider")]
+    pub fn register_inlay_hints_provider();
 }
 
 
@@ -14242,6 +14786,14 @@ extern "C" {
     #[wasm_bindgen(method, js_class = "LanguageServiceRegistration", js_name = "defaults", getter)]
     pub fn defaults(this: &LanguageServiceRegistration) -> LanguageServiceDefaults;
 
+}
+
+
+#[wasm_bindgen]
+extern "C" {
+    // FIXME: proper declaration
+    #[wasm_bindgen(js_name = "registerHTMLLanguageService")]
+    pub fn register_html_language_service();
 }
 
 
