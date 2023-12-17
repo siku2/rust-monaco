@@ -1,25 +1,14 @@
 use super::TextModel;
-use crate::sys::{
+use crate::sys::monaco;
+use crate::sys::monaco::{
     editor::{
-        self,
-        BuiltinTheme,
-        ConfigurationChangedEvent,
-        EditorLayoutInfo,
-        IContentSizeChangedEvent,
-        ICursorPositionChangedEvent,
-        ICursorSelectionChangedEvent,
-        IDimension,
-        IEditorMouseEvent,
-        IModelChangedEvent,
-        IModelContentChangedEvent,
-        IModelLanguageChangedEvent,
-        IModelOptionsChangedEvent,
-        IPasteEvent,
-        IStandaloneCodeEditor,
+        self, BuiltinTheme, ConfigurationChangedEvent, EditorLayoutInfo, IContentSizeChangedEvent,
+        ICursorPositionChangedEvent, ICursorSelectionChangedEvent, IDimension, IEditorMouseEvent,
+        IModelChangedEvent, IModelContentChangedEvent, IModelLanguageChangedEvent,
+        IModelOptionsChangedEvent, IPasteEvent, IStandaloneCodeEditor,
         IStandaloneEditorConstructionOptions,
     },
-    IKeyboardEvent,
-    IScrollEvent,
+    IKeyboardEvent, IScrollEvent,
 };
 use std::borrow::Borrow;
 use wasm_bindgen::JsValue;
