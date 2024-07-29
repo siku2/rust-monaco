@@ -6474,24 +6474,8 @@
     const userSettingsUSMap = new KeyCodeStrMap();
     const userSettingsGeneralMap = new KeyCodeStrMap();
     const EVENT_KEY_CODE_MAP = new Array(230);
-    const NATIVE_WINDOWS_KEY_CODE_TO_KEY_CODE = {};
-    const scanCodeIntToStr = [];
     const scanCodeStrToInt = Object.create(null);
     const scanCodeLowerCaseStrToInt = Object.create(null);
-    /**
-     * -1 if a ScanCode => KeyCode mapping depends on kb layout.
-     */
-    const IMMUTABLE_CODE_TO_KEY_CODE = [];
-    /**
-     * -1 if a KeyCode => ScanCode mapping depends on kb layout.
-     */
-    const IMMUTABLE_KEY_CODE_TO_CODE = [];
-    for (let i = 0; i <= 193 /* MAX_VALUE */; i++) {
-        IMMUTABLE_CODE_TO_KEY_CODE[i] = -1 /* DependsOnKbLayout */;
-    }
-    for (let i = 0; i <= 126 /* MAX_VALUE */; i++) {
-        IMMUTABLE_KEY_CODE_TO_CODE[i] = -1 /* DependsOnKbLayout */;
-    }
     (function () {
         // See https://msdn.microsoft.com/en-us/library/windows/desktop/dd375731(v=vs.85).aspx
         // See https://github.com/microsoft/node-native-keymap/blob/master/deps/chromium/keyboard_codes_win.h
@@ -6737,20 +6721,8 @@
             const [_keyCodeOrd, immutable, scanCode, scanCodeStr, keyCode, keyCodeStr, eventKeyCode, vkey, usUserSettingsLabel, generalUserSettingsLabel] = mapping;
             if (!seenScanCode[scanCode]) {
                 seenScanCode[scanCode] = true;
-                scanCodeIntToStr[scanCode] = scanCodeStr;
                 scanCodeStrToInt[scanCodeStr] = scanCode;
                 scanCodeLowerCaseStrToInt[scanCodeStr.toLowerCase()] = scanCode;
-                if (immutable) {
-                    IMMUTABLE_CODE_TO_KEY_CODE[scanCode] = keyCode;
-                    if ((keyCode !== 0 /* Unknown */)
-                        && (keyCode !== 3 /* Enter */)
-                        && (keyCode !== 5 /* Ctrl */)
-                        && (keyCode !== 4 /* Shift */)
-                        && (keyCode !== 6 /* Alt */)
-                        && (keyCode !== 57 /* Meta */)) {
-                        IMMUTABLE_KEY_CODE_TO_CODE[keyCode] = scanCode;
-                    }
-                }
             }
             if (!seenKeyCode[keyCode]) {
                 seenKeyCode[keyCode] = true;
@@ -6764,12 +6736,7 @@
             if (eventKeyCode) {
                 EVENT_KEY_CODE_MAP[eventKeyCode] = keyCode;
             }
-            if (vkey) {
-                NATIVE_WINDOWS_KEY_CODE_TO_KEY_CODE[vkey] = keyCode;
-            }
         }
-        // Manually added due to the exclusion above (due to duplication with NumpadEnter)
-        IMMUTABLE_KEY_CODE_TO_CODE[3 /* Enter */] = 46 /* Enter */;
     })();
     var KeyCodeUtils;
     (function (KeyCodeUtils) {

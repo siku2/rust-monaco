@@ -16,6 +16,10 @@ const workers = [
     name: "html.worker",
     input: "language/html/html.worker",
   },
+  {
+    name: "ts.worker",
+    input: "language/typescript/ts.worker",
+  },
 ];
 
 export default args => {
