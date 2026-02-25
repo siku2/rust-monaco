@@ -28,8 +28,8 @@ pub struct CustomEditorProps {
 /// This is really just a helper component, so we can pass in props easier.
 /// It makes it much easier to use, as we can pass in what we need, and it
 /// will only re-render if the props change.
-#[function_component(CustomEditor)]
-pub fn custom_editor(props: &CustomEditorProps) -> Html {
+#[component]
+pub fn CustomEditor(props: &CustomEditorProps) -> Html {
     let CustomEditorProps { text_model } = props;
 
     html! {
@@ -37,8 +37,8 @@ pub fn custom_editor(props: &CustomEditorProps) -> Html {
     }
 }
 
-#[function_component(App)]
-fn app() -> Html {
+#[component]
+fn App() -> Html {
     // Here's some "code" that will showcase some of
     // the decorations that can be applied to the text model.
     let code = String::from("This is just a normal line.\nThis is an error.\nThis line is highlighted.\nHover over this line to see a secret message.");
