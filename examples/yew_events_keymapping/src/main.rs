@@ -29,8 +29,8 @@ pub struct CustomEditorProps {
 /// It makes it much easier to use, as we can pass in what we need, and it
 /// will only re-render if the props change.
 ///
-#[function_component(CustomEditor)]
-pub fn custom_editor(props: &CustomEditorProps) -> Html {
+#[component]
+pub fn CustomEditor(props: &CustomEditorProps) -> Html {
     let CustomEditorProps {
         on_editor_created,
         text_model,
@@ -41,8 +41,8 @@ pub fn custom_editor(props: &CustomEditorProps) -> Html {
     }
 }
 
-#[function_component(App)]
-fn app() -> Html {
+#[component]
+fn App() -> Html {
     // We need to create a new text model, so we can pass it to Monaco.
     // We use use_state_eq, as this allows us to only use it when it changes.
     let text_model = use_state_eq(|| TextModel::create(CONTENT, Some("rust"), None).unwrap());
