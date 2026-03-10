@@ -1,6 +1,5 @@
 use monaco::{api::CodeEditorOptions, sys::editor::BuiltinTheme, yew::CodeEditor};
-use std::rc::Rc;
-use yew::{html, Component, Context, Html};
+use yew::prelude::*;
 
 const CONTENT: &str = include_str!("main.rs");
 
@@ -12,27 +11,12 @@ fn get_options() -> CodeEditorOptions {
         .with_automatic_layout(true)
 }
 
-struct App {
-    options: Rc<CodeEditorOptions>,
-}
-impl Component for App {
-    type Message = ();
-    type Properties = ();
+#[component]
+fn App() -> Html {
+    let options = get_options().to_sys_options();
 
-    fn create(_context: &Context<Self>) -> Self {
-        Self {
-            options: Rc::new(get_options()),
-        }
-    }
-
-    fn changed(&mut self, _context: &Context<Self>, _old_props: &Self::Properties) -> bool {
-        false
-    }
-
-    fn view(&self, _context: &Context<Self>) -> Html {
-        html! {
-            <CodeEditor classes={"full-height"} options={ self.options.to_sys_options() } />
-        }
+    html! {
+        <CodeEditor classes={"full-height"} options={options} />
     }
 }
 
