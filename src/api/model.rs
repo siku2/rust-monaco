@@ -1,9 +1,6 @@
-use crate::sys::{
+use crate::sys::monaco::{
     editor::{
-        self,
-        IModelContentChangedEvent,
-        IModelLanguageChangedEvent,
-        IModelOptionsChangedEvent,
+        self, IModelContentChangedEvent, IModelLanguageChangedEvent, IModelOptionsChangedEvent,
         ITextModel,
     },
     Uri,
